@@ -1,0 +1,146 @@
+
+
+================================================================
+== Vivado HLS Report for 'batch_norm'
+================================================================
+* Date:           Thu Sep  3 21:47:58 2020
+
+* Version:        2019.2.1 (Build 2724168 on Thu Dec 05 05:19:09 MST 2019)
+* Project:        FracNetHLS
+* Solution:       solution1
+* Product family: zynquplus
+* Target device:  xczu3eg-sbva484-1-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  | 10.00 ns | 6.194 ns |   1.25 ns  |
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+----------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline |
+    |   min   |   max   |    min   |    max   | min | max |   Type   |
+    +---------+---------+----------+----------+-----+-----+----------+
+    |        0|        0|   0 ns   |   0 ns   |    1|    1| function |
+    +---------+---------+----------+----------+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 0
+IsPipeline: 1
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 1
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 1
+* Pipeline : 1
+  Pipeline-0 : II = 1, D = 1, States = { 1 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 6.19>
+ST_1 : Operation 2 [1/1] (0.00ns)   --->   "%bias_V_read = call i11 @_ssdm_op_Read.ap_auto.i11(i11 %bias_V)" [FracNetHLS/pgconv.cc:58]   --->   Operation 2 'read' 'bias_V_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 3 [1/1] (0.00ns)   --->   "%weight_V_read = call i11 @_ssdm_op_Read.ap_auto.i11(i11 %weight_V)" [FracNetHLS/pgconv.cc:58]   --->   Operation 3 'read' 'weight_V_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 4 [1/1] (0.00ns)   --->   "%sum_V_read = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %sum_V)" [FracNetHLS/pgconv.cc:58]   --->   Operation 4 'read' 'sum_V_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 5 [1/1] (0.00ns)   --->   "%r_V = zext i8 %sum_V_read to i19" [FracNetHLS/pgconv.cc:58]   --->   Operation 5 'zext' 'r_V' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 6 [1/1] (0.00ns)   --->   "%sext_ln1118 = sext i11 %weight_V_read to i19" [FracNetHLS/pgconv.cc:58]   --->   Operation 6 'sext' 'sext_ln1118' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 7 [1/1] (2.84ns) (root node of the DSP)   --->   "%r_V_4 = mul i19 %r_V, %sext_ln1118" [FracNetHLS/pgconv.cc:58]   --->   Operation 7 'mul' 'r_V_4' <Predicate = true> <Delay = 2.84> <Core = "DSP48">   --->   Core 88 'DSP48' <Latency = 0> <II = 1> <Delay = 2.84> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 2> <OutPorts = 1> <Sync> <CReg>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%sext_ln703 = sext i11 %bias_V_read to i19" [FracNetHLS/pgconv.cc:58]   --->   Operation 8 'sext' 'sext_ln703' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (1.05ns)   --->   "%ret_V = add i19 %sext_ln703, %r_V_4" [FracNetHLS/pgconv.cc:58]   --->   Operation 9 'add' 'ret_V' <Predicate = true> <Delay = 1.05> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%p_Result_s = call i1 @_ssdm_op_BitSelect.i1.i19.i32(i19 %ret_V, i32 18)" [FracNetHLS/pgconv.cc:58]   --->   Operation 10 'bitselect' 'p_Result_s' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%sext_ln731 = sext i11 %bias_V_read to i13" [FracNetHLS/pgconv.cc:58]   --->   Operation 11 'sext' 'sext_ln731' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%trunc_ln731 = trunc i19 %r_V_4 to i13" [FracNetHLS/pgconv.cc:58]   --->   Operation 12 'trunc' 'trunc_ln731' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (0.97ns)   --->   "%add_ln731 = add i13 %sext_ln731, %trunc_ln731" [FracNetHLS/pgconv.cc:58]   --->   Operation 13 'add' 'add_ln731' <Predicate = true> <Delay = 0.97> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%p_Val2_10 = call i14 @_ssdm_op_BitConcatenate.i14.i13.i1(i13 %add_ln731, i1 false)" [FracNetHLS/pgconv.cc:58]   --->   Operation 14 'bitconcatenate' 'p_Val2_10' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%p_Result_7 = call i1 @_ssdm_op_BitSelect.i1.i13.i32(i13 %add_ln731, i32 12)" [FracNetHLS/pgconv.cc:58]   --->   Operation 15 'bitselect' 'p_Result_7' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%tmp = call i6 @_ssdm_op_PartSelect.i6.i19.i32.i32(i19 %ret_V, i32 13, i32 18)" [FracNetHLS/pgconv.cc:58]   --->   Operation 16 'partselect' 'tmp' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 17 [1/1] (0.87ns)   --->   "%icmp_ln785 = icmp ne i6 %tmp, 0" [FracNetHLS/pgconv.cc:58]   --->   Operation 17 'icmp' 'icmp_ln785' <Predicate = true> <Delay = 0.87> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.87> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 18 [1/1] (0.00ns) (grouped into LUT with out node overflow)   --->   "%or_ln785 = or i1 %p_Result_7, %icmp_ln785" [FracNetHLS/pgconv.cc:58]   --->   Operation 18 'or' 'or_ln785' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 19 [1/1] (0.00ns) (grouped into LUT with out node overflow)   --->   "%xor_ln785 = xor i1 %p_Result_s, true" [FracNetHLS/pgconv.cc:58]   --->   Operation 19 'xor' 'xor_ln785' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 20 [1/1] (0.33ns) (out node of the LUT)   --->   "%overflow = and i1 %or_ln785, %xor_ln785" [FracNetHLS/pgconv.cc:58]   --->   Operation 20 'and' 'overflow' <Predicate = true> <Delay = 0.33> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 21 [1/1] (0.00ns) (grouped into LUT with out node underflow)   --->   "%xor_ln786 = xor i1 %p_Result_7, true" [FracNetHLS/pgconv.cc:58]   --->   Operation 21 'xor' 'xor_ln786' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 22 [1/1] (0.87ns)   --->   "%icmp_ln786 = icmp ne i6 %tmp, -1" [FracNetHLS/pgconv.cc:58]   --->   Operation 22 'icmp' 'icmp_ln786' <Predicate = true> <Delay = 0.87> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.87> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 23 [1/1] (0.00ns) (grouped into LUT with out node underflow)   --->   "%or_ln786 = or i1 %icmp_ln786, %xor_ln786" [FracNetHLS/pgconv.cc:58]   --->   Operation 23 'or' 'or_ln786' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 24 [1/1] (0.33ns) (out node of the LUT)   --->   "%underflow = and i1 %or_ln786, %p_Result_s" [FracNetHLS/pgconv.cc:58]   --->   Operation 24 'and' 'underflow' <Predicate = true> <Delay = 0.33> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 25 [1/1] (0.00ns) (grouped into LUT with out node select_ln340)   --->   "%or_ln340 = or i1 %underflow, %overflow" [FracNetHLS/pgconv.cc:58]   --->   Operation 25 'or' 'or_ln340' <Predicate = (or_ln340_5)> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 26 [1/1] (0.00ns) (grouped into LUT with out node select_ln340_7)   --->   "%xor_ln340 = xor i1 %underflow, true" [FracNetHLS/pgconv.cc:58]   --->   Operation 26 'xor' 'xor_ln340' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 27 [1/1] (0.00ns) (grouped into LUT with out node select_ln340_7)   --->   "%or_ln340_5 = or i1 %overflow, %xor_ln340" [FracNetHLS/pgconv.cc:58]   --->   Operation 27 'or' 'or_ln340_5' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 28 [1/1] (0.54ns) (out node of the LUT)   --->   "%select_ln340 = select i1 %or_ln340, i14 8191, i14 %p_Val2_10" [FracNetHLS/pgconv.cc:58]   --->   Operation 28 'select' 'select_ln340' <Predicate = (or_ln340_5)> <Delay = 0.54> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.54> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_1 : Operation 29 [1/1] (0.00ns) (grouped into LUT with out node select_ln340_7)   --->   "%select_ln388 = select i1 %underflow, i14 -8192, i14 %p_Val2_10" [FracNetHLS/pgconv.cc:58]   --->   Operation 29 'select' 'select_ln388' <Predicate = (!or_ln340_5)> <Delay = 0.00> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.54> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_1 : Operation 30 [1/1] (0.54ns) (out node of the LUT)   --->   "%select_ln340_7 = select i1 %or_ln340_5, i14 %select_ln340, i14 %select_ln388" [FracNetHLS/pgconv.cc:58]   --->   Operation 30 'select' 'select_ln340_7' <Predicate = true> <Delay = 0.54> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.54> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_1 : Operation 31 [1/1] (0.00ns)   --->   "ret i14 %select_ln340_7" [FracNetHLS/pgconv.cc:58]   --->   Operation 31 'ret' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 1.25ns.
+
+ <State 1>: 6.19ns
+The critical path consists of the following:
+	wire read on port 'weight_V' (FracNetHLS/pgconv.cc:58) [5]  (0 ns)
+	'mul' operation of DSP[9] ('r.V', FracNetHLS/pgconv.cc:58) [9]  (2.85 ns)
+	'add' operation ('ret.V', FracNetHLS/pgconv.cc:58) [11]  (1.05 ns)
+	'icmp' operation ('icmp_ln785', FracNetHLS/pgconv.cc:58) [19]  (0.87 ns)
+	'or' operation ('or_ln785', FracNetHLS/pgconv.cc:58) [20]  (0 ns)
+	'and' operation ('overflow', FracNetHLS/pgconv.cc:58) [22]  (0.331 ns)
+	'or' operation ('or_ln340', FracNetHLS/pgconv.cc:58) [27]  (0 ns)
+	'select' operation ('select_ln340', FracNetHLS/pgconv.cc:58) [30]  (0.548 ns)
+	'select' operation ('select_ln340_7', FracNetHLS/pgconv.cc:58) [32]  (0.548 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

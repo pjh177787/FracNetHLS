@@ -1,0 +1,1746 @@
+INFO-FLOW: Workspace C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1 opened at Thu Sep 03 21:46:59 -0500 2020
+Execute     config_clock -quiet -name default -period 10 -default=false 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+Execute     open_platform DefaultPlatform 
+Execute     import_lib C:/Xilinx/Vivado/2019.2/common/technology/xilinx/zynquplus/zynquplus 
+Execute       source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/common/xilinx.lib 
+Execute         source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/interface/xilinx_interface.lib 
+Execute           source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/interface/plb46.lib 
+Execute           source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/interface/fsl.lib 
+Execute           source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/interface/axi4.lib 
+Execute           source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/interface/maxi.lib 
+Execute           source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/interface/saxilite.lib 
+Execute         source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/common/dsp48.lib 
+Execute         source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/ip/dds_compiler.lib 
+Execute         source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/ip/xfft.lib 
+Execute         source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/ip/xfir.lib 
+Execute       source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/common/xilinx.hlp 
+Execute         source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/common/target_info.tcl 
+Execute         source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/interface/xilinx_interface.hlp 
+Execute           source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/interface/maxi.hlp 
+Execute           source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/interface/saxilite.hlp 
+Execute         source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/common/dsp48.hlp 
+Execute       source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/zynquplus/dsp48e2.hlp 
+Execute       source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/common/xilinx.hlp 
+Execute         source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/common/target_info.tcl 
+Execute         source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/interface/xilinx_interface.hlp 
+Execute           source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/interface/maxi.hlp 
+Execute           source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/interface/saxilite.hlp 
+Execute         source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/common/dsp48.hlp 
+Execute     source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/zynquplus/zynquplus.gen 
+Execute       source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/common/xilinx.gen 
+Execute         source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/interface/plb46.gen 
+Execute         source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/interface/fsl.gen 
+Execute         source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/interface/axi4.gen 
+Execute         source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute           source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/interface/saxilite.gen 
+Execute           source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/interface/maxi.gen 
+Execute         source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute         source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute         source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute         source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/ip/util.gen 
+Execute         source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/ip/xfft.gen 
+Execute         source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/ip/xfir.gen 
+Execute         source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/common/dsp48.gen 
+Command       ap_source done; 0.113 sec.
+Command     ap_source done; 0.113 sec.
+Execute     set_part xczu3eg-sbva484-1-e 
+Execute       ap_part_info -name xczu3eg-sbva484-1-e -data single -quiet 
+Command       ap_part_info done; 1.495 sec.
+Execute       ap_part_info -name xczu3eg-sbva484-1-e -data info 
+Execute       add_library xilinx/zynquplus/zynquplus:xczu3eg:-sbva484:-1-e 
+Execute         get_default_platform 
+Execute         ap_part_info -data single -name xczu3eg-sbva484-1-e 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data resources 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info 
+Execute         config_chip_info -quiet -resource {SLICE 8820} {LUT 70560} {FF 141120} {DSP48E 360} {BRAM 432} {URAM 0} 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info 
+Execute         config_chip_info -quiet -speed slow 
+Execute       add_library xilinx/zynquplus/zynquplus_fpv7 
+Execute         get_default_platform 
+Execute         open_platform DefaultPlatform 
+Execute         import_lib C:/Xilinx/Vivado/2019.2/common/technology/xilinx/zynquplus/zynquplus_fpv7 
+Execute           source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/common/xilinx_fp.lib 
+Execute           source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/common/xilinx_fp.hlp 
+Execute             source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/common/xilinx.hlp 
+Execute               source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/common/target_info.tcl 
+Execute               source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/interface/xilinx_interface.hlp 
+Execute                 source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/interface/maxi.hlp 
+Execute                 source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/interface/saxilite.hlp 
+Execute               source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/common/dsp48.hlp 
+Execute         source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/zynquplus/zynquplus_fpv7.gen 
+Execute           source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/common/xilinx_fp.gen 
+INFO: [HLS 200-10] Setting target device to 'xczu3eg-sbva484-1-e'
+Execute       ap_part_info -name xczu3eg-sbva484-1-e -data info 
+Execute       get_default_platform 
+Command     set_part done; 1.67 sec.
+Execute     ap_part_info -data single -name xczu3eg-sbva484-1-e 
+Execute     ap_part_info -name xczu3eg-sbva484-1-e -data resources 
+Execute     ap_part_info -name xczu3eg-sbva484-1-e -data info 
+Execute     ap_part_info -name xczu3eg-sbva484-1-e -data info 
+Execute     config_chip_info -quiet -resource {SLICE 8820} {LUT 70560} {FF 141120} {DSP48E 360} {BRAM 432} {URAM 0} 
+Execute     ap_part_info -name xczu3eg-sbva484-1-e -data info 
+Execute     config_chip_info -quiet -speed slow 
+Execute     config_sdx -optimization_level=none 
+Execute       send_msg_by_id INFO @200-435@%s%s 'config_sdx -optimization_level' config_export -vivado_optimization_level=2 
+INFO: [HLS 200-435] Setting 'config_sdx -optimization_level' configuration: config_export -vivado_optimization_level=2
+Execute       config_export -vivado_optimization_level=2 
+Execute         get_config_export -vivado_impl_strategy 
+Execute         get_config_export -vivado_phys_opt 
+Execute     config_sdx -target=none 
+Execute       send_msg_by_id INFO @200-435@%s%s 'config_sdx -target' config_export -vivado_optimization_level=2 
+INFO: [HLS 200-435] Setting 'config_sdx -target' configuration: config_export -vivado_optimization_level=2
+Execute       config_export -vivado_optimization_level=2 
+Execute         get_config_export -vivado_impl_strategy 
+Execute         get_config_export -vivado_phys_opt 
+Execute       get_config_compile -pipeline_loops 
+Execute       get_config_compile -name_max_length 
+Execute       get_config_schedule -enable_dsp_full_reg 
+Execute       get_config_rtl -register_reset_num 
+Execute       get_config_rtl -module_auto_prefix 
+Execute       get_config_interface -m_axi_addr64 
+Execute       send_msg_by_id INFO @200-435@%s%s 'config_sdx -target' set_clock_uncertainty default 
+INFO: [HLS 200-435] Setting 'config_sdx -target' configuration: set_clock_uncertainty default
+Execute       set_clock_uncertainty default 
+Execute         get_clock_period -default -name=default 
+Execute         config_clock -quiet -name default -uncertainty 1.25 -unit % 
+INFO: [SYN 201-201] Setting up clock 'default' with an uncertainty of 1.25ns.
+Execute     config_export -vivado_optimization_level=2 
+Execute       get_config_export -vivado_impl_strategy 
+Execute       get_config_export -vivado_phys_opt 
+Command   open_solution done; 1.914 sec.
+Execute   set_part xczu3eg-sbva484-1-e 
+Execute     ap_part_info -name xczu3eg-sbva484-1-e -data single -quiet 
+Execute     ap_part_info -name xczu3eg-sbva484-1-e -data info 
+Execute     add_library xilinx/zynquplus/zynquplus:xczu3eg:-sbva484:-1-e 
+Execute       get_default_platform 
+Execute       ap_part_info -data single -name xczu3eg-sbva484-1-e 
+Execute       ap_part_info -name xczu3eg-sbva484-1-e -data resources 
+Execute       ap_part_info -name xczu3eg-sbva484-1-e -data info 
+Execute       ap_part_info -name xczu3eg-sbva484-1-e -data info 
+Execute       config_chip_info -quiet -resource {SLICE 8820} {LUT 70560} {FF 141120} {DSP48E 360} {BRAM 432} {URAM 0} 
+Execute       ap_part_info -name xczu3eg-sbva484-1-e -data info 
+Execute       config_chip_info -quiet -speed slow 
+Execute     add_library xilinx/zynquplus/zynquplus_fpv7 
+Execute       get_default_platform 
+Execute       open_platform DefaultPlatform 
+Execute       import_lib C:/Xilinx/Vivado/2019.2/common/technology/xilinx/zynquplus/zynquplus_fpv7 
+Execute         source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/common/xilinx_fp.lib 
+Execute         source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/common/xilinx_fp.hlp 
+Execute           source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/common/xilinx.hlp 
+Execute             source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/common/target_info.tcl 
+Execute             source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/interface/xilinx_interface.hlp 
+Execute               source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/interface/maxi.hlp 
+Execute               source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/interface/saxilite.hlp 
+Execute             source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/common/dsp48.hlp 
+Execute       source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/zynquplus/zynquplus_fpv7.gen 
+Execute         source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/common/xilinx_fp.gen 
+Execute     ap_part_info -name xczu3eg-sbva484-1-e -data info 
+Execute     get_default_platform 
+Command   set_part done; 0.164 sec.
+Execute   create_clock -period 10 -name default 
+Execute     config_clock -quiet -name default -period 10 -default=false 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+Execute   config_sdx -optimization_level none -target none 
+WARNING: [HLS 200-483] The 'config_sdx -optimization_level' command is deprecated and will be removed in a future release. Use 'config_export -vivado_optimization_level' as its replacement.
+Execute     send_msg_by_id INFO @200-435@%s%s 'config_sdx -optimization_level' config_export -vivado_optimization_level=2 
+INFO: [HLS 200-435] Setting 'config_sdx -optimization_level' configuration: config_export -vivado_optimization_level=2
+Execute     config_export -vivado_optimization_level=2 
+Execute       get_config_export -vivado_impl_strategy 
+Execute       get_config_export -vivado_phys_opt 
+Execute     send_msg_by_id INFO @200-435@%s%s 'config_sdx -target' config_export -vivado_optimization_level=2 
+INFO: [HLS 200-435] Setting 'config_sdx -target' configuration: config_export -vivado_optimization_level=2
+Execute     config_export -vivado_optimization_level=2 
+Execute       get_config_export -vivado_impl_strategy 
+Execute       get_config_export -vivado_phys_opt 
+Execute     get_config_compile -pipeline_loops 
+Execute     get_config_compile -name_max_length 
+Execute     get_config_schedule -enable_dsp_full_reg 
+Execute     get_config_rtl -register_reset_num 
+Execute     get_config_rtl -module_auto_prefix 
+Execute     get_config_interface -m_axi_addr64 
+Execute     send_msg_by_id INFO @200-435@%s%s 'config_sdx -target' set_clock_uncertainty default 
+INFO: [HLS 200-435] Setting 'config_sdx -target' configuration: set_clock_uncertainty default
+Execute     set_clock_uncertainty default 
+WARNING: [HLS 200-484] The 'config_sdx -optimization_level' command is deprecated and will be removed in a future release.
+Execute   config_export -vivado_optimization_level 2 
+Execute     get_config_export -vivado_impl_strategy 
+Execute     get_config_export -vivado_phys_opt 
+Execute   csynth_design 
+Execute     get_config_compile -dump_cfg 
+Execute     get_config_compile -effort 
+Execute     get_config_compile -enable_clang39 
+Execute     get_config_compile -g 
+Execute     get_config_compile -ng 
+Execute     get_config_compile -opt_fp 
+Execute     get_config_compile -skip_cdt 
+Execute     get_config_compile -skip_syncheck 
+Execute     get_config_compile -skip_transform 
+Execute     get_config_compile -keep_printf 
+Execute     elaborate -effort=medium -skip_syncheck=0 -keep_printf=0 -skip_cdt=0 -skip_transform=0 -ng=0 -g=0 -opt_fp=0 -from_csynth_design=1 
+Execute       get_config_schedule -relax_ii_for_timing 
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+Execute       get_config_schedule -suppress_dependence_error_break 
+INFO: [HLS 200-10] Analyzing design file 'FracNetHLS/pgconv.cc' ... 
+INFO-FLOW: Compiling one TU...
+Execute       is_m_axi_addr64 
+INFO-FLOW: Handling FracNetHLS/pgconv.cc as C++
+Execute       ap_part_info -name xczu3eg-sbva484-1-e -data info 
+Execute       is_encrypted FracNetHLS/pgconv.cc 
+Execute       ap_part_info -name xczu3eg-sbva484-1-e -data info 
+INFO-FLOW: Running: GCC PP
+INFO-FLOW: Source preprocessing
+Execute       clang  -fno-limit-debug-info -gcc-toolchain "C:/Xilinx/Vivado/2019.2/msys" -hls  -fno-exceptions  -D__llvm__  -E "FracNetHLS/pgconv.cc"     -fno-math-errno -c -emit-llvm -O0  -mllvm -disable-llvm-optzns -fno-threadsafe-statics  -fno-use-cxa-atexit  -fno-threadsafe-statics -fno-use-cxa-atexit -D__CLANG_3_1__ -D__cdecl= -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I "C:/Xilinx/Vivado/2019.2/common/technology/autopilot" -I "C:/Xilinx/Vivado/2019.2/common/technology/autopilot/ap_sysc" -include etc/autopilot_ssdm_op.h -D__DSP48E2__  -o "C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv.pp.0.cc" 
+INFO-FLOW: exec C:/Xilinx/Vivado/2019.2/win64/tools/clang/bin/clang -fno-limit-debug-info -gcc-toolchain C:/Xilinx/Vivado/2019.2/msys -hls -fno-exceptions -D__llvm__ -E FracNetHLS/pgconv.cc -fno-math-errno -c -emit-llvm -O0 -mllvm -disable-llvm-optzns -fno-threadsafe-statics -fno-use-cxa-atexit -fno-threadsafe-statics -fno-use-cxa-atexit -D__CLANG_3_1__ -D__cdecl= -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I C:/Xilinx/Vivado/2019.2/common/technology/autopilot -I C:/Xilinx/Vivado/2019.2/common/technology/autopilot/ap_sysc -include etc/autopilot_ssdm_op.h -D__DSP48E2__ -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv.pp.0.cc
+Command       clang done; 1.03 sec.
+Execute       tidy_31 xilinx-xfmat-array-geometry C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv.pp.0.cc std=gnu++98 
+INFO-FLOW: exec C:/Xilinx/Vivado/2019.2/win64/tools/clang-3.9-csynth/bin/tidy-3.1 -header-filter=.* -checks=-*,xilinx-xfmat-array-geometry -quiet -fix C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv.pp.0.cc -- -std=gnu++98 -fhls -ferror-limit=0
+Command       tidy_31 done; 1.066 sec.
+INFO-FLOW: Syntax Checking before pre-processing...
+Execute       clang -syntaxcheck -src C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv.pp.0.cc  -fno-limit-debug-info -gcc-toolchain "C:/Xilinx/Vivado/2019.2/msys" -hls    -fno-math-errno -c -emit-llvm -O0  -mllvm -disable-llvm-optzns -fno-threadsafe-statics  -fno-use-cxa-atexit  -fno-threadsafe-statics -fno-use-cxa-atexit -D__CLANG_3_1__ -D__cdecl= -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I "C:/Xilinx/Vivado/2019.2/common/technology/autopilot" -I "C:/Xilinx/Vivado/2019.2/common/technology/autopilot/ap_sysc" -include etc/autopilot_ssdm_op.h -D__DSP48E2__  "C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv.pp.0.cc"  -o "C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/useless.bc"  
+INFO-FLOW: exec C:/Xilinx/Vivado/2019.2/win64/tools/clang/bin/clang -fno-limit-debug-info -gcc-toolchain C:/Xilinx/Vivado/2019.2/msys -hls -fno-math-errno -c -emit-llvm -O0 -mllvm -disable-llvm-optzns -fno-threadsafe-statics -fno-use-cxa-atexit -fno-threadsafe-statics -fno-use-cxa-atexit -D__CLANG_3_1__ -D__cdecl= -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I C:/Xilinx/Vivado/2019.2/common/technology/autopilot -I C:/Xilinx/Vivado/2019.2/common/technology/autopilot/ap_sysc -include etc/autopilot_ssdm_op.h -D__DSP48E2__ C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv.pp.0.cc -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/useless.bc
+Command       clang done; 1.419 sec.
+INFO-FLOW: Done: GCC PP time: 3.5 seconds per iteration
+Execute       source C:/Xilinx/Vivado/2019.2/tps/tcl/tcllib1.11.1/yaml/huddle.tcl 
+Execute       source C:/Xilinx/Vivado/2019.2/tps/tcl/tcllib1.11.1/yaml/json2huddle.tcl 
+Execute         source C:/Xilinx/Vivado/2019.2/tps/tcl/tcllib1.11.1/try/try.tcl 
+Execute       list_core -type functional_unit 
+Execute       tidy_31 xilinx-systemc-detector C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv.pp.0.cc std=gnu++98 -directive=C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/.systemc_flag 
+INFO-FLOW: exec C:/Xilinx/Vivado/2019.2/win64/tools/clang-3.9-csynth/bin/tidy-3.1 -header-filter=.* -checks=-*,xilinx-systemc-detector -import-directive=C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/.systemc_flag -quiet -fix-errors C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv.pp.0.cc -- -std=gnu++98 -fhls -ferror-limit=0
+Command       tidy_31 done; 1.001 sec.
+INFO-FLOW: Running: tidy-3.1 CDT preprocess
+Execute       tidy_31 xilinx-directive2pragma C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv.pp.0.cc std=gnu++98 -directive=C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/all.directive.json 
+INFO-FLOW: exec C:/Xilinx/Vivado/2019.2/win64/tools/clang-3.9-csynth/bin/tidy-3.1 -header-filter=.* -checks=-*,xilinx-directive2pragma -import-directive=C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/all.directive.json -quiet -fix-errors C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv.pp.0.cc -- -std=gnu++98 -fhls -ferror-limit=0
+Command       tidy_31 done; 0.981 sec.
+Execute       get_config_dataflow -strict_mode 
+Execute       ap_eval exec -ignorestderr C:/Xilinx/Vivado/2019.2/win64/tools/clang-3.9-csynth/bin/xilinx-dataflow-lawyer -export-fixes=C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/xilinx-dataflow-lawyer.pgconv.pp.0.cc.diag.yml C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv.pp.0.cc -- -std=gnu++98 -fhls -ferror-limit=0 -fstrict-dataflow > C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/xilinx-dataflow-lawyer.pgconv.pp.0.cc.out.log 2> C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/xilinx-dataflow-lawyer.pgconv.pp.0.cc.err.log 
+Command       ap_eval done; 0.931 sec.
+Execute       tidy_31 -errorcheck xilinx-constantarray-param,xilinx-resource-pragma-transformer,xilinx-xfmat-array-geometry C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv.pp.0.cc std=gnu++98 
+Execute         ap_eval exec -ignorestderr C:/Xilinx/Vivado/2019.2/win64/tools/clang-3.9-csynth/bin/tidy-3.1 -export-fixes=C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/tidy-3.1.pgconv.pp.0.cc.diag.yml -header-filter=.* -checks=-*,xilinx-constantarray-param,xilinx-resource-pragma-transformer,xilinx-xfmat-array-geometry -quiet -fix-errors C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv.pp.0.cc -- -std=gnu++98 -fhls -ferror-limit=0 > C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/tidy-3.1.pgconv.pp.0.cc.out.log 2> C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/tidy-3.1.pgconv.pp.0.cc.err.log 
+Command         ap_eval done; 1.662 sec.
+Execute         source C:/Xilinx/Vivado/2019.2/tps/tcl/tcllib1.11.1/yaml/yaml.tcl 
+Execute           source C:/Xilinx/Vivado/2019.2/tps/tcl/tcllib1.11.1/cmdline/cmdline.tcl 
+Execute         ap_eval exec -ignorestderr C:/Xilinx/Vivado/2019.2/win64/tools/clang-3.9-csynth/bin/xilinx-legacy-rewriter C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv.pp.0.cc -- -std=gnu++98 -fhls -ferror-limit=0 > C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/xilinx-legacy-rewriter.pgconv.pp.0.cc.out.log 2> C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/xilinx-legacy-rewriter.pgconv.pp.0.cc.err.log 
+Command         ap_eval done; 0.593 sec.
+Command       tidy_31 done; 2.354 sec.
+INFO-FLOW: Done: tidy-3.1 CDT preprocess time: 4.3 seconds per iteration
+INFO-FLOW: Pragma Handling...
+Execute       tidy_31 xilinx-ssdm-intrinsics-arguments C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv.pragma.1.cc std=gnu++98 
+INFO-FLOW: exec C:/Xilinx/Vivado/2019.2/win64/tools/clang-3.9-csynth/bin/tidy-3.1 -header-filter=.* -checks=-*,xilinx-ssdm-intrinsics-arguments -quiet -fix-errors C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv.pragma.1.cc -- -std=gnu++98 -fhls -ferror-limit=0
+Command       tidy_31 done; 2.152 sec.
+Execute       ap_part_info -name xczu3eg-sbva484-1-e -data info 
+INFO-FLOW: Processing labels
+Execute       clang -src C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv.pragma.2.cc  -fno-limit-debug-info -gcc-toolchain C:/Xilinx/Vivado/2019.2/msys -hls -hls-analyze-label -hls-analyze-pragma -fno-exceptions  -D__llvm__  -w  "C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv.pragma.2.cc"    -fno-math-errno -c -emit-llvm -O0  -mllvm -disable-llvm-optzns -fno-threadsafe-statics  -fno-use-cxa-atexit -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I "C:/Xilinx/Vivado/2019.2/common/technology/autopilot" -I "C:/Xilinx/Vivado/2019.2/common/technology/autopilot/ap_sysc" -include etc/autopilot_ssdm_op.h -D__DSP48E2__ -g -o "C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv.bc" 
+INFO-FLOW: exec C:/Xilinx/Vivado/2019.2/win64/tools/clang/bin/clang -fno-limit-debug-info -gcc-toolchain C:/Xilinx/Vivado/2019.2/msys -hls -hls-analyze-label -hls-analyze-pragma -fno-exceptions -D__llvm__ -w C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv.pragma.2.cc -fno-math-errno -c -emit-llvm -O0 -mllvm -disable-llvm-optzns -fno-threadsafe-statics -fno-use-cxa-atexit -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I C:/Xilinx/Vivado/2019.2/common/technology/autopilot -I C:/Xilinx/Vivado/2019.2/common/technology/autopilot/ap_sysc -include etc/autopilot_ssdm_op.h -D__DSP48E2__ -g -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv.bc
+Command       clang done; 1.474 sec.
+INFO: [HLS 200-10] Analyzing design file 'FracNetHLS/matmul.cc' ... 
+INFO-FLOW: Compiling one TU...
+Execute       is_m_axi_addr64 
+INFO-FLOW: Handling FracNetHLS/matmul.cc as C++
+Execute       ap_part_info -name xczu3eg-sbva484-1-e -data info 
+Execute       is_encrypted FracNetHLS/matmul.cc 
+Execute       ap_part_info -name xczu3eg-sbva484-1-e -data info 
+INFO-FLOW: Running: GCC PP
+INFO-FLOW: Source preprocessing
+Execute       clang  -fno-limit-debug-info -gcc-toolchain "C:/Xilinx/Vivado/2019.2/msys" -hls  -fno-exceptions  -D__llvm__  -E "FracNetHLS/matmul.cc"     -fno-math-errno -c -emit-llvm -O0  -mllvm -disable-llvm-optzns -fno-threadsafe-statics  -fno-use-cxa-atexit  -fno-threadsafe-statics -fno-use-cxa-atexit -D__CLANG_3_1__ -D__cdecl= -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I "C:/Xilinx/Vivado/2019.2/common/technology/autopilot" -I "C:/Xilinx/Vivado/2019.2/common/technology/autopilot/ap_sysc" -include etc/autopilot_ssdm_op.h -D__DSP48E2__  -o "C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/matmul.pp.0.cc" 
+INFO-FLOW: exec C:/Xilinx/Vivado/2019.2/win64/tools/clang/bin/clang -fno-limit-debug-info -gcc-toolchain C:/Xilinx/Vivado/2019.2/msys -hls -fno-exceptions -D__llvm__ -E FracNetHLS/matmul.cc -fno-math-errno -c -emit-llvm -O0 -mllvm -disable-llvm-optzns -fno-threadsafe-statics -fno-use-cxa-atexit -fno-threadsafe-statics -fno-use-cxa-atexit -D__CLANG_3_1__ -D__cdecl= -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I C:/Xilinx/Vivado/2019.2/common/technology/autopilot -I C:/Xilinx/Vivado/2019.2/common/technology/autopilot/ap_sysc -include etc/autopilot_ssdm_op.h -D__DSP48E2__ -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/matmul.pp.0.cc
+Command       clang done; 1.023 sec.
+Execute       tidy_31 xilinx-xfmat-array-geometry C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/matmul.pp.0.cc std=gnu++98 
+INFO-FLOW: exec C:/Xilinx/Vivado/2019.2/win64/tools/clang-3.9-csynth/bin/tidy-3.1 -header-filter=.* -checks=-*,xilinx-xfmat-array-geometry -quiet -fix C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/matmul.pp.0.cc -- -std=gnu++98 -fhls -ferror-limit=0
+Command       tidy_31 done; 0.709 sec.
+INFO-FLOW: Syntax Checking before pre-processing...
+Execute       clang -syntaxcheck -src C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/matmul.pp.0.cc  -fno-limit-debug-info -gcc-toolchain "C:/Xilinx/Vivado/2019.2/msys" -hls    -fno-math-errno -c -emit-llvm -O0  -mllvm -disable-llvm-optzns -fno-threadsafe-statics  -fno-use-cxa-atexit  -fno-threadsafe-statics -fno-use-cxa-atexit -D__CLANG_3_1__ -D__cdecl= -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I "C:/Xilinx/Vivado/2019.2/common/technology/autopilot" -I "C:/Xilinx/Vivado/2019.2/common/technology/autopilot/ap_sysc" -include etc/autopilot_ssdm_op.h -D__DSP48E2__  "C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/matmul.pp.0.cc"  -o "C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/useless.bc"  
+INFO-FLOW: exec C:/Xilinx/Vivado/2019.2/win64/tools/clang/bin/clang -fno-limit-debug-info -gcc-toolchain C:/Xilinx/Vivado/2019.2/msys -hls -fno-math-errno -c -emit-llvm -O0 -mllvm -disable-llvm-optzns -fno-threadsafe-statics -fno-use-cxa-atexit -fno-threadsafe-statics -fno-use-cxa-atexit -D__CLANG_3_1__ -D__cdecl= -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I C:/Xilinx/Vivado/2019.2/common/technology/autopilot -I C:/Xilinx/Vivado/2019.2/common/technology/autopilot/ap_sysc -include etc/autopilot_ssdm_op.h -D__DSP48E2__ C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/matmul.pp.0.cc -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/useless.bc
+Command       clang done; 1.303 sec.
+INFO-FLOW: Done: GCC PP time: 3 seconds per iteration
+Execute       list_core -type functional_unit 
+Execute       tidy_31 xilinx-systemc-detector C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/matmul.pp.0.cc std=gnu++98 -directive=C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/.systemc_flag 
+INFO-FLOW: exec C:/Xilinx/Vivado/2019.2/win64/tools/clang-3.9-csynth/bin/tidy-3.1 -header-filter=.* -checks=-*,xilinx-systemc-detector -import-directive=C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/.systemc_flag -quiet -fix-errors C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/matmul.pp.0.cc -- -std=gnu++98 -fhls -ferror-limit=0
+Command       tidy_31 done; 0.655 sec.
+INFO-FLOW: Running: tidy-3.1 CDT preprocess
+Execute       tidy_31 xilinx-directive2pragma C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/matmul.pp.0.cc std=gnu++98 -directive=C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/all.directive.json 
+INFO-FLOW: exec C:/Xilinx/Vivado/2019.2/win64/tools/clang-3.9-csynth/bin/tidy-3.1 -header-filter=.* -checks=-*,xilinx-directive2pragma -import-directive=C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/all.directive.json -quiet -fix-errors C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/matmul.pp.0.cc -- -std=gnu++98 -fhls -ferror-limit=0
+Command       tidy_31 done; 0.656 sec.
+Execute       get_config_dataflow -strict_mode 
+Execute       ap_eval exec -ignorestderr C:/Xilinx/Vivado/2019.2/win64/tools/clang-3.9-csynth/bin/xilinx-dataflow-lawyer -export-fixes=C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/xilinx-dataflow-lawyer.matmul.pp.0.cc.diag.yml C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/matmul.pp.0.cc -- -std=gnu++98 -fhls -ferror-limit=0 -fstrict-dataflow > C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/xilinx-dataflow-lawyer.matmul.pp.0.cc.out.log 2> C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/xilinx-dataflow-lawyer.matmul.pp.0.cc.err.log 
+Command       ap_eval done; 0.63 sec.
+Execute       tidy_31 -errorcheck xilinx-constantarray-param,xilinx-resource-pragma-transformer,xilinx-xfmat-array-geometry C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/matmul.pp.0.cc std=gnu++98 
+Execute         ap_eval exec -ignorestderr C:/Xilinx/Vivado/2019.2/win64/tools/clang-3.9-csynth/bin/tidy-3.1 -export-fixes=C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/tidy-3.1.matmul.pp.0.cc.diag.yml -header-filter=.* -checks=-*,xilinx-constantarray-param,xilinx-resource-pragma-transformer,xilinx-xfmat-array-geometry -quiet -fix-errors C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/matmul.pp.0.cc -- -std=gnu++98 -fhls -ferror-limit=0 > C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/tidy-3.1.matmul.pp.0.cc.out.log 2> C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/tidy-3.1.matmul.pp.0.cc.err.log 
+Command         ap_eval done; 1.249 sec.
+Execute         ap_eval exec -ignorestderr C:/Xilinx/Vivado/2019.2/win64/tools/clang-3.9-csynth/bin/xilinx-legacy-rewriter C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/matmul.pp.0.cc -- -std=gnu++98 -fhls -ferror-limit=0 > C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/xilinx-legacy-rewriter.matmul.pp.0.cc.out.log 2> C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/xilinx-legacy-rewriter.matmul.pp.0.cc.err.log 
+Command         ap_eval done; 0.404 sec.
+Command       tidy_31 done; 1.669 sec.
+INFO-FLOW: Done: tidy-3.1 CDT preprocess time: 3 seconds per iteration
+INFO-FLOW: Pragma Handling...
+Execute       tidy_31 xilinx-ssdm-intrinsics-arguments C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/matmul.pragma.1.cc std=gnu++98 
+INFO-FLOW: exec C:/Xilinx/Vivado/2019.2/win64/tools/clang-3.9-csynth/bin/tidy-3.1 -header-filter=.* -checks=-*,xilinx-ssdm-intrinsics-arguments -quiet -fix-errors C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/matmul.pragma.1.cc -- -std=gnu++98 -fhls -ferror-limit=0
+Command       tidy_31 done; 1.269 sec.
+Execute       ap_part_info -name xczu3eg-sbva484-1-e -data info 
+INFO-FLOW: Processing labels
+Execute       clang -src C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/matmul.pragma.2.cc  -fno-limit-debug-info -gcc-toolchain C:/Xilinx/Vivado/2019.2/msys -hls -hls-analyze-label -hls-analyze-pragma -fno-exceptions  -D__llvm__  -w  "C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/matmul.pragma.2.cc"    -fno-math-errno -c -emit-llvm -O0  -mllvm -disable-llvm-optzns -fno-threadsafe-statics  -fno-use-cxa-atexit -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I "C:/Xilinx/Vivado/2019.2/common/technology/autopilot" -I "C:/Xilinx/Vivado/2019.2/common/technology/autopilot/ap_sysc" -include etc/autopilot_ssdm_op.h -D__DSP48E2__ -g -o "C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/matmul.bc" 
+INFO-FLOW: exec C:/Xilinx/Vivado/2019.2/win64/tools/clang/bin/clang -fno-limit-debug-info -gcc-toolchain C:/Xilinx/Vivado/2019.2/msys -hls -hls-analyze-label -hls-analyze-pragma -fno-exceptions -D__llvm__ -w C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/matmul.pragma.2.cc -fno-math-errno -c -emit-llvm -O0 -mllvm -disable-llvm-optzns -fno-threadsafe-statics -fno-use-cxa-atexit -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I C:/Xilinx/Vivado/2019.2/common/technology/autopilot -I C:/Xilinx/Vivado/2019.2/common/technology/autopilot/ap_sysc -include etc/autopilot_ssdm_op.h -D__DSP48E2__ -g -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/matmul.bc
+Command       clang done; 1.322 sec.
+INFO: [HLS 200-10] Analyzing design file 'FracNetHLS/biconv.cc' ... 
+INFO-FLOW: Compiling one TU...
+Execute       is_m_axi_addr64 
+INFO-FLOW: Handling FracNetHLS/biconv.cc as C++
+Execute       ap_part_info -name xczu3eg-sbva484-1-e -data info 
+Execute       is_encrypted FracNetHLS/biconv.cc 
+Execute       ap_part_info -name xczu3eg-sbva484-1-e -data info 
+INFO-FLOW: Running: GCC PP
+INFO-FLOW: Source preprocessing
+Execute       clang  -fno-limit-debug-info -gcc-toolchain "C:/Xilinx/Vivado/2019.2/msys" -hls  -fno-exceptions  -D__llvm__  -E "FracNetHLS/biconv.cc"     -fno-math-errno -c -emit-llvm -O0  -mllvm -disable-llvm-optzns -fno-threadsafe-statics  -fno-use-cxa-atexit  -fno-threadsafe-statics -fno-use-cxa-atexit -D__CLANG_3_1__ -D__cdecl= -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I "C:/Xilinx/Vivado/2019.2/common/technology/autopilot" -I "C:/Xilinx/Vivado/2019.2/common/technology/autopilot/ap_sysc" -include etc/autopilot_ssdm_op.h -D__DSP48E2__  -o "C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/biconv.pp.0.cc" 
+INFO-FLOW: exec C:/Xilinx/Vivado/2019.2/win64/tools/clang/bin/clang -fno-limit-debug-info -gcc-toolchain C:/Xilinx/Vivado/2019.2/msys -hls -fno-exceptions -D__llvm__ -E FracNetHLS/biconv.cc -fno-math-errno -c -emit-llvm -O0 -mllvm -disable-llvm-optzns -fno-threadsafe-statics -fno-use-cxa-atexit -fno-threadsafe-statics -fno-use-cxa-atexit -D__CLANG_3_1__ -D__cdecl= -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I C:/Xilinx/Vivado/2019.2/common/technology/autopilot -I C:/Xilinx/Vivado/2019.2/common/technology/autopilot/ap_sysc -include etc/autopilot_ssdm_op.h -D__DSP48E2__ -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/biconv.pp.0.cc
+Command       clang done; 1.009 sec.
+Execute       tidy_31 xilinx-xfmat-array-geometry C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/biconv.pp.0.cc std=gnu++98 
+INFO-FLOW: exec C:/Xilinx/Vivado/2019.2/win64/tools/clang-3.9-csynth/bin/tidy-3.1 -header-filter=.* -checks=-*,xilinx-xfmat-array-geometry -quiet -fix C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/biconv.pp.0.cc -- -std=gnu++98 -fhls -ferror-limit=0
+Command       tidy_31 done; 0.702 sec.
+INFO-FLOW: Syntax Checking before pre-processing...
+Execute       clang -syntaxcheck -src C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/biconv.pp.0.cc  -fno-limit-debug-info -gcc-toolchain "C:/Xilinx/Vivado/2019.2/msys" -hls    -fno-math-errno -c -emit-llvm -O0  -mllvm -disable-llvm-optzns -fno-threadsafe-statics  -fno-use-cxa-atexit  -fno-threadsafe-statics -fno-use-cxa-atexit -D__CLANG_3_1__ -D__cdecl= -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I "C:/Xilinx/Vivado/2019.2/common/technology/autopilot" -I "C:/Xilinx/Vivado/2019.2/common/technology/autopilot/ap_sysc" -include etc/autopilot_ssdm_op.h -D__DSP48E2__  "C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/biconv.pp.0.cc"  -o "C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/useless.bc"  
+INFO-FLOW: exec C:/Xilinx/Vivado/2019.2/win64/tools/clang/bin/clang -fno-limit-debug-info -gcc-toolchain C:/Xilinx/Vivado/2019.2/msys -hls -fno-math-errno -c -emit-llvm -O0 -mllvm -disable-llvm-optzns -fno-threadsafe-statics -fno-use-cxa-atexit -fno-threadsafe-statics -fno-use-cxa-atexit -D__CLANG_3_1__ -D__cdecl= -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I C:/Xilinx/Vivado/2019.2/common/technology/autopilot -I C:/Xilinx/Vivado/2019.2/common/technology/autopilot/ap_sysc -include etc/autopilot_ssdm_op.h -D__DSP48E2__ C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/biconv.pp.0.cc -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/useless.bc
+Command       clang done; 1.297 sec.
+INFO-FLOW: Done: GCC PP time: 3 seconds per iteration
+Execute       list_core -type functional_unit 
+Execute       tidy_31 xilinx-systemc-detector C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/biconv.pp.0.cc std=gnu++98 -directive=C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/.systemc_flag 
+INFO-FLOW: exec C:/Xilinx/Vivado/2019.2/win64/tools/clang-3.9-csynth/bin/tidy-3.1 -header-filter=.* -checks=-*,xilinx-systemc-detector -import-directive=C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/.systemc_flag -quiet -fix-errors C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/biconv.pp.0.cc -- -std=gnu++98 -fhls -ferror-limit=0
+Command       tidy_31 done; 0.652 sec.
+INFO-FLOW: Running: tidy-3.1 CDT preprocess
+Execute       tidy_31 xilinx-directive2pragma C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/biconv.pp.0.cc std=gnu++98 -directive=C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/all.directive.json 
+INFO-FLOW: exec C:/Xilinx/Vivado/2019.2/win64/tools/clang-3.9-csynth/bin/tidy-3.1 -header-filter=.* -checks=-*,xilinx-directive2pragma -import-directive=C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/all.directive.json -quiet -fix-errors C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/biconv.pp.0.cc -- -std=gnu++98 -fhls -ferror-limit=0
+Command       tidy_31 done; 0.657 sec.
+Execute       get_config_dataflow -strict_mode 
+Execute       ap_eval exec -ignorestderr C:/Xilinx/Vivado/2019.2/win64/tools/clang-3.9-csynth/bin/xilinx-dataflow-lawyer -export-fixes=C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/xilinx-dataflow-lawyer.biconv.pp.0.cc.diag.yml C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/biconv.pp.0.cc -- -std=gnu++98 -fhls -ferror-limit=0 -fstrict-dataflow > C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/xilinx-dataflow-lawyer.biconv.pp.0.cc.out.log 2> C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/xilinx-dataflow-lawyer.biconv.pp.0.cc.err.log 
+Command       ap_eval done; 0.638 sec.
+Execute       tidy_31 -errorcheck xilinx-constantarray-param,xilinx-resource-pragma-transformer,xilinx-xfmat-array-geometry C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/biconv.pp.0.cc std=gnu++98 
+Execute         ap_eval exec -ignorestderr C:/Xilinx/Vivado/2019.2/win64/tools/clang-3.9-csynth/bin/tidy-3.1 -export-fixes=C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/tidy-3.1.biconv.pp.0.cc.diag.yml -header-filter=.* -checks=-*,xilinx-constantarray-param,xilinx-resource-pragma-transformer,xilinx-xfmat-array-geometry -quiet -fix-errors C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/biconv.pp.0.cc -- -std=gnu++98 -fhls -ferror-limit=0 > C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/tidy-3.1.biconv.pp.0.cc.out.log 2> C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/tidy-3.1.biconv.pp.0.cc.err.log 
+Command         ap_eval done; 1.289 sec.
+Execute         ap_eval exec -ignorestderr C:/Xilinx/Vivado/2019.2/win64/tools/clang-3.9-csynth/bin/xilinx-legacy-rewriter C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/biconv.pp.0.cc -- -std=gnu++98 -fhls -ferror-limit=0 > C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/xilinx-legacy-rewriter.biconv.pp.0.cc.out.log 2> C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/xilinx-legacy-rewriter.biconv.pp.0.cc.err.log 
+Command         ap_eval done; 0.405 sec.
+Command       tidy_31 done; 1.716 sec.
+INFO-FLOW: Done: tidy-3.1 CDT preprocess time: 3 seconds per iteration
+INFO-FLOW: Pragma Handling...
+Execute       tidy_31 xilinx-ssdm-intrinsics-arguments C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/biconv.pragma.1.cc std=gnu++98 
+INFO-FLOW: exec C:/Xilinx/Vivado/2019.2/win64/tools/clang-3.9-csynth/bin/tidy-3.1 -header-filter=.* -checks=-*,xilinx-ssdm-intrinsics-arguments -quiet -fix-errors C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/biconv.pragma.1.cc -- -std=gnu++98 -fhls -ferror-limit=0
+Command       tidy_31 done; 1.283 sec.
+Execute       ap_part_info -name xczu3eg-sbva484-1-e -data info 
+INFO-FLOW: Processing labels
+Execute       clang -src C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/biconv.pragma.2.cc  -fno-limit-debug-info -gcc-toolchain C:/Xilinx/Vivado/2019.2/msys -hls -hls-analyze-label -hls-analyze-pragma -fno-exceptions  -D__llvm__  -w  "C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/biconv.pragma.2.cc"    -fno-math-errno -c -emit-llvm -O0  -mllvm -disable-llvm-optzns -fno-threadsafe-statics  -fno-use-cxa-atexit -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I "C:/Xilinx/Vivado/2019.2/common/technology/autopilot" -I "C:/Xilinx/Vivado/2019.2/common/technology/autopilot/ap_sysc" -include etc/autopilot_ssdm_op.h -D__DSP48E2__ -g -o "C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/biconv.bc" 
+INFO-FLOW: exec C:/Xilinx/Vivado/2019.2/win64/tools/clang/bin/clang -fno-limit-debug-info -gcc-toolchain C:/Xilinx/Vivado/2019.2/msys -hls -hls-analyze-label -hls-analyze-pragma -fno-exceptions -D__llvm__ -w C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/biconv.pragma.2.cc -fno-math-errno -c -emit-llvm -O0 -mllvm -disable-llvm-optzns -fno-threadsafe-statics -fno-use-cxa-atexit -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I C:/Xilinx/Vivado/2019.2/common/technology/autopilot -I C:/Xilinx/Vivado/2019.2/common/technology/autopilot/ap_sysc -include etc/autopilot_ssdm_op.h -D__DSP48E2__ -g -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/biconv.bc
+Command       clang done; 1.34 sec.
+INFO-FLOW: Linking Debug ...
+Execute       llvm-ld C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv.g.bc C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/matmul.g.bc C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/biconv.g.bc -hls-opt -except-internalize pgconv32_2bit -LC:/Xilinx/Vivado/2019.2/win64/lib -lhlsm -lhlsmc++ -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/a.g 
+Command       llvm-ld done; 0.981 sec.
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:02 ; elapsed = 00:00:36 . Memory (MB): peak = 208.699 ; gain = 119.383
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:02 ; elapsed = 00:00:36 . Memory (MB): peak = 208.699 ; gain = 119.383
+Execute       get_config_sdx -target 
+Execute       opt_and_import_c a -opt_level=2 -skip_syncheck=0 -ng=0 -keep_printf=0 
+Execute         cleanup_all_models 
+INFO: [HLS 200-10] Starting code transformations ...
+Execute         transform -promote-dbg-pointer C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/a.pp.bc -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/a.pp.0.bc -f 
+Command         transform done; 0.103 sec.
+Execute         llvm-ld C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/a.pp.0.bc -disable-opt -LC:/Xilinx/Vivado/2019.2/win64/lib -lfloatconversion -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/a.g.0 
+Command         llvm-ld done; 0.688 sec.
+INFO-FLOW: Running Standard Transforms...
+Execute         transform -hls -share-std-xform -demangle-name -inline-byval-memcpy -always-inline -promote-dbg-pointer -interface-preproc -mem2reg -scalarrepl -mem2reg -keep-read-access -instcombine -dce -promote-dbg-pointer -bitop-raise -loop-simplify -indvarspre -indvars -loop-simplify -xunroll -constprop -instcombine -simplifycfg -indvars -simplifycfg -dce -globaldce -basicaa -simplifycfg -mem2reg -globalopt -global-constprop -deadargelim -instcombine -simplifycfg -prune-eh -simplifycfg -scalarrepl -instcombine -reassociate -licm -simplifycfg -loop-simplify -indvars -instcombine -simplifycfg -mem2reg -loop-simplify -indvars -instcombine -gvn -gvn -instcombine -adce -break-crit-edges -simplifycfg -loop-delete -global-array-opt -dce -dse -adce -find-syn-modules -top pgconv32_2bit -deadargelim -mem2reg -instcombine -dce -presyn-prepare -auto-rom-infer -interface-preproc -syn-check -check-rec-only -find-region -simplifycfg -func-extr -function-inline -globaldce -mem2reg -instcombine -dce -gvn -globaldce -adce -adse -constprop -instcombine -bit-constprop -instcombine -dce -simplifycfg -bitop-raise -simplifycfg -dce -loop-delete -reassociate -globalopt -global-privatize -mem2reg -dce -global-constprop -pointer-simplify -constprop -dce -func-inst -deadargelim -auto-shift-reg-idiom -promote-dbg-pointer -norm-name C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/a.g.0.bc -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/a.g.1.bc -f -phase std-opt 
+Command         transform done; 0.27 sec.
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:03 ; elapsed = 00:00:37 . Memory (MB): peak = 209.609 ; gain = 120.293
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO-FLOW: Checking Synthesizability 1/2..
+Execute         transform -hls -syn-check -check-rec-only -disaggr -scalarrepl -norm-name -dce -mem2reg -instcombine -function-uniquify -directive-preproc -mem2reg -dse -dce -auto-rom-infer -dce -pag -array-normalize -instcombine -dce -warn-fifo-pointer -array-seg-normalize -instcombine -dce -array-flatten -instcombine -dce -array-burst -dce -deadargelim -promote-global-argument -simplifycfg -mem2reg -globaldce -dce -deadargelim -dce -instcombine -function-inline -globaldce -dce -doublePtrSimplify -doublePtrElim -dce -doublePtrSimplify -promote-dbg-pointer -dce -scalarrepl -dse -adse -instcombine -ptrLegalization -simplifycfg -dce -instcombine -pointer-simplify -ptrArgReplace -dce -instcombine -resolve-double-ptr -disaggr -scalarrepl -norm-name -dce -mem2reg -instcombine -ptrLegalization -simplifycfg -deadargelim -instcombine -dce -inst-simplify -function-uniquify -directive-preproc -mem2reg -dse -dce -globaldce -check-dspbuiltin C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/a.g.1.bc -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/a.g.2.prechk.bc -f 
+Command         transform done; 0.193 sec.
+INFO-FLOW: Checking Synthesizability 2/2..
+Execute         transform -syn-check C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/a.g.2.prechk.bc -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/a.g.2.bc -f -phase syn-check 
+WARNING: [SYNCHK 200-23] FracNetHLS/pgconv.cc:99: variable-indexed range selection may cause suboptimal QoR.
+INFO: [SYNCHK 200-10] 0 error(s), 1 warning(s).
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:03 ; elapsed = 00:00:37 . Memory (MB): peak = 229.082 ; gain = 139.766
+INFO-FLOW: Compiler optimizing ...
+INFO-FLOW: Share syncheck's 1.bc for syn flow: copy C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/a.g.1.bc to C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/a.o.1.bc
+INFO-FLOW: Presyn 1...
+Execute         transform -hls -tmp C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db -interface-port-rename -type-info -function-uniquify -directive-preproc -mem2reg -dse -dce -disaggr -scalarrepl -norm-name -deadargelim -mem2reg -instcombine -dce -simplifycfg -auto-rom-infer -dce -function-uniquify -resource-proc -clib-intrinsic-prepare -dce -func-buffer -dce -pag -array-normalize -func-legal -instcombine -gvn -constprop -dce -simplifycfg -mem2reg -globaldce -resolve-double-ptr -dce -deadargelim -dce -instcombine -ptrArgReplace -mem2reg -dce -array-seg-normalize -deadargelim -instcombine -dce -pointer-simplify -dce -port-alignment -dce -interface-preproc -data-pack -instcombine -dce -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -gvn -gvn -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -dse -adse -adce -loop-simplify -indvars -instcombine -gvn -loop-simplify -mem2reg -dce -find-region -instcombine -auto-loop-pipeline -inst-simplify -interface-preproc -cfgopt -instcombine -indvars -auto-loop-unroll -loop-simplify -loop-bound -xunroll -constprop -instcombine -simplifycfg -indvars -simplifycfg -dce -globaldce -clean-region -attach-range -gvn -inst-simplify -constprop -simplifycfg -dce -pointer-simplify -dce -globalopt -constprop -dce -array-promote -constprop -dce -ptrArgReplace -mem2reg -simplifycfg -dce -auto-par -instcombine -dce -array-transform-check -array-reshape -instcombine -simplifycfg -dce -ptrArgReplace -deadargelim -mem2reg -instcombine -simplifycfg -dce -indvars -loop-simplify -loop-bound -xunroll -constprop -instcombine -simplifycfg -indvars -simplifycfg -dce -globaldce -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -dse -duplicate-dataflow-processes -globaldce -instcombine -array-partition -instcombine -simplifycfg -dce -ptrArgReplace -global-constprop -deadargelim -mem2reg -func-legal -dce -global-constprop -deadargelim -mem2reg -simplifycfg -dce -merge-param -deadargelim -globalopt -constprop -dce -array-promote -constprop -dce -ptrArgReplace -mem2reg -simplifycfg -dce -mem-intrinsic-preproc -dce -global-internalize -global-privatize -mem2reg -globaldce -promote-global-argument -ptrArgReplace -mem2reg -dce -globalopt -mergereturn -simplify-global-access -mem2reg -dce -pointer-simplify -dce -functionattrs -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -gvn -gvn -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -dse -adse -adce -dce -norm-name -function-inline -complex-op-raise -inst-simplify -globaldce -func-inst -constprop -instcombine -simplifycfg -dce -func-legal -dce -loop-bound -arraycheck -bitwidthmin -on-by-dataflow -loop-delete -instcombine -simplifycfg -globaldce -dce -gvn -deadargelim -dce -loop-simplify -clean-region -simplifycfg -propagate-stable-arguments -loop-stream -instcombine -simplifycfg -dce -globaldce -duplicate-dataflow-processes -stream-intrinsic-preproc -dce -check-ap-stream -loop-simplify -eliminate-keepreads -extract-dataflow-in-loop -loop-simplify -dce -gvn -deadargelim -dse -check-dataflow-syntax -legalize-stream-variable -legalize-global -extract-subproc -dce -dead-channel-elimination -canonicalize-gep -globaldce -dce -gvn -deadargelim -annotate-dataflow-channels -scalar-propagation -deadargelim -globaldce -mem2reg -check-dataflow-channels -function-stream -dce -globaldce -prop-fifo-spec -internal-stream-gen -canonicalize-gep -globaldce -dce -gvn -deadargelim -mergereturn -indvars -loop-simplify -instcombine -array-stream -array-seg-normalize -array-partition -func-legal -instcombine -simplifycfg -dce -bundle-memfifo-ops -deadargelim -function-uniquify -directive-preproc -mem2reg -dse -dce -group-axi-access -licm -simplifycfg -dce -loop-delete -norm-name C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/a.o.1.bc -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/a.o.1.tmp.bc -f 
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'Loop-1.1' (FracNetHLS/pgconv.cc:93) in function 'pgconv32_2bit' for pipelining.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1.1' (FracNetHLS/pgconv.cc:97) in function 'pgconv32_2bit' completely with a factor of 32.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1.2' (FracNetHLS/pgconv.cc:118) in function 'pgconv32_2bit' completely with a factor of 32.
+INFO: [XFORM 203-101] Partitioning array 'bottom.V' (FracNetHLS/pgconv.cc:71) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'weights.V' (FracNetHLS/pgconv.cc:72) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'thres.V' (FracNetHLS/pgconv.cc:73) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_weights.V' (FracNetHLS/pgconv.cc:74) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_bias.V' (FracNetHLS/pgconv.cc:75) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'relu_shiftx.V' (FracNetHLS/pgconv.cc:76) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'relu_shifty.V' (FracNetHLS/pgconv.cc:77) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'relu_weights.V' (FracNetHLS/pgconv.cc:78) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'top.V' (FracNetHLS/pgconv.cc:79) in dimension 1 completely.
+Command         transform done; 7.841 sec.
+INFO-FLOW: Presyn 2...
+Execute         transform -hls -keep-callgraph -scalarrepl -mem2reg -port-alignment -attach-range -dce -pipe-mux-gen -indvars -loop-bound -inst-simplify -instcombine -dce -merge-array-access -mem2reg -dce -clean-region -mergereturn -if-conv -instcombine -dce -constprop -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -gvn -gvn -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -dse -adse -adce -scalarrepl -mem2reg -global-constprop -deadargelim -deadargelim -instcombine -dce -simplifycfg -ptrArgReplace -mem2reg -function-inline -globaldce -mem2reg -instcombine -dce -expr-balance -instcombine -dce -bitwidthmin -interface-preproc -directive-preproc -inst-rectify -instcombine -dce -functionattrs -constprop -instcombine -bit-constprop -simplify-global-access -globalopt -globaldce -inst-simplify -instcombine -elimdeaddata -dce -loop-delete -simplifycfg -loop-simplify -auto-burst -norm-name C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/a.o.1.tmp.bc -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/a.o.2.bc -f -phase presyn 
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (FracNetHLS/pgconv.cc:63:22) to (FracNetHLS/pgconv.cc:69:1) in function 'relu'... converting 16 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (FracNetHLS/pgconv.cc:58:12) to (FracNetHLS/pgconv.cc:58:12) in function 'batch_norm'... converting 5 basic blocks.
+INFO: [XFORM 203-11] Balancing expressions in function 'sum_engine' (FracNetHLS/pgconv.cc:39:12)...3 expression(s) balanced.
+Command         transform done; 3.508 sec.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:14 ; elapsed = 00:00:48 . Memory (MB): peak = 285.277 ; gain = 195.961
+INFO-FLOW: Building ssdm...
+Execute         transform -hls -function-uniquify -auto-function-inline -globaldce -ptrArgReplace -mem2reg -dce -reset-lda -loop-simplify -indvars -licm -loop-dep -loop-bound -licm -loop-simplify -flattenloopnest -array-flatten -gvn -instcombine -dce -array-map -dce -func-legal -gvn -adce -instcombine -cfgopt -simplifycfg -loop-simplify -array-burst -promote-global-argument -dce -ptrLegalization -axi4-lower -array-seg-normalize -basicaa -aggrmodref-aa -globalsmodref-aa -aggr-aa -gvn -gvn -basicaa -aggrmodref-aa -globalsmodref-aa -aggr-aa -dse -adse -adce -licm -inst-simplify -dce -globaldce -instcombine -array-stream -eliminate-keepreads -instcombine -dce -deadargelim -doublePtrSimplify -doublePtrElim -dce -doublePtrSimplify -promote-dbg-pointer -dce -scalarrepl -mem2reg -disaggr -norm-name -mem2reg -instcombine -dse -adse -adce -ptrLegalization -dce -auto-rom-infer -array-flatten -dce -instcombine -check-doubleptr -loop-rot -constprop -cfgopt -simplifycfg -loop-simplify -indvars -pointer-simplify -dce -loop-bound -loop-simplify -loop-preproc -constprop -global-constprop -gvn -mem2reg -instcombine -dce -loop-bound -loop-merge -dce -bitwidthmin -deadargelim -dce -canonicalize-dataflow -dce -scalar-propagation -deadargelim -globaldce -mem2reg -read-loop-dep -interface-preproc -directive-preproc -interface-gen -bram-byte-enable -deadargelim -inst-simplify -dce -gvn -mem2reg -instcombine -dce -adse -loop-bound -instcombine -cfgopt -simplifycfg -loop-simplify -clean-region -io-protocol -find-region -mem2reg -bitop-raise -complex-op-raise -inst-simplify -inst-rectify -instcombine -adce -deadargelim -loop-simplify -phi-opt -bitop-raise -cfgopt -simplifycfg -strip-dead-prototypes -interface-lower -bitop-lower -intrinsic-lower -auto-function-inline -basicaa -aggrmodref-aa -globalsmodref-aa -aggr-aa -inst-simplify -simplifycfg -loop-simplify -mergereturn -inst-simplify -inst-rectify -dce -load-elim -bitop-lower -loop-rewind -pointer-simplify -dce -cfgopt -dce -loop-bound -loop-dep -read-loop-dep -dce -check-stream -norm-name -legalize -validate-dataflow -inst-clarity -bitwidth -dump-loop-dep-to-ir -check-all-ssdm -cdfg-build C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/a.o.2.bc -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/a.o.3.bc -f -phase build-ssdm 
+INFO: [XFORM 203-541] Flattening a loop nest 'Loop-1' (FracNetHLS/pgconv.cc:92:18) in function 'pgconv32_2bit'.
+INFO: [HLS 200-472] Inferring partial write operation for 'bottom_buf_1.V' (FracNetHLS/pgconv.cc:99:28)
+INFO: [HLS 200-472] Inferring partial write operation for 'bottom_buf_1.V' (FracNetHLS/pgconv.cc:100:43)
+INFO: [HLS 200-472] Inferring partial write operation for 'bottom_buf_1.V' (FracNetHLS/pgconv.cc:101:43)
+INFO: [HLS 200-472] Inferring partial write operation for 'bottom_buf_1.V' (FracNetHLS/pgconv.cc:102:43)
+INFO: [HLS 200-472] Inferring partial write operation for 'bottom_buf_1.V' (FracNetHLS/pgconv.cc:103:43)
+INFO: [HLS 200-472] Inferring partial write operation for 'bottom_buf_1.V' (FracNetHLS/pgconv.cc:104:43)
+INFO: [HLS 200-472] Inferring partial write operation for 'bottom_buf_1.V' (FracNetHLS/pgconv.cc:105:43)
+INFO: [HLS 200-472] Inferring partial write operation for 'bottom_buf_1.V' (FracNetHLS/pgconv.cc:106:43)
+INFO: [HLS 200-472] Inferring partial write operation for 'bottom_buf_1.V' (FracNetHLS/pgconv.cc:107:43)
+INFO: [HLS 200-472] Inferring partial write operation for 'bottom_buf_0.V' (FracNetHLS/pgconv.cc:108:31)
+INFO: [HLS 200-472] Inferring partial write operation for 'bottom_buf_0.V' (FracNetHLS/pgconv.cc:109:43)
+INFO: [HLS 200-472] Inferring partial write operation for 'bottom_buf_0.V' (FracNetHLS/pgconv.cc:110:43)
+INFO: [HLS 200-472] Inferring partial write operation for 'bottom_buf_0.V' (FracNetHLS/pgconv.cc:111:43)
+INFO: [HLS 200-472] Inferring partial write operation for 'bottom_buf_0.V' (FracNetHLS/pgconv.cc:112:43)
+INFO: [HLS 200-472] Inferring partial write operation for 'bottom_buf_0.V' (FracNetHLS/pgconv.cc:113:43)
+INFO: [HLS 200-472] Inferring partial write operation for 'bottom_buf_0.V' (FracNetHLS/pgconv.cc:114:43)
+INFO: [HLS 200-472] Inferring partial write operation for 'bottom_buf_0.V' (FracNetHLS/pgconv.cc:115:43)
+INFO: [HLS 200-472] Inferring partial write operation for 'bottom_buf_0.V' (FracNetHLS/pgconv.cc:116:43)
+Command         transform done; 10.477 sec.
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:25 ; elapsed = 00:00:59 . Memory (MB): peak = 332.379 ; gain = 243.062
+INFO-FLOW: Finish building internal data model.
+Command       opt_and_import_c done; 23.169 sec.
+Command     elaborate done; 56.002 sec.
+Execute     autosyn -from_csynth_design=1 
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO-FLOW: Synthesizing C/C++ design ...
+INFO: [HLS 200-10] Synthesizing 'pgconv32_2bit' ...
+Execute       ap_set_top_model pgconv32_2bit 
+Execute       get_model_list pgconv32_2bit -filter all-wo-channel -topdown 
+Execute       preproc_iomode -model pgconv32_2bit 
+Execute       preproc_iomode -model relu 
+Execute       preproc_iomode -model batch_norm 
+Execute       preproc_iomode -model sum_engine 
+Execute       preproc_iomode -model compute_engine_32 
+Execute       get_model_list pgconv32_2bit -filter all-wo-channel 
+INFO-FLOW: Model list for configure: compute_engine_32 sum_engine batch_norm relu pgconv32_2bit
+INFO-FLOW: Configuring Module : compute_engine_32 ...
+Execute       set_default_model compute_engine_32 
+Execute       apply_spec_resource_limit compute_engine_32 
+INFO-FLOW: Configuring Module : sum_engine ...
+Execute       set_default_model sum_engine 
+Execute       apply_spec_resource_limit sum_engine 
+INFO-FLOW: Configuring Module : batch_norm ...
+Execute       set_default_model batch_norm 
+Execute       apply_spec_resource_limit batch_norm 
+INFO-FLOW: Configuring Module : relu ...
+Execute       set_default_model relu 
+Execute       apply_spec_resource_limit relu 
+INFO-FLOW: Configuring Module : pgconv32_2bit ...
+Execute       set_default_model pgconv32_2bit 
+Execute       apply_spec_resource_limit pgconv32_2bit 
+INFO-FLOW: Model list for preprocess: compute_engine_32 sum_engine batch_norm relu pgconv32_2bit
+INFO-FLOW: Preprocessing Module: compute_engine_32 ...
+Execute       set_default_model compute_engine_32 
+Execute       cdfg_preprocess -model compute_engine_32 
+Execute       rtl_gen_preprocess compute_engine_32 
+INFO-FLOW: Preprocessing Module: sum_engine ...
+Execute       set_default_model sum_engine 
+Execute       cdfg_preprocess -model sum_engine 
+Execute       rtl_gen_preprocess sum_engine 
+INFO-FLOW: Preprocessing Module: batch_norm ...
+Execute       set_default_model batch_norm 
+Execute       cdfg_preprocess -model batch_norm 
+Execute       rtl_gen_preprocess batch_norm 
+INFO-FLOW: Preprocessing Module: relu ...
+Execute       set_default_model relu 
+Execute       cdfg_preprocess -model relu 
+Execute       rtl_gen_preprocess relu 
+INFO-FLOW: Preprocessing Module: pgconv32_2bit ...
+Execute       set_default_model pgconv32_2bit 
+Execute       cdfg_preprocess -model pgconv32_2bit 
+Command       cdfg_preprocess done; 1.165 sec.
+Execute       rtl_gen_preprocess pgconv32_2bit 
+INFO-FLOW: Model list for synthesis: compute_engine_32 sum_engine batch_norm relu pgconv32_2bit
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'compute_engine_32' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute       set_default_model compute_engine_32 
+Execute       schedule -model compute_engine_32 
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'compute_engine_32'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 2.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 59.985 seconds; current allocated memory: 266.885 MB.
+Execute       syn_report -verbosereport -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/compute_engine_32.verbose.sched.rpt 
+Execute       db_write -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/compute_engine_32.sched.adb -f 
+INFO-FLOW: Finish scheduling compute_engine_32.
+Execute       set_default_model compute_engine_32 
+Execute       bind -model compute_engine_32 
+BIND OPTION: model=compute_engine_32
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.11 seconds; current allocated memory: 267.075 MB.
+Execute       syn_report -verbosereport -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/compute_engine_32.verbose.bind.rpt 
+Execute       db_write -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/compute_engine_32.bind.adb -f 
+INFO-FLOW: Finish binding compute_engine_32.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'sum_engine' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute       set_default_model sum_engine 
+Execute       schedule -model sum_engine 
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'sum_engine'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 1.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.135 seconds; current allocated memory: 267.164 MB.
+Execute       syn_report -verbosereport -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/sum_engine.verbose.sched.rpt 
+Execute       db_write -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/sum_engine.sched.adb -f 
+INFO-FLOW: Finish scheduling sum_engine.
+Execute       set_default_model sum_engine 
+Execute       bind -model sum_engine 
+BIND OPTION: model=sum_engine
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.083 seconds; current allocated memory: 267.250 MB.
+Execute       syn_report -verbosereport -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/sum_engine.verbose.bind.rpt 
+Execute       db_write -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/sum_engine.bind.adb -f 
+INFO-FLOW: Finish binding sum_engine.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'batch_norm' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute       set_default_model batch_norm 
+Execute       schedule -model batch_norm 
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'batch_norm'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 1.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.105 seconds; current allocated memory: 267.391 MB.
+Execute       syn_report -verbosereport -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/batch_norm.verbose.sched.rpt 
+Execute       db_write -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/batch_norm.sched.adb -f 
+INFO-FLOW: Finish scheduling batch_norm.
+Execute       set_default_model batch_norm 
+Execute       bind -model batch_norm 
+BIND OPTION: model=batch_norm
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.089 seconds; current allocated memory: 267.501 MB.
+Execute       syn_report -verbosereport -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/batch_norm.verbose.bind.rpt 
+Execute       db_write -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/batch_norm.bind.adb -f 
+INFO-FLOW: Finish binding batch_norm.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'relu' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute       set_default_model relu 
+Execute       schedule -model relu 
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'relu'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 1.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.142 seconds; current allocated memory: 267.742 MB.
+Execute       syn_report -verbosereport -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/relu.verbose.sched.rpt 
+Execute       db_write -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/relu.sched.adb -f 
+INFO-FLOW: Finish scheduling relu.
+Execute       set_default_model relu 
+Execute       bind -model relu 
+BIND OPTION: model=relu
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.133 seconds; current allocated memory: 268.046 MB.
+Execute       syn_report -verbosereport -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/relu.verbose.bind.rpt 
+Execute       db_write -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/relu.bind.adb -f 
+INFO-FLOW: Finish binding relu.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'pgconv32_2bit' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute       set_default_model pgconv32_2bit 
+Execute       schedule -model pgconv32_2bit 
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'Loop 1'.
+WARNING: [SCHED 204-69] Unable to schedule 'load' operation ('bottom_0_V_load_7', FracNetHLS/pgconv.cc:106) on array 'bottom_0_V' due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'bottom_0_V'.
+WARNING: [SCHED 204-69] Unable to schedule 'load' operation ('bottom_buf_1_V_load_2', FracNetHLS/pgconv.cc:122) on array 'bottom_buf_1.V', FracNetHLS/pgconv.cc:95 due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'bottom_buf_1_V'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 9, Depth = 19.
+INFO: [SCHED 204-11] Finished scheduling.
+Command       schedule done; 72.516 sec.
+INFO: [HLS 200-111]  Elapsed time: 72.683 seconds; current allocated memory: 275.728 MB.
+Execute       syn_report -verbosereport -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.verbose.sched.rpt 
+Command       syn_report done; 1.76 sec.
+Execute       db_write -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.sched.adb -f 
+Command       db_write done; 1.134 sec.
+INFO-FLOW: Finish scheduling pgconv32_2bit.
+Execute       set_default_model pgconv32_2bit 
+Execute       bind -model pgconv32_2bit 
+BIND OPTION: model=pgconv32_2bit
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+Command       bind done; 1.87 sec.
+INFO: [HLS 200-111]  Elapsed time: 4.835 seconds; current allocated memory: 287.939 MB.
+Execute       syn_report -verbosereport -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.verbose.bind.rpt 
+Command       syn_report done; 3.23 sec.
+Execute       db_write -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.bind.adb -f 
+Command       db_write done; 1.203 sec.
+INFO-FLOW: Finish binding pgconv32_2bit.
+Execute       get_model_list pgconv32_2bit -filter all-wo-channel 
+INFO-FLOW: Preprocessing for RTLGen ...
+Execute       rtl_gen_preprocess compute_engine_32 
+Execute       rtl_gen_preprocess sum_engine 
+Execute       rtl_gen_preprocess batch_norm 
+Execute       rtl_gen_preprocess relu 
+Execute       rtl_gen_preprocess pgconv32_2bit 
+INFO-FLOW: Model list for RTL generation: compute_engine_32 sum_engine batch_norm relu pgconv32_2bit
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'compute_engine_32' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute       get_config_rtl -module_prefix 
+Execute       get_config_rtl -module_auto_prefix 
+Execute       create_rtl_model compute_engine_32 -vendor xilinx -mg_file C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/compute_engine_32.compgen.tcl 
+INFO: [SYN 201-210] Renamed object name 'compute_engine_32_lut16_V' to 'compute_engine_32bkb' due to the length limit 20
+INFO: [RTGEN 206-100] Finished creating RTL model for 'compute_engine_32'.
+INFO: [HLS 200-111]  Elapsed time: 4.531 seconds; current allocated memory: 289.334 MB.
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.rtl_wrap.cfg.tcl 
+Execute       gen_rtl compute_engine_32 -style xilinx -tracefl mytrace -tracefmt vcd -traceopt all -f -lang sc -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/syn/systemc/compute_engine_32 -synmodules compute_engine_32 sum_engine batch_norm relu pgconv32_2bit 
+Execute       gen_rtl compute_engine_32 -style xilinx -f -lang vhdl -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/syn/vhdl/compute_engine_32 
+Execute       gen_rtl compute_engine_32 -style xilinx -f -lang vlog -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/syn/verilog/compute_engine_32 
+Execute       syn_report -csynth -model compute_engine_32 -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/syn/report/compute_engine_32_csynth.rpt 
+Execute       syn_report -rtlxml -model compute_engine_32 -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/syn/report/compute_engine_32_csynth.xml 
+Execute       syn_report -verbosereport -model compute_engine_32 -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/compute_engine_32.verbose.rpt 
+Execute       db_write -model compute_engine_32 -f -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/compute_engine_32.adb 
+Execute       gen_tb_info compute_engine_32 -p C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/compute_engine_32 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'sum_engine' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute       get_config_rtl -module_prefix 
+Execute       get_config_rtl -module_auto_prefix 
+Execute       create_rtl_model sum_engine -vendor xilinx -mg_file C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/sum_engine.compgen.tcl 
+INFO: [RTGEN 206-100] Finished creating RTL model for 'sum_engine'.
+INFO: [HLS 200-111]  Elapsed time: 0.288 seconds; current allocated memory: 289.532 MB.
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.rtl_wrap.cfg.tcl 
+Execute       gen_rtl sum_engine -style xilinx -tracefl mytrace -tracefmt vcd -traceopt all -f -lang sc -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/syn/systemc/sum_engine -synmodules compute_engine_32 sum_engine batch_norm relu pgconv32_2bit 
+Execute       gen_rtl sum_engine -style xilinx -f -lang vhdl -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/syn/vhdl/sum_engine 
+Execute       gen_rtl sum_engine -style xilinx -f -lang vlog -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/syn/verilog/sum_engine 
+Execute       syn_report -csynth -model sum_engine -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/syn/report/sum_engine_csynth.rpt 
+Execute       syn_report -rtlxml -model sum_engine -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/syn/report/sum_engine_csynth.xml 
+Execute       syn_report -verbosereport -model sum_engine -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/sum_engine.verbose.rpt 
+Execute       db_write -model sum_engine -f -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/sum_engine.adb 
+Execute       gen_tb_info sum_engine -p C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/sum_engine 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'batch_norm' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute       get_config_rtl -module_prefix 
+Execute       get_config_rtl -module_auto_prefix 
+Execute       create_rtl_model batch_norm -vendor xilinx -mg_file C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/batch_norm.compgen.tcl 
+INFO: [SYN 201-210] Renamed object name 'pgconv32_2bit_mul_mul_8ns_11s_19_1_1' to 'pgconv32_2bit_mulcud' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'pgconv32_2bit_mulcud': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'batch_norm'.
+INFO: [HLS 200-111]  Elapsed time: 0.19 seconds; current allocated memory: 289.756 MB.
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.rtl_wrap.cfg.tcl 
+Execute       gen_rtl batch_norm -style xilinx -tracefl mytrace -tracefmt vcd -traceopt all -f -lang sc -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/syn/systemc/batch_norm -synmodules compute_engine_32 sum_engine batch_norm relu pgconv32_2bit 
+Execute       gen_rtl batch_norm -style xilinx -f -lang vhdl -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/syn/vhdl/batch_norm 
+Execute       gen_rtl batch_norm -style xilinx -f -lang vlog -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/syn/verilog/batch_norm 
+Execute       syn_report -csynth -model batch_norm -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/syn/report/batch_norm_csynth.rpt 
+Execute       syn_report -rtlxml -model batch_norm -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/syn/report/batch_norm_csynth.xml 
+Execute       syn_report -verbosereport -model batch_norm -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/batch_norm.verbose.rpt 
+Execute       db_write -model batch_norm -f -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/batch_norm.adb 
+Execute       gen_tb_info batch_norm -p C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/batch_norm 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'relu' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute       get_config_rtl -module_prefix 
+Execute       get_config_rtl -module_auto_prefix 
+Execute       create_rtl_model relu -vendor xilinx -mg_file C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/relu.compgen.tcl 
+INFO: [SYN 201-210] Renamed object name 'pgconv32_2bit_mac_muladd_11s_14s_19s_25_1_1' to 'pgconv32_2bit_macdEe' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'pgconv32_2bit_macdEe': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'relu'.
+INFO: [HLS 200-111]  Elapsed time: 0.232 seconds; current allocated memory: 290.308 MB.
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.rtl_wrap.cfg.tcl 
+Execute       gen_rtl relu -style xilinx -tracefl mytrace -tracefmt vcd -traceopt all -f -lang sc -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/syn/systemc/relu -synmodules compute_engine_32 sum_engine batch_norm relu pgconv32_2bit 
+Execute       gen_rtl relu -style xilinx -f -lang vhdl -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/syn/vhdl/relu 
+Execute       gen_rtl relu -style xilinx -f -lang vlog -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/syn/verilog/relu 
+Execute       syn_report -csynth -model relu -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/syn/report/relu_csynth.rpt 
+Execute       syn_report -rtlxml -model relu -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/syn/report/relu_csynth.xml 
+Execute       syn_report -verbosereport -model relu -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/relu.verbose.rpt 
+Execute       db_write -model relu -f -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/relu.adb 
+Execute       gen_tb_info relu -p C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/relu 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'pgconv32_2bit' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute       get_config_rtl -module_prefix 
+Execute       get_config_rtl -module_auto_prefix 
+Execute       create_rtl_model pgconv32_2bit -vendor xilinx -mg_file C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.compgen.tcl 
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bottom_0_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bottom_1_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bottom_2_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bottom_3_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bottom_4_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bottom_5_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bottom_6_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bottom_7_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bottom_8_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bottom_9_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bottom_10_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bottom_11_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bottom_12_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bottom_13_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bottom_14_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bottom_15_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bottom_16_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bottom_17_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bottom_18_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bottom_19_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bottom_20_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bottom_21_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bottom_22_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bottom_23_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bottom_24_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bottom_25_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bottom_26_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bottom_27_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bottom_28_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bottom_29_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bottom_30_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bottom_31_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/weights_0_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/weights_1_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/weights_2_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/weights_3_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/weights_4_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/weights_5_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/weights_6_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/weights_7_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/weights_8_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/weights_9_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/weights_10_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/weights_11_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/weights_12_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/weights_13_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/weights_14_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/weights_15_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/weights_16_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/weights_17_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/weights_18_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/weights_19_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/weights_20_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/weights_21_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/weights_22_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/weights_23_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/weights_24_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/weights_25_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/weights_26_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/weights_27_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/weights_28_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/weights_29_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/weights_30_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/weights_31_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/thres_0_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/thres_1_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/thres_2_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/thres_3_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/thres_4_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/thres_5_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/thres_6_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/thres_7_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/thres_8_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/thres_9_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/thres_10_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/thres_11_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/thres_12_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/thres_13_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/thres_14_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/thres_15_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/thres_16_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/thres_17_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/thres_18_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/thres_19_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/thres_20_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/thres_21_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/thres_22_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/thres_23_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/thres_24_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/thres_25_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/thres_26_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/thres_27_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/thres_28_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/thres_29_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/thres_30_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/thres_31_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_weights_0_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_weights_1_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_weights_2_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_weights_3_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_weights_4_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_weights_5_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_weights_6_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_weights_7_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_weights_8_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_weights_9_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_weights_10_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_weights_11_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_weights_12_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_weights_13_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_weights_14_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_weights_15_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_weights_16_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_weights_17_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_weights_18_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_weights_19_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_weights_20_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_weights_21_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_weights_22_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_weights_23_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_weights_24_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_weights_25_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_weights_26_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_weights_27_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_weights_28_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_weights_29_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_weights_30_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_weights_31_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_bias_0_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_bias_1_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_bias_2_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_bias_3_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_bias_4_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_bias_5_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_bias_6_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_bias_7_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_bias_8_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_bias_9_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_bias_10_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_bias_11_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_bias_12_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_bias_13_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_bias_14_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_bias_15_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_bias_16_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_bias_17_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_bias_18_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_bias_19_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_bias_20_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_bias_21_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_bias_22_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_bias_23_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_bias_24_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_bias_25_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_bias_26_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_bias_27_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_bias_28_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_bias_29_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_bias_30_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/bn_bias_31_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shiftx_0_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shiftx_1_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shiftx_2_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shiftx_3_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shiftx_4_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shiftx_5_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shiftx_6_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shiftx_7_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shiftx_8_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shiftx_9_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shiftx_10_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shiftx_11_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shiftx_12_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shiftx_13_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shiftx_14_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shiftx_15_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shiftx_16_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shiftx_17_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shiftx_18_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shiftx_19_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shiftx_20_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shiftx_21_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shiftx_22_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shiftx_23_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shiftx_24_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shiftx_25_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shiftx_26_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shiftx_27_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shiftx_28_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shiftx_29_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shiftx_30_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shiftx_31_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shifty_0_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shifty_1_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shifty_2_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shifty_3_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shifty_4_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shifty_5_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shifty_6_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shifty_7_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shifty_8_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shifty_9_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shifty_10_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shifty_11_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shifty_12_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shifty_13_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shifty_14_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shifty_15_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shifty_16_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shifty_17_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shifty_18_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shifty_19_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shifty_20_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shifty_21_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shifty_22_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shifty_23_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shifty_24_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shifty_25_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shifty_26_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shifty_27_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shifty_28_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shifty_29_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shifty_30_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_shifty_31_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_weights_0_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_weights_1_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_weights_2_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_weights_3_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_weights_4_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_weights_5_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_weights_6_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_weights_7_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_weights_8_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_weights_9_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_weights_10_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_weights_11_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_weights_12_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_weights_13_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_weights_14_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_weights_15_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_weights_16_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_weights_17_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_weights_18_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_weights_19_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_weights_20_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_weights_21_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_weights_22_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_weights_23_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_weights_24_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_weights_25_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_weights_26_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_weights_27_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_weights_28_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_weights_29_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_weights_30_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/relu_weights_31_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/top_0_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/top_1_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/top_2_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/top_3_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/top_4_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/top_5_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/top_6_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/top_7_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/top_8_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/top_9_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/top_10_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/top_11_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/top_12_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/top_13_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/top_14_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/top_15_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/top_16_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/top_17_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/top_18_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/top_19_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/top_20_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/top_21_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/top_22_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/top_23_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/top_24_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/top_25_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/top_26_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/top_27_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/top_28_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/top_29_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/top_30_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'pgconv32_2bit/top_31_V' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'pgconv32_2bit' to 'ap_ctrl_hs'.
+INFO: [SYN 201-210] Renamed object name 'pgconv32_2bit_bottom_buf_1_V' to 'pgconv32_2bit_boteOg' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pgconv32_2bit_bottom_buf_0_V' to 'pgconv32_2bit_botfYi' due to the length limit 20
+INFO: [RTGEN 206-100] Finished creating RTL model for 'pgconv32_2bit'.
+Command       create_rtl_model done; 11.397 sec.
+INFO: [HLS 200-111]  Elapsed time: 11.854 seconds; current allocated memory: 305.818 MB.
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.rtl_wrap.cfg.tcl 
+Execute       gen_rtl pgconv32_2bit -istop -style xilinx -tracefl mytrace -tracefmt vcd -traceopt all -f -lang sc -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/syn/systemc/pgconv32_2bit -synmodules compute_engine_32 sum_engine batch_norm relu pgconv32_2bit 
+Execute       gen_rtl pgconv32_2bit -istop -style xilinx -f -lang vhdl -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/syn/vhdl/pgconv32_2bit 
+Command       gen_rtl done; 0.325 sec.
+Execute       gen_rtl pgconv32_2bit -istop -style xilinx -f -lang vlog -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/syn/verilog/pgconv32_2bit 
+Command       gen_rtl done; 0.195 sec.
+Execute       syn_report -csynth -model pgconv32_2bit -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/syn/report/pgconv32_2bit_csynth.rpt 
+Command       syn_report done; 0.174 sec.
+Execute       syn_report -rtlxml -model pgconv32_2bit -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/syn/report/pgconv32_2bit_csynth.xml 
+Command       syn_report done; 0.143 sec.
+Execute       syn_report -verbosereport -model pgconv32_2bit -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.verbose.rpt 
+Command       syn_report done; 3.354 sec.
+Execute       db_write -model pgconv32_2bit -f -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.adb 
+Command       db_write done; 1.829 sec.
+Execute       gen_tb_info pgconv32_2bit -p C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit 
+Execute       export_constraint_db -f -tool general -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.constraint.tcl 
+Execute       syn_report -designview -model pgconv32_2bit -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.design.xml 
+Command       syn_report done; 0.336 sec.
+Execute       get_config_rtl -disable_wave_debug 
+Execute       syn_report -wcfg -model pgconv32_2bit -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit_dataflow_ana.wcfg 
+Execute       syn_report -protoinst -model pgconv32_2bit -o C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.protoinst 
+Execute       get_config_debug -directory 
+Execute       sc_get_clocks pgconv32_2bit 
+Execute       get_config_export -vivado_clock 
+Execute       sc_get_portdomain pgconv32_2bit 
+INFO-FLOW: Model list for RTL component generation: compute_engine_32 sum_engine batch_norm relu pgconv32_2bit
+INFO-FLOW: Handling components in module [compute_engine_32] ... 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/compute_engine_32.compgen.tcl 
+INFO-FLOW: Found component compute_engine_32bkb.
+INFO-FLOW: Append model compute_engine_32bkb
+INFO-FLOW: Handling components in module [sum_engine] ... 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/sum_engine.compgen.tcl 
+INFO-FLOW: Handling components in module [batch_norm] ... 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/batch_norm.compgen.tcl 
+INFO-FLOW: Found component pgconv32_2bit_mulcud.
+INFO-FLOW: Append model pgconv32_2bit_mulcud
+INFO-FLOW: Handling components in module [relu] ... 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/relu.compgen.tcl 
+INFO-FLOW: Found component pgconv32_2bit_macdEe.
+INFO-FLOW: Append model pgconv32_2bit_macdEe
+INFO-FLOW: Handling components in module [pgconv32_2bit] ... 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.compgen.tcl 
+INFO-FLOW: Found component pgconv32_2bit_boteOg.
+INFO-FLOW: Append model pgconv32_2bit_boteOg
+INFO-FLOW: Append model compute_engine_32
+INFO-FLOW: Append model sum_engine
+INFO-FLOW: Append model batch_norm
+INFO-FLOW: Append model relu
+INFO-FLOW: Append model pgconv32_2bit
+INFO-FLOW: Generating RTL model list ...
+INFO-FLOW: All models in this session: compute_engine_32bkb pgconv32_2bit_mulcud pgconv32_2bit_macdEe pgconv32_2bit_boteOg compute_engine_32 sum_engine batch_norm relu pgconv32_2bit
+INFO-FLOW: To file: write model compute_engine_32bkb
+INFO-FLOW: To file: write model pgconv32_2bit_mulcud
+INFO-FLOW: To file: write model pgconv32_2bit_macdEe
+INFO-FLOW: To file: write model pgconv32_2bit_boteOg
+INFO-FLOW: To file: write model compute_engine_32
+INFO-FLOW: To file: write model sum_engine
+INFO-FLOW: To file: write model batch_norm
+INFO-FLOW: To file: write model relu
+INFO-FLOW: To file: write model pgconv32_2bit
+INFO-FLOW: Finished generating RTL model list.
+
+
+INFO-FLOW: RTL Generation done.
+INFO-FLOW: CAS Generation done.
+INFO-FLOW: CBC Generation done.
+Execute       syn_report -model pgconv32_2bit -printsummary 
+INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were NOT satisfied.
+INFO: [HLS 200-789] **** Estimated Fmax: 116.87 MHz
+INFO-FLOW: DBG:CMD: auto_generate_csynth_design
+INFO-FLOW: DBG:CMD:     auto_generate --sim-model -phase csynth_design -d C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/global.setting.tcl 
+INFO-FLOW: DBG:CMD: read_platform_lib C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/global.setting.tcl
+Execute       source C:/Xilinx/Vivado/2019.2/common/technology/generic/autopilot/common.gen 
+Execute         source C:/Xilinx/Vivado/2019.2/common/technology/generic/autopilot/APCoreGen.gen 
+Execute       source C:/Xilinx/Vivado/2019.2/common/technology/generic/autopilot/op.gen 
+Execute       source C:/Xilinx/Vivado/2019.2/common/technology/generic/autopilot/op_simcore.gen 
+Execute       source C:/Xilinx/Vivado/2019.2/common/technology/generic/autopilot/interface.gen 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/global.setting.tcl 
+Execute       source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/zynquplus/zynquplus.gen 
+Execute         source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/common/xilinx.gen 
+Execute           source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/interface/plb46.gen 
+Execute           source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/interface/fsl.gen 
+Execute           source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/interface/axi4.gen 
+Execute           source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute             source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/interface/saxilite.gen 
+Execute             source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/interface/maxi.gen 
+Execute           source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute           source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute           source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute           source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/ip/util.gen 
+Execute           source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/ip/xfft.gen 
+Execute           source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/ip/xfir.gen 
+Execute           source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/common/dsp48.gen 
+Command         ap_source done; 0.106 sec.
+Command       ap_source done; 0.107 sec.
+Execute       source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/zynquplus/zynquplus_fpv7.gen 
+Execute         source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/common/xilinx_fp.gen 
+INFO-FLOW: DBG:CMD:   using AESL_AUTOCG::g_clock_period=10.000 (was NA)
+INFO-FLOW: DBG:CMD:       generate_ip_cores sim=1 export=0 expOnly=0 dstVlogDir=syn/verilog
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/global.setting.tcl 
+Execute       ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute       ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/global.setting.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/global.setting.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/compute_engine_32.compgen.tcl 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+INFO: [RTMG 210-279] Implementing memory 'compute_engine_32bkb_rom' using distributed ROMs.
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Command       ap_source done; 0.19 sec.
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/sum_engine.compgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/batch_norm.compgen.tcl 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/relu.compgen.tcl 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.compgen.tcl 
+INFO: [RTMG 210-278] Implementing memory 'pgconv32_2bit_boteOg_ram (RAM)' using block RAMs.
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+INFO-FLOW: DBG:CMD:     auto_generate -export -impltomg_flag -rtl both -tool Vivado -pcore_version 1.00.a -phase csynth_design -d C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/global.setting.tcl 
+INFO-FLOW: DBG:CMD: read_platform_lib C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/global.setting.tcl
+Execute       source C:/Xilinx/Vivado/2019.2/common/technology/generic/autopilot/common.gen 
+Execute         source C:/Xilinx/Vivado/2019.2/common/technology/generic/autopilot/APCoreGen.gen 
+Execute       source C:/Xilinx/Vivado/2019.2/common/technology/generic/autopilot/op.gen 
+Execute       source C:/Xilinx/Vivado/2019.2/common/technology/generic/autopilot/op_simcore.gen 
+Execute       source C:/Xilinx/Vivado/2019.2/common/technology/generic/autopilot/interface.gen 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/global.setting.tcl 
+Execute       source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/zynquplus/zynquplus.gen 
+Execute         source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/common/xilinx.gen 
+Execute           source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/interface/plb46.gen 
+Execute           source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/interface/fsl.gen 
+Execute           source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/interface/axi4.gen 
+Execute           source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute             source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/interface/saxilite.gen 
+Execute             source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/interface/maxi.gen 
+Execute           source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute           source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute           source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute           source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/ip/util.gen 
+Execute           source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/ip/xfft.gen 
+Execute           source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/ip/xfir.gen 
+Execute           source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/common/dsp48.gen 
+Command         ap_source done; 0.104 sec.
+Command       ap_source done; 0.105 sec.
+Execute       source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/zynquplus/zynquplus_fpv7.gen 
+Execute         source C:/Xilinx/Vivado/2019.2/common/technology/xilinx/common/xilinx_fp.gen 
+INFO-FLOW: DBG:CMD:       initCTypeInfo top_module=pgconv32_2bit xml_exists=0
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.rtl_wrap.cfg.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.rtl_wrap.cfg.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.rtl_wrap.cfg.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+INFO-FLOW: DBG:CMD:       export_impl_rtl
+INFO-FLOW: DBG:CMD:       generate_ip_cores sim=0 export=0 expOnly=0 dstVlogDir=impl/.verilog
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/global.setting.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/compute_engine_32.compgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/sum_engine.compgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/batch_norm.compgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/relu.compgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.compgen.tcl 
+INFO-FLOW: DBG:CMD:       generate_ip_cores sim=0 export=1 expOnly=1 dstVlogDir=impl/.pcores/verilog
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/global.setting.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/compute_engine_32.compgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/sum_engine.compgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/batch_norm.compgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/relu.compgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.compgen.tcl 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute         ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Command       ap_source done; 6.602 sec.
+Execute       ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute       ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+INFO-FLOW: DBG:CMD:       generate_ip_cores sim=0 export=0 expOnly=0 dstVlogDir=impl/.pcores/verilog_sim
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/global.setting.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/compute_engine_32.compgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/sum_engine.compgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/batch_norm.compgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/relu.compgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.compgen.tcl 
+Execute       ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute       ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute       ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute       ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/global.setting.tcl 
+Execute       ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute       ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.constraint.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+INFO-FLOW: DBG:CMD:       hasPcoreIpAdapter=false #gSsdmPorts=578
+INFO-FLOW: DBG:CMD: Skipping loadAnalyze_DB, #g_database=288
+INFO-FLOW: DBG:CMD:       generate_json is_phase_csynth=1 g_has_adaptors=false generate_bd_files=0 #modelList=9 #gSsdmPorts=578
+Execute       source C:/Xilinx/Vivado/2019.2/tps/tcl/tcllib1.11.1/fileutil/fileutil.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/global.setting.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/global.setting.tcl 
+Execute       get_config_export -xo 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/global.setting.tcl 
+Execute       get_config_sdx -target 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.rtl_wrap.cfg.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.compgen.dataonly.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/global.setting.tcl 
+Execute       ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute       ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.constraint.tcl 
+Execute       sc_get_clocks pgconv32_2bit 
+Execute       ap_part_info -name xczu3eg-sbva484-1-e -data names -quiet 
+Execute       ap_part_info -name xczu3eg-sbva484-1-e -data info -quiet 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/global.setting.tcl 
+Execute       get_config_debug -directory 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/compute_engine_32.tbgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/sum_engine.tbgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/batch_norm.tbgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/relu.tbgen.tcl 
+Execute       source C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/pgconv32_2bit.tbgen.tcl 
+Execute       get_config_sdx -target 
+Execute       get_config_sdx -profile 
+Execute       get_config_rtl -kernel_profile 
+Execute       get_config_rtl -stall_sig_gen 
+Execute       get_config_rtl -profile 
+INFO-FLOW: DBG:CMD: add_json_sdx_info kernel file does not exist, skipping opencl info: C:/Users/Aperture/Git/FracNetHLS/FracNetHLS/solution1/.autopilot/db/kernel.internal.xml
+INFO-FLOW: DBG:CMD:       delete-temp-dirs (skipped for debug)
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:02:17 ; elapsed = 00:03:05 . Memory (MB): peak = 468.387 ; gain = 379.070
+INFO: [VHDL 208-304] Generating VHDL RTL for pgconv32_2bit.
+INFO: [VLOG 209-307] Generating Verilog RTL for pgconv32_2bit.
+Command     autosyn done; 125.798 sec.
+Command   csynth_design done; 181.814 sec.
+Command ap_source done; 183.942 sec.
+Execute cleanup_all 

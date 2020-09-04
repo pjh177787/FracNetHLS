@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vivadoHLSLog:LogRoot xmlns:vivadoHLSLog="www.xilinx.com/vivadoHLSLog">
+  <errorLogs>
+    <logs>
+      <synLog/>
+      <simLog/>
+      <mgLog/>
+      <packageLog/>
+      <csimLog/>
+    </logs>
+  </errorLogs>
+  <warningLogs>
+    <logs>
+      <synLog>
+        <logs message="WARNING: [SCHED 204-69] Unable to schedule 'load' operation ('bottom_buf_1_V_load_2', FracNetHLS/pgconv.cc:122) on array 'bottom_buf_1.V', FracNetHLS/pgconv.cc:95 due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'bottom_buf_1_V'." projectName="FracNetHLS" solutionName="solution1" date="2020-09-03T21:49:05.928-0500" type="Warning"/>
+        <logs message="WARNING: [SCHED 204-69] Unable to schedule 'load' operation ('bottom_0_V_load_7', FracNetHLS/pgconv.cc:106) on array 'bottom_0_V' due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'bottom_0_V'." projectName="FracNetHLS" solutionName="solution1" date="2020-09-03T21:48:09.306-0500" type="Warning"/>
+        <logs message="WARNING: [SYNCHK 200-23] FracNetHLS/pgconv.cc:99: variable-indexed range selection may cause suboptimal QoR." projectName="FracNetHLS" solutionName="solution1" date="2020-09-03T21:47:35.367-0500" type="Warning"/>
+        <logs message="WARNING: [HLS 200-484] The 'config_sdx -optimization_level' command is deprecated and will be removed in a future release." projectName="FracNetHLS" solutionName="solution1" date="2020-09-03T21:47:01.222-0500" type="Warning"/>
+        <logs message="WARNING: [HLS 200-483] The 'config_sdx -optimization_level' command is deprecated and will be removed in a future release. Use 'config_export -vivado_optimization_level' as its replacement." projectName="FracNetHLS" solutionName="solution1" date="2020-09-03T21:47:01.185-0500" type="Warning"/>
+      </synLog>
+      <simLog/>
+      <mgLog/>
+      <packageLog/>
+      <csimLog/>
+    </logs>
+  </warningLogs>
+</vivadoHLSLog:LogRoot>
