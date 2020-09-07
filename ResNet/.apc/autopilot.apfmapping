@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="biconv.cc" path="C:\Users\Aperture\Git\FracNetHLS\ResNet\biconv.cc"/>
+    <originFiles name="matmul.cc" path="C:\Users\Aperture\Git\FracNetHLS\ResNet\matmul.cc"/>
+    <originFiles name="net_hls.cc" path="C:\Users\Aperture\Git\FracNetHLS\ResNet\net_hls.cc"/>
+    <originFiles name="net_hls.h" path="C:\Users\Aperture\Git\FracNetHLS\ResNet\net_hls.h"/>
+    <originFiles name="pgconv64.h" path="C:\Users\Aperture\Git\FracNetHLS\ResNet\pgconv64.h"/>
+    <originFiles name="weights.h" path="C:\Users\Aperture\Git\FracNetHLS\ResNet\weights.h"/>
+  </source>
+  <testbench/>
+</autopilotfilemapping:AutoPilotFileMapping>

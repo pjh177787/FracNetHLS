@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xd:acceleratorMap xmlns:xd="http://www.xilinx.com/xidane" xd:functionName="ResNet" xd:componentRef="ResNet" xd:initiationInterval="165276" xd:clockPeriod="5.000" xd:sequential="true" xd:hostMachine="64" xd:reset="control">
+  <xd:controlReg xd:name="control" xd:interfaceRef="s_axi_AXILiteS" xd:busTypeRef="axilite" xd:type="generic_axi_lite" xd:offset="0x0"/>
+  <xd:arg xd:name="image_thermo[]" xd:originalName="image_thermo" xd:direction="inout" xd:interfaceRef="m_axi_IMG" xd:busTypeRef="aximm" xd:arraySize="6144" xd:dataWidth="16" xd:bufferDirection="in"/>
+  <xd:arg xd:name="result[]" xd:originalName="result" xd:direction="inout" xd:interfaceRef="m_axi_BUS32" xd:busTypeRef="aximm" xd:arraySize="10" xd:dataWidth="32" xd:bufferDirection="out"/>
+  <xd:arg xd:name="image_thermo_V" xd:originalName="image_thermo_V" xd:direction="in" xd:interfaceRef="s_axi_AXILiteS" xd:busTypeRef="axilite" xd:aximmInterfaceRef="m_axi_IMG" xd:dataWidth="32" xd:offset="0x10" xd:handshakeRef="ap_none"/>
+  <xd:arg xd:name="result" xd:originalName="result" xd:direction="in" xd:interfaceRef="s_axi_AXILiteS" xd:busTypeRef="axilite" xd:aximmInterfaceRef="m_axi_BUS32" xd:dataWidth="32" xd:offset="0x18" xd:handshakeRef="ap_none"/>
+  <xd:latencyEstimates xd:best-case="165275" xd:worst-case="165275" xd:average-case="165275"/>
+  <xd:resourceEstimates xd:LUT="99838" xd:FF="26571" xd:BRAM="176" xd:DSP="15"/>
+</xd:acceleratorMap>

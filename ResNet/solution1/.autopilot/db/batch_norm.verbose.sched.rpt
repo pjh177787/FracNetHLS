@@ -1,0 +1,129 @@
+
+
+================================================================
+== Vivado HLS Report for 'batch_norm'
+================================================================
+* Date:           Sun Sep  6 13:24:54 2020
+
+* Version:        2019.2.1 (Build 2724168 on Thu Dec 05 05:19:09 MST 2019)
+* Project:        ResNet
+* Solution:       solution1
+* Product family: zynquplus
+* Target device:  xczu3eg-sbva484-1-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  | 10.00 ns | 3.373 ns |   1.25 ns  |
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+----------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline |
+    |   min   |   max   |    min   |    max   | min | max |   Type   |
+    +---------+---------+----------+----------+-----+-----+----------+
+    |        0|        0|   0 ns   |   0 ns   |    1|    1| function |
+    +---------+---------+----------+----------+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 0
+IsPipeline: 1
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 1
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 1
+* Pipeline : 1
+  Pipeline-0 : II = 1, D = 1, States = { 1 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 3.37>
+ST_1 : Operation 2 [1/1] (0.00ns)   --->   "%sum_V_read = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %sum_V)" [ResNet/pgconv64.h:38]   --->   Operation 2 'read' 'sum_V_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 3 [1/1] (0.00ns)   --->   "%r_V = zext i8 %sum_V_read to i19" [ResNet/pgconv64.h:38]   --->   Operation 3 'zext' 'r_V' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 4 [1/1] (0.00ns)   --->   "%tmp_s = call i18 @_ssdm_op_BitConcatenate.i18.i8.i10(i8 %sum_V_read, i10 0)" [ResNet/pgconv64.h:38]   --->   Operation 4 'bitconcatenate' 'tmp_s' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 5 [1/1] (0.00ns)   --->   "%zext_ln1118 = zext i18 %tmp_s to i19" [ResNet/pgconv64.h:38]   --->   Operation 5 'zext' 'zext_ln1118' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 6 [1/1] (1.03ns)   --->   "%r_V_9 = sub i19 %zext_ln1118, %r_V" [ResNet/pgconv64.h:38]   --->   Operation 6 'sub' 'r_V_9' <Predicate = true> <Delay = 1.03> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 0.94> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%trunc_ln703 = trunc i19 %r_V_9 to i18" [ResNet/pgconv64.h:38]   --->   Operation 7 'trunc' 'trunc_ln703' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (1.03ns)   --->   "%ret_V = add i18 1023, %trunc_ln703" [ResNet/pgconv64.h:38]   --->   Operation 8 'add' 'ret_V' <Predicate = true> <Delay = 1.03> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 0.94> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%trunc_ln731 = trunc i19 %r_V_9 to i11" [ResNet/pgconv64.h:38]   --->   Operation 9 'trunc' 'trunc_ln731' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (0.94ns)   --->   "%add_ln731 = add i11 1023, %trunc_ln731" [ResNet/pgconv64.h:38]   --->   Operation 10 'add' 'add_ln731' <Predicate = true> <Delay = 0.94> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 0.94> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 11 [1/1] (0.00ns) (grouped into LUT with out node select_ln785)   --->   "%p_Val2_23 = call i12 @_ssdm_op_BitConcatenate.i12.i11.i1(i11 %add_ln731, i1 false)" [ResNet/pgconv64.h:38]   --->   Operation 11 'bitconcatenate' 'p_Val2_23' <Predicate = (!or_ln785)> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.00ns) (grouped into LUT with out node select_ln785)   --->   "%p_Result_s = call i1 @_ssdm_op_BitSelect.i1.i11.i32(i11 %add_ln731, i32 10)" [ResNet/pgconv64.h:38]   --->   Operation 12 'bitselect' 'p_Result_s' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%tmp = call i7 @_ssdm_op_PartSelect.i7.i18.i32.i32(i18 %ret_V, i32 11, i32 17)" [ResNet/pgconv64.h:38]   --->   Operation 13 'partselect' 'tmp' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 14 [1/1] (0.86ns)   --->   "%icmp_ln785 = icmp ne i7 %tmp, 0" [ResNet/pgconv64.h:38]   --->   Operation 14 'icmp' 'icmp_ln785' <Predicate = true> <Delay = 0.86> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.86> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 15 [1/1] (0.00ns) (grouped into LUT with out node select_ln785)   --->   "%or_ln785 = or i1 %p_Result_s, %icmp_ln785" [ResNet/pgconv64.h:38]   --->   Operation 15 'or' 'or_ln785' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 16 [1/1] (0.43ns) (out node of the LUT)   --->   "%select_ln785 = select i1 %or_ln785, i12 2047, i12 %p_Val2_23" [ResNet/pgconv64.h:38]   --->   Operation 16 'select' 'select_ln785' <Predicate = true> <Delay = 0.43> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.43> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "ret i12 %select_ln785" [ResNet/pgconv64.h:38]   --->   Operation 17 'ret' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 1.25ns.
+
+ <State 1>: 3.37ns
+The critical path consists of the following:
+	wire read on port 'sum_V' (ResNet/pgconv64.h:38) [2]  (0 ns)
+	'sub' operation ('r.V', ResNet/pgconv64.h:38) [6]  (1.04 ns)
+	'add' operation ('ret.V', ResNet/pgconv64.h:38) [8]  (1.04 ns)
+	'icmp' operation ('icmp_ln785', ResNet/pgconv64.h:38) [14]  (0.863 ns)
+	'or' operation ('or_ln785', ResNet/pgconv64.h:38) [15]  (0 ns)
+	'select' operation ('select_ln785', ResNet/pgconv64.h:38) [16]  (0.431 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

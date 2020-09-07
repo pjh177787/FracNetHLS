@@ -1,0 +1,51 @@
+<profile>
+
+<section name = "Vivado HLS Report for 'pgconv64_16u_s'" level="0">
+<item name = "Date">Sun Sep  6 13:24:57 2020
+</item>
+<item name = "Version">2019.2.1 (Build 2724168 on Thu Dec 05 05:19:09 MST 2019)</item>
+<item name = "Project">ResNet</item>
+<item name = "Solution">solution1</item>
+<item name = "Product family">zynquplus</item>
+<item name = "Target device">xczu3eg-sbva484-1-e</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">10.00 ns, 8.454 ns, 1.25 ns</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="8">, min, max, min, max, min, max, Type</keys>
+<column name="">325, 325, 3.250 us, 3.250 us, 325, 325, none</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+<column name="grp_compute_engine_64_fu_426">compute_engine_64, 1, 1, 10.000 ns, 10.000 ns, 1, 1, function</column>
+<column name="grp_compute_engine_64_fu_436">compute_engine_64, 1, 1, 10.000 ns, 10.000 ns, 1, 1, function</column>
+<column name="op_V_assign_relu_fu_446">relu, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="sum_V_ret_sum_engine_fu_467">sum_engine, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="norm_V_batch_norm_fu_481">batch_norm, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- biconv_row_biconv_col">323, 323, 9, 5, 5, 64, yes</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+</profile>

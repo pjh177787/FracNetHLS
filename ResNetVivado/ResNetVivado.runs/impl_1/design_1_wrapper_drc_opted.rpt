@@ -1,0 +1,263 @@
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2019.2.1 (win64) Build 2729669 Thu Dec  5 04:49:17 MST 2019
+| Date         : Sun Sep  6 14:50:56 2020
+| Host         : DESKTOP-APERTURE running 64-bit major release  (build 9200)
+| Command      : report_drc -file design_1_wrapper_drc_opted.rpt -pb design_1_wrapper_drc_opted.pb -rpx design_1_wrapper_drc_opted.rpx
+| Design       : design_1_wrapper
+| Device       : xczu3eg-sbva484-1-e
+| Speed File   : -1
+| Design State : Synthesized
+---------------------------------------------------------------------------------------------------------------------------------------
+
+Report DRC
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: design_1
+      Design limits: <entire design considered>
+           Ruledeck: default
+             Max violations: <unlimited>
+             Violations found: 45
++--------+----------+------------------------+------------+
+| Rule   | Severity | Description            | Violations |
++--------+----------+------------------------+------------+
+| DPIP-2 | Warning  | Input pipelining       | 15         |
+| DPOP-3 | Warning  | PREG Output pipelining | 15         |
+| DPOP-4 | Warning  | MREG Output pipelining | 15         |
++--------+----------+------------------------+------------+
+
+2. REPORT DETAILS
+-----------------
+DPIP-2#1 Warning
+Input pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U508/ResNet_mac_muladdjbC_DSP48_0_U/p input design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U508/ResNet_mac_muladdjbC_DSP48_0_U/p/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-2#2 Warning
+Input pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U509/ResNet_mac_muladdjbC_DSP48_0_U/p input design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U509/ResNet_mac_muladdjbC_DSP48_0_U/p/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-2#3 Warning
+Input pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U510/ResNet_mac_muladdjbC_DSP48_0_U/p input design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U510/ResNet_mac_muladdjbC_DSP48_0_U/p/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-2#4 Warning
+Input pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U511/ResNet_mac_muladdjbC_DSP48_0_U/p input design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U511/ResNet_mac_muladdjbC_DSP48_0_U/p/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-2#5 Warning
+Input pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U512/ResNet_mac_muladdjbC_DSP48_0_U/p input design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U512/ResNet_mac_muladdjbC_DSP48_0_U/p/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-2#6 Warning
+Input pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U513/ResNet_mac_muladdjbC_DSP48_0_U/p input design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U513/ResNet_mac_muladdjbC_DSP48_0_U/p/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-2#7 Warning
+Input pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U514/ResNet_mac_muladdjbC_DSP48_0_U/p input design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U514/ResNet_mac_muladdjbC_DSP48_0_U/p/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-2#8 Warning
+Input pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U515/ResNet_mac_muladdjbC_DSP48_0_U/p input design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U515/ResNet_mac_muladdjbC_DSP48_0_U/p/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-2#9 Warning
+Input pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U516/ResNet_mac_muladdjbC_DSP48_0_U/p input design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U516/ResNet_mac_muladdjbC_DSP48_0_U/p/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-2#10 Warning
+Input pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U517/ResNet_mac_muladdjbC_DSP48_0_U/p input design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U517/ResNet_mac_muladdjbC_DSP48_0_U/p/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-2#11 Warning
+Input pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U518/ResNet_mac_muladdjbC_DSP48_0_U/p input design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U518/ResNet_mac_muladdjbC_DSP48_0_U/p/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-2#12 Warning
+Input pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U519/ResNet_mac_muladdjbC_DSP48_0_U/p input design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U519/ResNet_mac_muladdjbC_DSP48_0_U/p/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-2#13 Warning
+Input pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U520/ResNet_mac_muladdjbC_DSP48_0_U/p input design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U520/ResNet_mac_muladdjbC_DSP48_0_U/p/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-2#14 Warning
+Input pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U521/ResNet_mac_muladdjbC_DSP48_0_U/p input design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U521/ResNet_mac_muladdjbC_DSP48_0_U/p/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-2#15 Warning
+Input pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U522/ResNet_mac_muladdjbC_DSP48_0_U/p input design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U522/ResNet_mac_muladdjbC_DSP48_0_U/p/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPOP-3#1 Warning
+PREG Output pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U508/ResNet_mac_muladdjbC_DSP48_0_U/p output design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U508/ResNet_mac_muladdjbC_DSP48_0_U/p/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+Related violations: <none>
+
+DPOP-3#2 Warning
+PREG Output pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U509/ResNet_mac_muladdjbC_DSP48_0_U/p output design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U509/ResNet_mac_muladdjbC_DSP48_0_U/p/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+Related violations: <none>
+
+DPOP-3#3 Warning
+PREG Output pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U510/ResNet_mac_muladdjbC_DSP48_0_U/p output design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U510/ResNet_mac_muladdjbC_DSP48_0_U/p/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+Related violations: <none>
+
+DPOP-3#4 Warning
+PREG Output pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U511/ResNet_mac_muladdjbC_DSP48_0_U/p output design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U511/ResNet_mac_muladdjbC_DSP48_0_U/p/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+Related violations: <none>
+
+DPOP-3#5 Warning
+PREG Output pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U512/ResNet_mac_muladdjbC_DSP48_0_U/p output design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U512/ResNet_mac_muladdjbC_DSP48_0_U/p/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+Related violations: <none>
+
+DPOP-3#6 Warning
+PREG Output pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U513/ResNet_mac_muladdjbC_DSP48_0_U/p output design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U513/ResNet_mac_muladdjbC_DSP48_0_U/p/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+Related violations: <none>
+
+DPOP-3#7 Warning
+PREG Output pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U514/ResNet_mac_muladdjbC_DSP48_0_U/p output design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U514/ResNet_mac_muladdjbC_DSP48_0_U/p/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+Related violations: <none>
+
+DPOP-3#8 Warning
+PREG Output pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U515/ResNet_mac_muladdjbC_DSP48_0_U/p output design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U515/ResNet_mac_muladdjbC_DSP48_0_U/p/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+Related violations: <none>
+
+DPOP-3#9 Warning
+PREG Output pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U516/ResNet_mac_muladdjbC_DSP48_0_U/p output design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U516/ResNet_mac_muladdjbC_DSP48_0_U/p/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+Related violations: <none>
+
+DPOP-3#10 Warning
+PREG Output pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U517/ResNet_mac_muladdjbC_DSP48_0_U/p output design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U517/ResNet_mac_muladdjbC_DSP48_0_U/p/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+Related violations: <none>
+
+DPOP-3#11 Warning
+PREG Output pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U518/ResNet_mac_muladdjbC_DSP48_0_U/p output design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U518/ResNet_mac_muladdjbC_DSP48_0_U/p/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+Related violations: <none>
+
+DPOP-3#12 Warning
+PREG Output pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U519/ResNet_mac_muladdjbC_DSP48_0_U/p output design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U519/ResNet_mac_muladdjbC_DSP48_0_U/p/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+Related violations: <none>
+
+DPOP-3#13 Warning
+PREG Output pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U520/ResNet_mac_muladdjbC_DSP48_0_U/p output design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U520/ResNet_mac_muladdjbC_DSP48_0_U/p/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+Related violations: <none>
+
+DPOP-3#14 Warning
+PREG Output pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U521/ResNet_mac_muladdjbC_DSP48_0_U/p output design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U521/ResNet_mac_muladdjbC_DSP48_0_U/p/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+Related violations: <none>
+
+DPOP-3#15 Warning
+PREG Output pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U522/ResNet_mac_muladdjbC_DSP48_0_U/p output design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U522/ResNet_mac_muladdjbC_DSP48_0_U/p/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+Related violations: <none>
+
+DPOP-4#1 Warning
+MREG Output pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U508/ResNet_mac_muladdjbC_DSP48_0_U/p multiplier stage design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U508/ResNet_mac_muladdjbC_DSP48_0_U/p/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-4#2 Warning
+MREG Output pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U509/ResNet_mac_muladdjbC_DSP48_0_U/p multiplier stage design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U509/ResNet_mac_muladdjbC_DSP48_0_U/p/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-4#3 Warning
+MREG Output pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U510/ResNet_mac_muladdjbC_DSP48_0_U/p multiplier stage design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U510/ResNet_mac_muladdjbC_DSP48_0_U/p/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-4#4 Warning
+MREG Output pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U511/ResNet_mac_muladdjbC_DSP48_0_U/p multiplier stage design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U511/ResNet_mac_muladdjbC_DSP48_0_U/p/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-4#5 Warning
+MREG Output pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U512/ResNet_mac_muladdjbC_DSP48_0_U/p multiplier stage design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U512/ResNet_mac_muladdjbC_DSP48_0_U/p/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-4#6 Warning
+MREG Output pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U513/ResNet_mac_muladdjbC_DSP48_0_U/p multiplier stage design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U513/ResNet_mac_muladdjbC_DSP48_0_U/p/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-4#7 Warning
+MREG Output pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U514/ResNet_mac_muladdjbC_DSP48_0_U/p multiplier stage design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U514/ResNet_mac_muladdjbC_DSP48_0_U/p/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-4#8 Warning
+MREG Output pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U515/ResNet_mac_muladdjbC_DSP48_0_U/p multiplier stage design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U515/ResNet_mac_muladdjbC_DSP48_0_U/p/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-4#9 Warning
+MREG Output pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U516/ResNet_mac_muladdjbC_DSP48_0_U/p multiplier stage design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U516/ResNet_mac_muladdjbC_DSP48_0_U/p/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-4#10 Warning
+MREG Output pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U517/ResNet_mac_muladdjbC_DSP48_0_U/p multiplier stage design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U517/ResNet_mac_muladdjbC_DSP48_0_U/p/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-4#11 Warning
+MREG Output pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U518/ResNet_mac_muladdjbC_DSP48_0_U/p multiplier stage design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U518/ResNet_mac_muladdjbC_DSP48_0_U/p/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-4#12 Warning
+MREG Output pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U519/ResNet_mac_muladdjbC_DSP48_0_U/p multiplier stage design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U519/ResNet_mac_muladdjbC_DSP48_0_U/p/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-4#13 Warning
+MREG Output pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U520/ResNet_mac_muladdjbC_DSP48_0_U/p multiplier stage design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U520/ResNet_mac_muladdjbC_DSP48_0_U/p/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-4#14 Warning
+MREG Output pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U521/ResNet_mac_muladdjbC_DSP48_0_U/p multiplier stage design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U521/ResNet_mac_muladdjbC_DSP48_0_U/p/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-4#15 Warning
+MREG Output pipelining  
+DSP design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U522/ResNet_mac_muladdjbC_DSP48_0_U/p multiplier stage design_1_i/ResNet_0/inst/grp_fill_fm_buf_bn_64u_s_fu_3850/ResNet_mac_muladdjbC_U522/ResNet_mac_muladdjbC_DSP48_0_U/p/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+

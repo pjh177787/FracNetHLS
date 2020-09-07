@@ -1,0 +1,31 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"0.932",
+   "Default View_TopLeft":"0,-250",
+   "ExpandedHierarchyInLayout":"",
+   "PinnedBlocks":"",
+   "guistr":"# # String gsaved with Nlview 7.0.21  2019-05-29 bk=1.5064 VDI=41 GEI=36 GUI=JA:9.0 non-TLS
+#  -string -flagsOSRD
+preplace inst zynq_ultra_ps_e_0 -pg 1 -lvl 3 -x 990 -y 150 -defaultsOSRD
+preplace inst ResNet_0 -pg 1 -lvl 5 -x 1800 -y 350 -defaultsOSRD
+preplace inst ps8_0_axi_periph -pg 1 -lvl 4 -x 1470 -y 130 -defaultsOSRD
+preplace inst rst_ps8_0_199M -pg 1 -lvl 1 -x 200 -y 120 -defaultsOSRD
+preplace inst axi_smc -pg 1 -lvl 2 -x 530 -y 110 -defaultsOSRD
+preplace inst axi_smc_1 -pg 1 -lvl 2 -x 530 -y 350 -defaultsOSRD
+preplace netloc zynq_ultra_ps_e_0_pl_clk0 1 0 5 20 10 370 30 680 40 1320 350 NJ
+preplace netloc zynq_ultra_ps_e_0_pl_resetn0 1 0 4 30 20 NJ 20 NJ 20 1290
+preplace netloc rst_ps8_0_199M_peripheral_aresetn 1 1 4 380 190 670J 50 1300 370 NJ
+preplace netloc zynq_ultra_ps_e_0_M_AXI_HPM0_FPD 1 3 1 1310 70n
+preplace netloc ps8_0_axi_periph_M00_AXI 1 4 1 1620 130n
+preplace netloc ResNet_0_m_axi_IMG 1 1 5 390 10 NJ 10 NJ 10 NJ 10 1990
+preplace netloc axi_smc_M00_AXI 1 2 1 N 110
+preplace netloc ResNet_0_m_axi_BUS32 1 1 5 390 270 NJ 270 NJ 270 NJ 270 1980
+preplace netloc axi_smc_1_M00_AXI 1 2 1 690 130n
+levelinfo -pg 1 0 200 530 990 1470 1800 2010
+pagesize -pg 1 -db -bbox -sgen 0 0 2010 430
+"
+}
+{
+   "da_axi4_cnt":"11",
+   "da_clkrst_cnt":"1"
+}
