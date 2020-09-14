@@ -1,0 +1,11 @@
+INFO: [SIM 2] *************** CSIM start ***************
+INFO: [SIM 4] CSIM will launch GCC as the compiler.
+   Compiling ../../../../golden_c.cc in debug mode
+   Compiling ../../../../tb.cc in debug mode
+   Compiling ../../../../biconv.cc in debug mode
+   Compiling ../../../../matmul.cc in debug mode
+   Compiling ../../../../net_hls.cc in debug mode
+   Compiling ../../../../pgconv.cc in debug mode
+   Generating csim.exe
+INFO: [SIM 1] CSim file generation done with 0 errors.
+INFO: [SIM 3] *************** CSIM finish ***************

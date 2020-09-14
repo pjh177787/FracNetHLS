@@ -1,0 +1,396 @@
+
+
+================================================================
+== Vivado HLS Report for 'copy_input_layer_buf'
+================================================================
+* Date:           Mon Sep 14 06:18:23 2020
+
+* Version:        2019.2.1 (Build 2724168 on Thu Dec 05 05:19:09 MST 2019)
+* Project:        model
+* Solution:       solution1
+* Product family: zynquplus
+* Target device:  xczu3eg-sbva484-1-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  | 3.00 ns | 2.846 ns |   0.38 ns  |
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |  Latency (cycles) |   Latency (absolute)  |  Interval | Pipeline|
+    |   min   |   max   |    min    |    max    | min | max |   Type  |
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |       25|       25| 75.000 ns | 75.000 ns |   25|   25|   none  |
+    +---------+---------+-----------+-----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------+---------+---------+----------+-----------+-----------+------+----------+
+        |          |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        | Loop Name|   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +----------+---------+---------+----------+-----------+-----------+------+----------+
+        |- Loop 1  |       23|       23|         9|          1|          1|    16|    yes   |
+        +----------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 9
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 11
+* Pipeline : 1
+  Pipeline-0 : II = 1, D = 9, States = { 2 3 4 5 6 7 8 9 10 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 11 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 7 
+7 --> 8 
+8 --> 9 
+9 --> 10 
+10 --> 2 
+11 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 2.84>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%col_offset_read = call i5 @_ssdm_op_Read.ap_auto.i5(i5 %col_offset)"   --->   Operation 12 'read' 'col_offset_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%row_offset_read = call i5 @_ssdm_op_Read.ap_auto.i5(i5 %row_offset)"   --->   Operation 13 'read' 'row_offset_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%dest_V_offset_read = call i26 @_ssdm_op_Read.ap_auto.i26(i26 %dest_V_offset)"   --->   Operation 14 'read' 'dest_V_offset_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i512* %dest_V, [6 x i8]* @p_str39, i32 0, i32 0, [1 x i8]* @p_str1430, i32 0, i32 861184, [7 x i8]* @p_str44, [6 x i8]* @p_str41, [1 x i8]* @p_str1430, i32 16, i32 16, i32 16, i32 16, [1 x i8]* @p_str1430, [1 x i8]* @p_str1430)"   --->   Operation 15 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%shl_ln = call i7 @_ssdm_op_BitConcatenate.i7.i5.i2(i5 %row_offset_read, i2 0)" [net_hls.cc:45]   --->   Operation 16 'bitconcatenate' 'shl_ln' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%or_ln45 = or i7 %shl_ln, 1" [net_hls.cc:45]   --->   Operation 17 'or' 'or_ln45' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (0.00ns)   --->   "%zext_ln45 = zext i7 %or_ln45 to i14" [net_hls.cc:45]   --->   Operation 18 'zext' 'zext_ln45' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 19 [1/1] (0.63ns) (grouped into DSP with root node add_ln45)   --->   "%mul_ln45 = mul i14 %zext_ln45, 114" [net_hls.cc:45]   --->   Operation 19 'mul' 'mul_ln45' <Predicate = true> <Delay = 0.63> <Core = "DSP48">   --->   Core 88 'DSP48' <Latency = 0> <II = 1> <Delay = 2.84> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 2> <OutPorts = 1> <Sync> <CReg>
+ST_1 : Operation 20 [1/1] (0.00ns)   --->   "%shl_ln45_1 = call i7 @_ssdm_op_BitConcatenate.i7.i5.i2(i5 %col_offset_read, i2 0)" [net_hls.cc:45]   --->   Operation 20 'bitconcatenate' 'shl_ln45_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 21 [1/1] (0.00ns)   --->   "%zext_ln45_1 = zext i7 %shl_ln45_1 to i14" [net_hls.cc:45]   --->   Operation 21 'zext' 'zext_ln45_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 22 [1/1] (2.20ns) (root node of the DSP)   --->   "%add_ln45 = add i14 %zext_ln45_1, %mul_ln45" [net_hls.cc:45]   --->   Operation 22 'add' 'add_ln45' <Predicate = true> <Delay = 2.20> <Core = "DSP48">   --->   Core 88 'DSP48' <Latency = 0> <II = 1> <Delay = 2.84> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 2> <OutPorts = 1> <Sync> <CReg>
+ST_1 : Operation 23 [1/1] (0.00ns)   --->   "%or_ln45_1 = or i14 %add_ln45, 1" [net_hls.cc:45]   --->   Operation 23 'or' 'or_ln45_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 24 [1/1] (0.00ns)   --->   "%zext_ln45_2 = zext i14 %or_ln45_1 to i15" [net_hls.cc:45]   --->   Operation 24 'zext' 'zext_ln45_2' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 25 [1/1] (0.00ns)   --->   "%zext_ln47 = zext i26 %dest_V_offset_read to i27" [net_hls.cc:47]   --->   Operation 25 'zext' 'zext_ln47' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 26 [1/1] (0.75ns)   --->   "br label %.preheader" [net_hls.cc:47]   --->   Operation 26 'br' <Predicate = true> <Delay = 0.75>
+
+State 2 <SV = 1> <Delay = 1.71>
+ST_2 : Operation 27 [1/1] (0.00ns)   --->   "%indvar_flatten = phi i5 [ 0, %0 ], [ %add_ln47, %BurstBB1 ]" [net_hls.cc:47]   --->   Operation 27 'phi' 'indvar_flatten' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 28 [1/1] (0.00ns)   --->   "%dest_ptr_0_rec = phi i9 [ 0, %0 ], [ %select_ln53_2, %BurstBB1 ]" [net_hls.cc:53]   --->   Operation 28 'phi' 'dest_ptr_0_rec' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 29 [1/1] (0.00ns)   --->   "%row_0 = phi i3 [ 0, %0 ], [ %select_ln53_1, %BurstBB1 ]" [net_hls.cc:53]   --->   Operation 29 'phi' 'row_0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 30 [1/1] (0.00ns)   --->   "%col_0 = phi i3 [ 0, %0 ], [ %col, %BurstBB1 ]"   --->   Operation 30 'phi' 'col_0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 31 [1/1] (0.87ns)   --->   "%icmp_ln47 = icmp eq i5 %indvar_flatten, -16" [net_hls.cc:47]   --->   Operation 31 'icmp' 'icmp_ln47' <Predicate = true> <Delay = 0.87> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.87> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 32 [1/1] (0.87ns)   --->   "%add_ln47 = add i5 %indvar_flatten, 1" [net_hls.cc:47]   --->   Operation 32 'add' 'add_ln47' <Predicate = true> <Delay = 0.87> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 0.74> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 33 [1/1] (0.00ns)   --->   "br i1 %icmp_ln47, label %1, label %hls_label_0_begin" [net_hls.cc:47]   --->   Operation 33 'br' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 34 [1/1] (0.92ns)   --->   "%add_ln58 = add i9 114, %dest_ptr_0_rec" [net_hls.cc:58]   --->   Operation 34 'add' 'add_ln58' <Predicate = (!icmp_ln47)> <Delay = 0.92> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 0.74> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 35 [1/1] (0.74ns)   --->   "%row = add i3 1, %row_0" [net_hls.cc:47]   --->   Operation 35 'add' 'row' <Predicate = (!icmp_ln47)> <Delay = 0.74> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 0.74> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 36 [1/1] (0.69ns)   --->   "%icmp_ln48 = icmp eq i3 %col_0, -4" [net_hls.cc:48]   --->   Operation 36 'icmp' 'icmp_ln48' <Predicate = (!icmp_ln47)> <Delay = 0.69> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.87> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 37 [1/1] (0.27ns)   --->   "%select_ln53 = select i1 %icmp_ln48, i3 0, i3 %col_0" [net_hls.cc:53]   --->   Operation 37 'select' 'select_ln53' <Predicate = (!icmp_ln47)> <Delay = 0.27> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.45> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_2 : Operation 38 [1/1] (0.27ns)   --->   "%select_ln53_1 = select i1 %icmp_ln48, i3 %row, i3 %row_0" [net_hls.cc:53]   --->   Operation 38 'select' 'select_ln53_1' <Predicate = (!icmp_ln47)> <Delay = 0.27> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.45> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_2 : Operation 39 [1/1] (0.45ns)   --->   "%select_ln53_2 = select i1 %icmp_ln48, i9 %add_ln58, i9 %dest_ptr_0_rec" [net_hls.cc:53]   --->   Operation 39 'select' 'select_ln53_2' <Predicate = (!icmp_ln47)> <Delay = 0.45> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.45> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_2 : Operation 40 [1/1] (0.00ns)   --->   "%empty_46 = trunc i5 %indvar_flatten to i2" [net_hls.cc:47]   --->   Operation 40 'trunc' 'empty_46' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_2 : Operation 41 [1/1] (0.00ns)   --->   "%tmp_1301 = call i5 @_ssdm_op_BitConcatenate.i5.i3.i2(i3 0, i2 %empty_46)" [net_hls.cc:47]   --->   Operation 41 'bitconcatenate' 'tmp_1301' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_2 : Operation 42 [1/1] (0.87ns)   --->   "%empty_47 = icmp eq i5 %tmp_1301, 0" [net_hls.cc:47]   --->   Operation 42 'icmp' 'empty_47' <Predicate = (!icmp_ln47)> <Delay = 0.87> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.87> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 43 [1/1] (0.00ns)   --->   "br i1 %empty_47, label %ReqBB, label %hls_label_0_end" [net_hls.cc:47]   --->   Operation 43 'br' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_2 : Operation 44 [1/1] (0.74ns)   --->   "%col = add i3 1, %select_ln53" [net_hls.cc:48]   --->   Operation 44 'add' 'col' <Predicate = (!icmp_ln47)> <Delay = 0.74> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 0.74> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 45 [1/1] (0.00ns)   --->   "br label %.preheader" [net_hls.cc:48]   --->   Operation 45 'br' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+
+State 3 <SV = 2> <Delay = 2.40>
+ST_3 : Operation 46 [1/1] (0.00ns)   --->   "%zext_ln53 = zext i3 %select_ln53_1 to i7" [net_hls.cc:53]   --->   Operation 46 'zext' 'zext_ln53' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_3 : Operation 47 [1/1] (0.00ns)   --->   "%tmp_s = call i6 @_ssdm_op_BitConcatenate.i6.i3.i3(i3 %select_ln53_1, i3 0)" [net_hls.cc:53]   --->   Operation 47 'bitconcatenate' 'tmp_s' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_3 : Operation 48 [1/1] (0.00ns)   --->   "%zext_ln53_1 = zext i6 %tmp_s to i7" [net_hls.cc:53]   --->   Operation 48 'zext' 'zext_ln53_1' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_3 : Operation 49 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln53 = add i7 %zext_ln53, %zext_ln53_1" [net_hls.cc:53]   --->   Operation 49 'add' 'add_ln53' <Predicate = (!icmp_ln47)> <Delay = 0.00> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.52> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_3 : Operation 50 [1/1] (0.00ns)   --->   "%zext_ln53_2 = zext i9 %select_ln53_2 to i15" [net_hls.cc:53]   --->   Operation 50 'zext' 'zext_ln53_2' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_3 : Operation 51 [1/1] (0.98ns)   --->   "%add_ln53_1 = add i15 %zext_ln45_2, %zext_ln53_2" [net_hls.cc:53]   --->   Operation 51 'add' 'add_ln53_1' <Predicate = (!icmp_ln47)> <Delay = 0.98> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 0.74> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 52 [1/1] (0.00ns)   --->   "%zext_ln48 = zext i15 %add_ln53_1 to i27" [net_hls.cc:48]   --->   Operation 52 'zext' 'zext_ln48' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_3 : Operation 53 [1/1] (0.00ns)   --->   "%zext_ln53_3 = zext i3 %select_ln53 to i7" [net_hls.cc:53]   --->   Operation 53 'zext' 'zext_ln53_3' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_3 : Operation 54 [1/1] (1.05ns) (root node of TernaryAdder)   --->   "%add_ln53_2 = add i7 %add_ln53, %zext_ln53_3" [net_hls.cc:53]   --->   Operation 54 'add' 'add_ln53_2' <Predicate = (!icmp_ln47)> <Delay = 1.05> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.52> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_3 : Operation 55 [1/1] (0.00ns)   --->   "%zext_ln53_4 = zext i7 %add_ln53_2 to i64" [net_hls.cc:53]   --->   Operation 55 'zext' 'zext_ln53_4' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_3 : Operation 56 [1/1] (0.00ns)   --->   "%FM_buf_acc0_V_0_addr = getelementptr [81 x i14]* @FM_buf_acc0_V_0, i64 0, i64 %zext_ln53_4" [net_hls.cc:53]   --->   Operation 56 'getelementptr' 'FM_buf_acc0_V_0_addr' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_3 : Operation 57 [1/1] (0.00ns)   --->   "%FM_buf_acc0_V_1_addr = getelementptr [81 x i14]* @FM_buf_acc0_V_1, i64 0, i64 %zext_ln53_4" [net_hls.cc:53]   --->   Operation 57 'getelementptr' 'FM_buf_acc0_V_1_addr' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_3 : Operation 58 [1/1] (0.00ns)   --->   "%FM_buf_acc0_V_10_add = getelementptr [81 x i14]* @FM_buf_acc0_V_10, i64 0, i64 %zext_ln53_4" [net_hls.cc:53]   --->   Operation 58 'getelementptr' 'FM_buf_acc0_V_10_add' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_3 : Operation 59 [1/1] (0.00ns)   --->   "%FM_buf_acc0_V_11_add = getelementptr [81 x i14]* @FM_buf_acc0_V_11, i64 0, i64 %zext_ln53_4" [net_hls.cc:53]   --->   Operation 59 'getelementptr' 'FM_buf_acc0_V_11_add' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_3 : Operation 60 [1/1] (0.00ns)   --->   "%FM_buf_acc0_V_12_add = getelementptr [81 x i14]* @FM_buf_acc0_V_12, i64 0, i64 %zext_ln53_4" [net_hls.cc:53]   --->   Operation 60 'getelementptr' 'FM_buf_acc0_V_12_add' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_3 : Operation 61 [1/1] (0.00ns)   --->   "%FM_buf_acc0_V_13_add = getelementptr [81 x i14]* @FM_buf_acc0_V_13, i64 0, i64 %zext_ln53_4" [net_hls.cc:53]   --->   Operation 61 'getelementptr' 'FM_buf_acc0_V_13_add' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_3 : Operation 62 [1/1] (0.00ns)   --->   "%FM_buf_acc0_V_14_add = getelementptr [81 x i14]* @FM_buf_acc0_V_14, i64 0, i64 %zext_ln53_4" [net_hls.cc:53]   --->   Operation 62 'getelementptr' 'FM_buf_acc0_V_14_add' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_3 : Operation 63 [1/1] (0.00ns)   --->   "%FM_buf_acc0_V_15_add = getelementptr [81 x i14]* @FM_buf_acc0_V_15, i64 0, i64 %zext_ln53_4" [net_hls.cc:53]   --->   Operation 63 'getelementptr' 'FM_buf_acc0_V_15_add' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_3 : Operation 64 [1/1] (0.00ns)   --->   "%FM_buf_acc0_V_16_add = getelementptr [81 x i14]* @FM_buf_acc0_V_16, i64 0, i64 %zext_ln53_4" [net_hls.cc:53]   --->   Operation 64 'getelementptr' 'FM_buf_acc0_V_16_add' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_3 : Operation 65 [1/1] (0.00ns)   --->   "%FM_buf_acc0_V_17_add = getelementptr [81 x i14]* @FM_buf_acc0_V_17, i64 0, i64 %zext_ln53_4" [net_hls.cc:53]   --->   Operation 65 'getelementptr' 'FM_buf_acc0_V_17_add' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_3 : Operation 66 [1/1] (0.00ns)   --->   "%FM_buf_acc0_V_18_add = getelementptr [81 x i14]* @FM_buf_acc0_V_18, i64 0, i64 %zext_ln53_4" [net_hls.cc:53]   --->   Operation 66 'getelementptr' 'FM_buf_acc0_V_18_add' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_3 : Operation 67 [1/1] (0.00ns)   --->   "%FM_buf_acc0_V_19_add = getelementptr [81 x i14]* @FM_buf_acc0_V_19, i64 0, i64 %zext_ln53_4" [net_hls.cc:53]   --->   Operation 67 'getelementptr' 'FM_buf_acc0_V_19_add' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_3 : Operation 68 [1/1] (0.00ns)   --->   "%FM_buf_acc0_V_2_addr = getelementptr [81 x i14]* @FM_buf_acc0_V_2, i64 0, i64 %zext_ln53_4" [net_hls.cc:53]   --->   Operation 68 'getelementptr' 'FM_buf_acc0_V_2_addr' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_3 : Operation 69 [1/1] (0.00ns)   --->   "%FM_buf_acc0_V_20_add = getelementptr [81 x i14]* @FM_buf_acc0_V_20, i64 0, i64 %zext_ln53_4" [net_hls.cc:53]   --->   Operation 69 'getelementptr' 'FM_buf_acc0_V_20_add' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_3 : Operation 70 [1/1] (0.00ns)   --->   "%FM_buf_acc0_V_21_add = getelementptr [81 x i14]* @FM_buf_acc0_V_21, i64 0, i64 %zext_ln53_4" [net_hls.cc:53]   --->   Operation 70 'getelementptr' 'FM_buf_acc0_V_21_add' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_3 : Operation 71 [1/1] (0.00ns)   --->   "%FM_buf_acc0_V_22_add = getelementptr [81 x i14]* @FM_buf_acc0_V_22, i64 0, i64 %zext_ln53_4" [net_hls.cc:53]   --->   Operation 71 'getelementptr' 'FM_buf_acc0_V_22_add' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_3 : Operation 72 [1/1] (0.00ns)   --->   "%FM_buf_acc0_V_23_add = getelementptr [81 x i14]* @FM_buf_acc0_V_23, i64 0, i64 %zext_ln53_4" [net_hls.cc:53]   --->   Operation 72 'getelementptr' 'FM_buf_acc0_V_23_add' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_3 : Operation 73 [1/1] (0.00ns)   --->   "%FM_buf_acc0_V_24_add = getelementptr [81 x i14]* @FM_buf_acc0_V_24, i64 0, i64 %zext_ln53_4" [net_hls.cc:53]   --->   Operation 73 'getelementptr' 'FM_buf_acc0_V_24_add' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_3 : Operation 74 [1/1] (0.00ns)   --->   "%FM_buf_acc0_V_25_add = getelementptr [81 x i14]* @FM_buf_acc0_V_25, i64 0, i64 %zext_ln53_4" [net_hls.cc:53]   --->   Operation 74 'getelementptr' 'FM_buf_acc0_V_25_add' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_3 : Operation 75 [1/1] (0.00ns)   --->   "%FM_buf_acc0_V_26_add = getelementptr [81 x i14]* @FM_buf_acc0_V_26, i64 0, i64 %zext_ln53_4" [net_hls.cc:53]   --->   Operation 75 'getelementptr' 'FM_buf_acc0_V_26_add' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_3 : Operation 76 [1/1] (0.00ns)   --->   "%FM_buf_acc0_V_27_add = getelementptr [81 x i14]* @FM_buf_acc0_V_27, i64 0, i64 %zext_ln53_4" [net_hls.cc:53]   --->   Operation 76 'getelementptr' 'FM_buf_acc0_V_27_add' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_3 : Operation 77 [1/1] (0.00ns)   --->   "%FM_buf_acc0_V_28_add = getelementptr [81 x i14]* @FM_buf_acc0_V_28, i64 0, i64 %zext_ln53_4" [net_hls.cc:53]   --->   Operation 77 'getelementptr' 'FM_buf_acc0_V_28_add' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_3 : Operation 78 [1/1] (0.00ns)   --->   "%FM_buf_acc0_V_29_add = getelementptr [81 x i14]* @FM_buf_acc0_V_29, i64 0, i64 %zext_ln53_4" [net_hls.cc:53]   --->   Operation 78 'getelementptr' 'FM_buf_acc0_V_29_add' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_3 : Operation 79 [1/1] (0.00ns)   --->   "%FM_buf_acc0_V_3_addr = getelementptr [81 x i14]* @FM_buf_acc0_V_3, i64 0, i64 %zext_ln53_4" [net_hls.cc:53]   --->   Operation 79 'getelementptr' 'FM_buf_acc0_V_3_addr' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_3 : Operation 80 [1/1] (0.00ns)   --->   "%FM_buf_acc0_V_30_add = getelementptr [81 x i14]* @FM_buf_acc0_V_30, i64 0, i64 %zext_ln53_4" [net_hls.cc:53]   --->   Operation 80 'getelementptr' 'FM_buf_acc0_V_30_add' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_3 : Operation 81 [1/1] (0.00ns)   --->   "%FM_buf_acc0_V_31_add = getelementptr [81 x i14]* @FM_buf_acc0_V_31, i64 0, i64 %zext_ln53_4" [net_hls.cc:53]   --->   Operation 81 'getelementptr' 'FM_buf_acc0_V_31_add' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_3 : Operation 82 [1/1] (0.00ns)   --->   "%FM_buf_acc0_V_4_addr = getelementptr [81 x i14]* @FM_buf_acc0_V_4, i64 0, i64 %zext_ln53_4" [net_hls.cc:53]   --->   Operation 82 'getelementptr' 'FM_buf_acc0_V_4_addr' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_3 : Operation 83 [1/1] (0.00ns)   --->   "%FM_buf_acc0_V_5_addr = getelementptr [81 x i14]* @FM_buf_acc0_V_5, i64 0, i64 %zext_ln53_4" [net_hls.cc:53]   --->   Operation 83 'getelementptr' 'FM_buf_acc0_V_5_addr' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_3 : Operation 84 [1/1] (0.00ns)   --->   "%FM_buf_acc0_V_6_addr = getelementptr [81 x i14]* @FM_buf_acc0_V_6, i64 0, i64 %zext_ln53_4" [net_hls.cc:53]   --->   Operation 84 'getelementptr' 'FM_buf_acc0_V_6_addr' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_3 : Operation 85 [1/1] (0.00ns)   --->   "%FM_buf_acc0_V_7_addr = getelementptr [81 x i14]* @FM_buf_acc0_V_7, i64 0, i64 %zext_ln53_4" [net_hls.cc:53]   --->   Operation 85 'getelementptr' 'FM_buf_acc0_V_7_addr' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_3 : Operation 86 [1/1] (0.00ns)   --->   "%FM_buf_acc0_V_8_addr = getelementptr [81 x i14]* @FM_buf_acc0_V_8, i64 0, i64 %zext_ln53_4" [net_hls.cc:53]   --->   Operation 86 'getelementptr' 'FM_buf_acc0_V_8_addr' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_3 : Operation 87 [1/1] (0.00ns)   --->   "%FM_buf_acc0_V_9_addr = getelementptr [81 x i14]* @FM_buf_acc0_V_9, i64 0, i64 %zext_ln53_4" [net_hls.cc:53]   --->   Operation 87 'getelementptr' 'FM_buf_acc0_V_9_addr' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_3 : Operation 88 [2/2] (1.35ns)   --->   "%FM_buf_acc0_V_0_load = load i14* %FM_buf_acc0_V_0_addr, align 2" [net_hls.cc:53]   --->   Operation 88 'load' 'FM_buf_acc0_V_0_load' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_3 : Operation 89 [2/2] (1.35ns)   --->   "%FM_buf_acc0_V_1_load = load i14* %FM_buf_acc0_V_1_addr, align 2" [net_hls.cc:53]   --->   Operation 89 'load' 'FM_buf_acc0_V_1_load' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_3 : Operation 90 [2/2] (1.35ns)   --->   "%FM_buf_acc0_V_2_load = load i14* %FM_buf_acc0_V_2_addr, align 2" [net_hls.cc:53]   --->   Operation 90 'load' 'FM_buf_acc0_V_2_load' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_3 : Operation 91 [2/2] (1.35ns)   --->   "%FM_buf_acc0_V_3_load = load i14* %FM_buf_acc0_V_3_addr, align 2" [net_hls.cc:53]   --->   Operation 91 'load' 'FM_buf_acc0_V_3_load' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_3 : Operation 92 [2/2] (1.35ns)   --->   "%FM_buf_acc0_V_4_load = load i14* %FM_buf_acc0_V_4_addr, align 2" [net_hls.cc:53]   --->   Operation 92 'load' 'FM_buf_acc0_V_4_load' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_3 : Operation 93 [2/2] (1.35ns)   --->   "%FM_buf_acc0_V_5_load = load i14* %FM_buf_acc0_V_5_addr, align 2" [net_hls.cc:53]   --->   Operation 93 'load' 'FM_buf_acc0_V_5_load' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_3 : Operation 94 [2/2] (1.35ns)   --->   "%FM_buf_acc0_V_6_load = load i14* %FM_buf_acc0_V_6_addr, align 2" [net_hls.cc:53]   --->   Operation 94 'load' 'FM_buf_acc0_V_6_load' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_3 : Operation 95 [2/2] (1.35ns)   --->   "%FM_buf_acc0_V_7_load = load i14* %FM_buf_acc0_V_7_addr, align 2" [net_hls.cc:53]   --->   Operation 95 'load' 'FM_buf_acc0_V_7_load' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_3 : Operation 96 [2/2] (1.35ns)   --->   "%FM_buf_acc0_V_8_load = load i14* %FM_buf_acc0_V_8_addr, align 2" [net_hls.cc:53]   --->   Operation 96 'load' 'FM_buf_acc0_V_8_load' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_3 : Operation 97 [2/2] (1.35ns)   --->   "%FM_buf_acc0_V_9_load = load i14* %FM_buf_acc0_V_9_addr, align 2" [net_hls.cc:53]   --->   Operation 97 'load' 'FM_buf_acc0_V_9_load' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_3 : Operation 98 [2/2] (1.35ns)   --->   "%FM_buf_acc0_V_10_loa = load i14* %FM_buf_acc0_V_10_add, align 2" [net_hls.cc:53]   --->   Operation 98 'load' 'FM_buf_acc0_V_10_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_3 : Operation 99 [2/2] (1.35ns)   --->   "%FM_buf_acc0_V_11_loa = load i14* %FM_buf_acc0_V_11_add, align 2" [net_hls.cc:53]   --->   Operation 99 'load' 'FM_buf_acc0_V_11_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_3 : Operation 100 [2/2] (1.35ns)   --->   "%FM_buf_acc0_V_12_loa = load i14* %FM_buf_acc0_V_12_add, align 2" [net_hls.cc:53]   --->   Operation 100 'load' 'FM_buf_acc0_V_12_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_3 : Operation 101 [2/2] (1.35ns)   --->   "%FM_buf_acc0_V_13_loa = load i14* %FM_buf_acc0_V_13_add, align 2" [net_hls.cc:53]   --->   Operation 101 'load' 'FM_buf_acc0_V_13_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_3 : Operation 102 [2/2] (1.35ns)   --->   "%FM_buf_acc0_V_14_loa = load i14* %FM_buf_acc0_V_14_add, align 2" [net_hls.cc:53]   --->   Operation 102 'load' 'FM_buf_acc0_V_14_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_3 : Operation 103 [2/2] (1.35ns)   --->   "%FM_buf_acc0_V_15_loa = load i14* %FM_buf_acc0_V_15_add, align 2" [net_hls.cc:53]   --->   Operation 103 'load' 'FM_buf_acc0_V_15_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_3 : Operation 104 [2/2] (1.35ns)   --->   "%FM_buf_acc0_V_16_loa = load i14* %FM_buf_acc0_V_16_add, align 2" [net_hls.cc:53]   --->   Operation 104 'load' 'FM_buf_acc0_V_16_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_3 : Operation 105 [2/2] (1.35ns)   --->   "%FM_buf_acc0_V_17_loa = load i14* %FM_buf_acc0_V_17_add, align 2" [net_hls.cc:53]   --->   Operation 105 'load' 'FM_buf_acc0_V_17_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_3 : Operation 106 [2/2] (1.35ns)   --->   "%FM_buf_acc0_V_18_loa = load i14* %FM_buf_acc0_V_18_add, align 2" [net_hls.cc:53]   --->   Operation 106 'load' 'FM_buf_acc0_V_18_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_3 : Operation 107 [2/2] (1.35ns)   --->   "%FM_buf_acc0_V_19_loa = load i14* %FM_buf_acc0_V_19_add, align 2" [net_hls.cc:53]   --->   Operation 107 'load' 'FM_buf_acc0_V_19_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_3 : Operation 108 [2/2] (1.35ns)   --->   "%FM_buf_acc0_V_20_loa = load i14* %FM_buf_acc0_V_20_add, align 2" [net_hls.cc:53]   --->   Operation 108 'load' 'FM_buf_acc0_V_20_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_3 : Operation 109 [2/2] (1.35ns)   --->   "%FM_buf_acc0_V_21_loa = load i14* %FM_buf_acc0_V_21_add, align 2" [net_hls.cc:53]   --->   Operation 109 'load' 'FM_buf_acc0_V_21_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_3 : Operation 110 [2/2] (1.35ns)   --->   "%FM_buf_acc0_V_22_loa = load i14* %FM_buf_acc0_V_22_add, align 2" [net_hls.cc:53]   --->   Operation 110 'load' 'FM_buf_acc0_V_22_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_3 : Operation 111 [2/2] (1.35ns)   --->   "%FM_buf_acc0_V_23_loa = load i14* %FM_buf_acc0_V_23_add, align 2" [net_hls.cc:53]   --->   Operation 111 'load' 'FM_buf_acc0_V_23_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_3 : Operation 112 [2/2] (1.35ns)   --->   "%FM_buf_acc0_V_24_loa = load i14* %FM_buf_acc0_V_24_add, align 2" [net_hls.cc:53]   --->   Operation 112 'load' 'FM_buf_acc0_V_24_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_3 : Operation 113 [2/2] (1.35ns)   --->   "%FM_buf_acc0_V_25_loa = load i14* %FM_buf_acc0_V_25_add, align 2" [net_hls.cc:53]   --->   Operation 113 'load' 'FM_buf_acc0_V_25_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_3 : Operation 114 [2/2] (1.35ns)   --->   "%FM_buf_acc0_V_26_loa = load i14* %FM_buf_acc0_V_26_add, align 2" [net_hls.cc:53]   --->   Operation 114 'load' 'FM_buf_acc0_V_26_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_3 : Operation 115 [2/2] (1.35ns)   --->   "%FM_buf_acc0_V_27_loa = load i14* %FM_buf_acc0_V_27_add, align 2" [net_hls.cc:53]   --->   Operation 115 'load' 'FM_buf_acc0_V_27_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_3 : Operation 116 [2/2] (1.35ns)   --->   "%FM_buf_acc0_V_28_loa = load i14* %FM_buf_acc0_V_28_add, align 2" [net_hls.cc:53]   --->   Operation 116 'load' 'FM_buf_acc0_V_28_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_3 : Operation 117 [2/2] (1.35ns)   --->   "%FM_buf_acc0_V_29_loa = load i14* %FM_buf_acc0_V_29_add, align 2" [net_hls.cc:53]   --->   Operation 117 'load' 'FM_buf_acc0_V_29_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_3 : Operation 118 [2/2] (1.35ns)   --->   "%FM_buf_acc0_V_30_loa = load i14* %FM_buf_acc0_V_30_add, align 2" [net_hls.cc:53]   --->   Operation 118 'load' 'FM_buf_acc0_V_30_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_3 : Operation 119 [2/2] (1.35ns)   --->   "%FM_buf_acc0_V_31_loa = load i14* %FM_buf_acc0_V_31_add, align 2" [net_hls.cc:53]   --->   Operation 119 'load' 'FM_buf_acc0_V_31_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_3 : Operation 120 [1/1] (1.13ns)   --->   "%add_ln414 = add i27 %zext_ln47, %zext_ln48" [net_hls.cc:56]   --->   Operation 120 'add' 'add_ln414' <Predicate = (!icmp_ln47)> <Delay = 1.13> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 0.74> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 121 [1/1] (0.00ns)   --->   "%empty_49 = trunc i5 %add_ln47 to i2" [net_hls.cc:47]   --->   Operation 121 'trunc' 'empty_49' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_3 : Operation 122 [1/1] (0.00ns)   --->   "%tmp_1302 = call i5 @_ssdm_op_BitConcatenate.i5.i3.i2(i3 0, i2 %empty_49)" [net_hls.cc:47]   --->   Operation 122 'bitconcatenate' 'tmp_1302' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_3 : Operation 123 [1/1] (0.87ns)   --->   "%empty_50 = icmp eq i5 %tmp_1302, 0" [net_hls.cc:47]   --->   Operation 123 'icmp' 'empty_50' <Predicate = (!icmp_ln47)> <Delay = 0.87> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.87> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 124 [1/1] (0.00ns)   --->   "br i1 %empty_50, label %RespBB, label %BurstBB1" [net_hls.cc:47]   --->   Operation 124 'br' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+
+State 4 <SV = 3> <Delay = 2.62>
+ST_4 : Operation 125 [1/2] (1.35ns)   --->   "%FM_buf_acc0_V_0_load = load i14* %FM_buf_acc0_V_0_addr, align 2" [net_hls.cc:53]   --->   Operation 125 'load' 'FM_buf_acc0_V_0_load' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_4 : Operation 126 [1/1] (0.00ns)   --->   "%trunc_ln414 = trunc i14 %FM_buf_acc0_V_0_load to i12" [net_hls.cc:54]   --->   Operation 126 'trunc' 'trunc_ln414' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_4 : Operation 127 [1/2] (1.35ns)   --->   "%FM_buf_acc0_V_1_load = load i14* %FM_buf_acc0_V_1_addr, align 2" [net_hls.cc:53]   --->   Operation 127 'load' 'FM_buf_acc0_V_1_load' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_4 : Operation 128 [1/1] (0.00ns)   --->   "%trunc_ln612 = trunc i14 %FM_buf_acc0_V_1_load to i12" [net_hls.cc:54]   --->   Operation 128 'trunc' 'trunc_ln612' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_4 : Operation 129 [1/2] (1.35ns)   --->   "%FM_buf_acc0_V_2_load = load i14* %FM_buf_acc0_V_2_addr, align 2" [net_hls.cc:53]   --->   Operation 129 'load' 'FM_buf_acc0_V_2_load' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_4 : Operation 130 [1/1] (0.00ns)   --->   "%trunc_ln612_1 = trunc i14 %FM_buf_acc0_V_2_load to i12" [net_hls.cc:54]   --->   Operation 130 'trunc' 'trunc_ln612_1' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_4 : Operation 131 [1/2] (1.35ns)   --->   "%FM_buf_acc0_V_3_load = load i14* %FM_buf_acc0_V_3_addr, align 2" [net_hls.cc:53]   --->   Operation 131 'load' 'FM_buf_acc0_V_3_load' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_4 : Operation 132 [1/1] (0.00ns)   --->   "%trunc_ln612_2 = trunc i14 %FM_buf_acc0_V_3_load to i12" [net_hls.cc:54]   --->   Operation 132 'trunc' 'trunc_ln612_2' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_4 : Operation 133 [1/2] (1.35ns)   --->   "%FM_buf_acc0_V_4_load = load i14* %FM_buf_acc0_V_4_addr, align 2" [net_hls.cc:53]   --->   Operation 133 'load' 'FM_buf_acc0_V_4_load' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_4 : Operation 134 [1/1] (0.00ns)   --->   "%trunc_ln612_3 = trunc i14 %FM_buf_acc0_V_4_load to i12" [net_hls.cc:54]   --->   Operation 134 'trunc' 'trunc_ln612_3' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_4 : Operation 135 [1/2] (1.35ns)   --->   "%FM_buf_acc0_V_5_load = load i14* %FM_buf_acc0_V_5_addr, align 2" [net_hls.cc:53]   --->   Operation 135 'load' 'FM_buf_acc0_V_5_load' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_4 : Operation 136 [1/1] (0.00ns)   --->   "%trunc_ln612_4 = trunc i14 %FM_buf_acc0_V_5_load to i12" [net_hls.cc:54]   --->   Operation 136 'trunc' 'trunc_ln612_4' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_4 : Operation 137 [1/2] (1.35ns)   --->   "%FM_buf_acc0_V_6_load = load i14* %FM_buf_acc0_V_6_addr, align 2" [net_hls.cc:53]   --->   Operation 137 'load' 'FM_buf_acc0_V_6_load' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_4 : Operation 138 [1/1] (0.00ns)   --->   "%trunc_ln612_5 = trunc i14 %FM_buf_acc0_V_6_load to i12" [net_hls.cc:54]   --->   Operation 138 'trunc' 'trunc_ln612_5' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_4 : Operation 139 [1/2] (1.35ns)   --->   "%FM_buf_acc0_V_7_load = load i14* %FM_buf_acc0_V_7_addr, align 2" [net_hls.cc:53]   --->   Operation 139 'load' 'FM_buf_acc0_V_7_load' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_4 : Operation 140 [1/1] (0.00ns)   --->   "%trunc_ln612_6 = trunc i14 %FM_buf_acc0_V_7_load to i12" [net_hls.cc:54]   --->   Operation 140 'trunc' 'trunc_ln612_6' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_4 : Operation 141 [1/2] (1.35ns)   --->   "%FM_buf_acc0_V_8_load = load i14* %FM_buf_acc0_V_8_addr, align 2" [net_hls.cc:53]   --->   Operation 141 'load' 'FM_buf_acc0_V_8_load' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_4 : Operation 142 [1/1] (0.00ns)   --->   "%trunc_ln612_7 = trunc i14 %FM_buf_acc0_V_8_load to i12" [net_hls.cc:54]   --->   Operation 142 'trunc' 'trunc_ln612_7' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_4 : Operation 143 [1/2] (1.35ns)   --->   "%FM_buf_acc0_V_9_load = load i14* %FM_buf_acc0_V_9_addr, align 2" [net_hls.cc:53]   --->   Operation 143 'load' 'FM_buf_acc0_V_9_load' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_4 : Operation 144 [1/1] (0.00ns)   --->   "%trunc_ln612_8 = trunc i14 %FM_buf_acc0_V_9_load to i12" [net_hls.cc:54]   --->   Operation 144 'trunc' 'trunc_ln612_8' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_4 : Operation 145 [1/2] (1.35ns)   --->   "%FM_buf_acc0_V_10_loa = load i14* %FM_buf_acc0_V_10_add, align 2" [net_hls.cc:53]   --->   Operation 145 'load' 'FM_buf_acc0_V_10_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_4 : Operation 146 [1/1] (0.00ns)   --->   "%trunc_ln612_9 = trunc i14 %FM_buf_acc0_V_10_loa to i12" [net_hls.cc:54]   --->   Operation 146 'trunc' 'trunc_ln612_9' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_4 : Operation 147 [1/2] (1.35ns)   --->   "%FM_buf_acc0_V_11_loa = load i14* %FM_buf_acc0_V_11_add, align 2" [net_hls.cc:53]   --->   Operation 147 'load' 'FM_buf_acc0_V_11_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_4 : Operation 148 [1/1] (0.00ns)   --->   "%trunc_ln612_10 = trunc i14 %FM_buf_acc0_V_11_loa to i12" [net_hls.cc:54]   --->   Operation 148 'trunc' 'trunc_ln612_10' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_4 : Operation 149 [1/2] (1.35ns)   --->   "%FM_buf_acc0_V_12_loa = load i14* %FM_buf_acc0_V_12_add, align 2" [net_hls.cc:53]   --->   Operation 149 'load' 'FM_buf_acc0_V_12_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_4 : Operation 150 [1/1] (0.00ns)   --->   "%trunc_ln612_11 = trunc i14 %FM_buf_acc0_V_12_loa to i12" [net_hls.cc:54]   --->   Operation 150 'trunc' 'trunc_ln612_11' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_4 : Operation 151 [1/2] (1.35ns)   --->   "%FM_buf_acc0_V_13_loa = load i14* %FM_buf_acc0_V_13_add, align 2" [net_hls.cc:53]   --->   Operation 151 'load' 'FM_buf_acc0_V_13_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_4 : Operation 152 [1/1] (0.00ns)   --->   "%trunc_ln612_12 = trunc i14 %FM_buf_acc0_V_13_loa to i12" [net_hls.cc:54]   --->   Operation 152 'trunc' 'trunc_ln612_12' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_4 : Operation 153 [1/2] (1.35ns)   --->   "%FM_buf_acc0_V_14_loa = load i14* %FM_buf_acc0_V_14_add, align 2" [net_hls.cc:53]   --->   Operation 153 'load' 'FM_buf_acc0_V_14_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_4 : Operation 154 [1/1] (0.00ns)   --->   "%trunc_ln612_13 = trunc i14 %FM_buf_acc0_V_14_loa to i12" [net_hls.cc:54]   --->   Operation 154 'trunc' 'trunc_ln612_13' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_4 : Operation 155 [1/2] (1.35ns)   --->   "%FM_buf_acc0_V_15_loa = load i14* %FM_buf_acc0_V_15_add, align 2" [net_hls.cc:53]   --->   Operation 155 'load' 'FM_buf_acc0_V_15_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_4 : Operation 156 [1/1] (0.00ns)   --->   "%trunc_ln612_14 = trunc i14 %FM_buf_acc0_V_15_loa to i12" [net_hls.cc:54]   --->   Operation 156 'trunc' 'trunc_ln612_14' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_4 : Operation 157 [1/2] (1.35ns)   --->   "%FM_buf_acc0_V_16_loa = load i14* %FM_buf_acc0_V_16_add, align 2" [net_hls.cc:53]   --->   Operation 157 'load' 'FM_buf_acc0_V_16_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_4 : Operation 158 [1/1] (0.00ns)   --->   "%trunc_ln612_15 = trunc i14 %FM_buf_acc0_V_16_loa to i12" [net_hls.cc:54]   --->   Operation 158 'trunc' 'trunc_ln612_15' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_4 : Operation 159 [1/2] (1.35ns)   --->   "%FM_buf_acc0_V_17_loa = load i14* %FM_buf_acc0_V_17_add, align 2" [net_hls.cc:53]   --->   Operation 159 'load' 'FM_buf_acc0_V_17_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_4 : Operation 160 [1/1] (0.00ns)   --->   "%trunc_ln612_16 = trunc i14 %FM_buf_acc0_V_17_loa to i12" [net_hls.cc:54]   --->   Operation 160 'trunc' 'trunc_ln612_16' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_4 : Operation 161 [1/2] (1.35ns)   --->   "%FM_buf_acc0_V_18_loa = load i14* %FM_buf_acc0_V_18_add, align 2" [net_hls.cc:53]   --->   Operation 161 'load' 'FM_buf_acc0_V_18_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_4 : Operation 162 [1/1] (0.00ns)   --->   "%trunc_ln612_17 = trunc i14 %FM_buf_acc0_V_18_loa to i12" [net_hls.cc:54]   --->   Operation 162 'trunc' 'trunc_ln612_17' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_4 : Operation 163 [1/2] (1.35ns)   --->   "%FM_buf_acc0_V_19_loa = load i14* %FM_buf_acc0_V_19_add, align 2" [net_hls.cc:53]   --->   Operation 163 'load' 'FM_buf_acc0_V_19_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_4 : Operation 164 [1/1] (0.00ns)   --->   "%trunc_ln612_18 = trunc i14 %FM_buf_acc0_V_19_loa to i12" [net_hls.cc:54]   --->   Operation 164 'trunc' 'trunc_ln612_18' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_4 : Operation 165 [1/2] (1.35ns)   --->   "%FM_buf_acc0_V_20_loa = load i14* %FM_buf_acc0_V_20_add, align 2" [net_hls.cc:53]   --->   Operation 165 'load' 'FM_buf_acc0_V_20_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_4 : Operation 166 [1/1] (0.00ns)   --->   "%trunc_ln612_19 = trunc i14 %FM_buf_acc0_V_20_loa to i12" [net_hls.cc:54]   --->   Operation 166 'trunc' 'trunc_ln612_19' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_4 : Operation 167 [1/2] (1.35ns)   --->   "%FM_buf_acc0_V_21_loa = load i14* %FM_buf_acc0_V_21_add, align 2" [net_hls.cc:53]   --->   Operation 167 'load' 'FM_buf_acc0_V_21_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_4 : Operation 168 [1/1] (0.00ns)   --->   "%trunc_ln612_20 = trunc i14 %FM_buf_acc0_V_21_loa to i12" [net_hls.cc:54]   --->   Operation 168 'trunc' 'trunc_ln612_20' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_4 : Operation 169 [1/2] (1.35ns)   --->   "%FM_buf_acc0_V_22_loa = load i14* %FM_buf_acc0_V_22_add, align 2" [net_hls.cc:53]   --->   Operation 169 'load' 'FM_buf_acc0_V_22_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_4 : Operation 170 [1/1] (0.00ns)   --->   "%trunc_ln612_21 = trunc i14 %FM_buf_acc0_V_22_loa to i12" [net_hls.cc:54]   --->   Operation 170 'trunc' 'trunc_ln612_21' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_4 : Operation 171 [1/2] (1.35ns)   --->   "%FM_buf_acc0_V_23_loa = load i14* %FM_buf_acc0_V_23_add, align 2" [net_hls.cc:53]   --->   Operation 171 'load' 'FM_buf_acc0_V_23_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_4 : Operation 172 [1/1] (0.00ns)   --->   "%trunc_ln612_22 = trunc i14 %FM_buf_acc0_V_23_loa to i12" [net_hls.cc:54]   --->   Operation 172 'trunc' 'trunc_ln612_22' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_4 : Operation 173 [1/2] (1.35ns)   --->   "%FM_buf_acc0_V_24_loa = load i14* %FM_buf_acc0_V_24_add, align 2" [net_hls.cc:53]   --->   Operation 173 'load' 'FM_buf_acc0_V_24_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_4 : Operation 174 [1/1] (0.00ns)   --->   "%trunc_ln612_23 = trunc i14 %FM_buf_acc0_V_24_loa to i12" [net_hls.cc:54]   --->   Operation 174 'trunc' 'trunc_ln612_23' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_4 : Operation 175 [1/2] (1.35ns)   --->   "%FM_buf_acc0_V_25_loa = load i14* %FM_buf_acc0_V_25_add, align 2" [net_hls.cc:53]   --->   Operation 175 'load' 'FM_buf_acc0_V_25_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_4 : Operation 176 [1/1] (0.00ns)   --->   "%trunc_ln612_24 = trunc i14 %FM_buf_acc0_V_25_loa to i12" [net_hls.cc:54]   --->   Operation 176 'trunc' 'trunc_ln612_24' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_4 : Operation 177 [1/2] (1.35ns)   --->   "%FM_buf_acc0_V_26_loa = load i14* %FM_buf_acc0_V_26_add, align 2" [net_hls.cc:53]   --->   Operation 177 'load' 'FM_buf_acc0_V_26_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_4 : Operation 178 [1/1] (0.00ns)   --->   "%trunc_ln612_25 = trunc i14 %FM_buf_acc0_V_26_loa to i12" [net_hls.cc:54]   --->   Operation 178 'trunc' 'trunc_ln612_25' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_4 : Operation 179 [1/2] (1.35ns)   --->   "%FM_buf_acc0_V_27_loa = load i14* %FM_buf_acc0_V_27_add, align 2" [net_hls.cc:53]   --->   Operation 179 'load' 'FM_buf_acc0_V_27_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_4 : Operation 180 [1/1] (0.00ns)   --->   "%trunc_ln612_26 = trunc i14 %FM_buf_acc0_V_27_loa to i12" [net_hls.cc:54]   --->   Operation 180 'trunc' 'trunc_ln612_26' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_4 : Operation 181 [1/2] (1.35ns)   --->   "%FM_buf_acc0_V_28_loa = load i14* %FM_buf_acc0_V_28_add, align 2" [net_hls.cc:53]   --->   Operation 181 'load' 'FM_buf_acc0_V_28_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_4 : Operation 182 [1/1] (0.00ns)   --->   "%trunc_ln612_27 = trunc i14 %FM_buf_acc0_V_28_loa to i12" [net_hls.cc:54]   --->   Operation 182 'trunc' 'trunc_ln612_27' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_4 : Operation 183 [1/2] (1.35ns)   --->   "%FM_buf_acc0_V_29_loa = load i14* %FM_buf_acc0_V_29_add, align 2" [net_hls.cc:53]   --->   Operation 183 'load' 'FM_buf_acc0_V_29_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_4 : Operation 184 [1/1] (0.00ns)   --->   "%trunc_ln612_28 = trunc i14 %FM_buf_acc0_V_29_loa to i12" [net_hls.cc:54]   --->   Operation 184 'trunc' 'trunc_ln612_28' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_4 : Operation 185 [1/2] (1.35ns)   --->   "%FM_buf_acc0_V_30_loa = load i14* %FM_buf_acc0_V_30_add, align 2" [net_hls.cc:53]   --->   Operation 185 'load' 'FM_buf_acc0_V_30_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_4 : Operation 186 [1/1] (0.00ns)   --->   "%trunc_ln612_29 = trunc i14 %FM_buf_acc0_V_30_loa to i12" [net_hls.cc:54]   --->   Operation 186 'trunc' 'trunc_ln612_29' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_4 : Operation 187 [1/2] (1.35ns)   --->   "%FM_buf_acc0_V_31_loa = load i14* %FM_buf_acc0_V_31_add, align 2" [net_hls.cc:53]   --->   Operation 187 'load' 'FM_buf_acc0_V_31_loa' <Predicate = (!icmp_ln47)> <Delay = 1.35> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 14> <Depth = 81> <RAM>
+ST_4 : Operation 188 [1/1] (0.00ns)   --->   "%trunc_ln612_30 = trunc i14 %FM_buf_acc0_V_31_loa to i12" [net_hls.cc:54]   --->   Operation 188 'trunc' 'trunc_ln612_30' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_4 : Operation 189 [1/1] (0.00ns)   --->   "%zext_ln414 = zext i27 %add_ln414 to i64" [net_hls.cc:56]   --->   Operation 189 'zext' 'zext_ln414' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_4 : Operation 190 [1/1] (0.00ns)   --->   "%dest_V_addr = getelementptr i512* %dest_V, i64 %zext_ln414" [net_hls.cc:56]   --->   Operation 190 'getelementptr' 'dest_V_addr' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_4 : Operation 191 [1/1] (2.62ns)   --->   "%dest_V_addr_1_wr_req = call i1 @_ssdm_op_WriteReq.m_axi.i512P(i512* %dest_V_addr, i32 4)" [net_hls.cc:56]   --->   Operation 191 'writereq' 'dest_V_addr_1_wr_req' <Predicate = (empty_47)> <Delay = 2.62> <Core = "m_axi">   --->   Core 9 'm_axi' <Latency = 6> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+ST_4 : Operation 192 [1/1] (0.00ns)   --->   "br label %hls_label_0_end"   --->   Operation 192 'br' <Predicate = (empty_47)> <Delay = 0.00>
+
+State 5 <SV = 4> <Delay = 2.62>
+ST_5 : Operation 193 [1/1] (0.00ns)   --->   "%empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 16, i64 16, i64 16)"   --->   Operation 193 'speclooptripcount' 'empty' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_5 : Operation 194 [1/1] (0.00ns)   --->   "%tmp = call i32 (...)* @_ssdm_op_SpecRegionBegin([12 x i8]* @p_str1531)" [net_hls.cc:48]   --->   Operation 194 'specregionbegin' 'tmp' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_5 : Operation 195 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecPipeline(i32 -1, i32 1, i32 1, i32 0, [1 x i8]* @p_str1430) nounwind" [net_hls.cc:49]   --->   Operation 195 'specpipeline' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_5 : Operation 196 [1/1] (0.00ns)   --->   "%p_Result_207_s = call i512 @_ssdm_op_BitConcatenate.i512.i4.i12.i4.i12.i4.i12.i4.i12.i4.i12.i4.i12.i4.i12.i4.i12.i4.i12.i4.i12.i4.i12.i4.i12.i4.i12.i4.i12.i4.i12.i4.i12.i4.i12.i4.i12.i4.i12.i4.i12.i4.i12.i4.i12.i4.i12.i4.i12.i4.i12.i4.i12.i4.i12.i4.i12.i4.i12.i4.i12.i4.i12.i4.i12(i4 0, i12 %trunc_ln612_30, i4 0, i12 %trunc_ln612_29, i4 0, i12 %trunc_ln612_28, i4 0, i12 %trunc_ln612_27, i4 0, i12 %trunc_ln612_26, i4 0, i12 %trunc_ln612_25, i4 0, i12 %trunc_ln612_24, i4 0, i12 %trunc_ln612_23, i4 0, i12 %trunc_ln612_22, i4 0, i12 %trunc_ln612_21, i4 0, i12 %trunc_ln612_20, i4 0, i12 %trunc_ln612_19, i4 0, i12 %trunc_ln612_18, i4 0, i12 %trunc_ln612_17, i4 0, i12 %trunc_ln612_16, i4 0, i12 %trunc_ln612_15, i4 0, i12 %trunc_ln612_14, i4 0, i12 %trunc_ln612_13, i4 0, i12 %trunc_ln612_12, i4 0, i12 %trunc_ln612_11, i4 0, i12 %trunc_ln612_10, i4 0, i12 %trunc_ln612_9, i4 0, i12 %trunc_ln612_8, i4 0, i12 %trunc_ln612_7, i4 0, i12 %trunc_ln612_6, i4 0, i12 %trunc_ln612_5, i4 0, i12 %trunc_ln612_4, i4 0, i12 %trunc_ln612_3, i4 0, i12 %trunc_ln612_2, i4 0, i12 %trunc_ln612_1, i4 0, i12 %trunc_ln612, i4 0, i12 %trunc_ln414)" [net_hls.cc:54]   --->   Operation 196 'bitconcatenate' 'p_Result_207_s' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+ST_5 : Operation 197 [1/1] (2.62ns)   --->   "call void @_ssdm_op_Write.m_axi.i512P(i512* %dest_V_addr, i512 %p_Result_207_s, i64 -1)" [net_hls.cc:56]   --->   Operation 197 'write' <Predicate = (!icmp_ln47)> <Delay = 2.62> <Core = "m_axi">   --->   Core 9 'm_axi' <Latency = 6> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+ST_5 : Operation 198 [1/1] (0.00ns)   --->   "%empty_48 = call i32 (...)* @_ssdm_op_SpecRegionEnd([12 x i8]* @p_str1531, i32 %tmp)" [net_hls.cc:57]   --->   Operation 198 'specregionend' 'empty_48' <Predicate = (!icmp_ln47)> <Delay = 0.00>
+
+State 6 <SV = 5> <Delay = 2.62>
+ST_6 : Operation 199 [5/5] (2.62ns)   --->   "%dest_V_addr_1_wr_res = call i1 @_ssdm_op_WriteResp.m_axi.i512P(i512* %dest_V_addr)" [net_hls.cc:56]   --->   Operation 199 'writeresp' 'dest_V_addr_1_wr_res' <Predicate = (empty_50)> <Delay = 2.62> <Core = "m_axi">   --->   Core 9 'm_axi' <Latency = 6> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 7 <SV = 6> <Delay = 2.62>
+ST_7 : Operation 200 [4/5] (2.62ns)   --->   "%dest_V_addr_1_wr_res = call i1 @_ssdm_op_WriteResp.m_axi.i512P(i512* %dest_V_addr)" [net_hls.cc:56]   --->   Operation 200 'writeresp' 'dest_V_addr_1_wr_res' <Predicate = (empty_50)> <Delay = 2.62> <Core = "m_axi">   --->   Core 9 'm_axi' <Latency = 6> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 8 <SV = 7> <Delay = 2.62>
+ST_8 : Operation 201 [3/5] (2.62ns)   --->   "%dest_V_addr_1_wr_res = call i1 @_ssdm_op_WriteResp.m_axi.i512P(i512* %dest_V_addr)" [net_hls.cc:56]   --->   Operation 201 'writeresp' 'dest_V_addr_1_wr_res' <Predicate = (empty_50)> <Delay = 2.62> <Core = "m_axi">   --->   Core 9 'm_axi' <Latency = 6> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 9 <SV = 8> <Delay = 2.62>
+ST_9 : Operation 202 [2/5] (2.62ns)   --->   "%dest_V_addr_1_wr_res = call i1 @_ssdm_op_WriteResp.m_axi.i512P(i512* %dest_V_addr)" [net_hls.cc:56]   --->   Operation 202 'writeresp' 'dest_V_addr_1_wr_res' <Predicate = (empty_50)> <Delay = 2.62> <Core = "m_axi">   --->   Core 9 'm_axi' <Latency = 6> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 10 <SV = 9> <Delay = 2.62>
+ST_10 : Operation 203 [1/5] (2.62ns)   --->   "%dest_V_addr_1_wr_res = call i1 @_ssdm_op_WriteResp.m_axi.i512P(i512* %dest_V_addr)" [net_hls.cc:56]   --->   Operation 203 'writeresp' 'dest_V_addr_1_wr_res' <Predicate = (empty_50)> <Delay = 2.62> <Core = "m_axi">   --->   Core 9 'm_axi' <Latency = 6> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+ST_10 : Operation 204 [1/1] (0.00ns)   --->   "br label %BurstBB1"   --->   Operation 204 'br' <Predicate = (empty_50)> <Delay = 0.00>
+
+State 11 <SV = 2> <Delay = 0.00>
+ST_11 : Operation 205 [1/1] (0.00ns)   --->   "ret void" [net_hls.cc:61]   --->   Operation 205 'ret' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 3ns, clock uncertainty: 0.375ns.
+
+ <State 1>: 2.85ns
+The critical path consists of the following:
+	wire read on port 'row_offset' [39]  (0 ns)
+	'or' operation ('or_ln45', net_hls.cc:45) [43]  (0 ns)
+	'mul' operation of DSP[48] ('mul_ln45', net_hls.cc:45) [45]  (0.638 ns)
+	'add' operation of DSP[48] ('add_ln45', net_hls.cc:45) [48]  (2.21 ns)
+
+ <State 2>: 1.72ns
+The critical path consists of the following:
+	'phi' operation ('col') with incoming values : ('col', net_hls.cc:48) [57]  (0 ns)
+	'icmp' operation ('icmp_ln48', net_hls.cc:48) [65]  (0.698 ns)
+	'select' operation ('select_ln53', net_hls.cc:53) [66]  (0.275 ns)
+	'add' operation ('col', net_hls.cc:48) [191]  (0.746 ns)
+
+ <State 3>: 2.41ns
+The critical path consists of the following:
+	'add' operation ('add_ln53', net_hls.cc:53) [71]  (0 ns)
+	'add' operation ('add_ln53_2', net_hls.cc:53) [79]  (1.05 ns)
+	'getelementptr' operation ('FM_buf_acc0_V_0_addr', net_hls.cc:53) [81]  (0 ns)
+	'load' operation ('FM_buf_acc0_V_0_load', net_hls.cc:53) on array 'FM_buf_acc0_V_0' [113]  (1.35 ns)
+
+ <State 4>: 2.62ns
+The critical path consists of the following:
+	'getelementptr' operation ('dest_V_addr', net_hls.cc:56) [180]  (0 ns)
+	bus request on port 'dest_V' (net_hls.cc:56) [186]  (2.62 ns)
+
+ <State 5>: 2.62ns
+The critical path consists of the following:
+	bus write on port 'dest_V' (net_hls.cc:56) [189]  (2.62 ns)
+
+ <State 6>: 2.62ns
+The critical path consists of the following:
+	bus access on port 'dest_V' (net_hls.cc:56) [197]  (2.62 ns)
+
+ <State 7>: 2.62ns
+The critical path consists of the following:
+	bus access on port 'dest_V' (net_hls.cc:56) [197]  (2.62 ns)
+
+ <State 8>: 2.62ns
+The critical path consists of the following:
+	bus access on port 'dest_V' (net_hls.cc:56) [197]  (2.62 ns)
+
+ <State 9>: 2.62ns
+The critical path consists of the following:
+	bus access on port 'dest_V' (net_hls.cc:56) [197]  (2.62 ns)
+
+ <State 10>: 2.62ns
+The critical path consists of the following:
+	bus access on port 'dest_V' (net_hls.cc:56) [197]  (2.62 ns)
+
+ <State 11>: 0ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+	State 11
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A
