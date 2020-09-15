@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
   <source>
-    <originFiles name="biconv.cc" path="C:\Users\Aperture\Git\ReActNetHLS_test_64_boo3\biconv.cc"/>
-    <originFiles name="matmul.cc" path="C:\Users\Aperture\Git\ReActNetHLS_test_64_boo3\matmul.cc"/>
-    <originFiles name="net_hls.cc" path="C:\Users\Aperture\Git\ReActNetHLS_test_64_boo3\net_hls.cc"/>
-    <originFiles name="net_hls.h" path="C:\Users\Aperture\Git\ReActNetHLS_test_64_boo3\net_hls.h"/>
-    <originFiles name="pgconv.cc" path="C:\Users\Aperture\Git\ReActNetHLS_test_64_boo3\pgconv.cc"/>
+    <originFiles name="pgconv.cc" path="C:\Users\Aperture\Git\ReActNetHLS_test_64_boo2\pgconv.cc"/>
+    <originFiles name="net_hls.h" path="C:\Users\Aperture\Git\ReActNetHLS_test_64_boo2\net_hls.h"/>
+    <originFiles name="net_hls.cc" path="C:\Users\Aperture\Git\ReActNetHLS_test_64_boo2\net_hls.cc"/>
+    <originFiles name="matmul.cc" path="C:\Users\Aperture\Git\ReActNetHLS_test_64_boo2\matmul.cc"/>
+    <originFiles name="biconv.cc" path="C:\Users\Aperture\Git\ReActNetHLS_test_64_boo2\biconv.cc"/>
   </source>
   <testbench>
-    <originFiles name="bn1_fused_bias.bin" path="C:\Users\Aperture\Git\ReActNetHLS_test_64_boo3\bn1_fused_bias.bin"/>
-    <originFiles name="bn1_fused_weight.bin" path="C:\Users\Aperture\Git\ReActNetHLS_test_64_boo3\bn1_fused_weight.bin"/>
-    <originFiles name="conv1_input.bin" path="C:\Users\Aperture\Git\ReActNetHLS_test_64_boo3\conv1_input.bin"/>
-    <originFiles name="conv1_weight.bin" path="C:\Users\Aperture\Git\ReActNetHLS_test_64_boo3\conv1_weight.bin"/>
-    <originFiles name="golden_c.cc" path="C:\Users\Aperture\Git\ReActNetHLS_test_64_boo3\golden_c.cc"/>
-    <originFiles name="tb.cc" path="C:\Users\Aperture\Git\ReActNetHLS_test_64_boo3\tb.cc"/>
+    <originFiles name="tb.cc" path="C:\Users\Aperture\Git\ReActNetHLS_test_64_boo2\tb.cc"/>
+    <originFiles name="golden_c.cc" path="C:\Users\Aperture\Git\ReActNetHLS_test_64_boo2\golden_c.cc"/>
+    <originFiles name="conv1_weight.bin" path="C:\Users\Aperture\Git\ReActNetHLS_test_64_boo2\conv1_weight.bin"/>
+    <originFiles name="conv1_input.bin" path="C:\Users\Aperture\Git\ReActNetHLS_test_64_boo2\conv1_input.bin"/>
+    <originFiles name="bn1_fused_weight.bin" path="C:\Users\Aperture\Git\ReActNetHLS_test_64_boo2\bn1_fused_weight.bin"/>
+    <originFiles name="bn1_fused_bias.bin" path="C:\Users\Aperture\Git\ReActNetHLS_test_64_boo2\bn1_fused_bias.bin"/>
   </testbench>
 </autopilotfilemapping:AutoPilotFileMapping>

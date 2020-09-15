@@ -6,13 +6,14 @@
         <DownStreamTool name="vivado"/>
     </downStreamTool>
     <config>
-        <schedule model="FracNet"/>
+        <schedule model="load_weight_3x3_from_axi"/>
         <config_sdx target="none"/>
         <config_export format="ip_catalog" rtl="verilog" use_netlist="" vivado_optimization_level="2" vivado_phys_opt="place" vivado_report_level="0"/>
     </config>
     <UIConfigurations>
         <UIAutosynConf hideTrivialOp="true" isBasedOnBoard="false" isSolutionDirty="true" isStopAskAgain="false" showDetailDesignViewer="false">
             <Platform>xilinx/zynquplus/zynquplus</Platform>
+            <Platform>xilinx/zynquplus/zynquplus_fpv7</Platform>
             <customLibs/>
         </UIAutosynConf>
         <UIIPPackagerConf AskAgain="true" DescriptionButton="false" LibraryButton="false" RTLLanguage="verilog" UseNetList="none" VendorButton="false" VersionButton="false" evaluateRTL="false" setup="false">
@@ -66,7 +67,7 @@
     </targetInfo>
     <libraryList>
         <library name="DefaultPlatform" value="xilinx/zynquplus/zynquplus"/>
-        <library value="xilinx/zynquplus/zynquplus_fpv7" name="DefaultPlatform"/>
+        <library name="DefaultPlatform" value="xilinx/zynquplus/zynquplus_fpv7"/>
     </libraryList>
     <clockList>
         <clock default="false" name="default" uncertainty="12.5%" period="3"/>

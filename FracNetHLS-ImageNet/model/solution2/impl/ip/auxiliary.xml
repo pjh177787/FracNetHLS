@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xd:acceleratorMap xmlns:xd="http://www.xilinx.com/xidane" xd:functionName="FracNet" xd:componentRef="FracNet" xd:initiationInterval="4852232" xd:clockPeriod="4.000" xd:sequential="true" xd:hostMachine="64" xd:reset="control">
+  <xd:controlReg xd:name="control" xd:interfaceRef="s_axi_AXILiteS" xd:busTypeRef="axilite" xd:type="generic_axi_lite" xd:offset="0x0"/>
+  <xd:arg xd:name="image_thermo[]" xd:originalName="image_thermo" xd:direction="inout" xd:interfaceRef="m_axi_IMG" xd:busTypeRef="aximm" xd:arraySize="306456" xd:dataWidth="16" xd:bufferDirection="in"/>
+  <xd:arg xd:name="conv_weight_1x1_all[]" xd:originalName="conv_weight_1x1_all" xd:direction="inout" xd:interfaceRef="m_axi_BUS512" xd:busTypeRef="aximm" xd:dataPack="true" xd:bitMapping="511:0" xd:arraySize="1000" xd:dataWidth="512" xd:bufferDirection="in"/>
+  <xd:arg xd:name="conv_weight_3x3_all[][][]" xd:originalName="conv_weight_3x3_all" xd:direction="inout" xd:interfaceRef="m_axi_BUS512" xd:busTypeRef="aximm" xd:dataPack="true" xd:bitMapping="511:0" xd:arraySize="9000" xd:dataWidth="512" xd:bufferDirection="in"/>
+  <xd:arg xd:name="weights_all[]" xd:originalName="weights_all" xd:direction="inout" xd:interfaceRef="m_axi_BUS512" xd:busTypeRef="aximm" xd:dataPack="true" xd:bitMapping="511:0" xd:arraySize="10000" xd:dataWidth="512" xd:bufferDirection="in"/>
+  <xd:arg xd:name="linear_weight_all[][]" xd:originalName="linear_weight_all" xd:direction="inout" xd:interfaceRef="m_axi_BUS512" xd:busTypeRef="aximm" xd:dataPack="true" xd:bitMapping="511:0" xd:arraySize="32000" xd:dataWidth="512" xd:bufferDirection="in"/>
+  <xd:arg xd:name="linear_bias_all[]" xd:originalName="linear_bias_all" xd:direction="inout" xd:interfaceRef="m_axi_BUS512" xd:busTypeRef="aximm" xd:dataPack="true" xd:bitMapping="511:0" xd:arraySize="100" xd:dataWidth="512" xd:bufferDirection="in"/>
+  <xd:arg xd:name="*(DDR_buff_merge)" xd:originalName="DDR_buff_merge" xd:direction="inout" xd:interfaceRef="m_axi_DDR512" xd:busTypeRef="aximm" xd:arraySize="861184" xd:dataWidth="512" xd:bufferDirection="inout"/>
+  <xd:arg xd:name="out[]" xd:originalName="out" xd:direction="inout" xd:interfaceRef="m_axi_BUS32" xd:busTypeRef="aximm" xd:arraySize="1000" xd:dataWidth="32" xd:bufferDirection="inout"/>
+  <xd:arg xd:name="image_thermo_V" xd:originalName="image_thermo_V" xd:direction="in" xd:interfaceRef="s_axi_AXILiteS" xd:busTypeRef="axilite" xd:aximmInterfaceRef="m_axi_IMG" xd:dataWidth="32" xd:offset="0x10" xd:handshakeRef="ap_none"/>
+  <xd:arg xd:name="conv_weight_1x1_all_V" xd:originalName="conv_weight_1x1_all_V" xd:direction="in" xd:interfaceRef="s_axi_AXILiteS" xd:busTypeRef="axilite" xd:aximmInterfaceRef="m_axi_BUS512" xd:dataWidth="32" xd:offset="0x18" xd:handshakeRef="ap_none"/>
+  <xd:arg xd:name="conv_weight_3x3_all_V" xd:originalName="conv_weight_3x3_all_V" xd:direction="in" xd:interfaceRef="s_axi_AXILiteS" xd:busTypeRef="axilite" xd:aximmInterfaceRef="m_axi_BUS512" xd:dataWidth="32" xd:offset="0x20" xd:handshakeRef="ap_none"/>
+  <xd:arg xd:name="weights_all_V" xd:originalName="weights_all_V" xd:direction="in" xd:interfaceRef="s_axi_AXILiteS" xd:busTypeRef="axilite" xd:aximmInterfaceRef="m_axi_BUS512" xd:dataWidth="32" xd:offset="0x28" xd:handshakeRef="ap_none"/>
+  <xd:arg xd:name="linear_weight_all_V" xd:originalName="linear_weight_all_V" xd:direction="in" xd:interfaceRef="s_axi_AXILiteS" xd:busTypeRef="axilite" xd:aximmInterfaceRef="m_axi_BUS512" xd:dataWidth="32" xd:offset="0x30" xd:handshakeRef="ap_none"/>
+  <xd:arg xd:name="linear_bias_all_V" xd:originalName="linear_bias_all_V" xd:direction="in" xd:interfaceRef="s_axi_AXILiteS" xd:busTypeRef="axilite" xd:aximmInterfaceRef="m_axi_BUS512" xd:dataWidth="32" xd:offset="0x38" xd:handshakeRef="ap_none"/>
+  <xd:arg xd:name="DDR_buff_merge_V" xd:originalName="DDR_buff_merge_V" xd:direction="in" xd:interfaceRef="s_axi_AXILiteS" xd:busTypeRef="axilite" xd:aximmInterfaceRef="m_axi_DDR512" xd:dataWidth="32" xd:offset="0x40" xd:handshakeRef="ap_none"/>
+  <xd:arg xd:name="out_r" xd:originalName="out_r" xd:direction="in" xd:interfaceRef="s_axi_AXILiteS" xd:busTypeRef="axilite" xd:aximmInterfaceRef="m_axi_BUS32" xd:dataWidth="32" xd:offset="0x48" xd:handshakeRef="ap_none"/>
+  <xd:latencyEstimates xd:best-case="3622103" xd:worst-case="4852231" xd:average-case="undef"/>
+  <xd:resourceEstimates xd:LUT="176171" xd:FF="92813" xd:BRAM="237" xd:DSP="120"/>
+</xd:acceleratorMap>

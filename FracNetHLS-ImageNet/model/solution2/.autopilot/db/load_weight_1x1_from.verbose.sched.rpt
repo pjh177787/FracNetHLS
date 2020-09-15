@@ -1,0 +1,914 @@
+
+
+================================================================
+== Vivado HLS Report for 'load_weight_1x1_from'
+================================================================
+* Date:           Mon Sep 14 09:25:40 2020
+
+* Version:        2019.2.1 (Build 2724168 on Thu Dec 05 05:19:09 MST 2019)
+* Project:        model
+* Solution:       solution2
+* Product family: zynquplus
+* Target device:  xczu3eg-sbva484-1-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  | 4.00 ns | 0.884 ns |   0.50 ns  |
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |  Latency (cycles) |   Latency (absolute)  |  Interval | Pipeline|
+    |   min   |   max   |    min    |    max    | min | max |   Type  |
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |        7|        7| 28.000 ns | 28.000 ns |    7|    7|   none  |
+    +---------+---------+-----------+-----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 8
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 7 
+7 --> 8 
+8 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 0.88>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%coff_read = call i3 @_ssdm_op_Read.ap_auto.i3(i3 %coff)" [net_hls.cc:129]   --->   Operation 9 'read' 'coff_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%src_V_read = call i512 @_ssdm_op_Read.ap_auto.i512(i512 %src_V)" [net_hls.cc:129]   --->   Operation 10 'read' 'src_V_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%trunc_ln647 = trunc i512 %src_V_read to i64" [net_hls.cc:135]   --->   Operation 11 'trunc' 'trunc_ln647' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%trunc_ln321 = trunc i3 %coff_read to i2" [net_hls.cc:135]   --->   Operation 12 'trunc' 'trunc_ln321' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%shl_ln = call i5 @_ssdm_op_BitConcatenate.i5.i2.i3(i2 %trunc_ln321, i3 0)" [net_hls.cc:135]   --->   Operation 13 'bitconcatenate' 'shl_ln' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%dest_V_addr = getelementptr [4 x i64]* %dest_V, i64 0, i64 0" [net_hls.cc:135]   --->   Operation 14 'getelementptr' 'dest_V_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%dest_V8_addr = getelementptr [4 x i64]* %dest_V8, i64 0, i64 0" [net_hls.cc:135]   --->   Operation 15 'getelementptr' 'dest_V8_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%dest_V16_addr = getelementptr [4 x i64]* %dest_V16, i64 0, i64 0" [net_hls.cc:135]   --->   Operation 16 'getelementptr' 'dest_V16_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%dest_V24_addr = getelementptr [4 x i64]* %dest_V24, i64 0, i64 0" [net_hls.cc:135]   --->   Operation 17 'getelementptr' 'dest_V24_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (0.00ns)   --->   "%dest_V31_addr = getelementptr [4 x i64]* %dest_V31, i64 0, i64 0" [net_hls.cc:135]   --->   Operation 18 'getelementptr' 'dest_V31_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 19 [1/1] (0.88ns)   --->   "switch i2 %trunc_ln321, label %branch255 [
+    i2 0, label %branch224
+    i2 -1, label %branch248
+    i2 1, label %branch232
+    i2 -2, label %branch240
+  ]" [net_hls.cc:135]   --->   Operation 19 'switch' <Predicate = true> <Delay = 0.88>
+ST_1 : Operation 20 [1/1] (0.79ns)   --->   "store i64 %trunc_ln647, i64* %dest_V16_addr, align 8" [net_hls.cc:135]   --->   Operation 20 'store' <Predicate = (trunc_ln321 == 2)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_1 : Operation 21 [1/1] (0.00ns)   --->   "br label %1" [net_hls.cc:135]   --->   Operation 21 'br' <Predicate = (trunc_ln321 == 2)> <Delay = 0.00>
+ST_1 : Operation 22 [1/1] (0.79ns)   --->   "store i64 %trunc_ln647, i64* %dest_V8_addr, align 8" [net_hls.cc:135]   --->   Operation 22 'store' <Predicate = (trunc_ln321 == 1)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_1 : Operation 23 [1/1] (0.00ns)   --->   "br label %1" [net_hls.cc:135]   --->   Operation 23 'br' <Predicate = (trunc_ln321 == 1)> <Delay = 0.00>
+ST_1 : Operation 24 [1/1] (0.79ns)   --->   "store i64 %trunc_ln647, i64* %dest_V24_addr, align 8" [net_hls.cc:135]   --->   Operation 24 'store' <Predicate = (trunc_ln321 == 3)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_1 : Operation 25 [1/1] (0.00ns)   --->   "br label %1" [net_hls.cc:135]   --->   Operation 25 'br' <Predicate = (trunc_ln321 == 3)> <Delay = 0.00>
+ST_1 : Operation 26 [1/1] (0.79ns)   --->   "store i64 %trunc_ln647, i64* %dest_V_addr, align 8" [net_hls.cc:135]   --->   Operation 26 'store' <Predicate = (trunc_ln321 == 0)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_1 : Operation 27 [1/1] (0.00ns)   --->   "br label %1" [net_hls.cc:135]   --->   Operation 27 'br' <Predicate = (trunc_ln321 == 0)> <Delay = 0.00>
+ST_1 : Operation 28 [1/1] (0.79ns)   --->   "store i64 %trunc_ln647, i64* %dest_V31_addr, align 8" [net_hls.cc:135]   --->   Operation 28 'store' <Predicate = false> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_1 : Operation 29 [1/1] (0.00ns)   --->   "br label %1" [net_hls.cc:135]   --->   Operation 29 'br' <Predicate = false> <Delay = 0.00>
+ST_1 : Operation 30 [1/1] (0.00ns)   --->   "%p_Result_201_1 = call i64 @_ssdm_op_PartSelect.i64.i512.i32.i32(i512 %src_V_read, i32 64, i32 127)" [net_hls.cc:135]   --->   Operation 30 'partselect' 'p_Result_201_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 31 [1/1] (0.00ns)   --->   "%or_ln321 = or i5 %shl_ln, 1" [net_hls.cc:135]   --->   Operation 31 'or' 'or_ln321' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 32 [1/1] (0.00ns)   --->   "%dest_V1_addr = getelementptr [4 x i64]* %dest_V1, i64 0, i64 0" [net_hls.cc:135]   --->   Operation 32 'getelementptr' 'dest_V1_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 33 [1/1] (0.00ns)   --->   "%dest_V2_addr = getelementptr [4 x i64]* %dest_V2, i64 0, i64 0" [net_hls.cc:135]   --->   Operation 33 'getelementptr' 'dest_V2_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 34 [1/1] (0.00ns)   --->   "%dest_V3_addr = getelementptr [4 x i64]* %dest_V3, i64 0, i64 0" [net_hls.cc:135]   --->   Operation 34 'getelementptr' 'dest_V3_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 35 [1/1] (0.00ns)   --->   "%dest_V4_addr = getelementptr [4 x i64]* %dest_V4, i64 0, i64 0" [net_hls.cc:135]   --->   Operation 35 'getelementptr' 'dest_V4_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 36 [1/1] (0.00ns)   --->   "%dest_V5_addr = getelementptr [4 x i64]* %dest_V5, i64 0, i64 0" [net_hls.cc:135]   --->   Operation 36 'getelementptr' 'dest_V5_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 37 [1/1] (0.00ns)   --->   "%dest_V6_addr = getelementptr [4 x i64]* %dest_V6, i64 0, i64 0" [net_hls.cc:135]   --->   Operation 37 'getelementptr' 'dest_V6_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 38 [1/1] (0.00ns)   --->   "%dest_V7_addr = getelementptr [4 x i64]* %dest_V7, i64 0, i64 0" [net_hls.cc:135]   --->   Operation 38 'getelementptr' 'dest_V7_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 39 [1/1] (0.00ns)   --->   "%dest_V9_addr = getelementptr [4 x i64]* %dest_V9, i64 0, i64 0" [net_hls.cc:135]   --->   Operation 39 'getelementptr' 'dest_V9_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 40 [1/1] (0.00ns)   --->   "%dest_V10_addr = getelementptr [4 x i64]* %dest_V10, i64 0, i64 0" [net_hls.cc:135]   --->   Operation 40 'getelementptr' 'dest_V10_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 41 [1/1] (0.00ns)   --->   "%dest_V11_addr = getelementptr [4 x i64]* %dest_V11, i64 0, i64 0" [net_hls.cc:135]   --->   Operation 41 'getelementptr' 'dest_V11_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 42 [1/1] (0.00ns)   --->   "%dest_V12_addr = getelementptr [4 x i64]* %dest_V12, i64 0, i64 0" [net_hls.cc:135]   --->   Operation 42 'getelementptr' 'dest_V12_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 43 [1/1] (0.00ns)   --->   "%dest_V13_addr = getelementptr [4 x i64]* %dest_V13, i64 0, i64 0" [net_hls.cc:135]   --->   Operation 43 'getelementptr' 'dest_V13_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 44 [1/1] (0.00ns)   --->   "%dest_V14_addr = getelementptr [4 x i64]* %dest_V14, i64 0, i64 0" [net_hls.cc:135]   --->   Operation 44 'getelementptr' 'dest_V14_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 45 [1/1] (0.00ns)   --->   "%dest_V15_addr = getelementptr [4 x i64]* %dest_V15, i64 0, i64 0" [net_hls.cc:135]   --->   Operation 45 'getelementptr' 'dest_V15_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 46 [1/1] (0.00ns)   --->   "%dest_V17_addr = getelementptr [4 x i64]* %dest_V17, i64 0, i64 0" [net_hls.cc:135]   --->   Operation 46 'getelementptr' 'dest_V17_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 47 [1/1] (0.00ns)   --->   "%dest_V18_addr = getelementptr [4 x i64]* %dest_V18, i64 0, i64 0" [net_hls.cc:135]   --->   Operation 47 'getelementptr' 'dest_V18_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 48 [1/1] (0.00ns)   --->   "%dest_V19_addr = getelementptr [4 x i64]* %dest_V19, i64 0, i64 0" [net_hls.cc:135]   --->   Operation 48 'getelementptr' 'dest_V19_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 49 [1/1] (0.00ns)   --->   "%dest_V20_addr = getelementptr [4 x i64]* %dest_V20, i64 0, i64 0" [net_hls.cc:135]   --->   Operation 49 'getelementptr' 'dest_V20_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 50 [1/1] (0.00ns)   --->   "%dest_V21_addr = getelementptr [4 x i64]* %dest_V21, i64 0, i64 0" [net_hls.cc:135]   --->   Operation 50 'getelementptr' 'dest_V21_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 51 [1/1] (0.00ns)   --->   "%dest_V22_addr = getelementptr [4 x i64]* %dest_V22, i64 0, i64 0" [net_hls.cc:135]   --->   Operation 51 'getelementptr' 'dest_V22_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 52 [1/1] (0.00ns)   --->   "%dest_V23_addr = getelementptr [4 x i64]* %dest_V23, i64 0, i64 0" [net_hls.cc:135]   --->   Operation 52 'getelementptr' 'dest_V23_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 53 [1/1] (0.00ns)   --->   "%dest_V25_addr = getelementptr [4 x i64]* %dest_V25, i64 0, i64 0" [net_hls.cc:135]   --->   Operation 53 'getelementptr' 'dest_V25_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 54 [1/1] (0.00ns)   --->   "%dest_V26_addr = getelementptr [4 x i64]* %dest_V26, i64 0, i64 0" [net_hls.cc:135]   --->   Operation 54 'getelementptr' 'dest_V26_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 55 [1/1] (0.00ns)   --->   "%dest_V27_addr = getelementptr [4 x i64]* %dest_V27, i64 0, i64 0" [net_hls.cc:135]   --->   Operation 55 'getelementptr' 'dest_V27_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 56 [1/1] (0.00ns)   --->   "%dest_V28_addr = getelementptr [4 x i64]* %dest_V28, i64 0, i64 0" [net_hls.cc:135]   --->   Operation 56 'getelementptr' 'dest_V28_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 57 [1/1] (0.00ns)   --->   "%dest_V29_addr = getelementptr [4 x i64]* %dest_V29, i64 0, i64 0" [net_hls.cc:135]   --->   Operation 57 'getelementptr' 'dest_V29_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 58 [1/1] (0.00ns)   --->   "%dest_V30_addr = getelementptr [4 x i64]* %dest_V30, i64 0, i64 0" [net_hls.cc:135]   --->   Operation 58 'getelementptr' 'dest_V30_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 59 [1/1] (0.86ns)   --->   "switch i5 %or_ln321, label %branch223 [
+    i5 0, label %branch192
+    i5 1, label %branch193
+    i5 2, label %branch194
+    i5 3, label %branch195
+    i5 4, label %branch196
+    i5 5, label %branch197
+    i5 6, label %branch198
+    i5 7, label %branch199
+    i5 8, label %branch200
+    i5 9, label %branch201
+    i5 10, label %branch202
+    i5 11, label %branch203
+    i5 12, label %branch204
+    i5 13, label %branch205
+    i5 14, label %branch206
+    i5 15, label %branch207
+    i5 -16, label %branch208
+    i5 -15, label %branch209
+    i5 -14, label %branch210
+    i5 -13, label %branch211
+    i5 -12, label %branch212
+    i5 -11, label %branch213
+    i5 -10, label %branch214
+    i5 -9, label %branch215
+    i5 -8, label %branch216
+    i5 -7, label %branch217
+    i5 -6, label %branch218
+    i5 -5, label %branch219
+    i5 -4, label %branch220
+    i5 -3, label %branch221
+    i5 -2, label %branch222
+  ]" [net_hls.cc:135]   --->   Operation 59 'switch' <Predicate = true> <Delay = 0.86>
+ST_1 : Operation 60 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_1, i64* %dest_V30_addr, align 8" [net_hls.cc:135]   --->   Operation 60 'store' <Predicate = (or_ln321 == 30)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_1 : Operation 61 [1/1] (0.00ns)   --->   "br label %2" [net_hls.cc:135]   --->   Operation 61 'br' <Predicate = (or_ln321 == 30)> <Delay = 0.00>
+ST_1 : Operation 62 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_1, i64* %dest_V29_addr, align 8" [net_hls.cc:135]   --->   Operation 62 'store' <Predicate = (or_ln321 == 29)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_1 : Operation 63 [1/1] (0.00ns)   --->   "br label %2" [net_hls.cc:135]   --->   Operation 63 'br' <Predicate = (or_ln321 == 29)> <Delay = 0.00>
+ST_1 : Operation 64 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_1, i64* %dest_V28_addr, align 8" [net_hls.cc:135]   --->   Operation 64 'store' <Predicate = (or_ln321 == 28)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_1 : Operation 65 [1/1] (0.00ns)   --->   "br label %2" [net_hls.cc:135]   --->   Operation 65 'br' <Predicate = (or_ln321 == 28)> <Delay = 0.00>
+ST_1 : Operation 66 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_1, i64* %dest_V27_addr, align 8" [net_hls.cc:135]   --->   Operation 66 'store' <Predicate = (or_ln321 == 27)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_1 : Operation 67 [1/1] (0.00ns)   --->   "br label %2" [net_hls.cc:135]   --->   Operation 67 'br' <Predicate = (or_ln321 == 27)> <Delay = 0.00>
+ST_1 : Operation 68 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_1, i64* %dest_V26_addr, align 8" [net_hls.cc:135]   --->   Operation 68 'store' <Predicate = (or_ln321 == 26)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_1 : Operation 69 [1/1] (0.00ns)   --->   "br label %2" [net_hls.cc:135]   --->   Operation 69 'br' <Predicate = (or_ln321 == 26)> <Delay = 0.00>
+ST_1 : Operation 70 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_1, i64* %dest_V25_addr, align 8" [net_hls.cc:135]   --->   Operation 70 'store' <Predicate = (or_ln321 == 25)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_1 : Operation 71 [1/1] (0.00ns)   --->   "br label %2" [net_hls.cc:135]   --->   Operation 71 'br' <Predicate = (or_ln321 == 25)> <Delay = 0.00>
+ST_1 : Operation 72 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_1, i64* %dest_V23_addr, align 8" [net_hls.cc:135]   --->   Operation 72 'store' <Predicate = (or_ln321 == 23)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_1 : Operation 73 [1/1] (0.00ns)   --->   "br label %2" [net_hls.cc:135]   --->   Operation 73 'br' <Predicate = (or_ln321 == 23)> <Delay = 0.00>
+ST_1 : Operation 74 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_1, i64* %dest_V22_addr, align 8" [net_hls.cc:135]   --->   Operation 74 'store' <Predicate = (or_ln321 == 22)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_1 : Operation 75 [1/1] (0.00ns)   --->   "br label %2" [net_hls.cc:135]   --->   Operation 75 'br' <Predicate = (or_ln321 == 22)> <Delay = 0.00>
+ST_1 : Operation 76 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_1, i64* %dest_V21_addr, align 8" [net_hls.cc:135]   --->   Operation 76 'store' <Predicate = (or_ln321 == 21)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_1 : Operation 77 [1/1] (0.00ns)   --->   "br label %2" [net_hls.cc:135]   --->   Operation 77 'br' <Predicate = (or_ln321 == 21)> <Delay = 0.00>
+ST_1 : Operation 78 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_1, i64* %dest_V20_addr, align 8" [net_hls.cc:135]   --->   Operation 78 'store' <Predicate = (or_ln321 == 20)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_1 : Operation 79 [1/1] (0.00ns)   --->   "br label %2" [net_hls.cc:135]   --->   Operation 79 'br' <Predicate = (or_ln321 == 20)> <Delay = 0.00>
+ST_1 : Operation 80 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_1, i64* %dest_V19_addr, align 8" [net_hls.cc:135]   --->   Operation 80 'store' <Predicate = (or_ln321 == 19)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_1 : Operation 81 [1/1] (0.00ns)   --->   "br label %2" [net_hls.cc:135]   --->   Operation 81 'br' <Predicate = (or_ln321 == 19)> <Delay = 0.00>
+ST_1 : Operation 82 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_1, i64* %dest_V18_addr, align 8" [net_hls.cc:135]   --->   Operation 82 'store' <Predicate = (or_ln321 == 18)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_1 : Operation 83 [1/1] (0.00ns)   --->   "br label %2" [net_hls.cc:135]   --->   Operation 83 'br' <Predicate = (or_ln321 == 18)> <Delay = 0.00>
+ST_1 : Operation 84 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_1, i64* %dest_V17_addr, align 8" [net_hls.cc:135]   --->   Operation 84 'store' <Predicate = (or_ln321 == 17)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_1 : Operation 85 [1/1] (0.00ns)   --->   "br label %2" [net_hls.cc:135]   --->   Operation 85 'br' <Predicate = (or_ln321 == 17)> <Delay = 0.00>
+ST_1 : Operation 86 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_1, i64* %dest_V15_addr, align 8" [net_hls.cc:135]   --->   Operation 86 'store' <Predicate = (or_ln321 == 15)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_1 : Operation 87 [1/1] (0.00ns)   --->   "br label %2" [net_hls.cc:135]   --->   Operation 87 'br' <Predicate = (or_ln321 == 15)> <Delay = 0.00>
+ST_1 : Operation 88 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_1, i64* %dest_V14_addr, align 8" [net_hls.cc:135]   --->   Operation 88 'store' <Predicate = (or_ln321 == 14)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_1 : Operation 89 [1/1] (0.00ns)   --->   "br label %2" [net_hls.cc:135]   --->   Operation 89 'br' <Predicate = (or_ln321 == 14)> <Delay = 0.00>
+ST_1 : Operation 90 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_1, i64* %dest_V13_addr, align 8" [net_hls.cc:135]   --->   Operation 90 'store' <Predicate = (or_ln321 == 13)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_1 : Operation 91 [1/1] (0.00ns)   --->   "br label %2" [net_hls.cc:135]   --->   Operation 91 'br' <Predicate = (or_ln321 == 13)> <Delay = 0.00>
+ST_1 : Operation 92 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_1, i64* %dest_V12_addr, align 8" [net_hls.cc:135]   --->   Operation 92 'store' <Predicate = (or_ln321 == 12)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_1 : Operation 93 [1/1] (0.00ns)   --->   "br label %2" [net_hls.cc:135]   --->   Operation 93 'br' <Predicate = (or_ln321 == 12)> <Delay = 0.00>
+ST_1 : Operation 94 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_1, i64* %dest_V11_addr, align 8" [net_hls.cc:135]   --->   Operation 94 'store' <Predicate = (or_ln321 == 11)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_1 : Operation 95 [1/1] (0.00ns)   --->   "br label %2" [net_hls.cc:135]   --->   Operation 95 'br' <Predicate = (or_ln321 == 11)> <Delay = 0.00>
+ST_1 : Operation 96 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_1, i64* %dest_V10_addr, align 8" [net_hls.cc:135]   --->   Operation 96 'store' <Predicate = (or_ln321 == 10)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_1 : Operation 97 [1/1] (0.00ns)   --->   "br label %2" [net_hls.cc:135]   --->   Operation 97 'br' <Predicate = (or_ln321 == 10)> <Delay = 0.00>
+ST_1 : Operation 98 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_1, i64* %dest_V9_addr, align 8" [net_hls.cc:135]   --->   Operation 98 'store' <Predicate = (or_ln321 == 9)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_1 : Operation 99 [1/1] (0.00ns)   --->   "br label %2" [net_hls.cc:135]   --->   Operation 99 'br' <Predicate = (or_ln321 == 9)> <Delay = 0.00>
+ST_1 : Operation 100 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_1, i64* %dest_V7_addr, align 8" [net_hls.cc:135]   --->   Operation 100 'store' <Predicate = (or_ln321 == 7)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_1 : Operation 101 [1/1] (0.00ns)   --->   "br label %2" [net_hls.cc:135]   --->   Operation 101 'br' <Predicate = (or_ln321 == 7)> <Delay = 0.00>
+ST_1 : Operation 102 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_1, i64* %dest_V6_addr, align 8" [net_hls.cc:135]   --->   Operation 102 'store' <Predicate = (or_ln321 == 6)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_1 : Operation 103 [1/1] (0.00ns)   --->   "br label %2" [net_hls.cc:135]   --->   Operation 103 'br' <Predicate = (or_ln321 == 6)> <Delay = 0.00>
+ST_1 : Operation 104 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_1, i64* %dest_V5_addr, align 8" [net_hls.cc:135]   --->   Operation 104 'store' <Predicate = (or_ln321 == 5)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_1 : Operation 105 [1/1] (0.00ns)   --->   "br label %2" [net_hls.cc:135]   --->   Operation 105 'br' <Predicate = (or_ln321 == 5)> <Delay = 0.00>
+ST_1 : Operation 106 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_1, i64* %dest_V4_addr, align 8" [net_hls.cc:135]   --->   Operation 106 'store' <Predicate = (or_ln321 == 4)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_1 : Operation 107 [1/1] (0.00ns)   --->   "br label %2" [net_hls.cc:135]   --->   Operation 107 'br' <Predicate = (or_ln321 == 4)> <Delay = 0.00>
+ST_1 : Operation 108 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_1, i64* %dest_V3_addr, align 8" [net_hls.cc:135]   --->   Operation 108 'store' <Predicate = (or_ln321 == 3)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_1 : Operation 109 [1/1] (0.00ns)   --->   "br label %2" [net_hls.cc:135]   --->   Operation 109 'br' <Predicate = (or_ln321 == 3)> <Delay = 0.00>
+ST_1 : Operation 110 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_1, i64* %dest_V2_addr, align 8" [net_hls.cc:135]   --->   Operation 110 'store' <Predicate = (or_ln321 == 2)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_1 : Operation 111 [1/1] (0.00ns)   --->   "br label %2" [net_hls.cc:135]   --->   Operation 111 'br' <Predicate = (or_ln321 == 2)> <Delay = 0.00>
+ST_1 : Operation 112 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_1, i64* %dest_V1_addr, align 8" [net_hls.cc:135]   --->   Operation 112 'store' <Predicate = (or_ln321 == 1)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_1 : Operation 113 [1/1] (0.00ns)   --->   "br label %2" [net_hls.cc:135]   --->   Operation 113 'br' <Predicate = (or_ln321 == 1)> <Delay = 0.00>
+ST_1 : Operation 114 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_1, i64* %dest_V31_addr, align 8" [net_hls.cc:135]   --->   Operation 114 'store' <Predicate = (or_ln321 == 31)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_1 : Operation 115 [1/1] (0.00ns)   --->   "br label %2" [net_hls.cc:135]   --->   Operation 115 'br' <Predicate = (or_ln321 == 31)> <Delay = 0.00>
+
+State 2 <SV = 1> <Delay = 0.86>
+ST_2 : Operation 116 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_1, i64* %dest_V24_addr, align 8" [net_hls.cc:135]   --->   Operation 116 'store' <Predicate = (or_ln321 == 24)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_2 : Operation 117 [1/1] (0.00ns)   --->   "br label %2" [net_hls.cc:135]   --->   Operation 117 'br' <Predicate = (or_ln321 == 24)> <Delay = 0.00>
+ST_2 : Operation 118 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_1, i64* %dest_V16_addr, align 8" [net_hls.cc:135]   --->   Operation 118 'store' <Predicate = (or_ln321 == 16)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_2 : Operation 119 [1/1] (0.00ns)   --->   "br label %2" [net_hls.cc:135]   --->   Operation 119 'br' <Predicate = (or_ln321 == 16)> <Delay = 0.00>
+ST_2 : Operation 120 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_1, i64* %dest_V8_addr, align 8" [net_hls.cc:135]   --->   Operation 120 'store' <Predicate = (or_ln321 == 8)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_2 : Operation 121 [1/1] (0.00ns)   --->   "br label %2" [net_hls.cc:135]   --->   Operation 121 'br' <Predicate = (or_ln321 == 8)> <Delay = 0.00>
+ST_2 : Operation 122 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_1, i64* %dest_V_addr, align 8" [net_hls.cc:135]   --->   Operation 122 'store' <Predicate = (or_ln321 == 0)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_2 : Operation 123 [1/1] (0.00ns)   --->   "br label %2" [net_hls.cc:135]   --->   Operation 123 'br' <Predicate = (or_ln321 == 0)> <Delay = 0.00>
+ST_2 : Operation 124 [1/1] (0.00ns)   --->   "%p_Result_201_2 = call i64 @_ssdm_op_PartSelect.i64.i512.i32.i32(i512 %src_V_read, i32 128, i32 191)" [net_hls.cc:135]   --->   Operation 124 'partselect' 'p_Result_201_2' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 125 [1/1] (0.00ns)   --->   "%or_ln321_61 = or i5 %shl_ln, 2" [net_hls.cc:135]   --->   Operation 125 'or' 'or_ln321_61' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 126 [1/1] (0.86ns)   --->   "switch i5 %or_ln321_61, label %branch191 [
+    i5 0, label %branch160
+    i5 1, label %branch161
+    i5 2, label %branch162
+    i5 3, label %branch163
+    i5 4, label %branch164
+    i5 5, label %branch165
+    i5 6, label %branch166
+    i5 7, label %branch167
+    i5 8, label %branch168
+    i5 9, label %branch169
+    i5 10, label %branch170
+    i5 11, label %branch171
+    i5 12, label %branch172
+    i5 13, label %branch173
+    i5 14, label %branch174
+    i5 15, label %branch175
+    i5 -16, label %branch176
+    i5 -15, label %branch177
+    i5 -14, label %branch178
+    i5 -13, label %branch179
+    i5 -12, label %branch180
+    i5 -11, label %branch181
+    i5 -10, label %branch182
+    i5 -9, label %branch183
+    i5 -8, label %branch184
+    i5 -7, label %branch185
+    i5 -6, label %branch186
+    i5 -5, label %branch187
+    i5 -4, label %branch188
+    i5 -3, label %branch189
+    i5 -2, label %branch190
+  ]" [net_hls.cc:135]   --->   Operation 126 'switch' <Predicate = true> <Delay = 0.86>
+ST_2 : Operation 127 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_2, i64* %dest_V30_addr, align 8" [net_hls.cc:135]   --->   Operation 127 'store' <Predicate = (or_ln321_61 == 30)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_2 : Operation 128 [1/1] (0.00ns)   --->   "br label %3" [net_hls.cc:135]   --->   Operation 128 'br' <Predicate = (or_ln321_61 == 30)> <Delay = 0.00>
+ST_2 : Operation 129 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_2, i64* %dest_V29_addr, align 8" [net_hls.cc:135]   --->   Operation 129 'store' <Predicate = (or_ln321_61 == 29)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_2 : Operation 130 [1/1] (0.00ns)   --->   "br label %3" [net_hls.cc:135]   --->   Operation 130 'br' <Predicate = (or_ln321_61 == 29)> <Delay = 0.00>
+ST_2 : Operation 131 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_2, i64* %dest_V28_addr, align 8" [net_hls.cc:135]   --->   Operation 131 'store' <Predicate = (or_ln321_61 == 28)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_2 : Operation 132 [1/1] (0.00ns)   --->   "br label %3" [net_hls.cc:135]   --->   Operation 132 'br' <Predicate = (or_ln321_61 == 28)> <Delay = 0.00>
+ST_2 : Operation 133 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_2, i64* %dest_V27_addr, align 8" [net_hls.cc:135]   --->   Operation 133 'store' <Predicate = (or_ln321_61 == 27)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_2 : Operation 134 [1/1] (0.00ns)   --->   "br label %3" [net_hls.cc:135]   --->   Operation 134 'br' <Predicate = (or_ln321_61 == 27)> <Delay = 0.00>
+ST_2 : Operation 135 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_2, i64* %dest_V26_addr, align 8" [net_hls.cc:135]   --->   Operation 135 'store' <Predicate = (or_ln321_61 == 26)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_2 : Operation 136 [1/1] (0.00ns)   --->   "br label %3" [net_hls.cc:135]   --->   Operation 136 'br' <Predicate = (or_ln321_61 == 26)> <Delay = 0.00>
+ST_2 : Operation 137 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_2, i64* %dest_V25_addr, align 8" [net_hls.cc:135]   --->   Operation 137 'store' <Predicate = (or_ln321_61 == 25)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_2 : Operation 138 [1/1] (0.00ns)   --->   "br label %3" [net_hls.cc:135]   --->   Operation 138 'br' <Predicate = (or_ln321_61 == 25)> <Delay = 0.00>
+ST_2 : Operation 139 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_2, i64* %dest_V23_addr, align 8" [net_hls.cc:135]   --->   Operation 139 'store' <Predicate = (or_ln321_61 == 23)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_2 : Operation 140 [1/1] (0.00ns)   --->   "br label %3" [net_hls.cc:135]   --->   Operation 140 'br' <Predicate = (or_ln321_61 == 23)> <Delay = 0.00>
+ST_2 : Operation 141 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_2, i64* %dest_V22_addr, align 8" [net_hls.cc:135]   --->   Operation 141 'store' <Predicate = (or_ln321_61 == 22)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_2 : Operation 142 [1/1] (0.00ns)   --->   "br label %3" [net_hls.cc:135]   --->   Operation 142 'br' <Predicate = (or_ln321_61 == 22)> <Delay = 0.00>
+ST_2 : Operation 143 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_2, i64* %dest_V21_addr, align 8" [net_hls.cc:135]   --->   Operation 143 'store' <Predicate = (or_ln321_61 == 21)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_2 : Operation 144 [1/1] (0.00ns)   --->   "br label %3" [net_hls.cc:135]   --->   Operation 144 'br' <Predicate = (or_ln321_61 == 21)> <Delay = 0.00>
+ST_2 : Operation 145 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_2, i64* %dest_V20_addr, align 8" [net_hls.cc:135]   --->   Operation 145 'store' <Predicate = (or_ln321_61 == 20)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_2 : Operation 146 [1/1] (0.00ns)   --->   "br label %3" [net_hls.cc:135]   --->   Operation 146 'br' <Predicate = (or_ln321_61 == 20)> <Delay = 0.00>
+ST_2 : Operation 147 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_2, i64* %dest_V19_addr, align 8" [net_hls.cc:135]   --->   Operation 147 'store' <Predicate = (or_ln321_61 == 19)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_2 : Operation 148 [1/1] (0.00ns)   --->   "br label %3" [net_hls.cc:135]   --->   Operation 148 'br' <Predicate = (or_ln321_61 == 19)> <Delay = 0.00>
+ST_2 : Operation 149 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_2, i64* %dest_V18_addr, align 8" [net_hls.cc:135]   --->   Operation 149 'store' <Predicate = (or_ln321_61 == 18)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_2 : Operation 150 [1/1] (0.00ns)   --->   "br label %3" [net_hls.cc:135]   --->   Operation 150 'br' <Predicate = (or_ln321_61 == 18)> <Delay = 0.00>
+ST_2 : Operation 151 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_2, i64* %dest_V17_addr, align 8" [net_hls.cc:135]   --->   Operation 151 'store' <Predicate = (or_ln321_61 == 17)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_2 : Operation 152 [1/1] (0.00ns)   --->   "br label %3" [net_hls.cc:135]   --->   Operation 152 'br' <Predicate = (or_ln321_61 == 17)> <Delay = 0.00>
+ST_2 : Operation 153 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_2, i64* %dest_V15_addr, align 8" [net_hls.cc:135]   --->   Operation 153 'store' <Predicate = (or_ln321_61 == 15)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_2 : Operation 154 [1/1] (0.00ns)   --->   "br label %3" [net_hls.cc:135]   --->   Operation 154 'br' <Predicate = (or_ln321_61 == 15)> <Delay = 0.00>
+ST_2 : Operation 155 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_2, i64* %dest_V14_addr, align 8" [net_hls.cc:135]   --->   Operation 155 'store' <Predicate = (or_ln321_61 == 14)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_2 : Operation 156 [1/1] (0.00ns)   --->   "br label %3" [net_hls.cc:135]   --->   Operation 156 'br' <Predicate = (or_ln321_61 == 14)> <Delay = 0.00>
+ST_2 : Operation 157 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_2, i64* %dest_V13_addr, align 8" [net_hls.cc:135]   --->   Operation 157 'store' <Predicate = (or_ln321_61 == 13)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_2 : Operation 158 [1/1] (0.00ns)   --->   "br label %3" [net_hls.cc:135]   --->   Operation 158 'br' <Predicate = (or_ln321_61 == 13)> <Delay = 0.00>
+ST_2 : Operation 159 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_2, i64* %dest_V12_addr, align 8" [net_hls.cc:135]   --->   Operation 159 'store' <Predicate = (or_ln321_61 == 12)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_2 : Operation 160 [1/1] (0.00ns)   --->   "br label %3" [net_hls.cc:135]   --->   Operation 160 'br' <Predicate = (or_ln321_61 == 12)> <Delay = 0.00>
+ST_2 : Operation 161 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_2, i64* %dest_V11_addr, align 8" [net_hls.cc:135]   --->   Operation 161 'store' <Predicate = (or_ln321_61 == 11)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_2 : Operation 162 [1/1] (0.00ns)   --->   "br label %3" [net_hls.cc:135]   --->   Operation 162 'br' <Predicate = (or_ln321_61 == 11)> <Delay = 0.00>
+ST_2 : Operation 163 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_2, i64* %dest_V10_addr, align 8" [net_hls.cc:135]   --->   Operation 163 'store' <Predicate = (or_ln321_61 == 10)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_2 : Operation 164 [1/1] (0.00ns)   --->   "br label %3" [net_hls.cc:135]   --->   Operation 164 'br' <Predicate = (or_ln321_61 == 10)> <Delay = 0.00>
+ST_2 : Operation 165 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_2, i64* %dest_V9_addr, align 8" [net_hls.cc:135]   --->   Operation 165 'store' <Predicate = (or_ln321_61 == 9)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_2 : Operation 166 [1/1] (0.00ns)   --->   "br label %3" [net_hls.cc:135]   --->   Operation 166 'br' <Predicate = (or_ln321_61 == 9)> <Delay = 0.00>
+ST_2 : Operation 167 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_2, i64* %dest_V7_addr, align 8" [net_hls.cc:135]   --->   Operation 167 'store' <Predicate = (or_ln321_61 == 7)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_2 : Operation 168 [1/1] (0.00ns)   --->   "br label %3" [net_hls.cc:135]   --->   Operation 168 'br' <Predicate = (or_ln321_61 == 7)> <Delay = 0.00>
+ST_2 : Operation 169 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_2, i64* %dest_V6_addr, align 8" [net_hls.cc:135]   --->   Operation 169 'store' <Predicate = (or_ln321_61 == 6)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_2 : Operation 170 [1/1] (0.00ns)   --->   "br label %3" [net_hls.cc:135]   --->   Operation 170 'br' <Predicate = (or_ln321_61 == 6)> <Delay = 0.00>
+ST_2 : Operation 171 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_2, i64* %dest_V5_addr, align 8" [net_hls.cc:135]   --->   Operation 171 'store' <Predicate = (or_ln321_61 == 5)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_2 : Operation 172 [1/1] (0.00ns)   --->   "br label %3" [net_hls.cc:135]   --->   Operation 172 'br' <Predicate = (or_ln321_61 == 5)> <Delay = 0.00>
+ST_2 : Operation 173 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_2, i64* %dest_V4_addr, align 8" [net_hls.cc:135]   --->   Operation 173 'store' <Predicate = (or_ln321_61 == 4)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_2 : Operation 174 [1/1] (0.00ns)   --->   "br label %3" [net_hls.cc:135]   --->   Operation 174 'br' <Predicate = (or_ln321_61 == 4)> <Delay = 0.00>
+ST_2 : Operation 175 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_2, i64* %dest_V3_addr, align 8" [net_hls.cc:135]   --->   Operation 175 'store' <Predicate = (or_ln321_61 == 3)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_2 : Operation 176 [1/1] (0.00ns)   --->   "br label %3" [net_hls.cc:135]   --->   Operation 176 'br' <Predicate = (or_ln321_61 == 3)> <Delay = 0.00>
+ST_2 : Operation 177 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_2, i64* %dest_V2_addr, align 8" [net_hls.cc:135]   --->   Operation 177 'store' <Predicate = (or_ln321_61 == 2)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_2 : Operation 178 [1/1] (0.00ns)   --->   "br label %3" [net_hls.cc:135]   --->   Operation 178 'br' <Predicate = (or_ln321_61 == 2)> <Delay = 0.00>
+ST_2 : Operation 179 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_2, i64* %dest_V1_addr, align 8" [net_hls.cc:135]   --->   Operation 179 'store' <Predicate = (or_ln321_61 == 1)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_2 : Operation 180 [1/1] (0.00ns)   --->   "br label %3" [net_hls.cc:135]   --->   Operation 180 'br' <Predicate = (or_ln321_61 == 1)> <Delay = 0.00>
+ST_2 : Operation 181 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_2, i64* %dest_V31_addr, align 8" [net_hls.cc:135]   --->   Operation 181 'store' <Predicate = (or_ln321_61 == 31)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_2 : Operation 182 [1/1] (0.00ns)   --->   "br label %3" [net_hls.cc:135]   --->   Operation 182 'br' <Predicate = (or_ln321_61 == 31)> <Delay = 0.00>
+
+State 3 <SV = 2> <Delay = 0.86>
+ST_3 : Operation 183 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_2, i64* %dest_V24_addr, align 8" [net_hls.cc:135]   --->   Operation 183 'store' <Predicate = (or_ln321_61 == 24)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_3 : Operation 184 [1/1] (0.00ns)   --->   "br label %3" [net_hls.cc:135]   --->   Operation 184 'br' <Predicate = (or_ln321_61 == 24)> <Delay = 0.00>
+ST_3 : Operation 185 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_2, i64* %dest_V16_addr, align 8" [net_hls.cc:135]   --->   Operation 185 'store' <Predicate = (or_ln321_61 == 16)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_3 : Operation 186 [1/1] (0.00ns)   --->   "br label %3" [net_hls.cc:135]   --->   Operation 186 'br' <Predicate = (or_ln321_61 == 16)> <Delay = 0.00>
+ST_3 : Operation 187 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_2, i64* %dest_V8_addr, align 8" [net_hls.cc:135]   --->   Operation 187 'store' <Predicate = (or_ln321_61 == 8)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_3 : Operation 188 [1/1] (0.00ns)   --->   "br label %3" [net_hls.cc:135]   --->   Operation 188 'br' <Predicate = (or_ln321_61 == 8)> <Delay = 0.00>
+ST_3 : Operation 189 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_2, i64* %dest_V_addr, align 8" [net_hls.cc:135]   --->   Operation 189 'store' <Predicate = (or_ln321_61 == 0)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_3 : Operation 190 [1/1] (0.00ns)   --->   "br label %3" [net_hls.cc:135]   --->   Operation 190 'br' <Predicate = (or_ln321_61 == 0)> <Delay = 0.00>
+ST_3 : Operation 191 [1/1] (0.00ns)   --->   "%p_Result_201_3 = call i64 @_ssdm_op_PartSelect.i64.i512.i32.i32(i512 %src_V_read, i32 192, i32 255)" [net_hls.cc:135]   --->   Operation 191 'partselect' 'p_Result_201_3' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 192 [1/1] (0.00ns)   --->   "%or_ln321_62 = or i5 %shl_ln, 3" [net_hls.cc:135]   --->   Operation 192 'or' 'or_ln321_62' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 193 [1/1] (0.86ns)   --->   "switch i5 %or_ln321_62, label %branch159 [
+    i5 0, label %branch128
+    i5 1, label %branch129
+    i5 2, label %branch130
+    i5 3, label %branch131
+    i5 4, label %branch132
+    i5 5, label %branch133
+    i5 6, label %branch134
+    i5 7, label %branch135
+    i5 8, label %branch136
+    i5 9, label %branch137
+    i5 10, label %branch138
+    i5 11, label %branch139
+    i5 12, label %branch140
+    i5 13, label %branch141
+    i5 14, label %branch142
+    i5 15, label %branch143
+    i5 -16, label %branch144
+    i5 -15, label %branch145
+    i5 -14, label %branch146
+    i5 -13, label %branch147
+    i5 -12, label %branch148
+    i5 -11, label %branch149
+    i5 -10, label %branch150
+    i5 -9, label %branch151
+    i5 -8, label %branch152
+    i5 -7, label %branch153
+    i5 -6, label %branch154
+    i5 -5, label %branch155
+    i5 -4, label %branch156
+    i5 -3, label %branch157
+    i5 -2, label %branch158
+  ]" [net_hls.cc:135]   --->   Operation 193 'switch' <Predicate = true> <Delay = 0.86>
+ST_3 : Operation 194 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_3, i64* %dest_V30_addr, align 8" [net_hls.cc:135]   --->   Operation 194 'store' <Predicate = (or_ln321_62 == 30)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_3 : Operation 195 [1/1] (0.00ns)   --->   "br label %4" [net_hls.cc:135]   --->   Operation 195 'br' <Predicate = (or_ln321_62 == 30)> <Delay = 0.00>
+ST_3 : Operation 196 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_3, i64* %dest_V29_addr, align 8" [net_hls.cc:135]   --->   Operation 196 'store' <Predicate = (or_ln321_62 == 29)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_3 : Operation 197 [1/1] (0.00ns)   --->   "br label %4" [net_hls.cc:135]   --->   Operation 197 'br' <Predicate = (or_ln321_62 == 29)> <Delay = 0.00>
+ST_3 : Operation 198 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_3, i64* %dest_V28_addr, align 8" [net_hls.cc:135]   --->   Operation 198 'store' <Predicate = (or_ln321_62 == 28)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_3 : Operation 199 [1/1] (0.00ns)   --->   "br label %4" [net_hls.cc:135]   --->   Operation 199 'br' <Predicate = (or_ln321_62 == 28)> <Delay = 0.00>
+ST_3 : Operation 200 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_3, i64* %dest_V27_addr, align 8" [net_hls.cc:135]   --->   Operation 200 'store' <Predicate = (or_ln321_62 == 27)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_3 : Operation 201 [1/1] (0.00ns)   --->   "br label %4" [net_hls.cc:135]   --->   Operation 201 'br' <Predicate = (or_ln321_62 == 27)> <Delay = 0.00>
+ST_3 : Operation 202 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_3, i64* %dest_V26_addr, align 8" [net_hls.cc:135]   --->   Operation 202 'store' <Predicate = (or_ln321_62 == 26)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_3 : Operation 203 [1/1] (0.00ns)   --->   "br label %4" [net_hls.cc:135]   --->   Operation 203 'br' <Predicate = (or_ln321_62 == 26)> <Delay = 0.00>
+ST_3 : Operation 204 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_3, i64* %dest_V25_addr, align 8" [net_hls.cc:135]   --->   Operation 204 'store' <Predicate = (or_ln321_62 == 25)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_3 : Operation 205 [1/1] (0.00ns)   --->   "br label %4" [net_hls.cc:135]   --->   Operation 205 'br' <Predicate = (or_ln321_62 == 25)> <Delay = 0.00>
+ST_3 : Operation 206 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_3, i64* %dest_V23_addr, align 8" [net_hls.cc:135]   --->   Operation 206 'store' <Predicate = (or_ln321_62 == 23)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_3 : Operation 207 [1/1] (0.00ns)   --->   "br label %4" [net_hls.cc:135]   --->   Operation 207 'br' <Predicate = (or_ln321_62 == 23)> <Delay = 0.00>
+ST_3 : Operation 208 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_3, i64* %dest_V22_addr, align 8" [net_hls.cc:135]   --->   Operation 208 'store' <Predicate = (or_ln321_62 == 22)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_3 : Operation 209 [1/1] (0.00ns)   --->   "br label %4" [net_hls.cc:135]   --->   Operation 209 'br' <Predicate = (or_ln321_62 == 22)> <Delay = 0.00>
+ST_3 : Operation 210 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_3, i64* %dest_V21_addr, align 8" [net_hls.cc:135]   --->   Operation 210 'store' <Predicate = (or_ln321_62 == 21)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_3 : Operation 211 [1/1] (0.00ns)   --->   "br label %4" [net_hls.cc:135]   --->   Operation 211 'br' <Predicate = (or_ln321_62 == 21)> <Delay = 0.00>
+ST_3 : Operation 212 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_3, i64* %dest_V20_addr, align 8" [net_hls.cc:135]   --->   Operation 212 'store' <Predicate = (or_ln321_62 == 20)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_3 : Operation 213 [1/1] (0.00ns)   --->   "br label %4" [net_hls.cc:135]   --->   Operation 213 'br' <Predicate = (or_ln321_62 == 20)> <Delay = 0.00>
+ST_3 : Operation 214 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_3, i64* %dest_V19_addr, align 8" [net_hls.cc:135]   --->   Operation 214 'store' <Predicate = (or_ln321_62 == 19)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_3 : Operation 215 [1/1] (0.00ns)   --->   "br label %4" [net_hls.cc:135]   --->   Operation 215 'br' <Predicate = (or_ln321_62 == 19)> <Delay = 0.00>
+ST_3 : Operation 216 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_3, i64* %dest_V18_addr, align 8" [net_hls.cc:135]   --->   Operation 216 'store' <Predicate = (or_ln321_62 == 18)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_3 : Operation 217 [1/1] (0.00ns)   --->   "br label %4" [net_hls.cc:135]   --->   Operation 217 'br' <Predicate = (or_ln321_62 == 18)> <Delay = 0.00>
+ST_3 : Operation 218 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_3, i64* %dest_V17_addr, align 8" [net_hls.cc:135]   --->   Operation 218 'store' <Predicate = (or_ln321_62 == 17)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_3 : Operation 219 [1/1] (0.00ns)   --->   "br label %4" [net_hls.cc:135]   --->   Operation 219 'br' <Predicate = (or_ln321_62 == 17)> <Delay = 0.00>
+ST_3 : Operation 220 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_3, i64* %dest_V15_addr, align 8" [net_hls.cc:135]   --->   Operation 220 'store' <Predicate = (or_ln321_62 == 15)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_3 : Operation 221 [1/1] (0.00ns)   --->   "br label %4" [net_hls.cc:135]   --->   Operation 221 'br' <Predicate = (or_ln321_62 == 15)> <Delay = 0.00>
+ST_3 : Operation 222 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_3, i64* %dest_V14_addr, align 8" [net_hls.cc:135]   --->   Operation 222 'store' <Predicate = (or_ln321_62 == 14)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_3 : Operation 223 [1/1] (0.00ns)   --->   "br label %4" [net_hls.cc:135]   --->   Operation 223 'br' <Predicate = (or_ln321_62 == 14)> <Delay = 0.00>
+ST_3 : Operation 224 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_3, i64* %dest_V13_addr, align 8" [net_hls.cc:135]   --->   Operation 224 'store' <Predicate = (or_ln321_62 == 13)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_3 : Operation 225 [1/1] (0.00ns)   --->   "br label %4" [net_hls.cc:135]   --->   Operation 225 'br' <Predicate = (or_ln321_62 == 13)> <Delay = 0.00>
+ST_3 : Operation 226 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_3, i64* %dest_V12_addr, align 8" [net_hls.cc:135]   --->   Operation 226 'store' <Predicate = (or_ln321_62 == 12)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_3 : Operation 227 [1/1] (0.00ns)   --->   "br label %4" [net_hls.cc:135]   --->   Operation 227 'br' <Predicate = (or_ln321_62 == 12)> <Delay = 0.00>
+ST_3 : Operation 228 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_3, i64* %dest_V11_addr, align 8" [net_hls.cc:135]   --->   Operation 228 'store' <Predicate = (or_ln321_62 == 11)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_3 : Operation 229 [1/1] (0.00ns)   --->   "br label %4" [net_hls.cc:135]   --->   Operation 229 'br' <Predicate = (or_ln321_62 == 11)> <Delay = 0.00>
+ST_3 : Operation 230 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_3, i64* %dest_V10_addr, align 8" [net_hls.cc:135]   --->   Operation 230 'store' <Predicate = (or_ln321_62 == 10)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_3 : Operation 231 [1/1] (0.00ns)   --->   "br label %4" [net_hls.cc:135]   --->   Operation 231 'br' <Predicate = (or_ln321_62 == 10)> <Delay = 0.00>
+ST_3 : Operation 232 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_3, i64* %dest_V9_addr, align 8" [net_hls.cc:135]   --->   Operation 232 'store' <Predicate = (or_ln321_62 == 9)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_3 : Operation 233 [1/1] (0.00ns)   --->   "br label %4" [net_hls.cc:135]   --->   Operation 233 'br' <Predicate = (or_ln321_62 == 9)> <Delay = 0.00>
+ST_3 : Operation 234 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_3, i64* %dest_V7_addr, align 8" [net_hls.cc:135]   --->   Operation 234 'store' <Predicate = (or_ln321_62 == 7)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_3 : Operation 235 [1/1] (0.00ns)   --->   "br label %4" [net_hls.cc:135]   --->   Operation 235 'br' <Predicate = (or_ln321_62 == 7)> <Delay = 0.00>
+ST_3 : Operation 236 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_3, i64* %dest_V6_addr, align 8" [net_hls.cc:135]   --->   Operation 236 'store' <Predicate = (or_ln321_62 == 6)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_3 : Operation 237 [1/1] (0.00ns)   --->   "br label %4" [net_hls.cc:135]   --->   Operation 237 'br' <Predicate = (or_ln321_62 == 6)> <Delay = 0.00>
+ST_3 : Operation 238 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_3, i64* %dest_V5_addr, align 8" [net_hls.cc:135]   --->   Operation 238 'store' <Predicate = (or_ln321_62 == 5)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_3 : Operation 239 [1/1] (0.00ns)   --->   "br label %4" [net_hls.cc:135]   --->   Operation 239 'br' <Predicate = (or_ln321_62 == 5)> <Delay = 0.00>
+ST_3 : Operation 240 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_3, i64* %dest_V4_addr, align 8" [net_hls.cc:135]   --->   Operation 240 'store' <Predicate = (or_ln321_62 == 4)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_3 : Operation 241 [1/1] (0.00ns)   --->   "br label %4" [net_hls.cc:135]   --->   Operation 241 'br' <Predicate = (or_ln321_62 == 4)> <Delay = 0.00>
+ST_3 : Operation 242 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_3, i64* %dest_V3_addr, align 8" [net_hls.cc:135]   --->   Operation 242 'store' <Predicate = (or_ln321_62 == 3)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_3 : Operation 243 [1/1] (0.00ns)   --->   "br label %4" [net_hls.cc:135]   --->   Operation 243 'br' <Predicate = (or_ln321_62 == 3)> <Delay = 0.00>
+ST_3 : Operation 244 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_3, i64* %dest_V2_addr, align 8" [net_hls.cc:135]   --->   Operation 244 'store' <Predicate = (or_ln321_62 == 2)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_3 : Operation 245 [1/1] (0.00ns)   --->   "br label %4" [net_hls.cc:135]   --->   Operation 245 'br' <Predicate = (or_ln321_62 == 2)> <Delay = 0.00>
+ST_3 : Operation 246 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_3, i64* %dest_V1_addr, align 8" [net_hls.cc:135]   --->   Operation 246 'store' <Predicate = (or_ln321_62 == 1)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_3 : Operation 247 [1/1] (0.00ns)   --->   "br label %4" [net_hls.cc:135]   --->   Operation 247 'br' <Predicate = (or_ln321_62 == 1)> <Delay = 0.00>
+ST_3 : Operation 248 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_3, i64* %dest_V31_addr, align 8" [net_hls.cc:135]   --->   Operation 248 'store' <Predicate = (or_ln321_62 == 31)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_3 : Operation 249 [1/1] (0.00ns)   --->   "br label %4" [net_hls.cc:135]   --->   Operation 249 'br' <Predicate = (or_ln321_62 == 31)> <Delay = 0.00>
+
+State 4 <SV = 3> <Delay = 0.86>
+ST_4 : Operation 250 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_3, i64* %dest_V24_addr, align 8" [net_hls.cc:135]   --->   Operation 250 'store' <Predicate = (or_ln321_62 == 24)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_4 : Operation 251 [1/1] (0.00ns)   --->   "br label %4" [net_hls.cc:135]   --->   Operation 251 'br' <Predicate = (or_ln321_62 == 24)> <Delay = 0.00>
+ST_4 : Operation 252 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_3, i64* %dest_V16_addr, align 8" [net_hls.cc:135]   --->   Operation 252 'store' <Predicate = (or_ln321_62 == 16)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_4 : Operation 253 [1/1] (0.00ns)   --->   "br label %4" [net_hls.cc:135]   --->   Operation 253 'br' <Predicate = (or_ln321_62 == 16)> <Delay = 0.00>
+ST_4 : Operation 254 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_3, i64* %dest_V8_addr, align 8" [net_hls.cc:135]   --->   Operation 254 'store' <Predicate = (or_ln321_62 == 8)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_4 : Operation 255 [1/1] (0.00ns)   --->   "br label %4" [net_hls.cc:135]   --->   Operation 255 'br' <Predicate = (or_ln321_62 == 8)> <Delay = 0.00>
+ST_4 : Operation 256 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_3, i64* %dest_V_addr, align 8" [net_hls.cc:135]   --->   Operation 256 'store' <Predicate = (or_ln321_62 == 0)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_4 : Operation 257 [1/1] (0.00ns)   --->   "br label %4" [net_hls.cc:135]   --->   Operation 257 'br' <Predicate = (or_ln321_62 == 0)> <Delay = 0.00>
+ST_4 : Operation 258 [1/1] (0.00ns)   --->   "%p_Result_201_4 = call i64 @_ssdm_op_PartSelect.i64.i512.i32.i32(i512 %src_V_read, i32 256, i32 319)" [net_hls.cc:135]   --->   Operation 258 'partselect' 'p_Result_201_4' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 259 [1/1] (0.00ns)   --->   "%or_ln321_63 = or i5 %shl_ln, 4" [net_hls.cc:135]   --->   Operation 259 'or' 'or_ln321_63' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 260 [1/1] (0.86ns)   --->   "switch i5 %or_ln321_63, label %branch127 [
+    i5 0, label %branch96
+    i5 1, label %branch97
+    i5 2, label %branch98
+    i5 3, label %branch99
+    i5 4, label %branch100
+    i5 5, label %branch101
+    i5 6, label %branch102
+    i5 7, label %branch103
+    i5 8, label %branch104
+    i5 9, label %branch105
+    i5 10, label %branch106
+    i5 11, label %branch107
+    i5 12, label %branch108
+    i5 13, label %branch109
+    i5 14, label %branch110
+    i5 15, label %branch111
+    i5 -16, label %branch112
+    i5 -15, label %branch113
+    i5 -14, label %branch114
+    i5 -13, label %branch115
+    i5 -12, label %branch116
+    i5 -11, label %branch117
+    i5 -10, label %branch118
+    i5 -9, label %branch119
+    i5 -8, label %branch120
+    i5 -7, label %branch121
+    i5 -6, label %branch122
+    i5 -5, label %branch123
+    i5 -4, label %branch124
+    i5 -3, label %branch125
+    i5 -2, label %branch126
+  ]" [net_hls.cc:135]   --->   Operation 260 'switch' <Predicate = true> <Delay = 0.86>
+ST_4 : Operation 261 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_4, i64* %dest_V30_addr, align 8" [net_hls.cc:135]   --->   Operation 261 'store' <Predicate = (or_ln321_63 == 30)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_4 : Operation 262 [1/1] (0.00ns)   --->   "br label %5" [net_hls.cc:135]   --->   Operation 262 'br' <Predicate = (or_ln321_63 == 30)> <Delay = 0.00>
+ST_4 : Operation 263 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_4, i64* %dest_V29_addr, align 8" [net_hls.cc:135]   --->   Operation 263 'store' <Predicate = (or_ln321_63 == 29)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_4 : Operation 264 [1/1] (0.00ns)   --->   "br label %5" [net_hls.cc:135]   --->   Operation 264 'br' <Predicate = (or_ln321_63 == 29)> <Delay = 0.00>
+ST_4 : Operation 265 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_4, i64* %dest_V28_addr, align 8" [net_hls.cc:135]   --->   Operation 265 'store' <Predicate = (or_ln321_63 == 28)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_4 : Operation 266 [1/1] (0.00ns)   --->   "br label %5" [net_hls.cc:135]   --->   Operation 266 'br' <Predicate = (or_ln321_63 == 28)> <Delay = 0.00>
+ST_4 : Operation 267 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_4, i64* %dest_V27_addr, align 8" [net_hls.cc:135]   --->   Operation 267 'store' <Predicate = (or_ln321_63 == 27)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_4 : Operation 268 [1/1] (0.00ns)   --->   "br label %5" [net_hls.cc:135]   --->   Operation 268 'br' <Predicate = (or_ln321_63 == 27)> <Delay = 0.00>
+ST_4 : Operation 269 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_4, i64* %dest_V26_addr, align 8" [net_hls.cc:135]   --->   Operation 269 'store' <Predicate = (or_ln321_63 == 26)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_4 : Operation 270 [1/1] (0.00ns)   --->   "br label %5" [net_hls.cc:135]   --->   Operation 270 'br' <Predicate = (or_ln321_63 == 26)> <Delay = 0.00>
+ST_4 : Operation 271 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_4, i64* %dest_V25_addr, align 8" [net_hls.cc:135]   --->   Operation 271 'store' <Predicate = (or_ln321_63 == 25)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_4 : Operation 272 [1/1] (0.00ns)   --->   "br label %5" [net_hls.cc:135]   --->   Operation 272 'br' <Predicate = (or_ln321_63 == 25)> <Delay = 0.00>
+ST_4 : Operation 273 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_4, i64* %dest_V23_addr, align 8" [net_hls.cc:135]   --->   Operation 273 'store' <Predicate = (or_ln321_63 == 23)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_4 : Operation 274 [1/1] (0.00ns)   --->   "br label %5" [net_hls.cc:135]   --->   Operation 274 'br' <Predicate = (or_ln321_63 == 23)> <Delay = 0.00>
+ST_4 : Operation 275 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_4, i64* %dest_V22_addr, align 8" [net_hls.cc:135]   --->   Operation 275 'store' <Predicate = (or_ln321_63 == 22)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_4 : Operation 276 [1/1] (0.00ns)   --->   "br label %5" [net_hls.cc:135]   --->   Operation 276 'br' <Predicate = (or_ln321_63 == 22)> <Delay = 0.00>
+ST_4 : Operation 277 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_4, i64* %dest_V21_addr, align 8" [net_hls.cc:135]   --->   Operation 277 'store' <Predicate = (or_ln321_63 == 21)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_4 : Operation 278 [1/1] (0.00ns)   --->   "br label %5" [net_hls.cc:135]   --->   Operation 278 'br' <Predicate = (or_ln321_63 == 21)> <Delay = 0.00>
+ST_4 : Operation 279 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_4, i64* %dest_V20_addr, align 8" [net_hls.cc:135]   --->   Operation 279 'store' <Predicate = (or_ln321_63 == 20)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_4 : Operation 280 [1/1] (0.00ns)   --->   "br label %5" [net_hls.cc:135]   --->   Operation 280 'br' <Predicate = (or_ln321_63 == 20)> <Delay = 0.00>
+ST_4 : Operation 281 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_4, i64* %dest_V19_addr, align 8" [net_hls.cc:135]   --->   Operation 281 'store' <Predicate = (or_ln321_63 == 19)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_4 : Operation 282 [1/1] (0.00ns)   --->   "br label %5" [net_hls.cc:135]   --->   Operation 282 'br' <Predicate = (or_ln321_63 == 19)> <Delay = 0.00>
+ST_4 : Operation 283 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_4, i64* %dest_V18_addr, align 8" [net_hls.cc:135]   --->   Operation 283 'store' <Predicate = (or_ln321_63 == 18)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_4 : Operation 284 [1/1] (0.00ns)   --->   "br label %5" [net_hls.cc:135]   --->   Operation 284 'br' <Predicate = (or_ln321_63 == 18)> <Delay = 0.00>
+ST_4 : Operation 285 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_4, i64* %dest_V17_addr, align 8" [net_hls.cc:135]   --->   Operation 285 'store' <Predicate = (or_ln321_63 == 17)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_4 : Operation 286 [1/1] (0.00ns)   --->   "br label %5" [net_hls.cc:135]   --->   Operation 286 'br' <Predicate = (or_ln321_63 == 17)> <Delay = 0.00>
+ST_4 : Operation 287 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_4, i64* %dest_V15_addr, align 8" [net_hls.cc:135]   --->   Operation 287 'store' <Predicate = (or_ln321_63 == 15)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_4 : Operation 288 [1/1] (0.00ns)   --->   "br label %5" [net_hls.cc:135]   --->   Operation 288 'br' <Predicate = (or_ln321_63 == 15)> <Delay = 0.00>
+ST_4 : Operation 289 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_4, i64* %dest_V14_addr, align 8" [net_hls.cc:135]   --->   Operation 289 'store' <Predicate = (or_ln321_63 == 14)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_4 : Operation 290 [1/1] (0.00ns)   --->   "br label %5" [net_hls.cc:135]   --->   Operation 290 'br' <Predicate = (or_ln321_63 == 14)> <Delay = 0.00>
+ST_4 : Operation 291 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_4, i64* %dest_V13_addr, align 8" [net_hls.cc:135]   --->   Operation 291 'store' <Predicate = (or_ln321_63 == 13)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_4 : Operation 292 [1/1] (0.00ns)   --->   "br label %5" [net_hls.cc:135]   --->   Operation 292 'br' <Predicate = (or_ln321_63 == 13)> <Delay = 0.00>
+ST_4 : Operation 293 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_4, i64* %dest_V12_addr, align 8" [net_hls.cc:135]   --->   Operation 293 'store' <Predicate = (or_ln321_63 == 12)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_4 : Operation 294 [1/1] (0.00ns)   --->   "br label %5" [net_hls.cc:135]   --->   Operation 294 'br' <Predicate = (or_ln321_63 == 12)> <Delay = 0.00>
+ST_4 : Operation 295 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_4, i64* %dest_V11_addr, align 8" [net_hls.cc:135]   --->   Operation 295 'store' <Predicate = (or_ln321_63 == 11)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_4 : Operation 296 [1/1] (0.00ns)   --->   "br label %5" [net_hls.cc:135]   --->   Operation 296 'br' <Predicate = (or_ln321_63 == 11)> <Delay = 0.00>
+ST_4 : Operation 297 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_4, i64* %dest_V10_addr, align 8" [net_hls.cc:135]   --->   Operation 297 'store' <Predicate = (or_ln321_63 == 10)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_4 : Operation 298 [1/1] (0.00ns)   --->   "br label %5" [net_hls.cc:135]   --->   Operation 298 'br' <Predicate = (or_ln321_63 == 10)> <Delay = 0.00>
+ST_4 : Operation 299 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_4, i64* %dest_V9_addr, align 8" [net_hls.cc:135]   --->   Operation 299 'store' <Predicate = (or_ln321_63 == 9)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_4 : Operation 300 [1/1] (0.00ns)   --->   "br label %5" [net_hls.cc:135]   --->   Operation 300 'br' <Predicate = (or_ln321_63 == 9)> <Delay = 0.00>
+ST_4 : Operation 301 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_4, i64* %dest_V7_addr, align 8" [net_hls.cc:135]   --->   Operation 301 'store' <Predicate = (or_ln321_63 == 7)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_4 : Operation 302 [1/1] (0.00ns)   --->   "br label %5" [net_hls.cc:135]   --->   Operation 302 'br' <Predicate = (or_ln321_63 == 7)> <Delay = 0.00>
+ST_4 : Operation 303 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_4, i64* %dest_V6_addr, align 8" [net_hls.cc:135]   --->   Operation 303 'store' <Predicate = (or_ln321_63 == 6)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_4 : Operation 304 [1/1] (0.00ns)   --->   "br label %5" [net_hls.cc:135]   --->   Operation 304 'br' <Predicate = (or_ln321_63 == 6)> <Delay = 0.00>
+ST_4 : Operation 305 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_4, i64* %dest_V5_addr, align 8" [net_hls.cc:135]   --->   Operation 305 'store' <Predicate = (or_ln321_63 == 5)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_4 : Operation 306 [1/1] (0.00ns)   --->   "br label %5" [net_hls.cc:135]   --->   Operation 306 'br' <Predicate = (or_ln321_63 == 5)> <Delay = 0.00>
+ST_4 : Operation 307 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_4, i64* %dest_V4_addr, align 8" [net_hls.cc:135]   --->   Operation 307 'store' <Predicate = (or_ln321_63 == 4)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_4 : Operation 308 [1/1] (0.00ns)   --->   "br label %5" [net_hls.cc:135]   --->   Operation 308 'br' <Predicate = (or_ln321_63 == 4)> <Delay = 0.00>
+ST_4 : Operation 309 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_4, i64* %dest_V3_addr, align 8" [net_hls.cc:135]   --->   Operation 309 'store' <Predicate = (or_ln321_63 == 3)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_4 : Operation 310 [1/1] (0.00ns)   --->   "br label %5" [net_hls.cc:135]   --->   Operation 310 'br' <Predicate = (or_ln321_63 == 3)> <Delay = 0.00>
+ST_4 : Operation 311 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_4, i64* %dest_V2_addr, align 8" [net_hls.cc:135]   --->   Operation 311 'store' <Predicate = (or_ln321_63 == 2)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_4 : Operation 312 [1/1] (0.00ns)   --->   "br label %5" [net_hls.cc:135]   --->   Operation 312 'br' <Predicate = (or_ln321_63 == 2)> <Delay = 0.00>
+ST_4 : Operation 313 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_4, i64* %dest_V1_addr, align 8" [net_hls.cc:135]   --->   Operation 313 'store' <Predicate = (or_ln321_63 == 1)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_4 : Operation 314 [1/1] (0.00ns)   --->   "br label %5" [net_hls.cc:135]   --->   Operation 314 'br' <Predicate = (or_ln321_63 == 1)> <Delay = 0.00>
+ST_4 : Operation 315 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_4, i64* %dest_V31_addr, align 8" [net_hls.cc:135]   --->   Operation 315 'store' <Predicate = (or_ln321_63 == 31)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_4 : Operation 316 [1/1] (0.00ns)   --->   "br label %5" [net_hls.cc:135]   --->   Operation 316 'br' <Predicate = (or_ln321_63 == 31)> <Delay = 0.00>
+
+State 5 <SV = 4> <Delay = 0.86>
+ST_5 : Operation 317 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_4, i64* %dest_V24_addr, align 8" [net_hls.cc:135]   --->   Operation 317 'store' <Predicate = (or_ln321_63 == 24)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_5 : Operation 318 [1/1] (0.00ns)   --->   "br label %5" [net_hls.cc:135]   --->   Operation 318 'br' <Predicate = (or_ln321_63 == 24)> <Delay = 0.00>
+ST_5 : Operation 319 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_4, i64* %dest_V16_addr, align 8" [net_hls.cc:135]   --->   Operation 319 'store' <Predicate = (or_ln321_63 == 16)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_5 : Operation 320 [1/1] (0.00ns)   --->   "br label %5" [net_hls.cc:135]   --->   Operation 320 'br' <Predicate = (or_ln321_63 == 16)> <Delay = 0.00>
+ST_5 : Operation 321 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_4, i64* %dest_V8_addr, align 8" [net_hls.cc:135]   --->   Operation 321 'store' <Predicate = (or_ln321_63 == 8)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_5 : Operation 322 [1/1] (0.00ns)   --->   "br label %5" [net_hls.cc:135]   --->   Operation 322 'br' <Predicate = (or_ln321_63 == 8)> <Delay = 0.00>
+ST_5 : Operation 323 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_4, i64* %dest_V_addr, align 8" [net_hls.cc:135]   --->   Operation 323 'store' <Predicate = (or_ln321_63 == 0)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_5 : Operation 324 [1/1] (0.00ns)   --->   "br label %5" [net_hls.cc:135]   --->   Operation 324 'br' <Predicate = (or_ln321_63 == 0)> <Delay = 0.00>
+ST_5 : Operation 325 [1/1] (0.00ns)   --->   "%p_Result_201_5 = call i64 @_ssdm_op_PartSelect.i64.i512.i32.i32(i512 %src_V_read, i32 320, i32 383)" [net_hls.cc:135]   --->   Operation 325 'partselect' 'p_Result_201_5' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 326 [1/1] (0.00ns)   --->   "%or_ln321_64 = or i5 %shl_ln, 5" [net_hls.cc:135]   --->   Operation 326 'or' 'or_ln321_64' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 327 [1/1] (0.86ns)   --->   "switch i5 %or_ln321_64, label %branch95 [
+    i5 0, label %branch64
+    i5 1, label %branch65
+    i5 2, label %branch66
+    i5 3, label %branch67
+    i5 4, label %branch68
+    i5 5, label %branch69
+    i5 6, label %branch70
+    i5 7, label %branch71
+    i5 8, label %branch72
+    i5 9, label %branch73
+    i5 10, label %branch74
+    i5 11, label %branch75
+    i5 12, label %branch76
+    i5 13, label %branch77
+    i5 14, label %branch78
+    i5 15, label %branch79
+    i5 -16, label %branch80
+    i5 -15, label %branch81
+    i5 -14, label %branch82
+    i5 -13, label %branch83
+    i5 -12, label %branch84
+    i5 -11, label %branch85
+    i5 -10, label %branch86
+    i5 -9, label %branch87
+    i5 -8, label %branch88
+    i5 -7, label %branch89
+    i5 -6, label %branch90
+    i5 -5, label %branch91
+    i5 -4, label %branch92
+    i5 -3, label %branch93
+    i5 -2, label %branch94
+  ]" [net_hls.cc:135]   --->   Operation 327 'switch' <Predicate = true> <Delay = 0.86>
+ST_5 : Operation 328 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_5, i64* %dest_V30_addr, align 8" [net_hls.cc:135]   --->   Operation 328 'store' <Predicate = (or_ln321_64 == 30)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_5 : Operation 329 [1/1] (0.00ns)   --->   "br label %6" [net_hls.cc:135]   --->   Operation 329 'br' <Predicate = (or_ln321_64 == 30)> <Delay = 0.00>
+ST_5 : Operation 330 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_5, i64* %dest_V29_addr, align 8" [net_hls.cc:135]   --->   Operation 330 'store' <Predicate = (or_ln321_64 == 29)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_5 : Operation 331 [1/1] (0.00ns)   --->   "br label %6" [net_hls.cc:135]   --->   Operation 331 'br' <Predicate = (or_ln321_64 == 29)> <Delay = 0.00>
+ST_5 : Operation 332 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_5, i64* %dest_V28_addr, align 8" [net_hls.cc:135]   --->   Operation 332 'store' <Predicate = (or_ln321_64 == 28)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_5 : Operation 333 [1/1] (0.00ns)   --->   "br label %6" [net_hls.cc:135]   --->   Operation 333 'br' <Predicate = (or_ln321_64 == 28)> <Delay = 0.00>
+ST_5 : Operation 334 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_5, i64* %dest_V27_addr, align 8" [net_hls.cc:135]   --->   Operation 334 'store' <Predicate = (or_ln321_64 == 27)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_5 : Operation 335 [1/1] (0.00ns)   --->   "br label %6" [net_hls.cc:135]   --->   Operation 335 'br' <Predicate = (or_ln321_64 == 27)> <Delay = 0.00>
+ST_5 : Operation 336 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_5, i64* %dest_V26_addr, align 8" [net_hls.cc:135]   --->   Operation 336 'store' <Predicate = (or_ln321_64 == 26)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_5 : Operation 337 [1/1] (0.00ns)   --->   "br label %6" [net_hls.cc:135]   --->   Operation 337 'br' <Predicate = (or_ln321_64 == 26)> <Delay = 0.00>
+ST_5 : Operation 338 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_5, i64* %dest_V25_addr, align 8" [net_hls.cc:135]   --->   Operation 338 'store' <Predicate = (or_ln321_64 == 25)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_5 : Operation 339 [1/1] (0.00ns)   --->   "br label %6" [net_hls.cc:135]   --->   Operation 339 'br' <Predicate = (or_ln321_64 == 25)> <Delay = 0.00>
+ST_5 : Operation 340 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_5, i64* %dest_V23_addr, align 8" [net_hls.cc:135]   --->   Operation 340 'store' <Predicate = (or_ln321_64 == 23)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_5 : Operation 341 [1/1] (0.00ns)   --->   "br label %6" [net_hls.cc:135]   --->   Operation 341 'br' <Predicate = (or_ln321_64 == 23)> <Delay = 0.00>
+ST_5 : Operation 342 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_5, i64* %dest_V22_addr, align 8" [net_hls.cc:135]   --->   Operation 342 'store' <Predicate = (or_ln321_64 == 22)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_5 : Operation 343 [1/1] (0.00ns)   --->   "br label %6" [net_hls.cc:135]   --->   Operation 343 'br' <Predicate = (or_ln321_64 == 22)> <Delay = 0.00>
+ST_5 : Operation 344 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_5, i64* %dest_V21_addr, align 8" [net_hls.cc:135]   --->   Operation 344 'store' <Predicate = (or_ln321_64 == 21)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_5 : Operation 345 [1/1] (0.00ns)   --->   "br label %6" [net_hls.cc:135]   --->   Operation 345 'br' <Predicate = (or_ln321_64 == 21)> <Delay = 0.00>
+ST_5 : Operation 346 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_5, i64* %dest_V20_addr, align 8" [net_hls.cc:135]   --->   Operation 346 'store' <Predicate = (or_ln321_64 == 20)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_5 : Operation 347 [1/1] (0.00ns)   --->   "br label %6" [net_hls.cc:135]   --->   Operation 347 'br' <Predicate = (or_ln321_64 == 20)> <Delay = 0.00>
+ST_5 : Operation 348 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_5, i64* %dest_V19_addr, align 8" [net_hls.cc:135]   --->   Operation 348 'store' <Predicate = (or_ln321_64 == 19)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_5 : Operation 349 [1/1] (0.00ns)   --->   "br label %6" [net_hls.cc:135]   --->   Operation 349 'br' <Predicate = (or_ln321_64 == 19)> <Delay = 0.00>
+ST_5 : Operation 350 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_5, i64* %dest_V18_addr, align 8" [net_hls.cc:135]   --->   Operation 350 'store' <Predicate = (or_ln321_64 == 18)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_5 : Operation 351 [1/1] (0.00ns)   --->   "br label %6" [net_hls.cc:135]   --->   Operation 351 'br' <Predicate = (or_ln321_64 == 18)> <Delay = 0.00>
+ST_5 : Operation 352 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_5, i64* %dest_V17_addr, align 8" [net_hls.cc:135]   --->   Operation 352 'store' <Predicate = (or_ln321_64 == 17)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_5 : Operation 353 [1/1] (0.00ns)   --->   "br label %6" [net_hls.cc:135]   --->   Operation 353 'br' <Predicate = (or_ln321_64 == 17)> <Delay = 0.00>
+ST_5 : Operation 354 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_5, i64* %dest_V15_addr, align 8" [net_hls.cc:135]   --->   Operation 354 'store' <Predicate = (or_ln321_64 == 15)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_5 : Operation 355 [1/1] (0.00ns)   --->   "br label %6" [net_hls.cc:135]   --->   Operation 355 'br' <Predicate = (or_ln321_64 == 15)> <Delay = 0.00>
+ST_5 : Operation 356 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_5, i64* %dest_V14_addr, align 8" [net_hls.cc:135]   --->   Operation 356 'store' <Predicate = (or_ln321_64 == 14)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_5 : Operation 357 [1/1] (0.00ns)   --->   "br label %6" [net_hls.cc:135]   --->   Operation 357 'br' <Predicate = (or_ln321_64 == 14)> <Delay = 0.00>
+ST_5 : Operation 358 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_5, i64* %dest_V13_addr, align 8" [net_hls.cc:135]   --->   Operation 358 'store' <Predicate = (or_ln321_64 == 13)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_5 : Operation 359 [1/1] (0.00ns)   --->   "br label %6" [net_hls.cc:135]   --->   Operation 359 'br' <Predicate = (or_ln321_64 == 13)> <Delay = 0.00>
+ST_5 : Operation 360 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_5, i64* %dest_V12_addr, align 8" [net_hls.cc:135]   --->   Operation 360 'store' <Predicate = (or_ln321_64 == 12)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_5 : Operation 361 [1/1] (0.00ns)   --->   "br label %6" [net_hls.cc:135]   --->   Operation 361 'br' <Predicate = (or_ln321_64 == 12)> <Delay = 0.00>
+ST_5 : Operation 362 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_5, i64* %dest_V11_addr, align 8" [net_hls.cc:135]   --->   Operation 362 'store' <Predicate = (or_ln321_64 == 11)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_5 : Operation 363 [1/1] (0.00ns)   --->   "br label %6" [net_hls.cc:135]   --->   Operation 363 'br' <Predicate = (or_ln321_64 == 11)> <Delay = 0.00>
+ST_5 : Operation 364 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_5, i64* %dest_V10_addr, align 8" [net_hls.cc:135]   --->   Operation 364 'store' <Predicate = (or_ln321_64 == 10)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_5 : Operation 365 [1/1] (0.00ns)   --->   "br label %6" [net_hls.cc:135]   --->   Operation 365 'br' <Predicate = (or_ln321_64 == 10)> <Delay = 0.00>
+ST_5 : Operation 366 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_5, i64* %dest_V9_addr, align 8" [net_hls.cc:135]   --->   Operation 366 'store' <Predicate = (or_ln321_64 == 9)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_5 : Operation 367 [1/1] (0.00ns)   --->   "br label %6" [net_hls.cc:135]   --->   Operation 367 'br' <Predicate = (or_ln321_64 == 9)> <Delay = 0.00>
+ST_5 : Operation 368 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_5, i64* %dest_V7_addr, align 8" [net_hls.cc:135]   --->   Operation 368 'store' <Predicate = (or_ln321_64 == 7)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_5 : Operation 369 [1/1] (0.00ns)   --->   "br label %6" [net_hls.cc:135]   --->   Operation 369 'br' <Predicate = (or_ln321_64 == 7)> <Delay = 0.00>
+ST_5 : Operation 370 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_5, i64* %dest_V6_addr, align 8" [net_hls.cc:135]   --->   Operation 370 'store' <Predicate = (or_ln321_64 == 6)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_5 : Operation 371 [1/1] (0.00ns)   --->   "br label %6" [net_hls.cc:135]   --->   Operation 371 'br' <Predicate = (or_ln321_64 == 6)> <Delay = 0.00>
+ST_5 : Operation 372 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_5, i64* %dest_V5_addr, align 8" [net_hls.cc:135]   --->   Operation 372 'store' <Predicate = (or_ln321_64 == 5)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_5 : Operation 373 [1/1] (0.00ns)   --->   "br label %6" [net_hls.cc:135]   --->   Operation 373 'br' <Predicate = (or_ln321_64 == 5)> <Delay = 0.00>
+ST_5 : Operation 374 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_5, i64* %dest_V4_addr, align 8" [net_hls.cc:135]   --->   Operation 374 'store' <Predicate = (or_ln321_64 == 4)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_5 : Operation 375 [1/1] (0.00ns)   --->   "br label %6" [net_hls.cc:135]   --->   Operation 375 'br' <Predicate = (or_ln321_64 == 4)> <Delay = 0.00>
+ST_5 : Operation 376 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_5, i64* %dest_V3_addr, align 8" [net_hls.cc:135]   --->   Operation 376 'store' <Predicate = (or_ln321_64 == 3)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_5 : Operation 377 [1/1] (0.00ns)   --->   "br label %6" [net_hls.cc:135]   --->   Operation 377 'br' <Predicate = (or_ln321_64 == 3)> <Delay = 0.00>
+ST_5 : Operation 378 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_5, i64* %dest_V2_addr, align 8" [net_hls.cc:135]   --->   Operation 378 'store' <Predicate = (or_ln321_64 == 2)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_5 : Operation 379 [1/1] (0.00ns)   --->   "br label %6" [net_hls.cc:135]   --->   Operation 379 'br' <Predicate = (or_ln321_64 == 2)> <Delay = 0.00>
+ST_5 : Operation 380 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_5, i64* %dest_V1_addr, align 8" [net_hls.cc:135]   --->   Operation 380 'store' <Predicate = (or_ln321_64 == 1)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_5 : Operation 381 [1/1] (0.00ns)   --->   "br label %6" [net_hls.cc:135]   --->   Operation 381 'br' <Predicate = (or_ln321_64 == 1)> <Delay = 0.00>
+ST_5 : Operation 382 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_5, i64* %dest_V31_addr, align 8" [net_hls.cc:135]   --->   Operation 382 'store' <Predicate = (or_ln321_64 == 31)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_5 : Operation 383 [1/1] (0.00ns)   --->   "br label %6" [net_hls.cc:135]   --->   Operation 383 'br' <Predicate = (or_ln321_64 == 31)> <Delay = 0.00>
+
+State 6 <SV = 5> <Delay = 0.86>
+ST_6 : Operation 384 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_5, i64* %dest_V24_addr, align 8" [net_hls.cc:135]   --->   Operation 384 'store' <Predicate = (or_ln321_64 == 24)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_6 : Operation 385 [1/1] (0.00ns)   --->   "br label %6" [net_hls.cc:135]   --->   Operation 385 'br' <Predicate = (or_ln321_64 == 24)> <Delay = 0.00>
+ST_6 : Operation 386 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_5, i64* %dest_V16_addr, align 8" [net_hls.cc:135]   --->   Operation 386 'store' <Predicate = (or_ln321_64 == 16)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_6 : Operation 387 [1/1] (0.00ns)   --->   "br label %6" [net_hls.cc:135]   --->   Operation 387 'br' <Predicate = (or_ln321_64 == 16)> <Delay = 0.00>
+ST_6 : Operation 388 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_5, i64* %dest_V8_addr, align 8" [net_hls.cc:135]   --->   Operation 388 'store' <Predicate = (or_ln321_64 == 8)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_6 : Operation 389 [1/1] (0.00ns)   --->   "br label %6" [net_hls.cc:135]   --->   Operation 389 'br' <Predicate = (or_ln321_64 == 8)> <Delay = 0.00>
+ST_6 : Operation 390 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_5, i64* %dest_V_addr, align 8" [net_hls.cc:135]   --->   Operation 390 'store' <Predicate = (or_ln321_64 == 0)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_6 : Operation 391 [1/1] (0.00ns)   --->   "br label %6" [net_hls.cc:135]   --->   Operation 391 'br' <Predicate = (or_ln321_64 == 0)> <Delay = 0.00>
+ST_6 : Operation 392 [1/1] (0.00ns)   --->   "%p_Result_201_6 = call i64 @_ssdm_op_PartSelect.i64.i512.i32.i32(i512 %src_V_read, i32 384, i32 447)" [net_hls.cc:135]   --->   Operation 392 'partselect' 'p_Result_201_6' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 393 [1/1] (0.00ns)   --->   "%or_ln321_65 = or i5 %shl_ln, 6" [net_hls.cc:135]   --->   Operation 393 'or' 'or_ln321_65' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 394 [1/1] (0.86ns)   --->   "switch i5 %or_ln321_65, label %branch63 [
+    i5 0, label %branch32
+    i5 1, label %branch33
+    i5 2, label %branch34
+    i5 3, label %branch35
+    i5 4, label %branch36
+    i5 5, label %branch37
+    i5 6, label %branch38
+    i5 7, label %branch39
+    i5 8, label %branch40
+    i5 9, label %branch41
+    i5 10, label %branch42
+    i5 11, label %branch43
+    i5 12, label %branch44
+    i5 13, label %branch45
+    i5 14, label %branch46
+    i5 15, label %branch47
+    i5 -16, label %branch48
+    i5 -15, label %branch49
+    i5 -14, label %branch50
+    i5 -13, label %branch51
+    i5 -12, label %branch52
+    i5 -11, label %branch53
+    i5 -10, label %branch54
+    i5 -9, label %branch55
+    i5 -8, label %branch56
+    i5 -7, label %branch57
+    i5 -6, label %branch58
+    i5 -5, label %branch59
+    i5 -4, label %branch60
+    i5 -3, label %branch61
+    i5 -2, label %branch62
+  ]" [net_hls.cc:135]   --->   Operation 394 'switch' <Predicate = true> <Delay = 0.86>
+ST_6 : Operation 395 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_6, i64* %dest_V30_addr, align 8" [net_hls.cc:135]   --->   Operation 395 'store' <Predicate = (or_ln321_65 == 30)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_6 : Operation 396 [1/1] (0.00ns)   --->   "br label %7" [net_hls.cc:135]   --->   Operation 396 'br' <Predicate = (or_ln321_65 == 30)> <Delay = 0.00>
+ST_6 : Operation 397 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_6, i64* %dest_V29_addr, align 8" [net_hls.cc:135]   --->   Operation 397 'store' <Predicate = (or_ln321_65 == 29)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_6 : Operation 398 [1/1] (0.00ns)   --->   "br label %7" [net_hls.cc:135]   --->   Operation 398 'br' <Predicate = (or_ln321_65 == 29)> <Delay = 0.00>
+ST_6 : Operation 399 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_6, i64* %dest_V28_addr, align 8" [net_hls.cc:135]   --->   Operation 399 'store' <Predicate = (or_ln321_65 == 28)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_6 : Operation 400 [1/1] (0.00ns)   --->   "br label %7" [net_hls.cc:135]   --->   Operation 400 'br' <Predicate = (or_ln321_65 == 28)> <Delay = 0.00>
+ST_6 : Operation 401 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_6, i64* %dest_V27_addr, align 8" [net_hls.cc:135]   --->   Operation 401 'store' <Predicate = (or_ln321_65 == 27)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_6 : Operation 402 [1/1] (0.00ns)   --->   "br label %7" [net_hls.cc:135]   --->   Operation 402 'br' <Predicate = (or_ln321_65 == 27)> <Delay = 0.00>
+ST_6 : Operation 403 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_6, i64* %dest_V26_addr, align 8" [net_hls.cc:135]   --->   Operation 403 'store' <Predicate = (or_ln321_65 == 26)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_6 : Operation 404 [1/1] (0.00ns)   --->   "br label %7" [net_hls.cc:135]   --->   Operation 404 'br' <Predicate = (or_ln321_65 == 26)> <Delay = 0.00>
+ST_6 : Operation 405 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_6, i64* %dest_V25_addr, align 8" [net_hls.cc:135]   --->   Operation 405 'store' <Predicate = (or_ln321_65 == 25)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_6 : Operation 406 [1/1] (0.00ns)   --->   "br label %7" [net_hls.cc:135]   --->   Operation 406 'br' <Predicate = (or_ln321_65 == 25)> <Delay = 0.00>
+ST_6 : Operation 407 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_6, i64* %dest_V23_addr, align 8" [net_hls.cc:135]   --->   Operation 407 'store' <Predicate = (or_ln321_65 == 23)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_6 : Operation 408 [1/1] (0.00ns)   --->   "br label %7" [net_hls.cc:135]   --->   Operation 408 'br' <Predicate = (or_ln321_65 == 23)> <Delay = 0.00>
+ST_6 : Operation 409 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_6, i64* %dest_V22_addr, align 8" [net_hls.cc:135]   --->   Operation 409 'store' <Predicate = (or_ln321_65 == 22)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_6 : Operation 410 [1/1] (0.00ns)   --->   "br label %7" [net_hls.cc:135]   --->   Operation 410 'br' <Predicate = (or_ln321_65 == 22)> <Delay = 0.00>
+ST_6 : Operation 411 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_6, i64* %dest_V21_addr, align 8" [net_hls.cc:135]   --->   Operation 411 'store' <Predicate = (or_ln321_65 == 21)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_6 : Operation 412 [1/1] (0.00ns)   --->   "br label %7" [net_hls.cc:135]   --->   Operation 412 'br' <Predicate = (or_ln321_65 == 21)> <Delay = 0.00>
+ST_6 : Operation 413 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_6, i64* %dest_V20_addr, align 8" [net_hls.cc:135]   --->   Operation 413 'store' <Predicate = (or_ln321_65 == 20)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_6 : Operation 414 [1/1] (0.00ns)   --->   "br label %7" [net_hls.cc:135]   --->   Operation 414 'br' <Predicate = (or_ln321_65 == 20)> <Delay = 0.00>
+ST_6 : Operation 415 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_6, i64* %dest_V19_addr, align 8" [net_hls.cc:135]   --->   Operation 415 'store' <Predicate = (or_ln321_65 == 19)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_6 : Operation 416 [1/1] (0.00ns)   --->   "br label %7" [net_hls.cc:135]   --->   Operation 416 'br' <Predicate = (or_ln321_65 == 19)> <Delay = 0.00>
+ST_6 : Operation 417 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_6, i64* %dest_V18_addr, align 8" [net_hls.cc:135]   --->   Operation 417 'store' <Predicate = (or_ln321_65 == 18)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_6 : Operation 418 [1/1] (0.00ns)   --->   "br label %7" [net_hls.cc:135]   --->   Operation 418 'br' <Predicate = (or_ln321_65 == 18)> <Delay = 0.00>
+ST_6 : Operation 419 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_6, i64* %dest_V17_addr, align 8" [net_hls.cc:135]   --->   Operation 419 'store' <Predicate = (or_ln321_65 == 17)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_6 : Operation 420 [1/1] (0.00ns)   --->   "br label %7" [net_hls.cc:135]   --->   Operation 420 'br' <Predicate = (or_ln321_65 == 17)> <Delay = 0.00>
+ST_6 : Operation 421 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_6, i64* %dest_V15_addr, align 8" [net_hls.cc:135]   --->   Operation 421 'store' <Predicate = (or_ln321_65 == 15)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_6 : Operation 422 [1/1] (0.00ns)   --->   "br label %7" [net_hls.cc:135]   --->   Operation 422 'br' <Predicate = (or_ln321_65 == 15)> <Delay = 0.00>
+ST_6 : Operation 423 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_6, i64* %dest_V14_addr, align 8" [net_hls.cc:135]   --->   Operation 423 'store' <Predicate = (or_ln321_65 == 14)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_6 : Operation 424 [1/1] (0.00ns)   --->   "br label %7" [net_hls.cc:135]   --->   Operation 424 'br' <Predicate = (or_ln321_65 == 14)> <Delay = 0.00>
+ST_6 : Operation 425 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_6, i64* %dest_V13_addr, align 8" [net_hls.cc:135]   --->   Operation 425 'store' <Predicate = (or_ln321_65 == 13)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_6 : Operation 426 [1/1] (0.00ns)   --->   "br label %7" [net_hls.cc:135]   --->   Operation 426 'br' <Predicate = (or_ln321_65 == 13)> <Delay = 0.00>
+ST_6 : Operation 427 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_6, i64* %dest_V12_addr, align 8" [net_hls.cc:135]   --->   Operation 427 'store' <Predicate = (or_ln321_65 == 12)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_6 : Operation 428 [1/1] (0.00ns)   --->   "br label %7" [net_hls.cc:135]   --->   Operation 428 'br' <Predicate = (or_ln321_65 == 12)> <Delay = 0.00>
+ST_6 : Operation 429 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_6, i64* %dest_V11_addr, align 8" [net_hls.cc:135]   --->   Operation 429 'store' <Predicate = (or_ln321_65 == 11)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_6 : Operation 430 [1/1] (0.00ns)   --->   "br label %7" [net_hls.cc:135]   --->   Operation 430 'br' <Predicate = (or_ln321_65 == 11)> <Delay = 0.00>
+ST_6 : Operation 431 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_6, i64* %dest_V10_addr, align 8" [net_hls.cc:135]   --->   Operation 431 'store' <Predicate = (or_ln321_65 == 10)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_6 : Operation 432 [1/1] (0.00ns)   --->   "br label %7" [net_hls.cc:135]   --->   Operation 432 'br' <Predicate = (or_ln321_65 == 10)> <Delay = 0.00>
+ST_6 : Operation 433 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_6, i64* %dest_V9_addr, align 8" [net_hls.cc:135]   --->   Operation 433 'store' <Predicate = (or_ln321_65 == 9)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_6 : Operation 434 [1/1] (0.00ns)   --->   "br label %7" [net_hls.cc:135]   --->   Operation 434 'br' <Predicate = (or_ln321_65 == 9)> <Delay = 0.00>
+ST_6 : Operation 435 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_6, i64* %dest_V7_addr, align 8" [net_hls.cc:135]   --->   Operation 435 'store' <Predicate = (or_ln321_65 == 7)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_6 : Operation 436 [1/1] (0.00ns)   --->   "br label %7" [net_hls.cc:135]   --->   Operation 436 'br' <Predicate = (or_ln321_65 == 7)> <Delay = 0.00>
+ST_6 : Operation 437 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_6, i64* %dest_V6_addr, align 8" [net_hls.cc:135]   --->   Operation 437 'store' <Predicate = (or_ln321_65 == 6)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_6 : Operation 438 [1/1] (0.00ns)   --->   "br label %7" [net_hls.cc:135]   --->   Operation 438 'br' <Predicate = (or_ln321_65 == 6)> <Delay = 0.00>
+ST_6 : Operation 439 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_6, i64* %dest_V5_addr, align 8" [net_hls.cc:135]   --->   Operation 439 'store' <Predicate = (or_ln321_65 == 5)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_6 : Operation 440 [1/1] (0.00ns)   --->   "br label %7" [net_hls.cc:135]   --->   Operation 440 'br' <Predicate = (or_ln321_65 == 5)> <Delay = 0.00>
+ST_6 : Operation 441 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_6, i64* %dest_V4_addr, align 8" [net_hls.cc:135]   --->   Operation 441 'store' <Predicate = (or_ln321_65 == 4)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_6 : Operation 442 [1/1] (0.00ns)   --->   "br label %7" [net_hls.cc:135]   --->   Operation 442 'br' <Predicate = (or_ln321_65 == 4)> <Delay = 0.00>
+ST_6 : Operation 443 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_6, i64* %dest_V3_addr, align 8" [net_hls.cc:135]   --->   Operation 443 'store' <Predicate = (or_ln321_65 == 3)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_6 : Operation 444 [1/1] (0.00ns)   --->   "br label %7" [net_hls.cc:135]   --->   Operation 444 'br' <Predicate = (or_ln321_65 == 3)> <Delay = 0.00>
+ST_6 : Operation 445 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_6, i64* %dest_V2_addr, align 8" [net_hls.cc:135]   --->   Operation 445 'store' <Predicate = (or_ln321_65 == 2)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_6 : Operation 446 [1/1] (0.00ns)   --->   "br label %7" [net_hls.cc:135]   --->   Operation 446 'br' <Predicate = (or_ln321_65 == 2)> <Delay = 0.00>
+ST_6 : Operation 447 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_6, i64* %dest_V1_addr, align 8" [net_hls.cc:135]   --->   Operation 447 'store' <Predicate = (or_ln321_65 == 1)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_6 : Operation 448 [1/1] (0.00ns)   --->   "br label %7" [net_hls.cc:135]   --->   Operation 448 'br' <Predicate = (or_ln321_65 == 1)> <Delay = 0.00>
+ST_6 : Operation 449 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_6, i64* %dest_V31_addr, align 8" [net_hls.cc:135]   --->   Operation 449 'store' <Predicate = (or_ln321_65 == 31)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_6 : Operation 450 [1/1] (0.00ns)   --->   "br label %7" [net_hls.cc:135]   --->   Operation 450 'br' <Predicate = (or_ln321_65 == 31)> <Delay = 0.00>
+
+State 7 <SV = 6> <Delay = 0.86>
+ST_7 : Operation 451 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_6, i64* %dest_V24_addr, align 8" [net_hls.cc:135]   --->   Operation 451 'store' <Predicate = (or_ln321_65 == 24)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_7 : Operation 452 [1/1] (0.00ns)   --->   "br label %7" [net_hls.cc:135]   --->   Operation 452 'br' <Predicate = (or_ln321_65 == 24)> <Delay = 0.00>
+ST_7 : Operation 453 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_6, i64* %dest_V16_addr, align 8" [net_hls.cc:135]   --->   Operation 453 'store' <Predicate = (or_ln321_65 == 16)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_7 : Operation 454 [1/1] (0.00ns)   --->   "br label %7" [net_hls.cc:135]   --->   Operation 454 'br' <Predicate = (or_ln321_65 == 16)> <Delay = 0.00>
+ST_7 : Operation 455 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_6, i64* %dest_V8_addr, align 8" [net_hls.cc:135]   --->   Operation 455 'store' <Predicate = (or_ln321_65 == 8)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_7 : Operation 456 [1/1] (0.00ns)   --->   "br label %7" [net_hls.cc:135]   --->   Operation 456 'br' <Predicate = (or_ln321_65 == 8)> <Delay = 0.00>
+ST_7 : Operation 457 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_6, i64* %dest_V_addr, align 8" [net_hls.cc:135]   --->   Operation 457 'store' <Predicate = (or_ln321_65 == 0)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_7 : Operation 458 [1/1] (0.00ns)   --->   "br label %7" [net_hls.cc:135]   --->   Operation 458 'br' <Predicate = (or_ln321_65 == 0)> <Delay = 0.00>
+ST_7 : Operation 459 [1/1] (0.00ns)   --->   "%p_Result_201_7 = call i64 @_ssdm_op_PartSelect.i64.i512.i32.i32(i512 %src_V_read, i32 448, i32 511)" [net_hls.cc:135]   --->   Operation 459 'partselect' 'p_Result_201_7' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 460 [1/1] (0.00ns)   --->   "%or_ln321_66 = or i5 %shl_ln, 7" [net_hls.cc:135]   --->   Operation 460 'or' 'or_ln321_66' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 461 [1/1] (0.86ns)   --->   "switch i5 %or_ln321_66, label %branch31 [
+    i5 0, label %branch0
+    i5 1, label %branch1
+    i5 2, label %branch2
+    i5 3, label %branch3
+    i5 4, label %branch4
+    i5 5, label %branch5
+    i5 6, label %branch6
+    i5 7, label %branch7
+    i5 8, label %branch8
+    i5 9, label %branch9
+    i5 10, label %branch10
+    i5 11, label %branch11
+    i5 12, label %branch12
+    i5 13, label %branch13
+    i5 14, label %branch14
+    i5 15, label %branch15
+    i5 -16, label %branch16
+    i5 -15, label %branch17
+    i5 -14, label %branch18
+    i5 -13, label %branch19
+    i5 -12, label %branch20
+    i5 -11, label %branch21
+    i5 -10, label %branch22
+    i5 -9, label %branch23
+    i5 -8, label %branch24
+    i5 -7, label %branch25
+    i5 -6, label %branch26
+    i5 -5, label %branch27
+    i5 -4, label %branch28
+    i5 -3, label %branch29
+    i5 -2, label %branch30
+  ]" [net_hls.cc:135]   --->   Operation 461 'switch' <Predicate = true> <Delay = 0.86>
+ST_7 : Operation 462 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_7, i64* %dest_V30_addr, align 8" [net_hls.cc:135]   --->   Operation 462 'store' <Predicate = (or_ln321_66 == 30)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_7 : Operation 463 [1/1] (0.00ns)   --->   "br label %8" [net_hls.cc:135]   --->   Operation 463 'br' <Predicate = (or_ln321_66 == 30)> <Delay = 0.00>
+ST_7 : Operation 464 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_7, i64* %dest_V29_addr, align 8" [net_hls.cc:135]   --->   Operation 464 'store' <Predicate = (or_ln321_66 == 29)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_7 : Operation 465 [1/1] (0.00ns)   --->   "br label %8" [net_hls.cc:135]   --->   Operation 465 'br' <Predicate = (or_ln321_66 == 29)> <Delay = 0.00>
+ST_7 : Operation 466 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_7, i64* %dest_V28_addr, align 8" [net_hls.cc:135]   --->   Operation 466 'store' <Predicate = (or_ln321_66 == 28)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_7 : Operation 467 [1/1] (0.00ns)   --->   "br label %8" [net_hls.cc:135]   --->   Operation 467 'br' <Predicate = (or_ln321_66 == 28)> <Delay = 0.00>
+ST_7 : Operation 468 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_7, i64* %dest_V27_addr, align 8" [net_hls.cc:135]   --->   Operation 468 'store' <Predicate = (or_ln321_66 == 27)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_7 : Operation 469 [1/1] (0.00ns)   --->   "br label %8" [net_hls.cc:135]   --->   Operation 469 'br' <Predicate = (or_ln321_66 == 27)> <Delay = 0.00>
+ST_7 : Operation 470 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_7, i64* %dest_V26_addr, align 8" [net_hls.cc:135]   --->   Operation 470 'store' <Predicate = (or_ln321_66 == 26)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_7 : Operation 471 [1/1] (0.00ns)   --->   "br label %8" [net_hls.cc:135]   --->   Operation 471 'br' <Predicate = (or_ln321_66 == 26)> <Delay = 0.00>
+ST_7 : Operation 472 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_7, i64* %dest_V25_addr, align 8" [net_hls.cc:135]   --->   Operation 472 'store' <Predicate = (or_ln321_66 == 25)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_7 : Operation 473 [1/1] (0.00ns)   --->   "br label %8" [net_hls.cc:135]   --->   Operation 473 'br' <Predicate = (or_ln321_66 == 25)> <Delay = 0.00>
+ST_7 : Operation 474 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_7, i64* %dest_V23_addr, align 8" [net_hls.cc:135]   --->   Operation 474 'store' <Predicate = (or_ln321_66 == 23)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_7 : Operation 475 [1/1] (0.00ns)   --->   "br label %8" [net_hls.cc:135]   --->   Operation 475 'br' <Predicate = (or_ln321_66 == 23)> <Delay = 0.00>
+ST_7 : Operation 476 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_7, i64* %dest_V22_addr, align 8" [net_hls.cc:135]   --->   Operation 476 'store' <Predicate = (or_ln321_66 == 22)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_7 : Operation 477 [1/1] (0.00ns)   --->   "br label %8" [net_hls.cc:135]   --->   Operation 477 'br' <Predicate = (or_ln321_66 == 22)> <Delay = 0.00>
+ST_7 : Operation 478 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_7, i64* %dest_V21_addr, align 8" [net_hls.cc:135]   --->   Operation 478 'store' <Predicate = (or_ln321_66 == 21)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_7 : Operation 479 [1/1] (0.00ns)   --->   "br label %8" [net_hls.cc:135]   --->   Operation 479 'br' <Predicate = (or_ln321_66 == 21)> <Delay = 0.00>
+ST_7 : Operation 480 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_7, i64* %dest_V20_addr, align 8" [net_hls.cc:135]   --->   Operation 480 'store' <Predicate = (or_ln321_66 == 20)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_7 : Operation 481 [1/1] (0.00ns)   --->   "br label %8" [net_hls.cc:135]   --->   Operation 481 'br' <Predicate = (or_ln321_66 == 20)> <Delay = 0.00>
+ST_7 : Operation 482 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_7, i64* %dest_V19_addr, align 8" [net_hls.cc:135]   --->   Operation 482 'store' <Predicate = (or_ln321_66 == 19)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_7 : Operation 483 [1/1] (0.00ns)   --->   "br label %8" [net_hls.cc:135]   --->   Operation 483 'br' <Predicate = (or_ln321_66 == 19)> <Delay = 0.00>
+ST_7 : Operation 484 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_7, i64* %dest_V18_addr, align 8" [net_hls.cc:135]   --->   Operation 484 'store' <Predicate = (or_ln321_66 == 18)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_7 : Operation 485 [1/1] (0.00ns)   --->   "br label %8" [net_hls.cc:135]   --->   Operation 485 'br' <Predicate = (or_ln321_66 == 18)> <Delay = 0.00>
+ST_7 : Operation 486 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_7, i64* %dest_V17_addr, align 8" [net_hls.cc:135]   --->   Operation 486 'store' <Predicate = (or_ln321_66 == 17)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_7 : Operation 487 [1/1] (0.00ns)   --->   "br label %8" [net_hls.cc:135]   --->   Operation 487 'br' <Predicate = (or_ln321_66 == 17)> <Delay = 0.00>
+ST_7 : Operation 488 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_7, i64* %dest_V15_addr, align 8" [net_hls.cc:135]   --->   Operation 488 'store' <Predicate = (or_ln321_66 == 15)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_7 : Operation 489 [1/1] (0.00ns)   --->   "br label %8" [net_hls.cc:135]   --->   Operation 489 'br' <Predicate = (or_ln321_66 == 15)> <Delay = 0.00>
+ST_7 : Operation 490 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_7, i64* %dest_V14_addr, align 8" [net_hls.cc:135]   --->   Operation 490 'store' <Predicate = (or_ln321_66 == 14)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_7 : Operation 491 [1/1] (0.00ns)   --->   "br label %8" [net_hls.cc:135]   --->   Operation 491 'br' <Predicate = (or_ln321_66 == 14)> <Delay = 0.00>
+ST_7 : Operation 492 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_7, i64* %dest_V13_addr, align 8" [net_hls.cc:135]   --->   Operation 492 'store' <Predicate = (or_ln321_66 == 13)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_7 : Operation 493 [1/1] (0.00ns)   --->   "br label %8" [net_hls.cc:135]   --->   Operation 493 'br' <Predicate = (or_ln321_66 == 13)> <Delay = 0.00>
+ST_7 : Operation 494 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_7, i64* %dest_V12_addr, align 8" [net_hls.cc:135]   --->   Operation 494 'store' <Predicate = (or_ln321_66 == 12)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_7 : Operation 495 [1/1] (0.00ns)   --->   "br label %8" [net_hls.cc:135]   --->   Operation 495 'br' <Predicate = (or_ln321_66 == 12)> <Delay = 0.00>
+ST_7 : Operation 496 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_7, i64* %dest_V11_addr, align 8" [net_hls.cc:135]   --->   Operation 496 'store' <Predicate = (or_ln321_66 == 11)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_7 : Operation 497 [1/1] (0.00ns)   --->   "br label %8" [net_hls.cc:135]   --->   Operation 497 'br' <Predicate = (or_ln321_66 == 11)> <Delay = 0.00>
+ST_7 : Operation 498 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_7, i64* %dest_V10_addr, align 8" [net_hls.cc:135]   --->   Operation 498 'store' <Predicate = (or_ln321_66 == 10)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_7 : Operation 499 [1/1] (0.00ns)   --->   "br label %8" [net_hls.cc:135]   --->   Operation 499 'br' <Predicate = (or_ln321_66 == 10)> <Delay = 0.00>
+ST_7 : Operation 500 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_7, i64* %dest_V9_addr, align 8" [net_hls.cc:135]   --->   Operation 500 'store' <Predicate = (or_ln321_66 == 9)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_7 : Operation 501 [1/1] (0.00ns)   --->   "br label %8" [net_hls.cc:135]   --->   Operation 501 'br' <Predicate = (or_ln321_66 == 9)> <Delay = 0.00>
+ST_7 : Operation 502 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_7, i64* %dest_V7_addr, align 8" [net_hls.cc:135]   --->   Operation 502 'store' <Predicate = (or_ln321_66 == 7)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_7 : Operation 503 [1/1] (0.00ns)   --->   "br label %8" [net_hls.cc:135]   --->   Operation 503 'br' <Predicate = (or_ln321_66 == 7)> <Delay = 0.00>
+ST_7 : Operation 504 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_7, i64* %dest_V6_addr, align 8" [net_hls.cc:135]   --->   Operation 504 'store' <Predicate = (or_ln321_66 == 6)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_7 : Operation 505 [1/1] (0.00ns)   --->   "br label %8" [net_hls.cc:135]   --->   Operation 505 'br' <Predicate = (or_ln321_66 == 6)> <Delay = 0.00>
+ST_7 : Operation 506 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_7, i64* %dest_V5_addr, align 8" [net_hls.cc:135]   --->   Operation 506 'store' <Predicate = (or_ln321_66 == 5)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_7 : Operation 507 [1/1] (0.00ns)   --->   "br label %8" [net_hls.cc:135]   --->   Operation 507 'br' <Predicate = (or_ln321_66 == 5)> <Delay = 0.00>
+ST_7 : Operation 508 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_7, i64* %dest_V4_addr, align 8" [net_hls.cc:135]   --->   Operation 508 'store' <Predicate = (or_ln321_66 == 4)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_7 : Operation 509 [1/1] (0.00ns)   --->   "br label %8" [net_hls.cc:135]   --->   Operation 509 'br' <Predicate = (or_ln321_66 == 4)> <Delay = 0.00>
+ST_7 : Operation 510 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_7, i64* %dest_V3_addr, align 8" [net_hls.cc:135]   --->   Operation 510 'store' <Predicate = (or_ln321_66 == 3)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_7 : Operation 511 [1/1] (0.00ns)   --->   "br label %8" [net_hls.cc:135]   --->   Operation 511 'br' <Predicate = (or_ln321_66 == 3)> <Delay = 0.00>
+ST_7 : Operation 512 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_7, i64* %dest_V2_addr, align 8" [net_hls.cc:135]   --->   Operation 512 'store' <Predicate = (or_ln321_66 == 2)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_7 : Operation 513 [1/1] (0.00ns)   --->   "br label %8" [net_hls.cc:135]   --->   Operation 513 'br' <Predicate = (or_ln321_66 == 2)> <Delay = 0.00>
+ST_7 : Operation 514 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_7, i64* %dest_V1_addr, align 8" [net_hls.cc:135]   --->   Operation 514 'store' <Predicate = (or_ln321_66 == 1)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_7 : Operation 515 [1/1] (0.00ns)   --->   "br label %8" [net_hls.cc:135]   --->   Operation 515 'br' <Predicate = (or_ln321_66 == 1)> <Delay = 0.00>
+ST_7 : Operation 516 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_7, i64* %dest_V31_addr, align 8" [net_hls.cc:135]   --->   Operation 516 'store' <Predicate = (or_ln321_66 == 31)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_7 : Operation 517 [1/1] (0.00ns)   --->   "br label %8" [net_hls.cc:135]   --->   Operation 517 'br' <Predicate = (or_ln321_66 == 31)> <Delay = 0.00>
+
+State 8 <SV = 7> <Delay = 0.79>
+ST_8 : Operation 518 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_7, i64* %dest_V24_addr, align 8" [net_hls.cc:135]   --->   Operation 518 'store' <Predicate = (or_ln321_66 == 24)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_8 : Operation 519 [1/1] (0.00ns)   --->   "br label %8" [net_hls.cc:135]   --->   Operation 519 'br' <Predicate = (or_ln321_66 == 24)> <Delay = 0.00>
+ST_8 : Operation 520 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_7, i64* %dest_V16_addr, align 8" [net_hls.cc:135]   --->   Operation 520 'store' <Predicate = (or_ln321_66 == 16)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_8 : Operation 521 [1/1] (0.00ns)   --->   "br label %8" [net_hls.cc:135]   --->   Operation 521 'br' <Predicate = (or_ln321_66 == 16)> <Delay = 0.00>
+ST_8 : Operation 522 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_7, i64* %dest_V8_addr, align 8" [net_hls.cc:135]   --->   Operation 522 'store' <Predicate = (or_ln321_66 == 8)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_8 : Operation 523 [1/1] (0.00ns)   --->   "br label %8" [net_hls.cc:135]   --->   Operation 523 'br' <Predicate = (or_ln321_66 == 8)> <Delay = 0.00>
+ST_8 : Operation 524 [1/1] (0.79ns)   --->   "store i64 %p_Result_201_7, i64* %dest_V_addr, align 8" [net_hls.cc:135]   --->   Operation 524 'store' <Predicate = (or_ln321_66 == 0)> <Delay = 0.79> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.79> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_8 : Operation 525 [1/1] (0.00ns)   --->   "br label %8" [net_hls.cc:135]   --->   Operation 525 'br' <Predicate = (or_ln321_66 == 0)> <Delay = 0.00>
+ST_8 : Operation 526 [1/1] (0.00ns)   --->   "ret void" [net_hls.cc:137]   --->   Operation 526 'ret' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 4ns, clock uncertainty: 0.5ns.
+
+ <State 1>: 0.884ns
+The critical path consists of the following:
+	wire read on port 'coff' (net_hls.cc:129) [35]  (0 ns)
+	blocking operation 0.884 ns on control path)
+
+ <State 2>: 0.863ns
+The critical path consists of the following:
+	'or' operation ('or_ln321_61', net_hls.cc:135) [190]  (0 ns)
+	blocking operation 0.863 ns on control path)
+
+ <State 3>: 0.863ns
+The critical path consists of the following:
+	'or' operation ('or_ln321_62', net_hls.cc:135) [290]  (0 ns)
+	blocking operation 0.863 ns on control path)
+
+ <State 4>: 0.863ns
+The critical path consists of the following:
+	'or' operation ('or_ln321_63', net_hls.cc:135) [390]  (0 ns)
+	blocking operation 0.863 ns on control path)
+
+ <State 5>: 0.863ns
+The critical path consists of the following:
+	'or' operation ('or_ln321_64', net_hls.cc:135) [490]  (0 ns)
+	blocking operation 0.863 ns on control path)
+
+ <State 6>: 0.863ns
+The critical path consists of the following:
+	'or' operation ('or_ln321_65', net_hls.cc:135) [590]  (0 ns)
+	blocking operation 0.863 ns on control path)
+
+ <State 7>: 0.863ns
+The critical path consists of the following:
+	'or' operation ('or_ln321_66', net_hls.cc:135) [690]  (0 ns)
+	blocking operation 0.863 ns on control path)
+
+ <State 8>: 0.79ns
+The critical path consists of the following:
+	'store' operation ('store_ln135', net_hls.cc:135) of variable 'p_Result_201_7', net_hls.cc:135 on array 'dest_V24' [711]  (0.79 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

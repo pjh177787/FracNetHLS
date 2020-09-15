@@ -94,7 +94,7 @@ set DataType13 "[list ap_fixed 11 4 0 0 0 ]"
 set Port13 [list $PortName13 $Interface13 $DataType13 $Pointer13 $Dims13 $Const13 $Volatile13 $ArrayOpt13 $Initializer13 $External13 $NameSpace13]
 lappend globalVariable $Port13
 set PortName14 "pg_buf_all"
-set BitWidth14 "6653952"
+set BitWidth14 "831744"
 set ArrayOpt14 ""
 set Const14 "0"
 set Volatile14 "0"
@@ -102,10 +102,10 @@ set Pointer14 "0"
 set Reference14 "0"
 set Initializer14 ""
 set External14 0
-set Dims14 [list  64 12996]
+set Dims14 [list  12996]
 set Interface14 "wire"
 set NameSpace14 [list ]
-set DataType14 "[list ap_uint 1 ]"
+set DataType14 "[list ap_uint 64 ]"
 set Port14 [list $PortName14 $Interface14 $DataType14 $Pointer14 $Dims14 $Const14 $Volatile14 $ArrayOpt14 $Initializer14 $External14 $NameSpace14]
 lappend globalVariable $Port14
 set PortName15 "pg_buf0"
@@ -168,7 +168,7 @@ set NameSpace18 [list ]
 set DataType18 "[list ap_fixed 14 6 0 0 0 ]"
 set Port18 [list $PortName18 $Interface18 $DataType18 $Pointer18 $Dims18 $Const18 $Volatile18 $ArrayOpt18 $Initializer18 $External18 $NameSpace18]
 lappend globalVariable $Port18
-set PortName19 "FM_buf1"
+set PortName19 "FM_buf0"
 set BitWidth19 "41472"
 set ArrayOpt19 ""
 set Const19 "0"
@@ -183,21 +183,6 @@ set NameSpace19 [list ]
 set DataType19 "[list ap_fixed 9 3 0 0 0 ]"
 set Port19 [list $PortName19 $Interface19 $DataType19 $Pointer19 $Dims19 $Const19 $Volatile19 $ArrayOpt19 $Initializer19 $External19 $NameSpace19]
 lappend globalVariable $Port19
-set PortName20 "FM_buf0"
-set BitWidth20 "41472"
-set ArrayOpt20 ""
-set Const20 "0"
-set Volatile20 "0"
-set Pointer20 "0"
-set Reference20 "0"
-set Initializer20 ""
-set External20 0
-set Dims20 [list  32 9 9]
-set Interface20 "wire"
-set NameSpace20 [list ]
-set DataType20 "[list ap_fixed 9 3 0 0 0 ]"
-set Port20 [list $PortName20 $Interface20 $DataType20 $Pointer20 $Dims20 $Const20 $Volatile20 $ArrayOpt20 $Initializer20 $External20 $NameSpace20]
-lappend globalVariable $Port20
 set PortList ""
 set PortName0 "image_thermo"
 set BitWidth0 "64"

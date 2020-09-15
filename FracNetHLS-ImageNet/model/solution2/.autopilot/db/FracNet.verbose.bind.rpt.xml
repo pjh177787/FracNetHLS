@@ -1,0 +1,161 @@
+<profile>
+
+<section name = "Vivado HLS Report for 'FracNet'" level="0">
+<item name = "Date">Mon Sep 14 09:28:06 2020
+</item>
+<item name = "Version">2019.2.1 (Build 2724168 on Thu Dec 05 05:19:09 MST 2019)</item>
+<item name = "Project">model</item>
+<item name = "Solution">solution2</item>
+<item name = "Product family">zynquplus</item>
+<item name = "Target device">xczu3eg-sbva484-1-e</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">4.00 ns, 5.180 ns, 0.50 ns</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="8">, min, max, min, max, min, max, Type</keys>
+<column name="">3622103, 4852231, 18.761 ms, 25.132 ms, 3622103, 4852231, none</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+<column name="grp_biconv16_fu_8015">biconv16, 95, 95, 0.492 us, 0.492 us, 95, 95, none</column>
+<column name="grp_pgconv64_1bit_fu_8494">pgconv64_1bit, 99, 264, 0.513 us, 1.367 us, 99, 264, none</column>
+<column name="grp_store_bufs_organize_fu_9482">store_bufs_organize, 67, 67, 0.347 us, 0.347 us, 67, 67, none</column>
+<column name="grp_pgconv64_1x1_1bit_fu_10350">pgconv64_1x1_1bit, 259, 259, 1.342 us, 1.342 us, 259, 259, none</column>
+<column name="grp_matmul_fu_11324">matmul, 73, 73, 0.378 us, 0.378 us, 73, 73, none</column>
+<column name="grp_store_bufs_organize_s_fu_12639">store_bufs_organize_s, 28, 28, 0.145 us, 0.145 us, 28, 28, none</column>
+<column name="grp_load_weights_3x3_all_fu_13038">load_weights_3x3_all, 65, 65, 0.337 us, 0.337 us, 65, 65, none</column>
+<column name="grp_load_weights_1x1_all_fu_13434">load_weights_1x1_all, 65, 65, 0.337 us, 0.337 us, 65, 65, none</column>
+<column name="grp_copy_input_layer_buf_fu_13833">copy_input_layer_buf, 24, 24, 0.124 us, 0.124 us, 24, 24, none</column>
+<column name="grp_load_buf_from_buf_al_fu_13906">load_buf_from_buf_al, 85, 85, 0.440 us, 0.440 us, 85, 85, none</column>
+<column name="grp_load_buf_from_DDR_fu_14064">load_buf_from_DDR, 69, 69, 0.357 us, 0.357 us, 69, 69, none</column>
+<column name="grp_avgpool_7x7_1_fu_14148">avgpool_7x7_1, 33, 33, 0.171 us, 0.171 us, 33, 33, none</column>
+<column name="grp_avgpool_7x7_1_fu_14154">avgpool_7x7_1, 33, 33, 0.171 us, 0.171 us, 33, 33, none</column>
+<column name="grp_avgpool_7x7_1_fu_14188">avgpool_7x7_1, 33, 33, 0.171 us, 0.171 us, 33, 33, none</column>
+<column name="grp_avgpool_7x7_1_fu_14194">avgpool_7x7_1, 33, 33, 0.171 us, 0.171 us, 33, 33, none</column>
+<column name="grp_load_input_fu_14200">load_input, 101, 101, 0.523 us, 0.523 us, 101, 101, none</column>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- Loop 1">63, 63, 11, 1, 1, 54, yes</column>
+<column name="- input_biconv_L">503328, 1057616, 642 ~ 1349, -, -, 784, no</column>
+<column name=" + input_biconv_L.1">594, 1200, 99 ~ 200, -, -, 6, no</column>
+<column name=" + input_biconv_L.2">17, 17, 3, 1, 1, 16, yes</column>
+<column name="- Loop 3">65824, 108064, 4114 ~ 6754, -, -, 16, no</column>
+<column name=" + Loop 3.1">4112, 6752, 257 ~ 422, -, -, 16, no</column>
+<column name="- Loop 4">213704, 213704, 106852, -, -, 2, no</column>
+<column name=" + Loop 4.1">106784, 106784, 6674, -, -, 16, no</column>
+<column name="  ++ Loop 4.1.1">6672, 6672, 417, -, -, 16, no</column>
+<column name="- Loop 5">28072, 49192, 14036 ~ 24596, -, -, 2, no</column>
+<column name=" + Loop 5.1">13968, 24528, 1746 ~ 3066, -, -, 8, no</column>
+<column name="  ++ Loop 5.1.1">1744, 3064, 218 ~ 383, -, -, 8, no</column>
+<column name="- Loop 6">107088, 107088, 26772, -, -, 4, no</column>
+<column name=" + Loop 6.1">26704, 26704, 3338, -, -, 8, no</column>
+<column name="  ++ Loop 6.1.1">3336, 3336, 417, -, -, 8, no</column>
+<column name="- Loop 7">132432, 216912, 33108 ~ 54228, -, -, 4, no</column>
+<column name=" + Loop 7.1">33040, 54160, 4130 ~ 6770, -, -, 8, no</column>
+<column name="  ++ Loop 7.1.1">4128, 6768, 516 ~ 846, -, -, 8, no</column>
+<column name="   +++ Loop 7.1.1.1">376, 706, 188 ~ 353, -, -, 2, no</column>
+<column name="- Loop 8">214352, 214352, 53588, -, -, 4, no</column>
+<column name=" + Loop 8.1">53520, 53520, 6690, -, -, 8, no</column>
+<column name="  ++ Loop 8.1.1">6688, 6688, 836, -, -, 8, no</column>
+<column name="   +++ Loop 8.1.1.1">696, 696, 348, -, -, 2, no</column>
+<column name="- Loop 9">30832, 51952, 7708 ~ 12988, -, -, 4, no</column>
+<column name=" + Loop 9.1">7640, 12920, 1910 ~ 3230, -, -, 4, no</column>
+<column name="  ++ Loop 9.1.1">1908, 3228, 477 ~ 807, -, -, 4, no</column>
+<column name="   +++ Loop 9.1.1.1">376, 706, 188 ~ 353, -, -, 2, no</column>
+<column name="- Loop 10">107616, 107616, 13452, -, -, 8, no</column>
+<column name=" + Loop 10.1">13384, 13384, 3346, -, -, 4, no</column>
+<column name="  ++ Loop 10.1.1">3344, 3344, 836, -, -, 4, no</column>
+<column name="   +++ Loop 10.1.1.1">696, 696, 348, -, -, 2, no</column>
+<column name="- Loop 11">114784, 199264, 14348 ~ 24908, -, -, 8, no</column>
+<column name=" + Loop 11.1">14280, 24840, 3570 ~ 6210, -, -, 4, no</column>
+<column name="  ++ Loop 11.1.1">3568, 6208, 892 ~ 1552, -, -, 4, no</column>
+<column name="   +++ Loop 11.1.1.1">752, 1412, 188 ~ 353, -, -, 4, no</column>
+<column name="- Loop 12">196704, 196704, 24588, -, -, 8, no</column>
+<column name=" + Loop 12.1">24520, 24520, 6130, -, -, 4, no</column>
+<column name="  ++ Loop 12.1.1">6128, 6128, 1532, -, -, 4, no</column>
+<column name="   +++ Loop 12.1.1.1">1392, 1392, 348, -, -, 4, no</column>
+<column name="- Loop 13">27872, 48992, 3484 ~ 6124, -, -, 8, no</column>
+<column name=" + Loop 13.1">3416, 6056, 1708 ~ 3028, -, -, 2, no</column>
+<column name="  ++ Loop 13.1.1">1706, 3026, 853 ~ 1513, -, -, 2, no</column>
+<column name="   +++ Loop 13.1.1.1">752, 1412, 188 ~ 353, -, -, 4, no</column>
+<column name="- Loop 14">99200, 99200, 6200, -, -, 16, no</column>
+<column name=" + Loop 14.1">6132, 6132, 3066, -, -, 2, no</column>
+<column name="  ++ Loop 14.1.1">3064, 3064, 1532, -, -, 2, no</column>
+<column name="   +++ Loop 14.1.1.1">1392, 1392, 348, -, -, 4, no</column>
+<column name="- Loop 15">29120, 50240, 3640 ~ 6280, -, -, 8, no</column>
+<column name=" + Loop 15.1">3572, 6212, 1786 ~ 3106, -, -, 2, no</column>
+<column name="  ++ Loop 15.1.1">1784, 3104, 892 ~ 1552, -, -, 2, no</column>
+<column name="   +++ Loop 15.1.1.1">752, 1412, 188 ~ 353, -, -, 4, no</column>
+<column name="- Loop 16">99200, 99200, 6200, -, -, 16, no</column>
+<column name=" + Loop 16.1">6132, 6132, 3066, -, -, 2, no</column>
+<column name="  ++ Loop 16.1.1">3064, 3064, 1532, -, -, 2, no</column>
+<column name="   +++ Loop 16.1.1.1">1392, 1392, 348, -, -, 4, no</column>
+<column name="- Loop 17">29120, 50240, 3640 ~ 6280, -, -, 8, no</column>
+<column name=" + Loop 17.1">3572, 6212, 1786 ~ 3106, -, -, 2, no</column>
+<column name="  ++ Loop 17.1.1">1784, 3104, 892 ~ 1552, -, -, 2, no</column>
+<column name="   +++ Loop 17.1.1.1">752, 1412, 188 ~ 353, -, -, 4, no</column>
+<column name="- Loop 18">99200, 99200, 6200, -, -, 16, no</column>
+<column name=" + Loop 18.1">6132, 6132, 3066, -, -, 2, no</column>
+<column name="  ++ Loop 18.1.1">3064, 3064, 1532, -, -, 2, no</column>
+<column name="   +++ Loop 18.1.1.1">1392, 1392, 348, -, -, 4, no</column>
+<column name="- Loop 19">106368, 190848, 6648 ~ 11928, -, -, 16, no</column>
+<column name=" + Loop 19.1">6580, 11860, 3290 ~ 5930, -, -, 2, no</column>
+<column name="  ++ Loop 19.1.1">3288, 5928, 1644 ~ 2964, -, -, 2, no</column>
+<column name="   +++ Loop 19.1.1.1">1504, 2824, 188 ~ 353, -, -, 8, no</column>
+<column name="- Loop 20">188288, 188288, 11768, -, -, 16, no</column>
+<column name=" + Loop 20.1">11700, 11700, 5850, -, -, 2, no</column>
+<column name="  ++ Loop 20.1.1">5848, 5848, 2924, -, -, 2, no</column>
+<column name="   +++ Loop 20.1.1.1">2784, 2784, 348, -, -, 8, no</column>
+<column name="- Loop 21">106368, 190848, 6648 ~ 11928, -, -, 16, no</column>
+<column name=" + Loop 21.1">6580, 11860, 3290 ~ 5930, -, -, 2, no</column>
+<column name="  ++ Loop 21.1.1">3288, 5928, 1644 ~ 2964, -, -, 2, no</column>
+<column name="   +++ Loop 21.1.1.1">1504, 2824, 188 ~ 353, -, -, 8, no</column>
+<column name="- Loop 22">188288, 188288, 11768, -, -, 16, no</column>
+<column name=" + Loop 22.1">11700, 11700, 5850, -, -, 2, no</column>
+<column name="  ++ Loop 22.1.1">5848, 5848, 2924, -, -, 2, no</column>
+<column name="   +++ Loop 22.1.1.1">2784, 2784, 348, -, -, 8, no</column>
+<column name="- Loop 23">106368, 190848, 6648 ~ 11928, -, -, 16, no</column>
+<column name=" + Loop 23.1">6580, 11860, 3290 ~ 5930, -, -, 2, no</column>
+<column name="  ++ Loop 23.1.1">3288, 5928, 1644 ~ 2964, -, -, 2, no</column>
+<column name="   +++ Loop 23.1.1.1">1504, 2824, 188 ~ 353, -, -, 8, no</column>
+<column name="- Loop 24">188288, 188288, 11768, -, -, 16, no</column>
+<column name=" + Loop 24.1">11700, 11700, 5850, -, -, 2, no</column>
+<column name="  ++ Loop 24.1.1">5848, 5848, 2924, -, -, 2, no</column>
+<column name="   +++ Loop 24.1.1.1">2784, 2784, 348, -, -, 8, no</column>
+<column name="- Loop 25">25680, 46800, 1605 ~ 2925, -, -, 16, no</column>
+<column name=" + Loop 25.1">1504, 2824, 188 ~ 353, -, -, 8, no</column>
+<column name="- Loop 26">92320, 92320, 2885, -, -, 32, no</column>
+<column name=" + Loop 26.1">2784, 2784, 348, -, -, 8, no</column>
+<column name="- Loop 27">100736, 185216, 3148 ~ 5788, -, -, 32, no</column>
+<column name=" + Loop 27.1">3008, 5648, 188 ~ 353, -, -, 16, no</column>
+<column name="- Loop 28">182656, 182656, 5708, -, -, 32, no</column>
+<column name=" + Loop 28.1">5568, 5568, 348, -, -, 16, no</column>
+<column name="- avgpool">10832, 10832, 677, -, -, 16, no</column>
+<column name=" + avgpool.1">7, 7, 1, 1, 4, 7, yes</column>
+<column name="- classifier_L">227200, 227200, 142, -, -, 1600, no</column>
+<column name=" + classifier_L.1">29, 29, 11, 1, 1, 20, yes</column>
+<column name=" + classifier_L.2">21, 21, 13, 1, 1, 10, yes</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+</profile>

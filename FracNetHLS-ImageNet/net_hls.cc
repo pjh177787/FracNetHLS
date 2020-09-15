@@ -19,7 +19,7 @@ using namespace std;
 // feature map buffers
 FIX_FM FM_buf0[32][9][9];
 FIX_FM FM_buf1[32][9][9];
-uint1 pg_buf_all[64][12996];//114*114
+uint64 pg_buf_all[12996];//114*114
 uint64 pg_buf0[9][9];
 FIX_FM_acc FM_buf_acc0[BLK_DEPTH][9][9];
 // FIX_FM_acc FM_buf_acc1[BLK_DEPTH][11][11];
@@ -143,12 +143,22 @@ void load_weight_3x3_from_axi( uint64 dest[32][3][3], uint512 src[1000][3][3], i
 #pragma HLS ARRAY_PARTITION variable=dest complete dim=1
 
     // index: should be which the channel offset of each layer in groups of 4
-    for (int m = 0; m < 3; m++) {
-        for (int n = 0; n < 3; n++) {
-#pragma HLS pipeline II=4
-            for (int cc = 0; cc < 4; cc ++) {
+	uint512 src_buf[4][3][3];
+    for (int cc = 0; cc < 4; cc ++) {
+        for (int m = 0; m < 3; m++) {
+            for (int n = 0; n < 3; n++) {
+#pragma HLS pipeline
                 uint512 DATA = 0;
                 DATA.range(511, 0) = src[index + cc][m][n].range(511, 0);
+                src_buf[cc][m][n] = DATA;
+            }
+        }
+    }
+    for (int m = 0; m < 3; m++) {
+        for (int n = 0; n < 3; n++) {
+            for (int cc = 0; cc < 4; cc ++) {
+#pragma HLS pipeline
+            	uint512 DATA = src_buf[cc][m][n];
                 for (int c = 0; c < 8; c++) {
 #pragma HLS unroll
                     dest[cc*8+c][m][n] = DATA.range(63+c*64, c*64);
@@ -212,6 +222,27 @@ FIX_FM_acc avgpool_7x7(FIX_FM buf[9][9]) {
 	return sum/32; // should divide by 49
 }
 
+void load_others(uint512 weights_all[10000],
+        int weights_all_index) {
+	uint512 DATA[8];
+	#pragma HLS ARRAY_PARTITION variable=DATA complete dim=1
+	    for (int i = 0; i < 8; i ++){
+	#pragma HLS pipeline
+	    	DATA[i].range(511, 0) = weights_all[weights_all_index + i].range(511, 0);
+	    }
+	    for(int c = 0; c < 32; c++) {
+	#pragma HLS unroll
+	    	bn_weight_buf[0][c] = DATA[0].range(WT_RG + c*16, c*16);
+	    	bn_bias_buf[0][c] = DATA[1].range(WT_RG + c*16, c*16);
+	    	thres_buf[0][c] = DATA[2].range(WT_RG + c*16, c*16);
+	    	relu_shiftx_buf[0][c] = DATA[3].range(WT_RG + c*16, c*16);
+	    	relu_shifty_buf[0][c] = DATA[4].range(WT_RG + c*16, c*16);
+	    	relu_weight_buf[0][c] = DATA[5].range(WT_RG + c*16, c*16);
+	    	bn_weight_buf[0][c] = DATA[6].range(WT_RG + c*16, c*16);
+	    	bn_bias_buf[0][c] = DATA[7].range(WT_RG + c*16, c*16);
+	    }
+}
+
 void load_weights_3x3_all(uint512 conv_weight_3x3_all[1000][3][3],
         int weight_3x3_index,
         uint512 weights_all[10000],
@@ -226,23 +257,7 @@ void load_weights_3x3_all(uint512 conv_weight_3x3_all[1000][3][3],
 //    load_1x1_from_axi(relu_weight_buf[0], weights_all[weights_all_index + 5]);
 //    load_1x1_from_axi(bn_weight_buf[1], weights_all[weights_all_index + 6]);
 //    load_1x1_from_axi(bn_bias_buf[1], weights_all[weights_all_index + 7]);
-    uint512 DATA[8];
-#pragma HLS ARRAY_PARTITION variable=DATA complete dim=1
-    for (int i = 0; i < 8; i ++){
-#pragma HLS pipeline
-    	DATA[i].range(511, 0) = weights_all[weights_all_index + i].range(511, 0);
-    }
-    for(int c = 0; c < 32; c++) {
-#pragma HLS unroll
-    	bn_weight_buf[0][c] = DATA[0].range(WT_RG + c*16, c*16);
-    	bn_bias_buf[0][c] = DATA[1].range(WT_RG + c*16, c*16);
-    	thres_buf[0][c] = DATA[2].range(WT_RG + c*16, c*16);
-    	relu_shiftx_buf[0][c] = DATA[3].range(WT_RG + c*16, c*16);
-    	relu_shifty_buf[0][c] = DATA[4].range(WT_RG + c*16, c*16);
-    	relu_weight_buf[0][c] = DATA[5].range(WT_RG + c*16, c*16);
-    	bn_weight_buf[0][c] = DATA[6].range(WT_RG + c*16, c*16);
-    	bn_bias_buf[0][c] = DATA[7].range(WT_RG + c*16, c*16);
-    }
+    load_others(weights_all, weights_all_index);
 }
 
 void load_weights_1x1_all(uint512 conv_weight_1x1_all[1000],
@@ -260,23 +275,7 @@ void load_weights_1x1_all(uint512 conv_weight_1x1_all[1000],
 //    load_1x1_from_axi(relu_weight_buf[0], weights_all[weights_all_index + 5]);
 //    load_1x1_from_axi(bn_weight_buf[1], weights_all[weights_all_index + 6]);
 //    load_1x1_from_axi(bn_bias_buf[1], weights_all[weights_all_index + 7]);
-    uint512 DATA[8];
-    #pragma HLS ARRAY_PARTITION variable=DATA complete dim=1
-        for (int i = 0; i < 8; i ++){
-    #pragma HLS pipeline
-        	DATA[i].range(511, 0) = weights_all[weights_all_index + i].range(511, 0);
-        }
-        for(int c = 0; c < 32; c++) {
-    #pragma HLS unroll
-        	bn_weight_buf[0][c] = DATA[0].range(WT_RG + c*16, c*16);
-        	bn_bias_buf[0][c] = DATA[1].range(WT_RG + c*16, c*16);
-        	thres_buf[0][c] = DATA[2].range(WT_RG + c*16, c*16);
-        	relu_shiftx_buf[0][c] = DATA[3].range(WT_RG + c*16, c*16);
-        	relu_shifty_buf[0][c] = DATA[4].range(WT_RG + c*16, c*16);
-        	relu_weight_buf[0][c] = DATA[5].range(WT_RG + c*16, c*16);
-        	bn_weight_buf[0][c] = DATA[6].range(WT_RG + c*16, c*16);
-        	bn_bias_buf[0][c] = DATA[7].range(WT_RG + c*16, c*16);
-        }
+    load_others(weights_all, weights_all_index);
 }
 
 inline FIX_FM_acc batch_norm(uint8 sum, FIX_WT weight, FIX_WT bias)
@@ -338,7 +337,7 @@ void store_bufs_organize(uint512* ddr_ptr, int dest_offset, int row_offset, int 
                 } else {
                     sn = 0;
                 }
-                pg_buf_all[c+(ch_offset%2)*32][index + col] = sn;
+                pg_buf_all[index + col][c+(ch_offset%2)*32] = sn;
             }
             dest_ptr[col-1].range(511, 0) = DATA.range(511, 0);
         }
@@ -415,7 +414,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
                 float out[1000]
 )
 {
-#pragma HLS ARRAY_PARTITION variable=pg_buf_full complete dim=1
+//#pragma HLS ARRAY_PARTITION variable=pg_buf_full complete dim=1
 #pragma HLS ARRAY_PARTITION variable=FM_buf_acc0 complete dim=1
 
 
@@ -505,27 +504,28 @@ void FracNet(  uint32 image_thermo[3*226*226],
 //	}
 //    weights_all_index += 6;
 
-    uint64 conv1_img0[9][9];
-	uint64 conv1_img1[9][9];
-	uint64 conv1_img2[9][9];
+    uint64 conv1_img[3][9][9];
+#pragma HLS ARRAY_PARTITION variable=FM_buf_acc0 complete dim=1
 
 	stride = 2;
-	load_input(0, 0, 0, conv1_img0, image_thermo);
+	load_input(0, 0, 0, conv1_img[0], image_thermo);
 	input_biconv:for (int row = 0; row < 28; row ++) {
 		for (int col = 0; col < 28; col ++) {
-			load_input(row, col, 1, conv1_img1, image_thermo);
-			pgconv64_1bit(conv1_img0, conv1_weights[0], thres_buf[0],  FM_buf_acc0, stride);
-			load_input(row, col, 2, conv1_img2, image_thermo);
-			pgconv64_1bit(conv1_img1, conv1_weights[1], thres_buf[0],  FM_buf_acc0, stride);
-			if (col != 27) {
-				load_input(row, col+1, 0, conv1_img0, image_thermo);
+			for (int c = 0; c < 3; c ++){
+				if (c <2) {
+					load_input(row, col, c+1, conv1_img[c+1], image_thermo);
+				}
+				pgconv64_1bit(conv1_img[c], conv1_weights[0], thres_buf[0],  FM_buf_acc0, stride);
 			}
-			pgconv64_1bit(conv1_img2, conv1_weights[2],  thres_buf[0],  FM_buf_acc0, stride);
+			if (col != 27) {
+				load_input(row, col+1, 0, conv1_img[0], image_thermo);
+			}
+			if (col == 27 && row != 27) {
+				load_input(row+1, 0, 0, conv1_img[0], image_thermo);
+			}
+
 			// this thing is stride 2
 			// careful with rearrangement of fm
-			if (col == 27 && row != 27) {
-				load_input(row+1, 0, 0, conv1_img0, image_thermo);
-			}
 			copy_input_layer_buf_to_DDR(DDR_buff_merge, row, col);
 			int buf_index = (row*4 + 1)*114 + col*4 + 1;
 			for (int mm = 0; mm < 4; mm++) {
@@ -533,7 +533,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
 #pragma HLS pipeline
 					for (int c = 0; c < 32; c ++) {
 #pragma HLS unroll
-						pg_buf_all[c][buf_index + nn] = FM_buf_acc0[c][mm][nn];
+						pg_buf_all[buf_index + nn][c] = (uint1)FM_buf_acc0[c][mm][nn];
 					}
 				}
 				buf_index += 114;
@@ -591,19 +591,19 @@ void FracNet(  uint32 image_thermo[3*226*226],
 
 
 
-    /////////////////////////////// 128 56 56 ////////////////////////////
+   /////////////////////////////// 128 56 56 ////////////////////////////
 
-    N_CII   = 64 / WEIGHT_DEPTH;
-    N_CIO   = 64 / BLK_DEPTH;
-    N_COI   = 64 / WEIGHT_DEPTH;
-    N_COO   = 128 / BLK_DEPTH;
-    N_SPI	= 56/ 7;
-    N_SPO	= 56/ 7;
-    stride  = 2;
+   N_CII   = 64 / WEIGHT_DEPTH;
+   N_CIO   = 64 / BLK_DEPTH;
+   N_COI   = 64 / WEIGHT_DEPTH;
+   N_COO   = 128 / BLK_DEPTH;
+   N_SPI	= 56/ 7;
+   N_SPO	= 56/ 7;
+   stride  = 2;
 
 	off_row = 112/N_SPO;
 	off_col = 112%N_SPO;
-    for (int cio = 0; cio < N_CIO; cio ++) {
+   for (int cio = 0; cio < N_CIO; cio ++) {
 		load_weights_3x3_all(conv_weight_3x3_all, weight_3x3_index, weights_all, weights_all_index);
 		weight_3x3_index += N_BLK;
 		weights_all_index += 8;
@@ -630,7 +630,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
 				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
 				for (int coi = 0; coi < N_COI; coi ++) {
 					load_buf_from_buf_all(row, col, 0, 0, 56);
-					pgconv64_1x1_1bit(pg_buf0, weight_buf_1x1[0], thres_buf[0], FM_buf_acc0);
+					pgconv64_1x1_1bit(pg_buf0, weight_buf_1x1[0], thres_buf[0], bn_weight_buf[0], bn_bias_buf[0], relu_shiftx_buf[0], relu_shifty_buf[0], relu_weight_buf[0], FM_buf_acc0);
 				}
 				int coo_cat = coo;
 				if (coo > N_COI) {
@@ -643,19 +643,19 @@ void FracNet(  uint32 image_thermo[3*226*226],
 
 
 
-     /////////////////////////////// 128 56 56 ////////////////////////////
+    /////////////////////////////// 128 56 56 ////////////////////////////
 
-     N_CII   = 128 / WEIGHT_DEPTH;
-     N_CIO   = 128 / BLK_DEPTH;
-     N_COI   = 128 / WEIGHT_DEPTH;
-     N_COO   = 128 / BLK_DEPTH;
-     N_SPI	= 56/ 7;
-     N_SPO	= 56/ 7;
-     stride  = 1;
+    N_CII   = 128 / WEIGHT_DEPTH;
+    N_CIO   = 128 / BLK_DEPTH;
+    N_COI   = 128 / WEIGHT_DEPTH;
+    N_COO   = 128 / BLK_DEPTH;
+    N_SPI	= 56/ 7;
+    N_SPO	= 56/ 7;
+    stride  = 1;
 
 
 
-     for (int cio = 0; cio < N_CIO; cio ++) {
+    for (int cio = 0; cio < N_CIO; cio ++) {
 	 	load_weights_3x3_all(conv_weight_3x3_all, weight_3x3_index, weights_all, weights_all_index);
 	 	weight_3x3_index += N_BLK;
 	 	weights_all_index += 8;
@@ -685,7 +685,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
 				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
 	 			for (int coi = 0; coi < N_COI; coi ++) {
 					load_buf_from_buf_all(row, col, 0, 0, 56);
-	 				pgconv64_1x1_1bit(pg_buf0, weight_buf_1x1[0], thres_buf[0], FM_buf_acc0);
+	 				pgconv64_1x1_1bit(pg_buf0, weight_buf_1x1[0], thres_buf[0], bn_weight_buf[0], bn_bias_buf[0], relu_shiftx_buf[0], relu_shifty_buf[0], relu_weight_buf[0], FM_buf_acc0);
 	 			}
 	 			int coo_cat = coo;
 	 			if (coo > N_COI) {
@@ -697,18 +697,18 @@ void FracNet(  uint32 image_thermo[3*226*226],
 	 }
 
 
-     /////////////////////////////// 256 28 28 ////////////////////////////
+    /////////////////////////////// 256 28 28 ////////////////////////////
 
-     N_CII   = 128 / WEIGHT_DEPTH;
-     N_CIO   = 128 / BLK_DEPTH;
-     N_COI   = 128 / WEIGHT_DEPTH;
-     N_COO   = 256 / BLK_DEPTH;
-     N_SPI	= 28/ 7;
-     N_SPO	= 28/ 7;
-     stride  = 2;
-     off_row = 112/N_SPO;
-     off_col = 112%N_SPO;
-     for (int cio = 0; cio < N_CIO; cio ++) {
+    N_CII   = 128 / WEIGHT_DEPTH;
+    N_CIO   = 128 / BLK_DEPTH;
+    N_COI   = 128 / WEIGHT_DEPTH;
+    N_COO   = 256 / BLK_DEPTH;
+    N_SPI	= 28/ 7;
+    N_SPO	= 28/ 7;
+    stride  = 2;
+    off_row = 112/N_SPO;
+    off_col = 112%N_SPO;
+    for (int cio = 0; cio < N_CIO; cio ++) {
 	 	load_weights_3x3_all(conv_weight_3x3_all, weight_3x3_index, weights_all, weights_all_index);
 	 	weight_3x3_index += 4;
 	 	weights_all_index += 8;
@@ -719,7 +719,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
 				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
 	 			for (int cii = 0; cii < N_CII; cii ++) {
 					load_buf_from_buf_all(row, col, 0, 0, 56);
-	 				pgconv64_1bit(pg_buf0, weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, stride);
+	 				pgconv64_1bit(pg_buf0, weight_buf_3x3[0], thres_buf[0], bn_weight_buf[0], bn_bias_buf[0], relu_shiftx_buf[0], relu_shifty_buf[0], relu_weight_buf[0], FM_buf_acc0, stride);
 	 			}
 				int off_row = 112/N_SPO;
 				int off_col = 112%N_SPO;
@@ -739,7 +739,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
 				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
 	 			for (int coi = 0; coi < N_COI; coi ++) {
 					load_buf_from_buf_all(row, col, 0, 0, 28);
-	 				pgconv64_1x1_1bit(pg_buf0, weight_buf_1x1[0], thres_buf[0], FM_buf_acc0);
+	 				pgconv64_1x1_1bit(pg_buf0, weight_buf_1x1[0], thres_buf[0], bn_weight_buf[0], bn_bias_buf[0], relu_shiftx_buf[0], relu_shifty_buf[0], relu_weight_buf[0], FM_buf_acc0);
 	 			}
 	 			int coo_cat = coo;
 	 			if (coo > N_COI) {
@@ -753,17 +753,17 @@ void FracNet(  uint32 image_thermo[3*226*226],
 	 }
 
 
-     /////////////////////////////// 256 28 28 ////////////////////////////
+    /////////////////////////////// 256 28 28 ////////////////////////////
 
-     N_CII   = 256 / WEIGHT_DEPTH;
-     N_CIO   = 256 / BLK_DEPTH;
-     N_COI   = 256 / WEIGHT_DEPTH;
-     N_COO   = 256 / BLK_DEPTH;
-     N_SPI	= 28/ 7;
-     N_SPO	= 28/ 7;
-     stride  = 1;
+    N_CII   = 256 / WEIGHT_DEPTH;
+    N_CIO   = 256 / BLK_DEPTH;
+    N_COI   = 256 / WEIGHT_DEPTH;
+    N_COO   = 256 / BLK_DEPTH;
+    N_SPI	= 28/ 7;
+    N_SPO	= 28/ 7;
+    stride  = 1;
 
-     for (int cio = 0; cio < N_CIO; cio ++) {
+    for (int cio = 0; cio < N_CIO; cio ++) {
 	 	load_weights_3x3_all(conv_weight_3x3_all, weight_3x3_index, weights_all, weights_all_index);
 	 	weight_3x3_index += 4;
 	 	weights_all_index += 8;
@@ -774,7 +774,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
 				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
 	 			for (int cii = 0; cii < N_CII; cii ++) {
 					load_buf_from_buf_all(row, col, 1, 0, 28);
-	 				pgconv64_1bit(pg_buf0, weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, stride);
+	 				pgconv64_1bit(pg_buf0, weight_buf_3x3[0], thres_buf[0], bn_weight_buf[0], bn_bias_buf[0], relu_shiftx_buf[0], relu_shifty_buf[0], relu_weight_buf[0], FM_buf_acc0, stride);
 	 			}
 				store_bufs_organize(DDR_buff_merge, 0, row, col, cio, off_row, off_col, 28, 1);
 	 		}
@@ -792,7 +792,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
 				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
 	 			for (int coi = 0; coi < N_COI; coi ++) {
 					load_buf_from_buf_all(row, col, 0, 0, 28);
-	 				pgconv64_1x1_1bit(pg_buf0, weight_buf_1x1[0], thres_buf[0],  FM_buf_acc0);
+	 				pgconv64_1x1_1bit(pg_buf0, weight_buf_1x1[0], thres_buf[0], bn_weight_buf[0], bn_bias_buf[0], relu_shiftx_buf[0], relu_shifty_buf[0], relu_weight_buf[0], FM_buf_acc0);
 	 			}
 	 			int coo_cat = coo;
 	 			if (coo > N_COI) {
@@ -804,17 +804,17 @@ void FracNet(  uint32 image_thermo[3*226*226],
 	 }
 
 
-     /////////////////////////////// 512 14 14 ////////////////////////////
+    /////////////////////////////// 512 14 14 ////////////////////////////
 
-     N_CII   = 256 / WEIGHT_DEPTH;
-     N_CIO   = 256 / BLK_DEPTH;
-     N_COI   = 256 / WEIGHT_DEPTH;
-     N_COO   = 512 / BLK_DEPTH;
-     N_SPI	= 14/ 7;
-     N_SPO	= 14/ 7;
-     stride  = 2;
+    N_CII   = 256 / WEIGHT_DEPTH;
+    N_CIO   = 256 / BLK_DEPTH;
+    N_COI   = 256 / WEIGHT_DEPTH;
+    N_COO   = 512 / BLK_DEPTH;
+    N_SPI	= 14/ 7;
+    N_SPO	= 14/ 7;
+    stride  = 2;
 
-     for (int cio = 0; cio < N_CIO; cio ++) {
+    for (int cio = 0; cio < N_CIO; cio ++) {
 	 	load_weights_3x3_all(conv_weight_3x3_all, weight_3x3_index, weights_all, weights_all_index);
 	 	weight_3x3_index += 4;
 	 	weights_all_index += 8;
@@ -825,7 +825,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
 				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
 	 			for (int cii = 0; cii < N_CII; cii ++) {
 					load_buf_from_buf_all(row, col, 0, 0, 28);
-	 				pgconv64_1bit(pg_buf0, weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, stride);
+	 				pgconv64_1bit(pg_buf0, weight_buf_3x3[0], thres_buf[0], bn_weight_buf[0], bn_bias_buf[0], relu_shiftx_buf[0], relu_shifty_buf[0], relu_weight_buf[0], FM_buf_acc0, stride);
 	 			}
 				store_bufs_organize(DDR_buff_merge, 1, row, col, cio, off_row, off_col, 14, 2);
 	 		}
@@ -841,7 +841,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
 				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
 	 			for (int coi = 0; coi < N_COI; coi ++) {
 					load_buf_from_buf_all(row, col, 0, 0, 14);
-	 				pgconv64_1x1_1bit(pg_buf0, weight_buf_1x1[0], thres_buf[0], FM_buf_acc0);
+	 				pgconv64_1x1_1bit(pg_buf0, weight_buf_1x1[0], thres_buf[0], bn_weight_buf[0], bn_bias_buf[0], relu_shiftx_buf[0], relu_shifty_buf[0], relu_weight_buf[0], FM_buf_acc0);
 	 			}
 	 			int coo_cat = coo;
 	 			if (coo > N_COI) {
@@ -852,17 +852,17 @@ void FracNet(  uint32 image_thermo[3*226*226],
 	 	}
 	 }
 
-     /////////////////////////////// 512 14 14 ////////////////////////////
+    /////////////////////////////// 512 14 14 ////////////////////////////
 
-     N_CII   = 256 / WEIGHT_DEPTH;
-     N_CIO   = 256 / BLK_DEPTH;
-     N_COI   = 256 / WEIGHT_DEPTH;
-     N_COO   = 512 / BLK_DEPTH;
-     N_SPI	= 14/ 7;
-     N_SPO	= 14/ 7;
-     stride  = 1;
+    N_CII   = 256 / WEIGHT_DEPTH;
+    N_CIO   = 256 / BLK_DEPTH;
+    N_COI   = 256 / WEIGHT_DEPTH;
+    N_COO   = 512 / BLK_DEPTH;
+    N_SPI	= 14/ 7;
+    N_SPO	= 14/ 7;
+    stride  = 1;
 
-     for (int cio = 0; cio < N_CIO; cio ++) {
+    for (int cio = 0; cio < N_CIO; cio ++) {
 	 	load_weights_3x3_all(conv_weight_3x3_all, weight_3x3_index, weights_all, weights_all_index);
 	 	weight_3x3_index += 4;
 	 	weights_all_index += 8;
@@ -873,7 +873,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
 				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
 	 			for (int cii = 0; cii < N_CII; cii ++) {
 					load_buf_from_buf_all(row, col, 0, 0, 14);
-	 				pgconv64_1bit(pg_buf0, weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, stride);
+	 				pgconv64_1bit(pg_buf0, weight_buf_3x3[0], thres_buf[0], bn_weight_buf[0], bn_bias_buf[0], relu_shiftx_buf[0], relu_shifty_buf[0], relu_weight_buf[0], FM_buf_acc0, stride);
 	 			}
 				store_bufs_organize(DDR_buff_merge, 1, row, col, cio, off_row, off_col, 14, 1);
 	 		}
@@ -891,7 +891,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
 				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
 	 			for (int coi = 0; coi < N_COI; coi ++) {
 					load_buf_from_buf_all(row, col, 0, 0, 14);
-	 				pgconv64_1x1_1bit(pg_buf0, weight_buf_1x1[0], thres_buf[0], FM_buf_acc0);
+	 				pgconv64_1x1_1bit(pg_buf0, weight_buf_1x1[0], thres_buf[0], bn_weight_buf[0], bn_bias_buf[0], relu_shiftx_buf[0], relu_shifty_buf[0], relu_weight_buf[0], FM_buf_acc0);
 	 			}
 	 			int coo_cat = coo;
 	 			if (coo > N_COI) {
@@ -902,17 +902,17 @@ void FracNet(  uint32 image_thermo[3*226*226],
 	 	}
 	 }
 
-     /////////////////////////////// 512 14 14 ////////////////////////////
+    /////////////////////////////// 512 14 14 ////////////////////////////
 
-     N_CII   = 256 / WEIGHT_DEPTH;
-     N_CIO   = 256 / BLK_DEPTH;
-     N_COI   = 256 / WEIGHT_DEPTH;
-     N_COO   = 512 / BLK_DEPTH;
-     N_SPI	= 14/ 7;
-     N_SPO	= 14/ 7;
-     stride  = 1;
+    N_CII   = 256 / WEIGHT_DEPTH;
+    N_CIO   = 256 / BLK_DEPTH;
+    N_COI   = 256 / WEIGHT_DEPTH;
+    N_COO   = 512 / BLK_DEPTH;
+    N_SPI	= 14/ 7;
+    N_SPO	= 14/ 7;
+    stride  = 1;
 
-     for (int cio = 0; cio < N_CIO; cio ++) {
+    for (int cio = 0; cio < N_CIO; cio ++) {
 	 	load_weights_3x3_all(conv_weight_3x3_all, weight_3x3_index, weights_all, weights_all_index);
 	 	weight_3x3_index += 4;
 	 	weights_all_index += 8;
@@ -923,7 +923,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
 				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
 	 			for (int cii = 0; cii < N_CII; cii ++) {
 					load_buf_from_buf_all(row, col, 0, 0, 14);
-	 				pgconv64_1bit(pg_buf0, weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, stride);
+	 				pgconv64_1bit(pg_buf0, weight_buf_3x3[0], thres_buf[0], bn_weight_buf[0], bn_bias_buf[0], relu_shiftx_buf[0], relu_shifty_buf[0], relu_weight_buf[0], FM_buf_acc0, stride);
 	 			}
 				store_bufs_organize(DDR_buff_merge, 1, row, col, cio, off_row, off_col, 14, 1);
 	 		}
@@ -941,7 +941,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
 				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
 	 			for (int coi = 0; coi < N_COI; coi ++) {
 					load_buf_from_buf_all(row, col, 0, 0, 14);
-	 				pgconv64_1x1_1bit(pg_buf0, weight_buf_1x1[0], thres_buf[0], FM_buf_acc0);
+	 				pgconv64_1x1_1bit(pg_buf0, weight_buf_1x1[0], thres_buf[0], bn_weight_buf[0], bn_bias_buf[0], relu_shiftx_buf[0], relu_shifty_buf[0], relu_weight_buf[0], FM_buf_acc0);
 	 			}
 	 			int coo_cat = coo;
 	 			if (coo > N_COI) {
@@ -952,18 +952,18 @@ void FracNet(  uint32 image_thermo[3*226*226],
 	 	}
 	 }
 
-     /////////////////////////////// 512 14 14 ////////////////////////////
+    /////////////////////////////// 512 14 14 ////////////////////////////
 
-     N_CII   = 512 / WEIGHT_DEPTH;
-     N_CIO   = 512 / BLK_DEPTH;
-     N_COI   = 512 / WEIGHT_DEPTH;
-     N_COO   = 512 / BLK_DEPTH;
-     N_SPI	= 14/ 7;
-     N_SPO	= 14/ 7;
-     stride  = 1;
+    N_CII   = 512 / WEIGHT_DEPTH;
+    N_CIO   = 512 / BLK_DEPTH;
+    N_COI   = 512 / WEIGHT_DEPTH;
+    N_COO   = 512 / BLK_DEPTH;
+    N_SPI	= 14/ 7;
+    N_SPO	= 14/ 7;
+    stride  = 1;
 
 
-     for (int cio = 0; cio < N_CIO; cio ++) {
+    for (int cio = 0; cio < N_CIO; cio ++) {
 	 	load_weights_3x3_all(conv_weight_3x3_all, weight_3x3_index, weights_all, weights_all_index);
 	 	weight_3x3_index += 4;
 	 	weights_all_index += 8;
@@ -974,7 +974,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
 				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
 	 			for (int cii = 0; cii < N_CII; cii ++) {
 					load_buf_from_buf_all(row, col, 0, 0, 14);
-	 				pgconv64_1bit(pg_buf0, weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, stride);
+	 				pgconv64_1bit(pg_buf0, weight_buf_3x3[0], thres_buf[0], bn_weight_buf[0], bn_bias_buf[0], relu_shiftx_buf[0], relu_shifty_buf[0], relu_weight_buf[0], FM_buf_acc0, stride);
 	 			}
 				store_bufs_organize(DDR_buff_merge, 1, row, col, cio, off_row, off_col, 14, 1);
 	 		}
@@ -992,7 +992,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
 				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
 	 			for (int coi = 0; coi < N_COI; coi ++) {
 					load_buf_from_buf_all(row, col, 0, 0, 14);
-	 				pgconv64_1x1_1bit(pg_buf0, weight_buf_1x1[0], thres_buf[0], FM_buf_acc0);
+	 				pgconv64_1x1_1bit(pg_buf0, weight_buf_1x1[0], thres_buf[0], bn_weight_buf[0], bn_bias_buf[0], relu_shiftx_buf[0], relu_shifty_buf[0], relu_weight_buf[0], FM_buf_acc0);
 	 			}
 	 			int coo_cat = coo;
 	 			if (coo > N_COI) {
@@ -1004,17 +1004,17 @@ void FracNet(  uint32 image_thermo[3*226*226],
 	 }
 
 
-     /////////////////////////////// 512 14 14 ////////////////////////////
+    /////////////////////////////// 512 14 14 ////////////////////////////
 
-     N_CII   = 512 / WEIGHT_DEPTH;
-     N_CIO   = 512 / BLK_DEPTH;
-     N_COI   = 512 / WEIGHT_DEPTH;
-     N_COO   = 512 / BLK_DEPTH;
-     N_SPI	= 14/ 7;
-     N_SPO	= 14/ 7;
-     stride  = 1;
+    N_CII   = 512 / WEIGHT_DEPTH;
+    N_CIO   = 512 / BLK_DEPTH;
+    N_COI   = 512 / WEIGHT_DEPTH;
+    N_COO   = 512 / BLK_DEPTH;
+    N_SPI	= 14/ 7;
+    N_SPO	= 14/ 7;
+    stride  = 1;
 
-     for (int cio = 0; cio < N_CIO; cio ++) {
+    for (int cio = 0; cio < N_CIO; cio ++) {
 	 	load_weights_3x3_all(conv_weight_3x3_all, weight_3x3_index, weights_all, weights_all_index);
 	 	weight_3x3_index += 4;
 	 	weights_all_index += 8;
@@ -1025,7 +1025,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
 				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
 	 			for (int cii = 0; cii < N_CII; cii ++) {
 					load_buf_from_buf_all(row, col, 0, 0, 14);
-	 				pgconv64_1bit(pg_buf0, weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, stride);
+	 				pgconv64_1bit(pg_buf0, weight_buf_3x3[0], thres_buf[0], bn_weight_buf[0], bn_bias_buf[0], relu_shiftx_buf[0], relu_shifty_buf[0], relu_weight_buf[0], FM_buf_acc0, stride);
 	 			}
 				store_bufs_organize(DDR_buff_merge, 1, row, col, cio, off_row, off_col, 14, 1);
 	 		}
@@ -1043,7 +1043,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
 				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
 	 			for (int coi = 0; coi < N_COI; coi ++) {
 					load_buf_from_buf_all(row, col, 0, 0, 14);
-	 				pgconv64_1x1_1bit(pg_buf0, weight_buf_1x1[0], thres_buf[0], FM_buf_acc0);
+	 				pgconv64_1x1_1bit(pg_buf0, weight_buf_1x1[0], thres_buf[0], bn_weight_buf[0], bn_bias_buf[0], relu_shiftx_buf[0], relu_shifty_buf[0], relu_weight_buf[0], FM_buf_acc0);
 	 			}
 	 			int coo_cat = coo;
 	 			if (coo > N_COI) {
@@ -1055,18 +1055,18 @@ void FracNet(  uint32 image_thermo[3*226*226],
 	 }
 
 
-     /////////////////////////////// 512 14 14 ////////////////////////////
+    /////////////////////////////// 512 14 14 ////////////////////////////
 
-     N_CII   = 512 / WEIGHT_DEPTH;
-     N_CIO   = 512 / BLK_DEPTH;
-     N_COI   = 512 / WEIGHT_DEPTH;
-     N_COO   = 512 / BLK_DEPTH;
-     N_SPI	= 14/ 7;
-     N_SPO	= 14/ 7;
-     stride  = 1;
+    N_CII   = 512 / WEIGHT_DEPTH;
+    N_CIO   = 512 / BLK_DEPTH;
+    N_COI   = 512 / WEIGHT_DEPTH;
+    N_COO   = 512 / BLK_DEPTH;
+    N_SPI	= 14/ 7;
+    N_SPO	= 14/ 7;
+    stride  = 1;
 
 
-     for (int cio = 0; cio < N_CIO; cio ++) {
+    for (int cio = 0; cio < N_CIO; cio ++) {
 	 	load_weights_3x3_all(conv_weight_3x3_all, weight_3x3_index, weights_all, weights_all_index);
 	 	weight_3x3_index += 4;
 	 	weights_all_index += 8;
@@ -1077,7 +1077,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
 				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
 	 			for (int cii = 0; cii < N_CII; cii ++) {
 					load_buf_from_buf_all(row, col, 0, 0, 14);
-	 				pgconv64_1bit(pg_buf0, weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, stride);
+	 				pgconv64_1bit(pg_buf0, weight_buf_3x3[0], thres_buf[0], bn_weight_buf[0], bn_bias_buf[0], relu_shiftx_buf[0], relu_shifty_buf[0], relu_weight_buf[0], FM_buf_acc0, stride);
 	 			}
 				store_bufs_organize(DDR_buff_merge, 1, row, col, cio, off_row, off_col, 14, 1);
 	 		}
@@ -1095,7 +1095,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
 				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
 	 			for (int coi = 0; coi < N_COI; coi ++) {
 					load_buf_from_buf_all(row, col, 0, 0, 14);
-	 				pgconv64_1x1_1bit(pg_buf0, weight_buf_1x1[0], thres_buf[0], FM_buf_acc0);
+	 				pgconv64_1x1_1bit(pg_buf0, weight_buf_1x1[0], thres_buf[0], bn_weight_buf[0], bn_bias_buf[0], relu_shiftx_buf[0], relu_shifty_buf[0], relu_weight_buf[0], FM_buf_acc0);
 	 			}
 	 			int coo_cat = coo;
 	 			if (coo > N_COI) {
@@ -1107,17 +1107,17 @@ void FracNet(  uint32 image_thermo[3*226*226],
 	 }
 
 
-     /////////////////////////////// 1024 7 7 ////////////////////////////
+    /////////////////////////////// 1024 7 7 ////////////////////////////
 
-     N_CII   = 512 / WEIGHT_DEPTH;
-     N_CIO   = 512 / BLK_DEPTH;
-     N_COI   = 512 / WEIGHT_DEPTH;
-     N_COO   = 1024 / BLK_DEPTH;
-     N_SPI	= 7/ 7;
-     N_SPO	= 7/ 7;
-     stride  = 2;
+    N_CII   = 512 / WEIGHT_DEPTH;
+    N_CIO   = 512 / BLK_DEPTH;
+    N_COI   = 512 / WEIGHT_DEPTH;
+    N_COO   = 1024 / BLK_DEPTH;
+    N_SPI	= 7/ 7;
+    N_SPO	= 7/ 7;
+    stride  = 2;
 
-     for (int cio = 0; cio < N_CIO; cio ++) {
+    for (int cio = 0; cio < N_CIO; cio ++) {
 	 	load_weights_3x3_all(conv_weight_3x3_all, weight_3x3_index, weights_all, weights_all_index);
 	 	weight_3x3_index += 4;
 	 	weights_all_index += 8;
@@ -1128,7 +1128,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
 				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
 	 			for (int cii = 0; cii < N_CII; cii ++) {
 					load_buf_from_buf_all(row, col, 0, 0, 14);
-	 				pgconv64_1bit(pg_buf0, weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, stride);
+	 				pgconv64_1bit(pg_buf0, weight_buf_3x3[0], thres_buf[0], bn_weight_buf[0], bn_bias_buf[0], relu_shiftx_buf[0], relu_shifty_buf[0], relu_weight_buf[0], FM_buf_acc0, stride);
 	 			}
 				store_bufs_organize(DDR_buff_merge, 1, row, col, cio, off_row, off_col, 7, 2);
 	 		}
@@ -1146,7 +1146,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
 				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
 	 			for (int coi = 0; coi < N_COI; coi ++) {
 					load_buf_from_buf_all(row, col, 0, 0, 7);
-	 				pgconv64_1x1_1bit(pg_buf0, weight_buf_1x1[0], thres_buf[0], FM_buf_acc0);
+	 				pgconv64_1x1_1bit(pg_buf0, weight_buf_1x1[0], thres_buf[0], bn_weight_buf[0], bn_bias_buf[0], relu_shiftx_buf[0], relu_shifty_buf[0], relu_weight_buf[0], FM_buf_acc0);
 	 			}
 	 			int coo_cat = coo;
 	 			if (coo > N_COI) {
@@ -1158,17 +1158,17 @@ void FracNet(  uint32 image_thermo[3*226*226],
 	 }
 
 
-     /////////////////////////////// 1024 7 7 ////////////////////////////
+    /////////////////////////////// 1024 7 7 ////////////////////////////
 
-     N_CII   = 1024 / WEIGHT_DEPTH;
-     N_CIO   = 1024 / BLK_DEPTH;
-     N_COI   = 1024 / WEIGHT_DEPTH;
-     N_COO   = 1024 / BLK_DEPTH;
-     N_SPI	= 7/ 7;
-     N_SPO	= 7/ 7;
-     stride  = 1;
+    N_CII   = 1024 / WEIGHT_DEPTH;
+    N_CIO   = 1024 / BLK_DEPTH;
+    N_COI   = 1024 / WEIGHT_DEPTH;
+    N_COO   = 1024 / BLK_DEPTH;
+    N_SPI	= 7/ 7;
+    N_SPO	= 7/ 7;
+    stride  = 1;
 
-     for (int cio = 0; cio < N_CIO; cio ++) {
+    for (int cio = 0; cio < N_CIO; cio ++) {
 	 	load_weights_3x3_all(conv_weight_3x3_all, weight_3x3_index, weights_all, weights_all_index);
 	 	weight_3x3_index += 4;
 	 	weights_all_index += 8;
@@ -1179,7 +1179,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
 				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
 	 			for (int cii = 0; cii < N_CII; cii ++) {
 					load_buf_from_buf_all(row, col, 0, 0, 7);
-	 				pgconv64_1bit(pg_buf0, weight_buf_3x3[0], thres_buf[0],  FM_buf_acc0, stride);
+	 				pgconv64_1bit(pg_buf0, weight_buf_3x3[0], thres_buf[0], bn_weight_buf[0], bn_bias_buf[0], relu_shiftx_buf[0], relu_shifty_buf[0], relu_weight_buf[0], FM_buf_acc0, stride);
 	 			}
 				store_bufs_organize(DDR_buff_merge, 1, row, col, cio, off_row, off_col, 7, 1);
 	 		}
@@ -1196,7 +1196,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
 				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
 	 			for (int coi = 0; coi < N_COI; coi ++) {
 					load_buf_from_buf_all(row, col, 0, 0, 7);
-	 				pgconv64_1x1_1bit(pg_buf0, weight_buf_1x1[0], thres_buf[0], FM_buf_acc0);
+	 				pgconv64_1x1_1bit(pg_buf0, weight_buf_1x1[0], thres_buf[0], bn_weight_buf[0], bn_bias_buf[0], relu_shiftx_buf[0], relu_shifty_buf[0], relu_weight_buf[0], FM_buf_acc0);
 	 			}
 	 			int coo_cat = coo;
 	 			if (coo > N_COI) {
@@ -1211,58 +1211,58 @@ void FracNet(  uint32 image_thermo[3*226*226],
 
 
 
-    FIX_FM_acc out_buf[16][64];
+   FIX_FM_acc out_buf[16][64];
 
-    avgpool:for (int c0 = 0; c0 < 16; c0 ++) {
-    		int coff = c0*2;
+   avgpool:for (int c0 = 0; c0 < 16; c0 ++) {
+   		int coff = c0*2;
 			load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, 0, 0, c0);
-    		for (int col = 0; col < 32; col ++) {
-    #pragma HLS unroll
-    			out_buf[c0][col] = avgpool_7x7(FM_buf0[col]);
-    		}
-    		coff += 1;
+   		for (int col = 0; col < 32; col ++) {
+   #pragma HLS unroll
+   			out_buf[c0][col] = avgpool_7x7(FM_buf0[col]);
+   		}
+   		coff += 1;
 			load_buf_from_DDR(DDR_buff_merge, 0, FM_buf1, 0, 0, c0);
-    		for (int col = 0; col < 32; col ++) {
-    #pragma HLS unroll
-    			out_buf[c0][col+32] = avgpool_7x7(FM_buf1[col]);
-    		}
-        }
+   		for (int col = 0; col < 32; col ++) {
+   #pragma HLS unroll
+   			out_buf[c0][col+32] = avgpool_7x7(FM_buf1[col]);
+   		}
+       }
 
-    FIX_WT linear_weight_buf[10][64];
+   FIX_WT linear_weight_buf[10][64];
 #pragma HLS ARRAY_PARTITION variable=linear_weight_buf complete dim=1
 #pragma HLS ARRAY_PARTITION variable=linear_weight_buf complete dim=2
-    FIX_WT linear_bias_buf[10];
+   FIX_WT linear_bias_buf[10];
 #pragma HLS ARRAY_PARTITION variable=linear_bias_buf complete dim=1
 
-    classifier:for (int i = 0; i < 100; i ++) {
-        for (int ii = 0; ii < 16; ii ++) {
-            for (int cc = 0; cc < 10; cc ++) {
-                for (int r = 0; r < 2; r ++) {
+   classifier:for (int i = 0; i < 100; i ++) {
+       for (int ii = 0; ii < 16; ii ++) {
+           for (int cc = 0; cc < 10; cc ++) {
+               for (int r = 0; r < 2; r ++) {
 #pragma HLS pipeline
-                    uint512 DATA = 0;
-                    DATA.range(511, 0) = linear_weight_all[i*160+ii*10+cc][r].range(511, 0);
-                    for (int c = 0; c < 32; c++) {
+                   uint512 DATA = 0;
+                   DATA.range(511, 0) = linear_weight_all[i*160+ii*10+cc][r].range(511, 0);
+                   for (int c = 0; c < 32; c++) {
 #pragma HLS unroll
-                        linear_weight_buf[cc][r*32 + c] = DATA.range(WT_RG+c*16, c*16);
-                    }
-                }
-            }
+                       linear_weight_buf[cc][r*32 + c] = DATA.range(WT_RG+c*16, c*16);
+                   }
+               }
+           }
 
-            uint256 DATA = 0;
-            DATA.range(160, 0) = linear_bias_all[i].range(160, 0);
-            for (int c = 0; c < 10; c++) {
+           uint256 DATA = 0;
+           DATA.range(160, 0) = linear_bias_all[i].range(160, 0);
+           for (int c = 0; c < 10; c++) {
 #pragma HLS unroll
-                linear_bias_buf[c] = DATA.range(WT_RG+c*16, c*16);
-            }
+               linear_bias_buf[c] = DATA.range(WT_RG+c*16, c*16);
+           }
 
-            float result[10];
-            matmul(out_buf[ii], linear_weight_buf, linear_bias_buf, result);
-            for (int j = 0; j < 10; j ++) {
+           float result[10];
+           matmul(out_buf[ii], linear_weight_buf, linear_bias_buf, result);
+           for (int j = 0; j < 10; j ++) {
 #pragma HLS pipeline
-                out[i*10+j] += result[j];
-            }
-        }
-    }
+               out[i*10+j] += result[j];
+           }
+       }
+   }
 
     return;
 }
