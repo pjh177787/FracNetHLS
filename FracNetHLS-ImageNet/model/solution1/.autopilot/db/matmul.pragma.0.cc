@@ -25155,23 +25155,20 @@ void pgconv32_1x1_1bit(uint1 bottom[32][11][11],
 void pgconv64_1x1_1bit(uint64 bottom[9][9],
                     uint64 weights[32],
                     FIX_WT thres[32],
-                    FIX_WT bn_weights[32],
-                    FIX_WT bn_bias[32],
-                    FIX_WT relu_shiftx[32],
-                    FIX_WT relu_shifty[32],
-                    FIX_WT relu_weights[32],
                     FIX_FM_acc top[32][9][9]
 );
-void pgconv64_1bit(uint64 bottom[9][9],
-                    uint64 weights[32][3][3],
-                    FIX_WT thres[32],
-                    FIX_WT bn_weights[32],
-                    FIX_WT bn_bias[32],
-                    FIX_WT relu_shiftx[32],
-                    FIX_WT relu_shifty[32],
-                    FIX_WT relu_weights[32],
-                    FIX_FM_acc top[32][9][9],
-                    int stride
+# 173 "./net_hls.h"
+void pgconv64_1bit(uint64 bottom1[9][9],
+
+                uint64 weights[32][3][3],
+                FIX_WT thres[32],
+
+
+
+
+
+                FIX_FM_acc top[32][9][9],
+    int stride
 );
 
 void biconv16(uint16 bottom[9][9],

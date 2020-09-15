@@ -168,7 +168,7 @@ set NameSpace18 [list ]
 set DataType18 "[list ap_fixed 14 6 0 0 0 ]"
 set Port18 [list $PortName18 $Interface18 $DataType18 $Pointer18 $Dims18 $Const18 $Volatile18 $ArrayOpt18 $Initializer18 $External18 $NameSpace18]
 lappend globalVariable $Port18
-set PortName19 "FM_buf0"
+set PortName19 "FM_buf1"
 set BitWidth19 "41472"
 set ArrayOpt19 ""
 set Const19 "0"
@@ -183,6 +183,21 @@ set NameSpace19 [list ]
 set DataType19 "[list ap_fixed 9 3 0 0 0 ]"
 set Port19 [list $PortName19 $Interface19 $DataType19 $Pointer19 $Dims19 $Const19 $Volatile19 $ArrayOpt19 $Initializer19 $External19 $NameSpace19]
 lappend globalVariable $Port19
+set PortName20 "FM_buf0"
+set BitWidth20 "41472"
+set ArrayOpt20 ""
+set Const20 "0"
+set Volatile20 "0"
+set Pointer20 "0"
+set Reference20 "0"
+set Initializer20 ""
+set External20 0
+set Dims20 [list  32 9 9]
+set Interface20 "wire"
+set NameSpace20 [list ]
+set DataType20 "[list ap_fixed 9 3 0 0 0 ]"
+set Port20 [list $PortName20 $Interface20 $DataType20 $Pointer20 $Dims20 $Const20 $Volatile20 $ArrayOpt20 $Initializer20 $External20 $NameSpace20]
+lappend globalVariable $Port20
 set PortList ""
 set PortName0 "image_thermo"
 set BitWidth0 "64"
@@ -191,9 +206,9 @@ set Const0 "0"
 set Volatile0 "0"
 set Pointer0 "0"
 set Reference0 "0"
-set Dims0 [list 306456]
+set Dims0 [list 153228]
 set Interface0 "wire"
-set DataType0 "[list ap_uint 16 ]"
+set DataType0 "[list ap_uint 32 ]"
 set Port0 [list $PortName0 $Interface0 $DataType0 $Pointer0 $Dims0 $Const0 $Volatile0 $ArrayOpt0]
 lappend PortList $Port0
 set PortName1 "conv_weight_1x1_all"

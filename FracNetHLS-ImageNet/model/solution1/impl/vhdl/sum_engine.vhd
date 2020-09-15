@@ -22,16 +22,15 @@ port (
     t6_V : IN STD_LOGIC_VECTOR (5 downto 0);
     t7_V : IN STD_LOGIC_VECTOR (5 downto 0);
     t8_V : IN STD_LOGIC_VECTOR (5 downto 0);
-    ap_return : OUT STD_LOGIC_VECTOR (7 downto 0);
-    ap_ce : IN STD_LOGIC );
+    ap_return : OUT STD_LOGIC_VECTOR (7 downto 0) );
 end;
 
 
 architecture behav of sum_engine is 
-    constant ap_const_logic_1 : STD_LOGIC := '1';
-    constant ap_const_logic_0 : STD_LOGIC := '0';
     constant ap_const_boolean_1 : BOOLEAN := true;
     constant ap_const_boolean_0 : BOOLEAN := false;
+    constant ap_const_logic_1 : STD_LOGIC := '1';
+    constant ap_const_logic_0 : STD_LOGIC := '0';
 
     signal t8_V_read_reg_152 : STD_LOGIC_VECTOR (5 downto 0);
     signal ap_block_state1_pp0_stage0_iter0 : BOOLEAN;
@@ -46,46 +45,28 @@ architecture behav of sum_engine is
     signal ap_block_pp0_stage0 : BOOLEAN;
     signal add2_V_fu_96_p2 : STD_LOGIC_VECTOR (5 downto 0);
     signal add3_V_fu_102_p2 : STD_LOGIC_VECTOR (5 downto 0);
-    signal lhs_V_3_fu_108_p1 : STD_LOGIC_VECTOR (6 downto 0);
-    signal rhs_V_4_fu_112_p1 : STD_LOGIC_VECTOR (6 downto 0);
+    signal lhs_V_1_fu_108_p1 : STD_LOGIC_VECTOR (6 downto 0);
+    signal rhs_V_1_fu_112_p1 : STD_LOGIC_VECTOR (6 downto 0);
     signal rhs_V_fu_125_p1 : STD_LOGIC_VECTOR (6 downto 0);
     signal lhs_V_fu_122_p1 : STD_LOGIC_VECTOR (6 downto 0);
     signal add_ln68_fu_128_p2 : STD_LOGIC_VECTOR (6 downto 0);
     signal add6_V_fu_134_p2 : STD_LOGIC_VECTOR (6 downto 0);
-    signal lhs_V_4_fu_139_p1 : STD_LOGIC_VECTOR (7 downto 0);
-    signal rhs_V_5_fu_143_p1 : STD_LOGIC_VECTOR (7 downto 0);
-    signal ret_V_fu_146_p2 : STD_LOGIC_VECTOR (7 downto 0);
-    signal ap_ce_reg : STD_LOGIC;
-    signal ap_return_int_reg : STD_LOGIC_VECTOR (7 downto 0);
+    signal lhs_V_2_fu_139_p1 : STD_LOGIC_VECTOR (7 downto 0);
+    signal rhs_V_2_fu_143_p1 : STD_LOGIC_VECTOR (7 downto 0);
 
 
 begin
 
 
 
-
-    ap_ce_reg_assign_proc : process (ap_clk)
-    begin
-        if (ap_clk'event and ap_clk = '1') then
-            ap_ce_reg <= ap_ce;
-        end if;
-    end process;
     process (ap_clk)
     begin
         if (ap_clk'event and ap_clk = '1') then
-            if (((ap_const_logic_1 = ap_const_logic_1) and (ap_const_boolean_0 = ap_block_pp0_stage0_11001))) then
+            if ((ap_const_boolean_0 = ap_block_pp0_stage0_11001)) then
                 add0_V_reg_157 <= add0_V_fu_84_p2;
                 add1_V_reg_162 <= add1_V_fu_90_p2;
                 add_ln68_1_reg_167 <= add_ln68_1_fu_116_p2;
                 t8_V_read_reg_152 <= t8_V;
-            end if;
-        end if;
-    end process;
-    process (ap_clk)
-    begin
-        if (ap_clk'event and ap_clk = '1') then
-            if ((ap_const_logic_1 = ap_ce_reg)) then
-                ap_return_int_reg <= ret_V_fu_146_p2;
             end if;
         end if;
     end process;
@@ -94,32 +75,22 @@ begin
     add2_V_fu_96_p2 <= std_logic_vector(unsigned(t5_V) + unsigned(t4_V));
     add3_V_fu_102_p2 <= std_logic_vector(unsigned(t7_V) + unsigned(t6_V));
     add6_V_fu_134_p2 <= std_logic_vector(unsigned(add_ln68_1_reg_167) + unsigned(add_ln68_fu_128_p2));
-    add_ln68_1_fu_116_p2 <= std_logic_vector(signed(lhs_V_3_fu_108_p1) + signed(rhs_V_4_fu_112_p1));
+    add_ln68_1_fu_116_p2 <= std_logic_vector(signed(lhs_V_1_fu_108_p1) + signed(rhs_V_1_fu_112_p1));
     add_ln68_fu_128_p2 <= std_logic_vector(signed(rhs_V_fu_125_p1) + signed(lhs_V_fu_122_p1));
         ap_block_pp0_stage0 <= not((ap_const_boolean_1 = ap_const_boolean_1));
         ap_block_pp0_stage0_11001 <= not((ap_const_boolean_1 = ap_const_boolean_1));
         ap_block_state1_pp0_stage0_iter0 <= not((ap_const_boolean_1 = ap_const_boolean_1));
         ap_block_state2_pp0_stage0_iter1 <= not((ap_const_boolean_1 = ap_const_boolean_1));
+    ap_return <= std_logic_vector(signed(lhs_V_2_fu_139_p1) + signed(rhs_V_2_fu_143_p1));
+        lhs_V_1_fu_108_p1 <= std_logic_vector(IEEE.numeric_std.resize(signed(add2_V_fu_96_p2),7));
 
-    ap_return_assign_proc : process(ret_V_fu_146_p2, ap_ce_reg, ap_return_int_reg)
-    begin
-        if ((ap_const_logic_0 = ap_ce_reg)) then 
-            ap_return <= ap_return_int_reg;
-        elsif ((ap_const_logic_1 = ap_ce_reg)) then 
-            ap_return <= ret_V_fu_146_p2;
-        end if; 
-    end process;
-
-        lhs_V_3_fu_108_p1 <= std_logic_vector(IEEE.numeric_std.resize(signed(add2_V_fu_96_p2),7));
-
-        lhs_V_4_fu_139_p1 <= std_logic_vector(IEEE.numeric_std.resize(signed(add6_V_fu_134_p2),8));
+        lhs_V_2_fu_139_p1 <= std_logic_vector(IEEE.numeric_std.resize(signed(add6_V_fu_134_p2),8));
 
         lhs_V_fu_122_p1 <= std_logic_vector(IEEE.numeric_std.resize(signed(add0_V_reg_157),7));
 
-    ret_V_fu_146_p2 <= std_logic_vector(signed(lhs_V_4_fu_139_p1) + signed(rhs_V_5_fu_143_p1));
-        rhs_V_4_fu_112_p1 <= std_logic_vector(IEEE.numeric_std.resize(signed(add3_V_fu_102_p2),7));
+        rhs_V_1_fu_112_p1 <= std_logic_vector(IEEE.numeric_std.resize(signed(add3_V_fu_102_p2),7));
 
-    rhs_V_5_fu_143_p1 <= std_logic_vector(IEEE.numeric_std.resize(unsigned(t8_V_read_reg_152),8));
+    rhs_V_2_fu_143_p1 <= std_logic_vector(IEEE.numeric_std.resize(unsigned(t8_V_read_reg_152),8));
         rhs_V_fu_125_p1 <= std_logic_vector(IEEE.numeric_std.resize(signed(add1_V_reg_162),7));
 
 end behav;

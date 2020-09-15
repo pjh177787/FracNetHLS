@@ -20,78 +20,67 @@ module batch_norm (
 
 input   ap_clk;
 input   ap_rst;
-input  [7:0] sum_V;
-input  [10:0] weight_V;
-input  [10:0] bias_V;
+input  [5:0] sum_V;
+input  [9:0] weight_V;
+input  [9:0] bias_V;
 output  [13:0] ap_return;
 input   ap_ce;
 
 reg[13:0] ap_return;
 
-reg   [10:0] bias_V_read_reg_295;
+reg   [9:0] bias_V_read_reg_216;
 wire    ap_block_state1_pp0_stage0_iter0;
 wire    ap_block_state2_pp0_stage0_iter1;
 wire    ap_block_state3_pp0_stage0_iter2;
 wire    ap_block_pp0_stage0_11001;
-reg   [10:0] bias_V_read_reg_295_pp0_iter1_reg;
-wire  signed [18:0] r_V_4_fu_286_p2;
-reg  signed [18:0] r_V_4_reg_300;
-reg   [0:0] p_Result_s_reg_305;
-wire   [12:0] trunc_ln731_fu_75_p1;
-reg   [12:0] trunc_ln731_reg_311;
-reg   [0:0] p_Result_7_reg_316;
-wire  signed [13:0] p_Val2_18_fu_179_p3;
-reg  signed [13:0] p_Val2_18_reg_322;
+wire   [17:0] r_V_fu_210_p2;
+reg   [17:0] r_V_reg_221;
+reg   [0:0] p_Result_3_reg_228;
+wire   [13:0] ret_V_3_fu_150_p2;
+reg   [13:0] ret_V_3_reg_235;
+reg   [0:0] p_Result_4_reg_241;
 wire    ap_block_pp0_stage0;
-wire   [5:0] p_Result_s_52_fu_92_p4;
-wire   [0:0] icmp_ln785_fu_101_p2;
-wire   [0:0] or_ln785_fu_107_p2;
-wire   [0:0] xor_ln785_fu_112_p2;
-wire   [0:0] icmp_ln786_fu_128_p2;
-wire   [0:0] xor_ln786_fu_123_p2;
-wire   [0:0] or_ln786_fu_134_p2;
-wire   [0:0] underflow_fu_140_p2;
-wire   [0:0] overflow_fu_117_p2;
-wire   [0:0] xor_ln340_fu_151_p2;
-wire   [0:0] or_ln340_fu_145_p2;
-wire   [13:0] sw_V_fu_85_p3;
-wire   [0:0] or_ln340_35_fu_157_p2;
-wire   [13:0] select_ln340_fu_163_p3;
-wire   [13:0] select_ln388_fu_171_p3;
-wire  signed [11:0] rhs_V_fu_190_p3;
-wire  signed [14:0] lhs_V_fu_187_p1;
-wire  signed [14:0] sext_ln728_fu_197_p1;
-wire   [14:0] ret_V_fu_205_p2;
-wire  signed [13:0] sext_ln1192_fu_201_p1;
-wire   [13:0] p_Val2_20_fu_219_p2;
-wire   [0:0] p_Result_9_fu_224_p3;
-wire   [0:0] p_Result_8_fu_211_p3;
-wire   [0:0] xor_ln786_9_fu_232_p2;
-wire   [0:0] xor_ln340_174_fu_250_p2;
-wire   [0:0] xor_ln340_316_fu_244_p2;
-wire   [0:0] underflow_3_fu_238_p2;
-wire   [0:0] or_ln340_444_fu_256_p2;
-wire   [13:0] select_ln340_492_fu_262_p3;
-wire   [13:0] select_ln388_173_fu_270_p3;
-wire   [7:0] r_V_4_fu_286_p0;
-wire   [13:0] select_ln340_525_fu_278_p3;
+wire  signed [7:0] sum_V_cast_fu_58_p1;
+wire   [12:0] trunc_ln731_fu_70_p1;
+wire   [4:0] tmp_fu_88_p4;
+wire   [0:0] p_Result_s_fu_81_p3;
+wire   [0:0] icmp_ln785_fu_97_p2;
+wire   [0:0] overflow_fu_103_p2;
+wire   [13:0] sw_V_fu_73_p3;
+wire  signed [13:0] p_Val2_4_fu_109_p3;
+wire   [10:0] tmp_287_fu_121_p3;
+wire   [14:0] zext_ln728_fu_128_p1;
+wire  signed [14:0] lhs_V_fu_117_p1;
+wire   [14:0] ret_V_fu_136_p2;
+wire   [13:0] zext_ln1192_fu_132_p1;
+wire   [0:0] xor_ln786_2_fu_164_p2;
+wire   [0:0] xor_ln340_32_fu_178_p2;
+wire   [0:0] xor_ln340_fu_174_p2;
+wire   [0:0] underflow_fu_169_p2;
+wire   [0:0] or_ln340_fu_183_p2;
+wire   [13:0] select_ln340_fu_188_p3;
+wire   [13:0] select_ln388_fu_195_p3;
+wire   [9:0] r_V_fu_210_p0;
+wire   [7:0] r_V_fu_210_p1;
+wire   [13:0] select_ln340_110_fu_202_p3;
 reg    ap_ce_reg;
-reg   [7:0] sum_V_int_reg;
-reg  signed [10:0] weight_V_int_reg;
-reg   [10:0] bias_V_int_reg;
+reg   [5:0] sum_V_int_reg;
+reg   [9:0] weight_V_int_reg;
+reg   [9:0] bias_V_int_reg;
 reg   [13:0] ap_return_int_reg;
-wire   [18:0] r_V_4_fu_286_p00;
+wire   [17:0] r_V_fu_210_p00;
+wire   [17:0] r_V_fu_210_p10;
 
-FracNet_mul_mul_8fYi #(
+FracNet_mul_mul_1jbC #(
     .ID( 1 ),
     .NUM_STAGE( 1 ),
-    .din0_WIDTH( 8 ),
-    .din1_WIDTH( 11 ),
-    .dout_WIDTH( 19 ))
-FracNet_mul_mul_8fYi_U25(
-    .din0(r_V_4_fu_286_p0),
-    .din1(weight_V_int_reg),
-    .dout(r_V_4_fu_286_p2)
+    .din0_WIDTH( 10 ),
+    .din1_WIDTH( 8 ),
+    .dout_WIDTH( 18 ))
+FracNet_mul_mul_1jbC_U1214(
+    .din0(r_V_fu_210_p0),
+    .din1(r_V_fu_210_p1),
+    .dout(r_V_fu_210_p2)
 );
 
 always @ (posedge ap_clk) begin
@@ -100,7 +89,7 @@ end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_ce_reg)) begin
-        ap_return_int_reg <= select_ln340_525_fu_278_p3;
+        ap_return_int_reg <= select_ln340_110_fu_202_p3;
     end
 end
 
@@ -114,13 +103,11 @@ end
 
 always @ (posedge ap_clk) begin
     if (((1'b0 == ap_block_pp0_stage0_11001) & (1'b1 == ap_ce_reg))) begin
-        bias_V_read_reg_295 <= bias_V_int_reg;
-        bias_V_read_reg_295_pp0_iter1_reg <= bias_V_read_reg_295;
-        p_Result_7_reg_316 <= r_V_4_fu_286_p2[32'd12];
-        p_Result_s_reg_305 <= r_V_4_fu_286_p2[32'd18];
-        p_Val2_18_reg_322 <= p_Val2_18_fu_179_p3;
-        r_V_4_reg_300 <= r_V_4_fu_286_p2;
-        trunc_ln731_reg_311 <= trunc_ln731_fu_75_p1;
+        bias_V_read_reg_216 <= bias_V_int_reg;
+        p_Result_3_reg_228 <= ret_V_fu_136_p2[32'd14];
+        p_Result_4_reg_241 <= ret_V_3_fu_150_p2[32'd13];
+        r_V_reg_221 <= r_V_fu_210_p2;
+        ret_V_3_reg_235 <= ret_V_3_fu_150_p2;
     end
 end
 
@@ -128,7 +115,7 @@ always @ (*) begin
     if ((1'b0 == ap_ce_reg)) begin
         ap_return = ap_return_int_reg;
     end else if ((1'b1 == ap_ce_reg)) begin
-        ap_return = select_ln340_525_fu_278_p3;
+        ap_return = select_ln340_110_fu_202_p3;
     end
 end
 
@@ -142,74 +129,56 @@ assign ap_block_state2_pp0_stage0_iter1 = ~(1'b1 == 1'b1);
 
 assign ap_block_state3_pp0_stage0_iter2 = ~(1'b1 == 1'b1);
 
-assign icmp_ln785_fu_101_p2 = ((p_Result_s_52_fu_92_p4 != 6'd0) ? 1'b1 : 1'b0);
+assign icmp_ln785_fu_97_p2 = ((tmp_fu_88_p4 != 5'd0) ? 1'b1 : 1'b0);
 
-assign icmp_ln786_fu_128_p2 = ((p_Result_s_52_fu_92_p4 != 6'd63) ? 1'b1 : 1'b0);
+assign lhs_V_fu_117_p1 = p_Val2_4_fu_109_p3;
 
-assign lhs_V_fu_187_p1 = p_Val2_18_reg_322;
+assign or_ln340_fu_183_p2 = (xor_ln340_32_fu_178_p2 | p_Result_4_reg_241);
 
-assign or_ln340_35_fu_157_p2 = (xor_ln340_fu_151_p2 | overflow_fu_117_p2);
+assign overflow_fu_103_p2 = (p_Result_s_fu_81_p3 | icmp_ln785_fu_97_p2);
 
-assign or_ln340_444_fu_256_p2 = (xor_ln340_174_fu_250_p2 | p_Result_9_fu_224_p3);
+assign p_Result_s_fu_81_p3 = r_V_reg_221[32'd12];
 
-assign or_ln340_fu_145_p2 = (underflow_fu_140_p2 | overflow_fu_117_p2);
+assign p_Val2_4_fu_109_p3 = ((overflow_fu_103_p2[0:0] === 1'b1) ? 14'd8191 : sw_V_fu_73_p3);
 
-assign or_ln785_fu_107_p2 = (p_Result_7_reg_316 | icmp_ln785_fu_101_p2);
+assign r_V_fu_210_p0 = r_V_fu_210_p00;
 
-assign or_ln786_fu_134_p2 = (xor_ln786_fu_123_p2 | icmp_ln786_fu_128_p2);
+assign r_V_fu_210_p00 = weight_V_int_reg;
 
-assign overflow_fu_117_p2 = (xor_ln785_fu_112_p2 & or_ln785_fu_107_p2);
+assign r_V_fu_210_p1 = r_V_fu_210_p10;
 
-assign p_Result_8_fu_211_p3 = ret_V_fu_205_p2[32'd14];
+assign r_V_fu_210_p10 = $unsigned(sum_V_cast_fu_58_p1);
 
-assign p_Result_9_fu_224_p3 = p_Val2_20_fu_219_p2[32'd13];
+assign ret_V_3_fu_150_p2 = ($signed(zext_ln1192_fu_132_p1) + $signed(p_Val2_4_fu_109_p3));
 
-assign p_Result_s_52_fu_92_p4 = {{r_V_4_reg_300[18:13]}};
+assign ret_V_fu_136_p2 = ($signed(zext_ln728_fu_128_p1) + $signed(lhs_V_fu_117_p1));
 
-assign p_Val2_18_fu_179_p3 = ((or_ln340_35_fu_157_p2[0:0] === 1'b1) ? select_ln340_fu_163_p3 : select_ln388_fu_171_p3);
+assign select_ln340_110_fu_202_p3 = ((or_ln340_fu_183_p2[0:0] === 1'b1) ? select_ln340_fu_188_p3 : select_ln388_fu_195_p3);
 
-assign p_Val2_20_fu_219_p2 = ($signed(sext_ln1192_fu_201_p1) + $signed(p_Val2_18_reg_322));
+assign select_ln340_fu_188_p3 = ((xor_ln340_fu_174_p2[0:0] === 1'b1) ? 14'd8191 : ret_V_3_reg_235);
 
-assign r_V_4_fu_286_p0 = r_V_4_fu_286_p00;
+assign select_ln388_fu_195_p3 = ((underflow_fu_169_p2[0:0] === 1'b1) ? 14'd8192 : ret_V_3_reg_235);
 
-assign r_V_4_fu_286_p00 = sum_V_int_reg;
+assign sum_V_cast_fu_58_p1 = $signed(sum_V_int_reg);
 
-assign ret_V_fu_205_p2 = ($signed(lhs_V_fu_187_p1) + $signed(sext_ln728_fu_197_p1));
+assign sw_V_fu_73_p3 = {{trunc_ln731_fu_70_p1}, {1'd0}};
 
-assign rhs_V_fu_190_p3 = {{bias_V_read_reg_295_pp0_iter1_reg}, {1'd0}};
+assign tmp_287_fu_121_p3 = {{bias_V_read_reg_216}, {1'd0}};
 
-assign select_ln340_492_fu_262_p3 = ((xor_ln340_316_fu_244_p2[0:0] === 1'b1) ? 14'd8191 : p_Val2_20_fu_219_p2);
+assign tmp_fu_88_p4 = {{r_V_reg_221[17:13]}};
 
-assign select_ln340_525_fu_278_p3 = ((or_ln340_444_fu_256_p2[0:0] === 1'b1) ? select_ln340_492_fu_262_p3 : select_ln388_173_fu_270_p3);
+assign trunc_ln731_fu_70_p1 = r_V_reg_221[12:0];
 
-assign select_ln340_fu_163_p3 = ((or_ln340_fu_145_p2[0:0] === 1'b1) ? 14'd8191 : sw_V_fu_85_p3);
+assign underflow_fu_169_p2 = (xor_ln786_2_fu_164_p2 & p_Result_3_reg_228);
 
-assign select_ln388_173_fu_270_p3 = ((underflow_3_fu_238_p2[0:0] === 1'b1) ? 14'd8192 : p_Val2_20_fu_219_p2);
+assign xor_ln340_32_fu_178_p2 = (p_Result_3_reg_228 ^ 1'd1);
 
-assign select_ln388_fu_171_p3 = ((underflow_fu_140_p2[0:0] === 1'b1) ? 14'd8192 : sw_V_fu_85_p3);
+assign xor_ln340_fu_174_p2 = (p_Result_4_reg_241 ^ p_Result_3_reg_228);
 
-assign sext_ln1192_fu_201_p1 = rhs_V_fu_190_p3;
+assign xor_ln786_2_fu_164_p2 = (p_Result_4_reg_241 ^ 1'd1);
 
-assign sext_ln728_fu_197_p1 = rhs_V_fu_190_p3;
+assign zext_ln1192_fu_132_p1 = tmp_287_fu_121_p3;
 
-assign sw_V_fu_85_p3 = {{trunc_ln731_reg_311}, {1'd0}};
-
-assign trunc_ln731_fu_75_p1 = r_V_4_fu_286_p2[12:0];
-
-assign underflow_3_fu_238_p2 = (xor_ln786_9_fu_232_p2 & p_Result_8_fu_211_p3);
-
-assign underflow_fu_140_p2 = (p_Result_s_reg_305 & or_ln786_fu_134_p2);
-
-assign xor_ln340_174_fu_250_p2 = (p_Result_8_fu_211_p3 ^ 1'd1);
-
-assign xor_ln340_316_fu_244_p2 = (p_Result_9_fu_224_p3 ^ p_Result_8_fu_211_p3);
-
-assign xor_ln340_fu_151_p2 = (underflow_fu_140_p2 ^ 1'd1);
-
-assign xor_ln785_fu_112_p2 = (p_Result_s_reg_305 ^ 1'd1);
-
-assign xor_ln786_9_fu_232_p2 = (p_Result_9_fu_224_p3 ^ 1'd1);
-
-assign xor_ln786_fu_123_p2 = (p_Result_7_reg_316 ^ 1'd1);
+assign zext_ln728_fu_128_p1 = tmp_287_fu_121_p3;
 
 endmodule //batch_norm

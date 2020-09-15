@@ -19,8 +19,7 @@ module sum_engine (
         t6_V,
         t7_V,
         t8_V,
-        ap_return,
-        ap_ce
+        ap_return
 );
 
 
@@ -36,9 +35,6 @@ input  [5:0] t6_V;
 input  [5:0] t7_V;
 input  [5:0] t8_V;
 output  [7:0] ap_return;
-input   ap_ce;
-
-reg[7:0] ap_return;
 
 reg   [5:0] t8_V_read_reg_152;
 wire    ap_block_state1_pp0_stage0_iter0;
@@ -53,42 +49,21 @@ reg   [6:0] add_ln68_1_reg_167;
 wire    ap_block_pp0_stage0;
 wire   [5:0] add2_V_fu_96_p2;
 wire   [5:0] add3_V_fu_102_p2;
-wire  signed [6:0] lhs_V_3_fu_108_p1;
-wire  signed [6:0] rhs_V_4_fu_112_p1;
+wire  signed [6:0] lhs_V_1_fu_108_p1;
+wire  signed [6:0] rhs_V_1_fu_112_p1;
 wire  signed [6:0] rhs_V_fu_125_p1;
 wire  signed [6:0] lhs_V_fu_122_p1;
 wire   [6:0] add_ln68_fu_128_p2;
 wire   [6:0] add6_V_fu_134_p2;
-wire  signed [7:0] lhs_V_4_fu_139_p1;
-wire   [7:0] rhs_V_5_fu_143_p1;
-wire   [7:0] ret_V_fu_146_p2;
-reg    ap_ce_reg;
-reg   [7:0] ap_return_int_reg;
+wire  signed [7:0] lhs_V_2_fu_139_p1;
+wire   [7:0] rhs_V_2_fu_143_p1;
 
 always @ (posedge ap_clk) begin
-    ap_ce_reg <= ap_ce;
-end
-
-always @ (posedge ap_clk) begin
-    if (((1'b1 == 1'b1) & (1'b0 == ap_block_pp0_stage0_11001))) begin
+    if ((1'b0 == ap_block_pp0_stage0_11001)) begin
         add0_V_reg_157 <= add0_V_fu_84_p2;
         add1_V_reg_162 <= add1_V_fu_90_p2;
         add_ln68_1_reg_167 <= add_ln68_1_fu_116_p2;
         t8_V_read_reg_152 <= t8_V;
-    end
-end
-
-always @ (posedge ap_clk) begin
-    if ((1'b1 == ap_ce_reg)) begin
-        ap_return_int_reg <= ret_V_fu_146_p2;
-    end
-end
-
-always @ (*) begin
-    if ((1'b0 == ap_ce_reg)) begin
-        ap_return = ap_return_int_reg;
-    end else if ((1'b1 == ap_ce_reg)) begin
-        ap_return = ret_V_fu_146_p2;
     end
 end
 
@@ -102,7 +77,7 @@ assign add3_V_fu_102_p2 = (t7_V + t6_V);
 
 assign add6_V_fu_134_p2 = (add_ln68_1_reg_167 + add_ln68_fu_128_p2);
 
-assign add_ln68_1_fu_116_p2 = ($signed(lhs_V_3_fu_108_p1) + $signed(rhs_V_4_fu_112_p1));
+assign add_ln68_1_fu_116_p2 = ($signed(lhs_V_1_fu_108_p1) + $signed(rhs_V_1_fu_112_p1));
 
 assign add_ln68_fu_128_p2 = ($signed(rhs_V_fu_125_p1) + $signed(lhs_V_fu_122_p1));
 
@@ -114,17 +89,17 @@ assign ap_block_state1_pp0_stage0_iter0 = ~(1'b1 == 1'b1);
 
 assign ap_block_state2_pp0_stage0_iter1 = ~(1'b1 == 1'b1);
 
-assign lhs_V_3_fu_108_p1 = $signed(add2_V_fu_96_p2);
+assign ap_return = ($signed(lhs_V_2_fu_139_p1) + $signed(rhs_V_2_fu_143_p1));
 
-assign lhs_V_4_fu_139_p1 = $signed(add6_V_fu_134_p2);
+assign lhs_V_1_fu_108_p1 = $signed(add2_V_fu_96_p2);
+
+assign lhs_V_2_fu_139_p1 = $signed(add6_V_fu_134_p2);
 
 assign lhs_V_fu_122_p1 = $signed(add0_V_reg_157);
 
-assign ret_V_fu_146_p2 = ($signed(lhs_V_4_fu_139_p1) + $signed(rhs_V_5_fu_143_p1));
+assign rhs_V_1_fu_112_p1 = $signed(add3_V_fu_102_p2);
 
-assign rhs_V_4_fu_112_p1 = $signed(add3_V_fu_102_p2);
-
-assign rhs_V_5_fu_143_p1 = t8_V_read_reg_152;
+assign rhs_V_2_fu_143_p1 = t8_V_read_reg_152;
 
 assign rhs_V_fu_125_p1 = $signed(add1_V_reg_162);
 
