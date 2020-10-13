@@ -153,10 +153,15 @@ void pgconv32_1x1_1bit(uint1 bottom[32][11][11],
 //                    FIX_WT relu_weights[32],
 //                    FIX_FM_acc top[32][32][32]
 //);
-void pgconv64_1x1_1bit(uint64 bottom[9][9],
+void pgconv64_1x1_1bit(uint64 bottom[12996],
                     uint64 weights[32],
                     FIX_WT thres[32],
-                    FIX_FM_acc top[32][9][9]
+                    FIX_FM_acc top[32][9][9],
+					int tile_row,
+					int tile_col,
+					int ch_row,
+					int ch_col,
+					int map_dim
 );
 //void pgconv64_1bit(uint64 bottom[9][9],
 //                    uint64 weights[32][3][3],
@@ -170,7 +175,7 @@ void pgconv64_1x1_1bit(uint64 bottom[9][9],
 //                    int stride
 //);
 
-void pgconv64_1bit(uint64 bottom1[9][9],
+void pgconv64_1bit(uint64 bottom1[12996],
 //                uint64 bottom0[9][9],
                 uint64 weights[32][3][3],
                 FIX_WT thres[32],
@@ -180,6 +185,11 @@ void pgconv64_1bit(uint64 bottom1[9][9],
 //                FIX_WT relu_shifty[32],
 //                FIX_WT relu_weights[32],
                 FIX_FM_acc top[32][9][9],
+				int tile_row,
+				int tile_col,
+				int ch_row,
+				int ch_col,
+				int map_dim,
 				int stride
 );
 

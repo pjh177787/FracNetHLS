@@ -25,12 +25,11 @@ void matmul(FIX_FM_acc bottom[64],
 
 
 //    	#pragma HLS PIPELINE
-    	for(int cii = 0; cii < 64; cii++) {
+	for(int cii = 0; cii < 64; cii++) {
 
-#pragma HLS PIPELINE
-        	FIX_FM_acc bt = bottom[cii];
-    		for(int coo = 0; coo < 10; coo ++) {
-#pragma HLS UNROLL
+#pragma HLS PIPELINE II=1
+		FIX_FM_acc bt = bottom[cii];
+		for(int coo = 0; coo < 10; coo ++) {
         	FIX_FM_acc d = buf[coo];
         	FIX_WT wt = weights[coo][cii];
         	FIX_FM_acc bw = bt * wt;
