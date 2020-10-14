@@ -1,0 +1,1165 @@
+INFO: [HLS 200-10] Running 'C:/Xilinx/Vivado/2019.2/bin/unwrapped/win64.o/vivado_hls.exe'
+INFO: [HLS 200-10] For user 'Aperture' on host 'laptop-x1ext' (Windows NT_amd64 version 6.2) on Wed Oct 14 12:48:59 -0500 2020
+INFO: [HLS 200-10] In directory 'C:/Users/Aperture/Git/FracNetHLS-ImageNet-pg'
+Sourcing Tcl script 'C:/Users/Aperture/Git/FracNetHLS-ImageNet-pg/model/solution1/csynth.tcl'
+INFO: [HLS 200-10] Opening project 'C:/Users/Aperture/Git/FracNetHLS-ImageNet-pg/model'.
+INFO: [HLS 200-10] Adding design file 'matmul.cc' to the project
+INFO: [HLS 200-10] Adding design file 'net_hls.cc' to the project
+INFO: [HLS 200-10] Adding design file 'pgconv.cc' to the project
+INFO: [HLS 200-10] Adding test bench file 'tb.cc' to the project
+INFO: [HLS 200-10] Opening solution 'C:/Users/Aperture/Git/FracNetHLS-ImageNet-pg/model/solution1'.
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 4ns.
+INFO: [SYN 201-201] Setting up clock 'default' with an uncertainty of 0.5ns.
+INFO: [HLS 200-10] Setting target device to 'xczu3eg-sbva484-1-e'
+INFO: [HLS 200-435] Setting 'config_sdx -target' configuration: config_export -vivado_optimization_level=2
+INFO: [HLS 200-435] Setting 'config_sdx -target' configuration: set_clock_uncertainty default
+INFO: [HLS 200-435] Setting 'config_sdx -target' configuration: config_export -vivado_optimization_level=2
+INFO: [HLS 200-435] Setting 'config_sdx -target' configuration: set_clock_uncertainty default
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'pgconv.cc' ... 
+INFO: [HLS 200-10] Analyzing design file 'net_hls.cc' ... 
+INFO: [HLS 200-10] Analyzing design file 'matmul.cc' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:03 ; elapsed = 00:00:53 . Memory (MB): peak = 210.254 ; gain = 120.715
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:03 ; elapsed = 00:00:53 . Memory (MB): peak = 210.254 ; gain = 120.715
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:04 ; elapsed = 00:00:55 . Memory (MB): peak = 271.059 ; gain = 181.520
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [XFORM 203-602] Inlining function 'compute_engine_64' into 'pgconv64.1' (pgconv.cc:172) automatically.
+INFO: [XFORM 203-602] Inlining function 'compute_engine_64' into 'pgconv64' (pgconv.cc:172) automatically.
+INFO: [XFORM 203-602] Inlining function 'compute_engine_64' into 'pgconv64_1x1' (pgconv.cc:246) automatically.
+WARNING: [SYNCHK 200-23] net_hls.cc:339: variable-indexed range selection may cause suboptimal QoR.
+INFO: [SYNCHK 200-10] 0 error(s), 1 warning(s).
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:05 ; elapsed = 00:00:56 . Memory (MB): peak = 321.898 ; gain = 232.359
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'Loop-1.1' (net_hls.cc:319) in function 'store_bufs_organize' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'Loop-1.1' (net_hls.cc:44) in function 'copy_input_layer_buf_to_DDR' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'Loop-1.1.1.1.1' (net_hls.cc:492) in function 'FracNet' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'Loop-2' (net_hls.cc:508) in function 'FracNet' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'Loop-3' (net_hls.cc:517) in function 'FracNet' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'Loop-4.1.1.1.1.1.1' (net_hls.cc:544) in function 'FracNet' for pipelining.
+INFO: [XFORM 203-502] Unrolling small iteration loop 'Loop-5' (net_hls.cc:572) in function 'FracNet' automatically.
+INFO: [XFORM 203-502] Unrolling small iteration loop 'Loop-5.1.1.1' (net_hls.cc:579) in function 'FracNet' automatically.
+INFO: [XFORM 203-502] Unrolling small iteration loop 'Loop-6' (net_hls.cc:590) in function 'FracNet' automatically.
+INFO: [XFORM 203-502] Unrolling small iteration loop 'Loop-6.1.1.1' (net_hls.cc:597) in function 'FracNet' automatically.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'Loop-1.1.1' (net_hls.cc:89) in function 'load_buf_from_DDR' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'Col' (pgconv.cc:232) in function 'pgconv64_1x1' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'Loop-1' (net_hls.cc:131) in function 'load_weight_1x1_from_axi' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'Col' (pgconv.cc:138) in function 'pgconv64' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'Loop-1.1.1' (net_hls.cc:162) in function 'load_weight_3x3_from_axi' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'Col' (pgconv.cc:138) in function 'pgconv64.1' for pipelining.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1.1' (net_hls.cc:332) in function 'store_bufs_organize' completely with a factor of 32.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1.1' (net_hls.cc:47) in function 'copy_input_layer_buf_to_DDR' completely with a factor of 32.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1.1.1.1.1' (net_hls.cc:495) in function 'FracNet' completely with a factor of 8.
+INFO: [HLS 200-489] Unrolling loop 'Loop-2.1' (net_hls.cc:512) in function 'FracNet' completely with a factor of 32.
+INFO: [HLS 200-489] Unrolling loop 'Loop-3.1' (net_hls.cc:521) in function 'FracNet' completely with a factor of 32.
+INFO: [HLS 200-489] Unrolling loop 'Loop-4.1.1.1.1.1.1.1' (net_hls.cc:546) in function 'FracNet' completely with a factor of 32.
+INFO: [HLS 200-489] Unrolling loop 'Loop-5' (net_hls.cc:572) in function 'FracNet' completely with a factor of 1.
+INFO: [HLS 200-489] Unrolling loop 'Loop-5.1.1.1' (net_hls.cc:579) in function 'FracNet' completely with a factor of 1.
+INFO: [HLS 200-489] Unrolling loop 'Loop-6' (net_hls.cc:590) in function 'FracNet' completely with a factor of 1.
+INFO: [HLS 200-489] Unrolling loop 'Loop-6.1.1.1' (net_hls.cc:597) in function 'FracNet' completely with a factor of 1.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1.1.1' (net_hls.cc:92) in function 'load_buf_from_DDR' completely with a factor of 32.
+INFO: [HLS 200-489] Unrolling loop 'Loop-2' (net_hls.cc:238) in function 'load_others' completely with a factor of 32.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1.1.1' (pgconv.cc:241) in function 'pgconv64_1x1' completely with a factor of 8.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1.1.2' (pgconv.cc:244) in function 'pgconv64_1x1' completely with a factor of 8.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1.1.3' (pgconv.cc:254) in function 'pgconv64_1x1' completely with a factor of 8.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1' (net_hls.cc:135) in function 'load_weight_1x1_from_axi' completely with a factor of 8.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1.1.1' (pgconv.cc:143) in function 'pgconv64' completely with a factor of 8.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1.1.2' (pgconv.cc:154) in function 'pgconv64' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1.1.3' (pgconv.cc:163) in function 'pgconv64' completely with a factor of 8.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1.1.3.1' (pgconv.cc:167) in function 'pgconv64' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1.1.3.1.1' (pgconv.cc:168) in function 'pgconv64' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1.1.4' (pgconv.cc:184) in function 'pgconv64' completely with a factor of 8.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1.1.1' (net_hls.cc:167) in function 'load_weight_3x3_from_axi' completely with a factor of 8.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1.1.1' (pgconv.cc:143) in function 'pgconv64.1' completely with a factor of 8.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1.1.2' (pgconv.cc:154) in function 'pgconv64.1' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1.1.3' (pgconv.cc:163) in function 'pgconv64.1' completely with a factor of 8.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1.1.3.1' (pgconv.cc:167) in function 'pgconv64.1' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1.1.3.1.1' (pgconv.cc:168) in function 'pgconv64.1' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1.1.4' (pgconv.cc:184) in function 'pgconv64.1' completely with a factor of 8.
+INFO: [XFORM 203-102] Partitioning array 'bot1_LB.V' (pgconv.cc:130) in dimension 1 automatically.
+INFO: [XFORM 203-102] Partitioning array 'bot1_WB.V' (pgconv.cc:131) in dimension 1 automatically.
+INFO: [XFORM 203-102] Partitioning array 'bot0_LB.V' (pgconv.cc:132) in dimension 1 automatically.
+INFO: [XFORM 203-102] Partitioning array 'bot0_WB.V' (pgconv.cc:133) in dimension 1 automatically.
+INFO: [XFORM 203-102] Partitioning array 'bot1_WB.V.0' (pgconv.cc:131) automatically.
+INFO: [XFORM 203-102] Partitioning array 'bot1_WB.V.1' (pgconv.cc:131) automatically.
+INFO: [XFORM 203-102] Partitioning array 'bot1_WB.V.2' (pgconv.cc:131) automatically.
+INFO: [XFORM 203-102] Partitioning array 'bot0_WB.V.0' (pgconv.cc:133) automatically.
+INFO: [XFORM 203-102] Partitioning array 'bot0_WB.V.1' (pgconv.cc:133) automatically.
+INFO: [XFORM 203-102] Partitioning array 'bot0_WB.V.2' (pgconv.cc:133) automatically.
+INFO: [XFORM 203-102] Partitioning array 'bot1_LB.V' (pgconv.cc:130) in dimension 1 automatically.
+INFO: [XFORM 203-102] Partitioning array 'bot1_WB.V' (pgconv.cc:131) in dimension 1 automatically.
+INFO: [XFORM 203-102] Partitioning array 'bot0_LB.V' (pgconv.cc:132) in dimension 1 automatically.
+INFO: [XFORM 203-102] Partitioning array 'bot0_WB.V' (pgconv.cc:133) in dimension 1 automatically.
+INFO: [XFORM 203-102] Partitioning array 'bot1_WB.V.0' (pgconv.cc:131) automatically.
+INFO: [XFORM 203-102] Partitioning array 'bot1_WB.V.1' (pgconv.cc:131) automatically.
+INFO: [XFORM 203-102] Partitioning array 'bot1_WB.V.2' (pgconv.cc:131) automatically.
+INFO: [XFORM 203-102] Partitioning array 'bot0_WB.V.0' (pgconv.cc:133) automatically.
+INFO: [XFORM 203-102] Partitioning array 'bot0_WB.V.1' (pgconv.cc:133) automatically.
+INFO: [XFORM 203-102] Partitioning array 'bot0_WB.V.2' (pgconv.cc:133) automatically.
+INFO: [XFORM 203-101] Partitioning array 'bn_weight_buf.V'  in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_bias_buf.V'  in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'relu_shiftx_buf.V'  in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'relu_shifty_buf.V'  in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'relu_weight_buf.V'  in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'FM_buf0.V'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'FM_buf1.V'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'FM_buf_acc0.V'  in dimension 1 with a cyclic factor 32.
+INFO: [XFORM 203-101] Partitioning array 'weight_buf_3x3.V'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'weight_buf_1x1.V'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'DATA.V' (net_hls.cc:232) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'top_buf.V' (pgconv.cc:225) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'thres_buf.V'  in dimension 2 with a cyclic factor 8.
+INFO: [XFORM 203-101] Partitioning array 'top_buf.V' (pgconv.cc:141) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'top_buf.V' (pgconv.cc:141) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'weight_buf_3x3.V'  in dimension 2 with a cyclic factor 8.
+INFO: [XFORM 203-101] Partitioning array 'weight_buf_1x1.V'  in dimension 2 with a cyclic factor 8.
+INFO: [XFORM 203-101] Partitioning array 'weight_buf_3x3.V'  in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'weight_buf_3x3.V'  in dimension 4 completely.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_weight_buf.V.9' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_weight_buf.V.8' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_weight_buf.V.7' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_weight_buf.V.6' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_weight_buf.V.5' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_weight_buf.V.4' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_weight_buf.V.31' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_weight_buf.V.30' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_weight_buf.V.3' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_weight_buf.V.29' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_weight_buf.V.28' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_weight_buf.V.27' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_weight_buf.V.26' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_weight_buf.V.25' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_weight_buf.V.24' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_weight_buf.V.23' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_weight_buf.V.22' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_weight_buf.V.21' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_weight_buf.V.20' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_weight_buf.V.2' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_weight_buf.V.19' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_weight_buf.V.18' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_weight_buf.V.17' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_weight_buf.V.16' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_weight_buf.V.15' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_weight_buf.V.14' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_weight_buf.V.13' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_weight_buf.V.12' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_weight_buf.V.11' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_weight_buf.V.10' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_weight_buf.V.1' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_weight_buf.V.0' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_bias_buf.V.9' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_bias_buf.V.8' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_bias_buf.V.7' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_bias_buf.V.6' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_bias_buf.V.5' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_bias_buf.V.4' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_bias_buf.V.31' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_bias_buf.V.30' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_bias_buf.V.3' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_bias_buf.V.29' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_bias_buf.V.28' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_bias_buf.V.27' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_bias_buf.V.26' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_bias_buf.V.25' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_bias_buf.V.24' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_bias_buf.V.23' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_bias_buf.V.22' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_bias_buf.V.21' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_bias_buf.V.20' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_bias_buf.V.2' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_bias_buf.V.19' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_bias_buf.V.18' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_bias_buf.V.17' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_bias_buf.V.16' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_bias_buf.V.15' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_bias_buf.V.14' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_bias_buf.V.13' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_bias_buf.V.12' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_bias_buf.V.11' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_bias_buf.V.10' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_bias_buf.V.1' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'bn_bias_buf.V.0' completely based on array size.
+INFO: [XFORM 203-101] Partitioning array 'bn_weight_buf.V.9' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_weight_buf.V.8' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_weight_buf.V.7' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_weight_buf.V.6' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_weight_buf.V.5' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_weight_buf.V.4' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_weight_buf.V.31' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_weight_buf.V.30' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_weight_buf.V.3' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_weight_buf.V.29' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_weight_buf.V.28' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_weight_buf.V.27' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_weight_buf.V.26' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_weight_buf.V.25' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_weight_buf.V.24' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_weight_buf.V.23' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_weight_buf.V.22' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_weight_buf.V.21' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_weight_buf.V.20' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_weight_buf.V.2' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_weight_buf.V.19' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_weight_buf.V.18' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_weight_buf.V.17' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_weight_buf.V.16' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_weight_buf.V.15' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_weight_buf.V.14' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_weight_buf.V.13' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_weight_buf.V.12' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_weight_buf.V.11' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_weight_buf.V.10' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_weight_buf.V.1' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_weight_buf.V.0' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_bias_buf.V.9' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_bias_buf.V.8' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_bias_buf.V.7' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_bias_buf.V.6' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_bias_buf.V.5' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_bias_buf.V.4' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_bias_buf.V.31' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_bias_buf.V.30' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_bias_buf.V.3' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_bias_buf.V.29' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_bias_buf.V.28' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_bias_buf.V.27' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_bias_buf.V.26' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_bias_buf.V.25' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_bias_buf.V.24' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_bias_buf.V.23' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_bias_buf.V.22' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_bias_buf.V.21' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_bias_buf.V.20' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_bias_buf.V.2' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_bias_buf.V.19' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_bias_buf.V.18' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_bias_buf.V.17' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_bias_buf.V.16' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_bias_buf.V.15' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_bias_buf.V.14' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_bias_buf.V.13' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_bias_buf.V.12' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_bias_buf.V.11' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_bias_buf.V.10' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_bias_buf.V.1' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'bn_bias_buf.V.0' in dimension 1 completely.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (net_hls.cc:319:47) to (net_hls.cc:319:37) in function 'store_bufs_organize'... converting 385 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (net_hls.cc:293:9) to (net_hls.cc:298:1) in function 'relu'... converting 5 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (pgconv.cc:242:8) to (pgconv.cc:255:8) in function 'pgconv64_1x1'... converting 73 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (pgconv.cc:144:21) to (pgconv.cc:185:6) in function 'pgconv64.1'... converting 457 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (pgconv.cc:144:21) to (pgconv.cc:185:6) in function 'pgconv64'... converting 457 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock to (net_hls.cc:288:12) in function 'batch_norm'... converting 5 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (net_hls.cc:544:40) to (net_hls.cc:544:33) in function 'FracNet'... converting 129 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (net_hls.cc:508:19) to (net_hls.cc:533:22) in function 'FracNet'... converting 3 basic blocks.
+INFO: [XFORM 203-11] Balancing expressions in function 'store_bufs_organize' (net_hls.cc:300)...4 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'pgconv64_1x1' (pgconv.cc:192)...3 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'pgconv64.1' (pgconv.cc:130:34)...3 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'pgconv64' (pgconv.cc:99)...3 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'load_input' (net_hls.cc:397)...3 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'load_buf_from_DDR' (net_hls.cc:80)...5 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'compute_engine_64' (pgconv.cc:18:12)...3 expression(s) balanced.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:53 ; elapsed = 00:01:44 . Memory (MB): peak = 434.543 ; gain = 345.004
+INFO: [XFORM 203-541] Flattening a loop nest 'Loop-1' (net_hls.cc:318:21) in function 'store_bufs_organize'.
+INFO: [XFORM 203-541] Flattening a loop nest 'Row' (pgconv.cc:231:41) in function 'pgconv64_1x1'.
+INFO: [XFORM 203-541] Flattening a loop nest 'Ch_factor' (pgconv.cc:230:69) in function 'pgconv64_1x1'.
+INFO: [XFORM 203-541] Flattening a loop nest 'Row' (pgconv.cc:137:41) in function 'pgconv64.1'.
+INFO: [XFORM 203-541] Flattening a loop nest 'Ch_factor' (pgconv.cc:136:69) in function 'pgconv64.1'.
+INFO: [XFORM 203-541] Flattening a loop nest 'Row' (pgconv.cc:137:41) in function 'pgconv64'.
+INFO: [XFORM 203-541] Flattening a loop nest 'Ch_factor' (pgconv.cc:136:69) in function 'pgconv64'.
+INFO: [XFORM 203-541] Flattening a loop nest 'Loop-1.1' (net_hls.cc:161:23) in function 'load_weight_3x3_from_axi'.
+INFO: [XFORM 203-541] Flattening a loop nest 'Loop-1' (net_hls.cc:160:20) in function 'load_weight_3x3_from_axi'.
+INFO: [XFORM 203-541] Flattening a loop nest 'Loop-1.1' (net_hls.cc:88:23) in function 'load_buf_from_DDR'.
+INFO: [XFORM 203-541] Flattening a loop nest 'Loop-1' (net_hls.cc:87:20) in function 'load_buf_from_DDR'.
+INFO: [XFORM 203-541] Flattening a loop nest 'Loop-1' (net_hls.cc:43:21) in function 'copy_input_layer_buf_to_DDR'.
+INFO: [XFORM 203-541] Flattening a loop nest 'Loop-1.1.1.1' (net_hls.cc:489:19) in function 'FracNet'.
+INFO: [XFORM 203-541] Flattening a loop nest 'Loop-1.1.1' (net_hls.cc:488:18) in function 'FracNet'.
+INFO: [XFORM 203-541] Flattening a loop nest 'Loop-1.1' (net_hls.cc:487:17) in function 'FracNet'.
+INFO: [XFORM 203-541] Flattening a loop nest 'Loop-1' (net_hls.cc:486:19) in function 'FracNet'.
+INFO: [XFORM 203-541] Flattening a loop nest 'Loop-2.1.1.1.1.1' (net_hls.cc:543:22) in function 'FracNet'.
+WARNING: [XFORM 203-542] Cannot flatten a loop nest 'Loop-2.1.1.1.1' (net_hls.cc:538:22) in function 'FracNet' : 
+
+the outer loop is not a perfect loop.
+INFO: [XFORM 203-541] Flattening a loop nest 'Loop-2.1.1.1' (net_hls.cc:537:21) in function 'FracNet'.
+WARNING: [XFORM 203-542] Cannot flatten a loop nest 'Loop-2.1.1' (net_hls.cc:535:23) in function 'FracNet' : 
+
+the outer loop is not a perfect loop.
+INFO: [XFORM 203-541] Flattening a loop nest 'Loop-2.1' (net_hls.cc:534:23) in function 'FracNet'.
+INFO: [XFORM 203-541] Flattening a loop nest 'Loop-2' (net_hls.cc:533:22) in function 'FracNet'.
+WARNING: [XFORM 203-631] Renaming function 'load_weight_3x3_from_axi' to 'load_weight_3x3_from' (net_hls.cc:160:36)
+WARNING: [XFORM 203-631] Renaming function 'load_weight_1x1_from_axi' to 'load_weight_1x1_from' (net_hls.cc:131:30)
+WARNING: [XFORM 203-631] Renaming function 'copy_input_layer_buf_to_DDR' to 'copy_input_layer_buf' (net_hls.cc:42:36)
+INFO: [HLS 200-444] Inferring multiple bus burst read of a total cumulative length 8 on port 'src.V' (net_hls.cc:134:30). These data requests might be further partitioned to multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.
+INFO: [HLS 200-444] Inferring multiple bus burst write of a total cumulative length 7 on port 'ddr_ptr.V' (net_hls.cc:353:45). These data requests might be further partitioned to multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.
+INFO: [HLS 200-444] Inferring multiple bus burst read of a total cumulative length 7 on port 'src.V' (net_hls.cc:91:28). These data requests might be further partitioned to multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.
+INFO: [HLS 200-444] Inferring multiple bus burst read of a total cumulative length 8 on port 'weights_all.V' (net_hls.cc:236:26). These data requests might be further partitioned to multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.
+INFO: [HLS 200-444] Inferring multiple bus burst read of a total cumulative length 12996 on port 'img.V' (net_hls.cc:409:3). These data requests might be further partitioned to multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.
+INFO: [HLS 200-444] Inferring multiple bus burst write of a total cumulative length 4 on port 'dest.V' (net_hls.cc:51:43). These data requests might be further partitioned to multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.
+INFO: [HLS 200-472] Inferring partial write operation for 'top[0].V' (pgconv.cc:255:8)
+INFO: [HLS 200-472] Inferring partial write operation for 'bot1_LB[1].V' (pgconv.cc:147:5)
+INFO: [HLS 200-472] Inferring partial write operation for 'bot1_LB[2].V' (pgconv.cc:148:5)
+INFO: [HLS 200-472] Inferring partial write operation for 'bot0_LB[1].V' (pgconv.cc:150:5)
+INFO: [HLS 200-472] Inferring partial write operation for 'bot0_LB[2].V' (pgconv.cc:151:5)
+INFO: [HLS 200-472] Inferring partial write operation for 'top[0].V' (pgconv.cc:185:6)
+INFO: [HLS 200-472] Inferring partial write operation for 'pg_buf_all.V' (net_hls.cc:550:53)
+INFO: [HLS 200-472] Inferring partial write operation for 'pg_buf_all.V' (net_hls.cc:551:53)
+INFO: [HLS 200-472] Inferring partial write operation for 'weight_buf_3x3.V.0.0.8' (net_hls.cc:499:38)
+INFO: [HLS 200-472] Inferring partial write operation for 'pg_buf_all.V' (net_hls.cc:351:65)
+INFO: [HLS 200-472] Inferring partial write operation for 'pg_buf_all.V' (net_hls.cc:352:65)
+INFO: [HLS 200-472] Inferring partial write operation for 'dest[0][0][0].V' (net_hls.cc:169:23)
+INFO: [HLS 200-472] Inferring partial write operation for 'weight_buf_1x1.V.0.0' (net_hls.cc:137:17)
+INFO: [HLS 200-472] Inferring partial write operation for 'thres_buf.V.0' (net_hls.cc:242:25)
+INFO: [HLS 200-472] Inferring partial write operation for 'pg_buf_all_in.V' (net_hls.cc:409:3)
+INFO: [HLS 200-472] Inferring partial write operation for 'dest[0].V' (net_hls.cc:96:21)
+WARNING: [HLS 200-463] Ignoring allocation pragma because function 'pgconv64_1x1_1bit' is missing or was optimized away (net_hls.cc:455:1)
+WARNING: [HLS 200-463] Ignoring allocation pragma because function 'pgconv64_1bit' is missing or was optimized away (net_hls.cc:456:1)
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:01:31 ; elapsed = 00:02:23 . Memory (MB): peak = 626.586 ; gain = 537.047
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'FracNet' ...
+WARNING: [SYN 201-103] Legalizing function name 'pgconv64.1' to 'pgconv64_1'.
+WARNING: [SYN 201-107] Renaming port name 'FracNet/out' to 'FracNet/out_r' to avoid the conflict with HDL keywords or other object names.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'load_input' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'Loop 1'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 3.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 143.227 seconds; current allocated memory: 546.184 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.272 seconds; current allocated memory: 546.386 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'compute_engine_64' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'compute_engine_64'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 2.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.268 seconds; current allocated memory: 546.599 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.384 seconds; current allocated memory: 546.939 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'pgconv64_1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'Ch_factor_Row_Col'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 10.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 1.671 seconds; current allocated memory: 553.509 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 6.493 seconds; current allocated memory: 563.748 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'copy_input_layer_buf' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'Loop 1'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 8.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 8.092 seconds; current allocated memory: 574.648 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.66 seconds; current allocated memory: 575.325 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'batch_norm' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'batch_norm'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 2.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.636 seconds; current allocated memory: 575.392 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.214 seconds; current allocated memory: 575.477 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'load_weight_3x3_from' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'Loop 1'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 11.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.466 seconds; current allocated memory: 576.431 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.778 seconds; current allocated memory: 577.326 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'load_others' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'Loop 1'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 2.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.956 seconds; current allocated memory: 579.161 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 1.732 seconds; current allocated memory: 582.001 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'load_weights_3x3_all' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 1.778 seconds; current allocated memory: 582.511 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.391 seconds; current allocated memory: 583.031 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'load_buf_from_DDR' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'Loop 1'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 20.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.538 seconds; current allocated memory: 583.899 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.552 seconds; current allocated memory: 584.683 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'pgconv64' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'Ch_factor_Row_Col'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 10.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 1.929 seconds; current allocated memory: 591.293 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 6.577 seconds; current allocated memory: 601.685 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'relu' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'relu'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 1.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 8.196 seconds; current allocated memory: 612.230 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.275 seconds; current allocated memory: 612.354 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'store_bufs_organize' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'Loop 1'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 17.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 1.026 seconds; current allocated memory: 616.844 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 3.885 seconds; current allocated memory: 624.253 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'load_weight_1x1_from' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'Loop 1'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 3.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 4.706 seconds; current allocated memory: 626.347 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.294 seconds; current allocated memory: 626.553 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'load_weights_1x1_all' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.325 seconds; current allocated memory: 626.659 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.373 seconds; current allocated memory: 627.072 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'pgconv64_1x1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'Ch_factor_Row_Col'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 8.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.822 seconds; current allocated memory: 629.177 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 1.769 seconds; current allocated memory: 631.673 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'FracNet' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'Loop 1'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 13.
+INFO: [SCHED 204-61] Pipelining loop 'Loop 2.1.1'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 2, Final II = 2, Depth = 5.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 2.818 seconds; current allocated memory: 635.752 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Starting global binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 15.408 seconds; current allocated memory: 654.930 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'load_input' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SYN 201-210] Renamed object name 'FracNet_mac_muladd_2ns_16ns_10s_17_1_1' to 'FracNet_mac_muladbkb' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'FracNet_mac_muladbkb': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'load_input'.
+INFO: [HLS 200-111]  Elapsed time: 9.742 seconds; current allocated memory: 663.506 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'compute_engine_64' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'compute_engine_64'.
+INFO: [HLS 200-111]  Elapsed time: 0.394 seconds; current allocated memory: 664.668 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'pgconv64_1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SYN 201-210] Renamed object name 'pgconv64_1_bot1_LB_1_V' to 'pgconv64_1_bot1_Lcud' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pgconv64_1_bot1_LB_2_V' to 'pgconv64_1_bot1_LdEe' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pgconv64_1_bot0_LB_1_V' to 'pgconv64_1_bot0_LeOg' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pgconv64_1_bot0_LB_2_V' to 'pgconv64_1_bot0_LfYi' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'FracNet_mac_muladd_4ns_11ns_8s_15_1_1' to 'FracNet_mac_muladg8j' due to the length limit 20
+INFO: [RTGEN 206-104] Estimated max fanout for 'pgconv64_1' is 6971 from HDL expression: (1'b0 == ap_block_pp0_stage0_11001)
+INFO: [RTGEN 206-100] Generating core module 'FracNet_mac_muladg8j': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'pgconv64_1'.
+INFO: [HLS 200-111]  Elapsed time: 2.561 seconds; current allocated memory: 680.384 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'copy_input_layer_buf' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SYN 201-210] Renamed object name 'FracNet_mac_muladd_6ns_8ns_6ns_13_1_1' to 'FracNet_mac_muladhbi' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'FracNet_mac_muladhbi': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'copy_input_layer_buf'.
+INFO: [HLS 200-111]  Elapsed time: 14.139 seconds; current allocated memory: 689.399 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'batch_norm' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SYN 201-210] Renamed object name 'FracNet_mul_mul_8ns_11ns_19_1_0' to 'FracNet_mul_mul_8ibs' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'FracNet_mul_mul_8ibs': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'batch_norm'.
+INFO: [HLS 200-111]  Elapsed time: 1.082 seconds; current allocated memory: 689.776 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'load_weight_3x3_from' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'load_weight_3x3_from'.
+INFO: [HLS 200-111]  Elapsed time: 0.541 seconds; current allocated memory: 691.402 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'load_others' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'load_others'.
+INFO: [HLS 200-111]  Elapsed time: 1.922 seconds; current allocated memory: 696.915 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'load_weights_3x3_all' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'load_weights_3x3_all'.
+INFO: [HLS 200-111]  Elapsed time: 3.852 seconds; current allocated memory: 701.723 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'load_buf_from_DDR' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SYN 201-210] Renamed object name 'FracNet_urem_7ns_4ns_7_11_1' to 'FracNet_urem_7ns_jbC' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'FracNet_mac_muladd_11ns_5ns_18ns_19_1_1' to 'FracNet_mac_muladkbM' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'FracNet_mac_muladkbM': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'FracNet_urem_7ns_jbC': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'load_buf_from_DDR'.
+INFO: [HLS 200-111]  Elapsed time: 0.896 seconds; current allocated memory: 703.918 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'pgconv64' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SYN 201-210] Renamed object name 'pgconv64_bot1_LB_1_V' to 'pgconv64_bot1_LB_lbW' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pgconv64_bot1_LB_2_V' to 'pgconv64_bot1_LB_mb6' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pgconv64_bot0_LB_1_V' to 'pgconv64_bot0_LB_ncg' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pgconv64_bot0_LB_2_V' to 'pgconv64_bot0_LB_ocq' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'FracNet_mac_muladd_11ns_5ns_8s_15_1_1' to 'FracNet_mac_muladpcA' due to the length limit 20
+INFO: [RTGEN 206-104] Estimated max fanout for 'pgconv64' is 6907 from HDL expression: (1'b0 == ap_block_pp0_stage0_11001)
+INFO: [RTGEN 206-100] Generating core module 'FracNet_mac_muladpcA': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'pgconv64'.
+INFO: [HLS 200-111]  Elapsed time: 3.324 seconds; current allocated memory: 719.929 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'relu' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'relu'.
+INFO: [HLS 200-111]  Elapsed time: 15.336 seconds; current allocated memory: 727.736 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'store_bufs_organize' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SYN 201-210] Renamed object name 'FracNet_urem_6ns_4ns_6_10_1' to 'FracNet_urem_6ns_qcK' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'FracNet_mul_mul_11ns_5ns_16_1_1' to 'FracNet_mul_mul_1rcU' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'FracNet_mul_mul_1rcU': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'FracNet_urem_6ns_qcK': 2 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'store_bufs_organize'.
+INFO: [HLS 200-111]  Elapsed time: 2.316 seconds; current allocated memory: 740.903 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'load_weight_1x1_from' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'load_weight_1x1_from'.
+INFO: [HLS 200-111]  Elapsed time: 9.958 seconds; current allocated memory: 746.279 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'load_weights_1x1_all' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'load_weights_1x1_all'.
+INFO: [HLS 200-111]  Elapsed time: 1.062 seconds; current allocated memory: 748.212 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'pgconv64_1x1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Generating core module 'FracNet_mac_muladpcA': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'pgconv64_1x1'.
+INFO: [HLS 200-111]  Elapsed time: 1.432 seconds; current allocated memory: 752.950 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'FracNet' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'FracNet/IMG' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'FracNet/BUS512' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'FracNet/DDR512' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'FracNet/BUS32' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'FracNet/image_thermo_V' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'FracNet/conv_weight_1x1_all_V' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'FracNet/conv_weight_3x3_all_V' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'FracNet/weights_all_V' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'FracNet/linear_weight_all_V' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'FracNet/linear_bias_all_V' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'FracNet/DDR_buff_merge_V' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'FracNet/out_r' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'FracNet' to 's_axilite & ap_ctrl_hs' (register).
+WARNING: [RTGEN 206-101] Global array 'pg_buf_all_V' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_pg_buf_all_V' to 'FracNet_pg_buf_alsc4' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'pg_buf_all_in_V' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_pg_buf_all_in_V' to 'FracNet_pg_buf_altde' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_0_8' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_0_8' to 'FracNet_weight_buudo' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_0_7' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_0_7' to 'FracNet_weight_buvdy' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_0_6' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_0_6' to 'FracNet_weight_buwdI' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_0_5' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_0_5' to 'FracNet_weight_buxdS' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_0_4' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_0_4' to 'FracNet_weight_buyd2' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_0_3' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_0_3' to 'FracNet_weight_buzec' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_0_2' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_0_2' to 'FracNet_weight_buAem' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_0_1' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_0_1' to 'FracNet_weight_buBew' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_0' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_0' to 'FracNet_weight_buCeG' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_1_8' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_1_8' to 'FracNet_weight_buDeQ' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_1_7' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_1_7' to 'FracNet_weight_buEe0' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_1_6' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_1_6' to 'FracNet_weight_buFfa' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_1_5' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_1_5' to 'FracNet_weight_buGfk' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_1_4' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_1_4' to 'FracNet_weight_buHfu' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_1_3' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_1_3' to 'FracNet_weight_buIfE' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_1_2' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_1_2' to 'FracNet_weight_buJfO' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_1_1' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_1_1' to 'FracNet_weight_buKfY' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_1' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_1' to 'FracNet_weight_buLf8' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_2_8' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_2_8' to 'FracNet_weight_buMgi' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_2_7' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_2_7' to 'FracNet_weight_buNgs' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_2_6' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_2_6' to 'FracNet_weight_buOgC' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_2_5' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_2_5' to 'FracNet_weight_buPgM' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_2_4' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_2_4' to 'FracNet_weight_buQgW' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_2_3' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_2_3' to 'FracNet_weight_buRg6' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_2_2' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_2_2' to 'FracNet_weight_buShg' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_2_1' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_2_1' to 'FracNet_weight_buThq' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_2' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_2' to 'FracNet_weight_buUhA' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_3_8' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_3_8' to 'FracNet_weight_buVhK' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_3_7' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_3_7' to 'FracNet_weight_buWhU' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_3_6' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_3_6' to 'FracNet_weight_buXh4' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_3_5' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_3_5' to 'FracNet_weight_buYie' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_3_4' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_3_4' to 'FracNet_weight_buZio' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_3_3' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_3_3' to 'FracNet_weight_bu0iy' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_3_2' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_3_2' to 'FracNet_weight_bu1iI' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_3_1' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_3_1' to 'FracNet_weight_bu2iS' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_3' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_3' to 'FracNet_weight_bu3i2' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_4_8' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_4_8' to 'FracNet_weight_bu4jc' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_4_7' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_4_7' to 'FracNet_weight_bu5jm' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_4_6' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_4_6' to 'FracNet_weight_bu6jw' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_4_5' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_4_5' to 'FracNet_weight_bu7jG' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_4_4' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_4_4' to 'FracNet_weight_bu8jQ' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_4_3' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_4_3' to 'FracNet_weight_bu9j0' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_4_2' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_4_2' to 'FracNet_weight_bubak' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_4_1' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_4_1' to 'FracNet_weight_bubbk' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_4' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_4' to 'FracNet_weight_bubck' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_5_8' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_5_8' to 'FracNet_weight_bubdk' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_5_7' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_5_7' to 'FracNet_weight_bubek' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_5_6' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_5_6' to 'FracNet_weight_bubfk' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_5_5' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_5_5' to 'FracNet_weight_bubgk' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_5_4' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_5_4' to 'FracNet_weight_bubhl' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_5_3' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_5_3' to 'FracNet_weight_bubil' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_5_2' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_5_2' to 'FracNet_weight_bubjl' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_5_1' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_5_1' to 'FracNet_weight_bubkl' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_5' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_5' to 'FracNet_weight_bubll' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_6_8' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_6_8' to 'FracNet_weight_bubml' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_6_7' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_6_7' to 'FracNet_weight_bubnm' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_6_6' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_6_6' to 'FracNet_weight_bubom' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_6_5' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_6_5' to 'FracNet_weight_bubpm' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_6_4' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_6_4' to 'FracNet_weight_bubqm' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_6_3' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_6_3' to 'FracNet_weight_bubrm' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_6_2' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_6_2' to 'FracNet_weight_bubsm' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_6_1' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_6_1' to 'FracNet_weight_bubtn' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_6' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_6' to 'FracNet_weight_bubun' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_7_8' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_7_8' to 'FracNet_weight_bubvn' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_7_7' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_7_7' to 'FracNet_weight_bubwn' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_7_6' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_7_6' to 'FracNet_weight_bubxn' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_7_5' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_7_5' to 'FracNet_weight_bubyn' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_7_4' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_7_4' to 'FracNet_weight_bubzo' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_7_3' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_7_3' to 'FracNet_weight_bubAo' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_7_2' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_7_2' to 'FracNet_weight_bubBo' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_7_1' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_7_1' to 'FracNet_weight_bubCo' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_3x3_V_0_7' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_3x3_V_0_7' to 'FracNet_weight_bubDo' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'thres_buf_V_0' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_thres_buf_V_0' to 'FracNet_thres_bufbEo' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'thres_buf_V_1' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_thres_buf_V_1' to 'FracNet_thres_bufbFp' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'thres_buf_V_2' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_thres_buf_V_2' to 'FracNet_thres_bufbGp' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'thres_buf_V_3' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_thres_buf_V_3' to 'FracNet_thres_bufbHp' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'thres_buf_V_4' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_thres_buf_V_4' to 'FracNet_thres_bufbIp' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'thres_buf_V_5' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_thres_buf_V_5' to 'FracNet_thres_bufbJp' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'thres_buf_V_6' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_thres_buf_V_6' to 'FracNet_thres_bufbKp' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'thres_buf_V_7' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_thres_buf_V_7' to 'FracNet_thres_bufbLp' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf_acc0_V_0' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf_acc0_V_0' to 'FracNet_FM_buf_acbMq' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf_acc0_V_1' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf_acc0_V_1' to 'FracNet_FM_buf_acbNq' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf_acc0_V_2' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf_acc0_V_2' to 'FracNet_FM_buf_acbOq' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf_acc0_V_3' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf_acc0_V_3' to 'FracNet_FM_buf_acbPq' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf_acc0_V_4' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf_acc0_V_4' to 'FracNet_FM_buf_acbQq' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf_acc0_V_5' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf_acc0_V_5' to 'FracNet_FM_buf_acbRq' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf_acc0_V_6' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf_acc0_V_6' to 'FracNet_FM_buf_acbSr' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf_acc0_V_7' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf_acc0_V_7' to 'FracNet_FM_buf_acbTr' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf_acc0_V_8' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf_acc0_V_8' to 'FracNet_FM_buf_acbUr' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf_acc0_V_9' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf_acc0_V_9' to 'FracNet_FM_buf_acbVr' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf_acc0_V_10' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf_acc0_V_10' to 'FracNet_FM_buf_acbWr' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf_acc0_V_11' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf_acc0_V_11' to 'FracNet_FM_buf_acbXr' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf_acc0_V_12' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf_acc0_V_12' to 'FracNet_FM_buf_acbYs' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf_acc0_V_13' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf_acc0_V_13' to 'FracNet_FM_buf_acbZs' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf_acc0_V_14' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf_acc0_V_14' to 'FracNet_FM_buf_acb0s' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf_acc0_V_15' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf_acc0_V_15' to 'FracNet_FM_buf_acb1s' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf_acc0_V_16' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf_acc0_V_16' to 'FracNet_FM_buf_acb2s' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf_acc0_V_17' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf_acc0_V_17' to 'FracNet_FM_buf_acb3s' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf_acc0_V_18' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf_acc0_V_18' to 'FracNet_FM_buf_acb4t' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf_acc0_V_19' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf_acc0_V_19' to 'FracNet_FM_buf_acb5t' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf_acc0_V_20' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf_acc0_V_20' to 'FracNet_FM_buf_acb6t' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf_acc0_V_21' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf_acc0_V_21' to 'FracNet_FM_buf_acb7t' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf_acc0_V_22' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf_acc0_V_22' to 'FracNet_FM_buf_acb8t' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf_acc0_V_23' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf_acc0_V_23' to 'FracNet_FM_buf_acb9t' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf_acc0_V_24' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf_acc0_V_24' to 'FracNet_FM_buf_accau' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf_acc0_V_25' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf_acc0_V_25' to 'FracNet_FM_buf_accbu' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf_acc0_V_26' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf_acc0_V_26' to 'FracNet_FM_buf_acccu' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf_acc0_V_27' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf_acc0_V_27' to 'FracNet_FM_buf_accdu' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf_acc0_V_28' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf_acc0_V_28' to 'FracNet_FM_buf_acceu' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf_acc0_V_29' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf_acc0_V_29' to 'FracNet_FM_buf_accfu' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf_acc0_V_30' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf_acc0_V_30' to 'FracNet_FM_buf_accgu' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf_acc0_V_31' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf_acc0_V_31' to 'FracNet_FM_buf_acchv' due to the length limit 20
+WARNING: [RTGEN 206-101] Register 'bn_weight_buf_V_0_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_bias_buf_V_0_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_weight_buf_V_1_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_bias_buf_V_1_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_weight_buf_V_2_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_bias_buf_V_2_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_weight_buf_V_3_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_bias_buf_V_3_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_weight_buf_V_4_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_bias_buf_V_4_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_weight_buf_V_5_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_bias_buf_V_5_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_weight_buf_V_6_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_bias_buf_V_6_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_weight_buf_V_7_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_bias_buf_V_7_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_weight_buf_V_8_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_bias_buf_V_8_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_weight_buf_V_9_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_bias_buf_V_9_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_weight_buf_V_10_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_bias_buf_V_10_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_weight_buf_V_11_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_bias_buf_V_11_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_weight_buf_V_12_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_bias_buf_V_12_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_weight_buf_V_13_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_bias_buf_V_13_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_weight_buf_V_14_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_bias_buf_V_14_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_weight_buf_V_15_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_bias_buf_V_15_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_weight_buf_V_16_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_bias_buf_V_16_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_weight_buf_V_17_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_bias_buf_V_17_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_weight_buf_V_18_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_bias_buf_V_18_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_weight_buf_V_19_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_bias_buf_V_19_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_weight_buf_V_20_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_bias_buf_V_20_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_weight_buf_V_21_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_bias_buf_V_21_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_weight_buf_V_22_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_bias_buf_V_22_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_weight_buf_V_23_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_bias_buf_V_23_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_weight_buf_V_24_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_bias_buf_V_24_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_weight_buf_V_25_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_bias_buf_V_25_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_weight_buf_V_26_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_bias_buf_V_26_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_weight_buf_V_27_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_bias_buf_V_27_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_weight_buf_V_28_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_bias_buf_V_28_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_weight_buf_V_29_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_bias_buf_V_29_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_weight_buf_V_30_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_bias_buf_V_30_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_weight_buf_V_31_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'bn_bias_buf_V_31_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Global array 'FM_buf0_V_0' will not be exposed as RTL port.
+WARNING: [RTGEN 206-101] Global array 'FM_buf0_V_1' will not be exposed as RTL port.
+WARNING: [RTGEN 206-101] Global array 'FM_buf0_V_2' will not be exposed as RTL port.
+WARNING: [RTGEN 206-101] Global array 'FM_buf0_V_3' will not be exposed as RTL port.
+WARNING: [RTGEN 206-101] Global array 'FM_buf0_V_4' will not be exposed as RTL port.
+WARNING: [RTGEN 206-101] Global array 'FM_buf0_V_5' will not be exposed as RTL port.
+WARNING: [RTGEN 206-101] Global array 'FM_buf0_V_6' will not be exposed as RTL port.
+WARNING: [RTGEN 206-101] Global array 'FM_buf0_V_7' will not be exposed as RTL port.
+WARNING: [RTGEN 206-101] Global array 'FM_buf0_V_8' will not be exposed as RTL port.
+WARNING: [RTGEN 206-101] Global array 'FM_buf0_V_9' will not be exposed as RTL port.
+WARNING: [RTGEN 206-101] Global array 'FM_buf0_V_10' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf0_V_10' to 'FracNet_FM_buf0_Vciv' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf0_V_11' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf0_V_11' to 'FracNet_FM_buf0_Vcjv' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf0_V_12' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf0_V_12' to 'FracNet_FM_buf0_Vckv' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf0_V_13' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf0_V_13' to 'FracNet_FM_buf0_Vclv' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf0_V_14' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf0_V_14' to 'FracNet_FM_buf0_Vcmv' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf0_V_15' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf0_V_15' to 'FracNet_FM_buf0_Vcnw' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf0_V_16' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf0_V_16' to 'FracNet_FM_buf0_Vcow' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf0_V_17' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf0_V_17' to 'FracNet_FM_buf0_Vcpw' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf0_V_18' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf0_V_18' to 'FracNet_FM_buf0_Vcqw' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf0_V_19' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf0_V_19' to 'FracNet_FM_buf0_Vcrw' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf0_V_20' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf0_V_20' to 'FracNet_FM_buf0_Vcsw' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf0_V_21' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf0_V_21' to 'FracNet_FM_buf0_Vctx' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf0_V_22' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf0_V_22' to 'FracNet_FM_buf0_Vcux' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf0_V_23' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf0_V_23' to 'FracNet_FM_buf0_Vcvx' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf0_V_24' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf0_V_24' to 'FracNet_FM_buf0_Vcwx' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf0_V_25' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf0_V_25' to 'FracNet_FM_buf0_Vcxx' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf0_V_26' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf0_V_26' to 'FracNet_FM_buf0_Vcyx' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf0_V_27' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf0_V_27' to 'FracNet_FM_buf0_Vczy' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf0_V_28' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf0_V_28' to 'FracNet_FM_buf0_VcAy' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf0_V_29' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf0_V_29' to 'FracNet_FM_buf0_VcBy' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf0_V_30' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf0_V_30' to 'FracNet_FM_buf0_VcCy' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'FM_buf0_V_31' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_FM_buf0_V_31' to 'FracNet_FM_buf0_VcDy' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_1x1_V_0_0' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_1x1_V_0_0' to 'FracNet_weight_bucEy' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_1x1_V_0_1' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_1x1_V_0_1' to 'FracNet_weight_bucFz' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_1x1_V_0_2' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_1x1_V_0_2' to 'FracNet_weight_bucGz' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_1x1_V_0_3' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_1x1_V_0_3' to 'FracNet_weight_bucHz' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_1x1_V_0_4' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_1x1_V_0_4' to 'FracNet_weight_bucIz' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_1x1_V_0_5' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_1x1_V_0_5' to 'FracNet_weight_bucJz' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_1x1_V_0_6' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_1x1_V_0_6' to 'FracNet_weight_bucKz' due to the length limit 20
+WARNING: [RTGEN 206-101] Global array 'weight_buf_1x1_V_0_7' will not be exposed as RTL port.
+INFO: [SYN 201-210] Renamed object name 'FracNet_weight_buf_1x1_V_0_7' to 'FracNet_weight_bucLz' due to the length limit 20
+INFO: [RTGEN 206-100] Bundling port 'return', 'image_thermo_V', 'conv_weight_1x1_all_V', 'conv_weight_3x3_all_V', 'weights_all_V', 'linear_weight_all_V', 'linear_bias_all_V', 'DDR_buff_merge_V' and 'out_r' to AXI-Lite port AXILiteS.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_AWVALID' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'FracNet/m_axi_BUS32_AWVALID' to 0.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_AWREADY' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_AWADDR' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'FracNet/m_axi_BUS32_AWADDR' to 0.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_AWID' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'FracNet/m_axi_BUS32_AWID' to 0.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_AWLEN' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'FracNet/m_axi_BUS32_AWLEN' to 0.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_AWSIZE' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'FracNet/m_axi_BUS32_AWSIZE' to 0.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_AWBURST' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'FracNet/m_axi_BUS32_AWBURST' to 0.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_AWLOCK' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'FracNet/m_axi_BUS32_AWLOCK' to 0.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_AWCACHE' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'FracNet/m_axi_BUS32_AWCACHE' to 0.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_AWPROT' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'FracNet/m_axi_BUS32_AWPROT' to 0.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_AWQOS' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'FracNet/m_axi_BUS32_AWQOS' to 0.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_AWREGION' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'FracNet/m_axi_BUS32_AWREGION' to 0.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_AWUSER' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'FracNet/m_axi_BUS32_AWUSER' to 0.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_WVALID' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'FracNet/m_axi_BUS32_WVALID' to 0.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_WREADY' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_WDATA' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'FracNet/m_axi_BUS32_WDATA' to 0.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_WSTRB' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'FracNet/m_axi_BUS32_WSTRB' to 0.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_WLAST' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'FracNet/m_axi_BUS32_WLAST' to 0.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_WID' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'FracNet/m_axi_BUS32_WID' to 0.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_WUSER' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'FracNet/m_axi_BUS32_WUSER' to 0.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_ARVALID' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'FracNet/m_axi_BUS32_ARVALID' to 0.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_ARREADY' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_ARADDR' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'FracNet/m_axi_BUS32_ARADDR' to 0.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_ARID' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'FracNet/m_axi_BUS32_ARID' to 0.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_ARLEN' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'FracNet/m_axi_BUS32_ARLEN' to 0.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_ARSIZE' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'FracNet/m_axi_BUS32_ARSIZE' to 0.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_ARBURST' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'FracNet/m_axi_BUS32_ARBURST' to 0.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_ARLOCK' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'FracNet/m_axi_BUS32_ARLOCK' to 0.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_ARCACHE' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'FracNet/m_axi_BUS32_ARCACHE' to 0.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_ARPROT' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'FracNet/m_axi_BUS32_ARPROT' to 0.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_ARQOS' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'FracNet/m_axi_BUS32_ARQOS' to 0.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_ARREGION' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'FracNet/m_axi_BUS32_ARREGION' to 0.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_ARUSER' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'FracNet/m_axi_BUS32_ARUSER' to 0.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_RVALID' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_RREADY' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'FracNet/m_axi_BUS32_RREADY' to 0.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_RDATA' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_RLAST' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_RID' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_RUSER' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_RRESP' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_BVALID' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_BREADY' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'FracNet/m_axi_BUS32_BREADY' to 0.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_BRESP' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_BID' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Port 'FracNet/m_axi_BUS32_BUSER' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+INFO: [RTGEN 206-104] Estimated max fanout for 'FracNet' is 5256 from HDL expression: (1'b1 == ap_CS_fsm_state32)
+INFO: [RTGEN 206-100] Generating core module 'FracNet_mac_muladhbi': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'FracNet'.
+INFO: [HLS 200-111]  Elapsed time: 15.772 seconds; current allocated memory: 775.598 MB.
+INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were satisfied.
+INFO: [HLS 200-789] **** Estimated Fmax: 285.71 MHz
+INFO: [RTMG 210-278] Implementing memory 'pgconv64_1_bot1_Lcud_ram (RAM)' using distributed RAMs.
+INFO: [RTMG 210-282] Generating pipelined core: 'FracNet_urem_7ns_jbC_div'
+INFO: [RTMG 210-282] Generating pipelined core: 'FracNet_urem_6ns_qcK_div'
+INFO: [RTMG 210-278] Implementing memory 'FracNet_pg_buf_alsc4_ram (RAM)' using block RAMs with power-on initialization.
+INFO: [RTMG 210-278] Implementing memory 'FracNet_pg_buf_altde_ram (RAM)' using block RAMs with power-on initialization.
+INFO: [RTMG 210-278] Implementing memory 'FracNet_weight_buudo_ram (RAM)' using distributed RAMs with power-on initialization.
+INFO: [RTMG 210-278] Implementing memory 'FracNet_thres_bufbEo_ram (RAM)' using block RAMs with power-on initialization.
+INFO: [RTMG 210-278] Implementing memory 'FracNet_FM_buf_acbMq_ram (RAM)' using block RAMs with power-on initialization.
+INFO: [RTMG 210-278] Implementing memory 'FracNet_FM_buf0_V_0_ram (RAM)' using distributed RAMs with power-on initialization.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:04:03 ; elapsed = 00:05:25 . Memory (MB): peak = 1072.371 ; gain = 982.832
+INFO: [VHDL 208-304] Generating VHDL RTL for FracNet.
+INFO: [VLOG 209-307] Generating Verilog RTL for FracNet.
+INFO: [HLS 200-112] Total elapsed time: 325.399 seconds; peak allocated memory: 775.598 MB.

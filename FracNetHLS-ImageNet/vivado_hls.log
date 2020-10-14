@@ -1,21 +1,29 @@
 INFO: [HLS 200-10] Running 'C:/Xilinx/Vivado/2019.2/bin/unwrapped/win64.o/vivado_hls.exe'
-INFO: [HLS 200-10] For user 'Aperture' on host 'desktop-apertur' (Windows NT_amd64 version 6.2) on Tue Sep 15 01:25:30 -0500 2020
-INFO: [HLS 200-10] In directory 'C:/Users/Aperture/Git/FracNetHLS/FracNetHLS-ImageNet'
-Sourcing Tcl script 'C:/Users/Aperture/Git/FracNetHLS/FracNetHLS-ImageNet/model/solution1/csynth.tcl'
-INFO: [HLS 200-10] Opening project 'C:/Users/Aperture/Git/FracNetHLS/FracNetHLS-ImageNet/model'.
-WARNING: [HLS 200-40] No C:/Users/Aperture/Git/FracNetHLS/FracNetHLS-ImageNet/model/solution2/solution2.aps file found.
-WARNING: [HLS 200-40] No C:/Users/Aperture/Git/FracNetHLS/FracNetHLS-ImageNet/model/solution3/solution3.aps file found.
-INFO: [HLS 200-10] Adding design file 'pgconv.cc' to the project
-INFO: [HLS 200-10] Adding design file 'net_hls.h' to the project
-INFO: [HLS 200-10] Adding design file 'net_hls.cc' to the project
-INFO: [HLS 200-10] Adding design file 'matmul.cc' to the project
-INFO: [HLS 200-10] Adding design file 'biconv.cc' to the project
-INFO: [HLS 200-10] Adding test bench file 'tb.cc' to the project
-WARNING: [HLS 200-40] Cannot find test bench file 'golden_c.cc'
-WARNING: [HLS 200-40] Cannot find test bench file 'conv1_weight.bin'
-WARNING: [HLS 200-40] Cannot find test bench file 'conv1_input.bin'
-WARNING: [HLS 200-40] Cannot find test bench file 'bn1_fused_weight.bin'
-WARNING: [HLS 200-40] Cannot find test bench file 'bn1_fused_bias.bin'
-INFO: [HLS 200-10] Opening solution 'C:/Users/Aperture/Git/FracNetHLS/FracNetHLS-ImageNet/model/solution1'.
+INFO: [HLS 200-10] For user 'Aperture' on host 'laptop-x1ext' (Windows NT_amd64 version 6.2) on Wed Oct 14 02:12:50 -0500 2020
+INFO: [HLS 200-10] In directory 'C:/Users/Aperture/Git/FracNetHLS-ImageNet'
+Sourcing Tcl script 'C:/Users/Aperture/Git/FracNetHLS-ImageNet/model/solution1/export.tcl'
+INFO: [HLS 200-10] Opening project 'C:/Users/Aperture/Git/FracNetHLS-ImageNet/model'.
+INFO: [HLS 200-10] Opening solution 'C:/Users/Aperture/Git/FracNetHLS-ImageNet/model/solution1'.
 INFO: [SYN 201-201] Setting up clock 'default' with a period of 4ns.
 INFO: [SYN 201-201] Setting up clock 'default' with an uncertainty of 0.5ns.
+INFO: [HLS 200-10] Setting target device to 'xczu3eg-sbva484-1-e'
+INFO: [HLS 200-435] Setting 'config_sdx -target' configuration: config_export -vivado_optimization_level=2
+INFO: [HLS 200-435] Setting 'config_sdx -target' configuration: set_clock_uncertainty default
+INFO: [IMPL 213-8] Exporting RTL as a Vivado IP.
+
+****** Vivado v2019.2.1 (64-bit)
+  **** SW Build 2729669 on Thu Dec  5 04:49:17 MST 2019
+  **** IP Build 2729494 on Thu Dec  5 07:38:25 MST 2019
+    ** Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+
+source run_ippack.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2019.2/data/ip'.
+WARNING: [IP_Flow 19-4832] The IP name 'FracNet_ap_fadd_8_full_dsp_32' you have specified is long. The Windows operating system has path length limitations. It is recommended you use shorter names to reduce the likelihood of issues.
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'FracNet_ap_fadd_8_full_dsp_32'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'FracNet_ap_fadd_8_full_dsp_32'...
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2019.2/data/ip'.
+INFO: [Common 17-206] Exiting Vivado at Wed Oct 14 02:13:38 2020...

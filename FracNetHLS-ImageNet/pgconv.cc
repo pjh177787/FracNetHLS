@@ -7,7 +7,7 @@
 //const static uint4 lut16[] = {0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2, 3, 2, 3, 3, 4};
 
 #define CH_OUT 64
-#define CH_OUT_PAR 8
+#define CH_OUT_PAR 16
 
 const static uint32 m1("0x55555555", 16);
 const static uint32 m2("0x33333333", 16);
@@ -117,7 +117,7 @@ void pgconv64_1bit(uint64 bottom1[12996],
 
 #pragma HLS array_partition variable=weights dim=2 complete
 #pragma HLS array_partition variable=weights dim=3 complete
-#pragma HLS array_partition variable=weights dim=1 cyclic factor=32
+#pragma HLS array_partition variable=weights dim=1 cyclic factor=8
 #pragma HLS array_partition variable=top dim=1 cyclic factor=32
 // #pragma HLS array_partition variable=thres dim=1 complete
 //#pragma HLS array_partition variable=bn_weights dim=1 complete
@@ -199,7 +199,7 @@ void pgconv64_1x1_1bit(uint64 bottom[12996],
 //#pragma HLS array_partition variable=relu_shiftx dim=1 complete
 //#pragma HLS array_partition variable=relu_shifty dim=1 complete
 //#pragma HLS array_partition variable=relu_weights dim=1 complete
-#pragma HLS array_partition variable=weights dim=1 cyclic factor=32
+#pragma HLS array_partition variable=weights dim=1 cyclic factor=8
 #pragma HLS array_partition variable=top dim=1 cyclic factor=32
 
     uint64 bot1_LB[9];
@@ -209,9 +209,10 @@ void pgconv64_1x1_1bit(uint64 bottom[12996],
 #pragma HLS array_partition variable=top_buf dim=1 complete
 
 	int index = (ch_row*map_dim + tile_row*7)*114 + (ch_col*map_dim + tile_col*7);
-    Row:for(int row = 1; row < 8; row ++){
-        Col:for(int col = 1; col < 8; col ++) {
-        	Ch_factor:for (int ch_factor = 0; ch_factor < CH_OUT/CH_OUT_PAR; ch_factor ++) {
+
+	Ch_factor:for (int ch_factor = 0; ch_factor < CH_OUT/CH_OUT_PAR; ch_factor ++) {
+		Row:for(int row = 1; row < 8; row ++){
+			Col:for(int col = 1; col < 8; col ++) {
 #pragma HLS PIPELINE II=1
 				bot1_LB[col] = bottom[index + row*114 + col];
 				if (0 < row && row < 9) {
