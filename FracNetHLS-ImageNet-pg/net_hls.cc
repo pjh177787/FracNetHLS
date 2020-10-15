@@ -452,8 +452,8 @@ void FracNet(  uint32 image_thermo[3*226*226],
 
 
 //#pragma HLS ALLOCATION instances=biconv16                    	limit=1 function
-#pragma HLS ALLOCATION instances=pgconv64_1x1_1bit              limit=1 function
-#pragma HLS ALLOCATION instances=pgconv64_1bit                  limit=1 function
+#pragma HLS ALLOCATION instances=pgconv64_1x1              		limit=1 function
+#pragma HLS ALLOCATION instances=pgconv64                  		limit=1 function
 //#pragma HLS ALLOCATION instances=matmul                  		limit=1 function
 #pragma HLS ALLOCATION instances=store_bufs_organize			limit=1 function
 
@@ -609,679 +609,679 @@ void FracNet(  uint32 image_thermo[3*226*226],
 
 
 
-//    /////////////////////////////// 128 56 56 ////////////////////////////
-//
-//    N_CII   = 64 / WEIGHT_DEPTH;
-//    N_CIO   = 64 / BLK_DEPTH;
-//    N_COI   = 64 / WEIGHT_DEPTH;
-//    N_COO   = 128 / BLK_DEPTH;
-//    N_SPI	= 56/ 7;
-//    N_SPO	= 56/ 7;
-//    stride  = 2;
-//
-//	off_row = 112/N_SPO;
-//	off_col = 112%N_SPO;
-//    for (int cio = 0; cio < N_CIO; cio ++) {
-//		load_weights_3x3_all(conv_weight_3x3_all, weight_3x3_index, weights_all, weights_all_index);
-//		weight_3x3_index += N_BLK;
-//		weights_all_index += 8;
-//		for (int row = 0; row < N_SPI; row ++) {
-//			for (int col = 0; col < N_SPI; col ++) {
-//				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
-//				for (int cii = 0; cii < N_CII; cii ++) {
-////					load_buf_from_buf_all(row, col, 0, 0, 112);
-//					pgconv64_1bit(pg_buf_all, weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 112, stride);
-//				}
-//				store_bufs_organize(DDR_buff_merge, 1, row, col, cio, 0, 0, 56, 2);
-//			}
-//		}
-//	}
-//
-//	for (int coo = 0; coo < N_COO; coo ++) {
-//		load_weights_1x1_all(conv_weight_1x1_all, weight_1x1_index, weights_all, weights_all_index);
-//		weight_1x1_index += N_BLK;
-//		weights_all_index += 8;
-//		off_row = coo/(112/N_SPO);
-//		off_col = coo%(112/N_SPO);
-//		for (int row = 0; row < N_SPO; row ++) {
-//			for (int col = 0; col < N_SPO; col ++) {
-//				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
-//				for (int coi = 0; coi < N_COI; coi ++) {
-////					load_buf_from_buf_all(row, col, 0, 0, 56);
-//					pgconv64_1x1_1bit(pg_buf_all, weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 56);
-//				}
-//				int coo_cat = coo;
-//				if (coo > N_COI) {
-//					coo_cat = coo - N_COI;
-//				}
-//				store_bufs_organize(DDR_buff_merge, 0, row, col, coo, off_row, off_col, 56 ,1);
-//			}
-//		}
-//	}
-//
-//
-//
-//     /////////////////////////////// 128 56 56 ////////////////////////////
-//
-//     N_CII   = 128 / WEIGHT_DEPTH;
-//     N_CIO   = 128 / BLK_DEPTH;
-//     N_COI   = 128 / WEIGHT_DEPTH;
-//     N_COO   = 128 / BLK_DEPTH;
-//     N_SPI	= 56/ 7;
-//     N_SPO	= 56/ 7;
-//     stride  = 1;
-//
-//
-//
-//     for (int cio = 0; cio < N_CIO; cio ++) {
-//	 	load_weights_3x3_all(conv_weight_3x3_all, weight_3x3_index, weights_all, weights_all_index);
-//	 	weight_3x3_index += N_BLK;
-//	 	weights_all_index += 8;
-//		off_row = cio/(112/N_SPI);
-//		off_col = cio%(112/N_SPI);
-//	 	for (int row = 0; row < N_SPI; row ++) {
-//	 		for (int col = 0; col < N_SPI; col ++) {
-//				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
-//	 			for (int cii = 0; cii < N_CII; cii ++) {
-////					load_buf_from_buf_all(row, col, 0, 0, 56);
-//					pgconv64_1bit(pg_buf_all, weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 56, stride);
-//	 			}
-//				store_bufs_organize(DDR_buff_merge, 1, row, col, cio, off_row, off_col, 56, 1);
-//	 		}
-//	 	}
-//	 }
-//
-//
-//	 for (int coo = 0; coo < N_COO; coo ++) {
-//	 	load_weights_1x1_all(conv_weight_1x1_all, weight_1x1_index, weights_all, weights_all_index);
-//	 	weight_1x1_index += 4;
-//	 	weights_all_index += 8;
-//		off_row = coo/(112/N_SPO);
-//		off_col = coo%(112/N_SPO);
-//	 	for (int row = 0; row < N_SPO; row ++) {
-//	 		for (int col = 0; col < N_SPO; col ++) {
-//				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
-//	 			for (int coi = 0; coi < N_COI; coi ++) {
-////					load_buf_from_buf_all(row, col, 0, 0, 56);
-//					pgconv64_1x1_1bit(pg_buf_all, weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 56);
-//	 			}
-//	 			int coo_cat = coo;
-//	 			if (coo > N_COI) {
-//	 				coo_cat = coo - N_COI;
-//	 			}
-//				store_bufs_organize(DDR_buff_merge, 0, row, col, coo, off_row, off_col, 56, 1);
-//	 		}
-//	 	}
-//	 }
-//
-//
-//      /////////////////////////////// 256 28 28 ////////////////////////////
-//
-//      N_CII   = 128 / WEIGHT_DEPTH;
-//      N_CIO   = 128 / BLK_DEPTH;
-//      N_COI   = 128 / WEIGHT_DEPTH;
-//      N_COO   = 256 / BLK_DEPTH;
-//      N_SPI	= 28/ 7;
-//      N_SPO	= 28/ 7;
-//      stride  = 2;
-//      off_row = 112/N_SPO;
-//      off_col = 112%N_SPO;
-//      for (int cio = 0; cio < N_CIO; cio ++) {
-// 	 	load_weights_3x3_all(conv_weight_3x3_all, weight_3x3_index, weights_all, weights_all_index);
-// 	 	weight_3x3_index += 4;
-// 	 	weights_all_index += 8;
-// 		off_row = cio/(112/N_SPI);
-// 		off_col = cio%(112/N_SPI);
-// 	 	for (int row = 0; row < N_SPI; row ++) {
-// 	 		for (int col = 0; col < N_SPI; col ++) {
-// 				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
-// 	 			for (int cii = 0; cii < N_CII; cii ++) {
-// //					load_buf_from_buf_all(row, col, 0, 0, 56);
-// 					pgconv64_1bit(pg_buf_all, weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 56, stride);
-// 	 			}
-// 				int off_row = 112/N_SPO;
-// 				int off_col = 112%N_SPO;
-// 				store_bufs_organize(DDR_buff_merge, 1, row, col, cio, off_row, off_col, 28, 2);
-// 	 		}
-// 	 	}
-// 	 }
-//
-// 	 for (int coo = 0; coo < N_COO; coo ++) {
-// 	 	load_weights_1x1_all(conv_weight_1x1_all, weight_1x1_index, weights_all, weights_all_index);
-// 	 	weight_1x1_index += 4;
-// 	 	weights_all_index += 8;
-// 		off_row = coo/(112/N_SPO);
-// 		off_col = coo%(112/N_SPO);
-// 	 	for (int row = 0; row < N_SPO; row ++) {
-// 	 		for (int col = 0; col < N_SPO; col ++) {
-// 				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
-// 	 			for (int coi = 0; coi < N_COI; coi ++) {
-// //					load_buf_from_buf_all(row, col, 0, 0, 28);
-// 					pgconv64_1x1_1bit(pg_buf_all, weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 28);
-// 	 			}
-// 	 			int coo_cat = coo;
-// 	 			if (coo > N_COI) {
-// 	 				coo_cat = coo - N_COI;
-// 	 			}
-// 				int off_row = 112/N_SPO;
-// 				int off_col = 112%N_SPO;
-// 				store_bufs_organize(DDR_buff_merge, 0, row, col, coo, off_row, off_col, 28, 1);
-// 	 		}
-// 	 	}
-// 	 }
-//
-//
-//      /////////////////////////////// 256 28 28 ////////////////////////////
-//
-//      N_CII   = 256 / WEIGHT_DEPTH;
-//      N_CIO   = 256 / BLK_DEPTH;
-//      N_COI   = 256 / WEIGHT_DEPTH;
-//      N_COO   = 256 / BLK_DEPTH;
-//      N_SPI	= 28/ 7;
-//      N_SPO	= 28/ 7;
-//      stride  = 1;
-//
-//      for (int cio = 0; cio < N_CIO; cio ++) {
-// 	 	load_weights_3x3_all(conv_weight_3x3_all, weight_3x3_index, weights_all, weights_all_index);
-// 	 	weight_3x3_index += 4;
-// 	 	weights_all_index += 8;
-// 		off_row = cio/(112/N_SPI);
-// 		off_col = cio%(112/N_SPI);
-// 	 	for (int row = 0; row < N_SPI; row ++) {
-// 	 		for (int col = 0; col < N_SPI; col ++) {
-// 				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
-// 	 			for (int cii = 0; cii < N_CII; cii ++) {
-// //					load_buf_from_buf_all(row, col, 1, 0, 28);
-// 					pgconv64_1bit(pg_buf_all, weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 28, stride);
-// 	 			}
-// 				store_bufs_organize(DDR_buff_merge, 0, row, col, cio, off_row, off_col, 28, 1);
-// 	 		}
-// 	 	}
-// 	 }
-//
-// 	 for (int coo = 0; coo < N_COO; coo ++) {
-// 	 	load_weights_1x1_all(conv_weight_1x1_all, weight_1x1_index, weights_all, weights_all_index);
-// 	 	weight_1x1_index += 4;
-// 	 	weights_all_index += 8;
-// 		off_row = coo/(112/N_SPI);
-// 		off_col = coo%(112/N_SPI);
-// 	 	for (int row = 0; row < N_SPO; row ++) {
-// 	 		for (int col = 0; col < N_SPO; col ++) {
-// 				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
-// 	 			for (int coi = 0; coi < N_COI; coi ++) {
-// //					load_buf_from_buf_all(row, col, 0, 0, 28);
-// 					pgconv64_1x1_1bit(pg_buf_all, weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 28);
-// 	 			}
-// 	 			int coo_cat = coo;
-// 	 			if (coo > N_COI) {
-// 	 				coo_cat = coo - N_COI;
-// 	 			}
-// 				store_bufs_organize(DDR_buff_merge, 0, row, col, coo, off_row, off_col, 28, 1);
-// 	 		}
-// 	 	}
-// 	 }
-//
-//
-//      /////////////////////////////// 512 14 14 ////////////////////////////
-//
-//      N_CII   = 256 / WEIGHT_DEPTH;
-//      N_CIO   = 256 / BLK_DEPTH;
-//      N_COI   = 256 / WEIGHT_DEPTH;
-//      N_COO   = 512 / BLK_DEPTH;
-//      N_SPI	= 14/ 7;
-//      N_SPO	= 14/ 7;
-//      stride  = 2;
-//
-//      for (int cio = 0; cio < N_CIO; cio ++) {
-// 	 	load_weights_3x3_all(conv_weight_3x3_all, weight_3x3_index, weights_all, weights_all_index);
-// 	 	weight_3x3_index += 4;
-// 	 	weights_all_index += 8;
-// 		off_row = cio/(112/N_SPI);
-// 		off_col = cio%(112/N_SPI);
-// 	 	for (int row = 0; row < N_SPI; row ++) {
-// 	 		for (int col = 0; col < N_SPI; col ++) {
-// 				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
-// 	 			for (int cii = 0; cii < N_CII; cii ++) {
-// //					load_buf_from_buf_all(row, col, 0, 0, 28);
-// 					pgconv64_1bit(pg_buf_all, weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 28, stride);
-// 	 			}
-// 				store_bufs_organize(DDR_buff_merge, 1, row, col, cio, off_row, off_col, 14, 2);
-// 	 		}
-// 	 	}
-// 	 }
-//
-// 	 for (int coo = 0; coo < N_COO; coo ++) {
-// 	 	load_weights_1x1_all(conv_weight_1x1_all, weight_1x1_index, weights_all, weights_all_index);
-// 	 	weight_1x1_index += 4;
-// 	 	weights_all_index += 8;
-// 	 	for (int row = 0; row < N_SPO; row ++) {
-// 	 		for (int col = 0; col < N_SPO; col ++) {
-// 				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
-// 	 			for (int coi = 0; coi < N_COI; coi ++) {
-// //					load_buf_from_buf_all(row, col, 0, 0, 14);
-// 					pgconv64_1x1_1bit(pg_buf_all, weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14);
-// 	 			}
-// 	 			int coo_cat = coo;
-// 	 			if (coo > N_COI) {
-// 	 				coo_cat = coo - N_COI;
-// 	 			}
-// 				store_bufs_organize(DDR_buff_merge, 0, row, col, coo, off_row, off_col, 14, 1);
-// 	 		}
-// 	 	}
-// 	 }
-//
-//      /////////////////////////////// 512 14 14 ////////////////////////////
-//
-//      N_CII   = 256 / WEIGHT_DEPTH;
-//      N_CIO   = 256 / BLK_DEPTH;
-//      N_COI   = 256 / WEIGHT_DEPTH;
-//      N_COO   = 512 / BLK_DEPTH;
-//      N_SPI	= 14/ 7;
-//      N_SPO	= 14/ 7;
-//      stride  = 1;
-//
-//      for (int cio = 0; cio < N_CIO; cio ++) {
-// 	 	load_weights_3x3_all(conv_weight_3x3_all, weight_3x3_index, weights_all, weights_all_index);
-// 	 	weight_3x3_index += 4;
-// 	 	weights_all_index += 8;
-// 		off_row = cio/(112/N_SPI);
-// 		off_col = cio%(112/N_SPI);
-// 	 	for (int row = 0; row < N_SPI; row ++) {
-// 	 		for (int col = 0; col < N_SPI; col ++) {
-// 				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
-// 	 			for (int cii = 0; cii < N_CII; cii ++) {
-// //					load_buf_from_buf_all(row, col, 0, 0, 14);
-// 					pgconv64_1bit(pg_buf_all, weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14, stride);
-// 	 			}
-// 				store_bufs_organize(DDR_buff_merge, 1, row, col, cio, off_row, off_col, 14, 1);
-// 	 		}
-// 	 	}
-// 	 }
-//
-// 	 for (int coo = 0; coo < N_COO; coo ++) {
-// 	 	load_weights_1x1_all(conv_weight_1x1_all, weight_1x1_index, weights_all, weights_all_index);
-// 	 	weight_1x1_index += 4;
-// 	 	weights_all_index += 8;
-// 		off_row = coo/(112/N_SPO);
-// 		off_col = coo%(112/N_SPO);
-// 	 	for (int row = 0; row < N_SPO; row ++) {
-// 	 		for (int col = 0; col < N_SPO; col ++) {
-// 				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
-// 	 			for (int coi = 0; coi < N_COI; coi ++) {
-// //					load_buf_from_buf_all(row, col, 0, 0, 14);
-// 					pgconv64_1x1_1bit(pg_buf_all, weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14);
-// 	 			}
-// 	 			int coo_cat = coo;
-// 	 			if (coo > N_COI) {
-// 	 				coo_cat = coo - N_COI;
-// 	 			}
-// 				store_bufs_organize(DDR_buff_merge, 0, row, col, coo, off_row, off_col, 14, 1);
-// 	 		}
-// 	 	}
-// 	 }
-//
-//      /////////////////////////////// 512 14 14 ////////////////////////////
-//
-//      N_CII   = 256 / WEIGHT_DEPTH;
-//      N_CIO   = 256 / BLK_DEPTH;
-//      N_COI   = 256 / WEIGHT_DEPTH;
-//      N_COO   = 512 / BLK_DEPTH;
-//      N_SPI	= 14/ 7;
-//      N_SPO	= 14/ 7;
-//      stride  = 1;
-//
-//      for (int cio = 0; cio < N_CIO; cio ++) {
-// 	 	load_weights_3x3_all(conv_weight_3x3_all, weight_3x3_index, weights_all, weights_all_index);
-// 	 	weight_3x3_index += 4;
-// 	 	weights_all_index += 8;
-// 		off_row = cio/(112/N_SPI);
-// 		off_col = cio%(112/N_SPI);
-// 	 	for (int row = 0; row < N_SPI; row ++) {
-// 	 		for (int col = 0; col < N_SPI; col ++) {
-// 				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
-// 	 			for (int cii = 0; cii < N_CII; cii ++) {
-// //					load_buf_from_buf_all(row, col, 0, 0, 14);
-// 					pgconv64_1bit(pg_buf_all, weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14, stride);
-// 	 			}
-// 				store_bufs_organize(DDR_buff_merge, 1, row, col, cio, off_row, off_col, 14, 1);
-// 	 		}
-// 	 	}
-// 	 }
-//
-// 	 for (int coo = 0; coo < N_COO; coo ++) {
-// 	 	load_weights_1x1_all(conv_weight_1x1_all, weight_1x1_index, weights_all, weights_all_index);
-// 	 	weight_1x1_index += 4;
-// 	 	weights_all_index += 8;
-// 		off_row = coo/(112/N_SPO);
-// 		off_col = coo%(112/N_SPO);
-// 	 	for (int row = 0; row < N_SPO; row ++) {
-// 	 		for (int col = 0; col < N_SPO; col ++) {
-// 				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
-// 	 			for (int coi = 0; coi < N_COI; coi ++) {
-// //					load_buf_from_buf_all(row, col, 0, 0, 14);
-// 					pgconv64_1x1_1bit(pg_buf_all, weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14);
-// 	 			}
-// 	 			int coo_cat = coo;
-// 	 			if (coo > N_COI) {
-// 	 				coo_cat = coo - N_COI;
-// 	 			}
-// 				store_bufs_organize(DDR_buff_merge, 0, row, col, coo, off_row, off_col, 14, 1);
-// 	 		}
-// 	 	}
-// 	 }
-//
-//      /////////////////////////////// 512 14 14 ////////////////////////////
-//
-//      N_CII   = 512 / WEIGHT_DEPTH;
-//      N_CIO   = 512 / BLK_DEPTH;
-//      N_COI   = 512 / WEIGHT_DEPTH;
-//      N_COO   = 512 / BLK_DEPTH;
-//      N_SPI	= 14/ 7;
-//      N_SPO	= 14/ 7;
-//      stride  = 1;
-//
-//
-//      for (int cio = 0; cio < N_CIO; cio ++) {
-// 	 	load_weights_3x3_all(conv_weight_3x3_all, weight_3x3_index, weights_all, weights_all_index);
-// 	 	weight_3x3_index += 4;
-// 	 	weights_all_index += 8;
-// 		off_row = cio/(112/N_SPI);
-// 		off_col = cio%(112/N_SPI);
-// 	 	for (int row = 0; row < N_SPI; row ++) {
-// 	 		for (int col = 0; col < N_SPI; col ++) {
-// 				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
-// 	 			for (int cii = 0; cii < N_CII; cii ++) {
-// //					load_buf_from_buf_all(row, col, 0, 0, 14);
-// 					pgconv64_1bit(pg_buf_all, weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14, stride);
-// 	 			}
-// 				store_bufs_organize(DDR_buff_merge, 1, row, col, cio, off_row, off_col, 14, 1);
-// 	 		}
-// 	 	}
-// 	 }
-//
-// 	 for (int coo = 0; coo < N_COO; coo ++) {
-// 	 	load_weights_1x1_all(conv_weight_1x1_all, weight_1x1_index, weights_all, weights_all_index);
-// 	 	weight_1x1_index += 4;
-// 	 	weights_all_index += 8;
-// 		off_row = coo/(112/N_SPO);
-// 		off_col = coo%(112/N_SPO);
-// 	 	for (int row = 0; row < N_SPO; row ++) {
-// 	 		for (int col = 0; col < N_SPO; col ++) {
-// 				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
-// 	 			for (int coi = 0; coi < N_COI; coi ++) {
-// //					load_buf_from_buf_all(row, col, 0, 0, 14);
-// 					pgconv64_1x1_1bit(pg_buf_all, weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14);
-// 	 			}
-// 	 			int coo_cat = coo;
-// 	 			if (coo > N_COI) {
-// 	 				coo_cat = coo - N_COI;
-// 	 			}
-// 				store_bufs_organize(DDR_buff_merge, 0, row, col, coo, off_row, off_col, 14, 1);
-// 	 		}
-// 	 	}
-// 	 }
-//
-//
-//      /////////////////////////////// 512 14 14 ////////////////////////////
-//
-//      N_CII   = 512 / WEIGHT_DEPTH;
-//      N_CIO   = 512 / BLK_DEPTH;
-//      N_COI   = 512 / WEIGHT_DEPTH;
-//      N_COO   = 512 / BLK_DEPTH;
-//      N_SPI	= 14/ 7;
-//      N_SPO	= 14/ 7;
-//      stride  = 1;
-//
-//      for (int cio = 0; cio < N_CIO; cio ++) {
-// 	 	load_weights_3x3_all(conv_weight_3x3_all, weight_3x3_index, weights_all, weights_all_index);
-// 	 	weight_3x3_index += 4;
-// 	 	weights_all_index += 8;
-// 		off_row = cio/(112/N_SPI);
-// 		off_col = cio%(112/N_SPI);
-// 	 	for (int row = 0; row < N_SPI; row ++) {
-// 	 		for (int col = 0; col < N_SPI; col ++) {
-// 				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
-// 	 			for (int cii = 0; cii < N_CII; cii ++) {
-// //					load_buf_from_buf_all(row, col, 0, 0, 14);
-// 					pgconv64_1bit(pg_buf_all, weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14, stride);
-// 	 			}
-// 				store_bufs_organize(DDR_buff_merge, 1, row, col, cio, off_row, off_col, 14, 1);
-// 	 		}
-// 	 	}
-// 	 }
-//
-// 	 for (int coo = 0; coo < N_COO; coo ++) {
-// 	 	load_weights_1x1_all(conv_weight_1x1_all, weight_1x1_index, weights_all, weights_all_index);
-// 	 	weight_1x1_index += 4;
-// 	 	weights_all_index += 8;
-// 		off_row = coo/(112/N_SPO);
-// 		off_col = coo%(112/N_SPO);
-// 	 	for (int row = 0; row < N_SPO; row ++) {
-// 	 		for (int col = 0; col < N_SPO; col ++) {
-// 				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
-// 	 			for (int coi = 0; coi < N_COI; coi ++) {
-// //					load_buf_from_buf_all(row, col, 0, 0, 14);
-// 					pgconv64_1x1_1bit(pg_buf_all, weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14);
-// 	 			}
-// 	 			int coo_cat = coo;
-// 	 			if (coo > N_COI) {
-// 	 				coo_cat = coo - N_COI;
-// 	 			}
-// 				store_bufs_organize(DDR_buff_merge, 0, row, col, coo, off_row, off_col, 14, 1);
-// 	 		}
-// 	 	}
-// 	 }
-//
-//
-//      /////////////////////////////// 512 14 14 ////////////////////////////
-//
-//      N_CII   = 512 / WEIGHT_DEPTH;
-//      N_CIO   = 512 / BLK_DEPTH;
-//      N_COI   = 512 / WEIGHT_DEPTH;
-//      N_COO   = 512 / BLK_DEPTH;
-//      N_SPI	= 14/ 7;
-//      N_SPO	= 14/ 7;
-//      stride  = 1;
-//
-//
-//      for (int cio = 0; cio < N_CIO; cio ++) {
-// 	 	load_weights_3x3_all(conv_weight_3x3_all, weight_3x3_index, weights_all, weights_all_index);
-// 	 	weight_3x3_index += 4;
-// 	 	weights_all_index += 8;
-// 		off_row = cio/(112/N_SPI);
-// 		off_col = cio%(112/N_SPI);
-// 	 	for (int row = 0; row < N_SPI; row ++) {
-// 	 		for (int col = 0; col < N_SPI; col ++) {
-// 				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
-// 	 			for (int cii = 0; cii < N_CII; cii ++) {
-// //					load_buf_from_buf_all(row, col, 0, 0, 14);
-// 					pgconv64_1bit(pg_buf_all, weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14, stride);
-// 	 			}
-// 				store_bufs_organize(DDR_buff_merge, 1, row, col, cio, off_row, off_col, 14, 1);
-// 	 		}
-// 	 	}
-// 	 }
-//
-// 	 for (int coo = 0; coo < N_COO; coo ++) {
-// 	 	load_weights_1x1_all(conv_weight_1x1_all, weight_1x1_index, weights_all, weights_all_index);
-// 	 	weight_1x1_index += 4;
-// 	 	weights_all_index += 8;
-// 		off_row = coo/(112/N_SPO);
-// 		off_col = coo%(112/N_SPO);
-// 	 	for (int row = 0; row < N_SPO; row ++) {
-// 	 		for (int col = 0; col < N_SPO; col ++) {
-// 				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
-// 	 			for (int coi = 0; coi < N_COI; coi ++) {
-// //					load_buf_from_buf_all(row, col, 0, 0, 14);
-// 					pgconv64_1x1_1bit(pg_buf_all, weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14);
-// 	 			}
-// 	 			int coo_cat = coo;
-// 	 			if (coo > N_COI) {
-// 	 				coo_cat = coo - N_COI;
-// 	 			}
-// 				store_bufs_organize(DDR_buff_merge, 0, row, col, coo, off_row, off_col, 14, 1);
-// 	 		}
-// 	 	}
-// 	 }
-//
-//
-//      /////////////////////////////// 1024 7 7 ////////////////////////////
-//
-//      N_CII   = 512 / WEIGHT_DEPTH;
-//      N_CIO   = 512 / BLK_DEPTH;
-//      N_COI   = 512 / WEIGHT_DEPTH;
-//      N_COO   = 1024 / BLK_DEPTH;
-//      N_SPI	= 7/ 7;
-//      N_SPO	= 7/ 7;
-//      stride  = 2;
-//
-//      for (int cio = 0; cio < N_CIO; cio ++) {
-// 	 	load_weights_3x3_all(conv_weight_3x3_all, weight_3x3_index, weights_all, weights_all_index);
-// 	 	weight_3x3_index += 4;
-// 	 	weights_all_index += 8;
-// 		off_row = cio/(112/N_SPO);
-// 		off_col = cio%(112/N_SPO);
-// 	 	for (int row = 0; row < N_SPI; row ++) {
-// 	 		for (int col = 0; col < N_SPI; col ++) {
-// 				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
-// 	 			for (int cii = 0; cii < N_CII; cii ++) {
-// //					load_buf_from_buf_all(row, col, 0, 0, 14);
-// 					pgconv64_1bit(pg_buf_all, weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14, stride);
-// 	 			}
-// 				store_bufs_organize(DDR_buff_merge, 1, row, col, cio, off_row, off_col, 7, 2);
-// 	 		}
-// 	 	}
-// 	 }
-//
-// 	 for (int coo = 0; coo < N_COO; coo ++) {
-// 	 	load_weights_1x1_all(conv_weight_1x1_all, weight_1x1_index, weights_all, weights_all_index);
-// 	 	weight_1x1_index += 4;
-// 	 	weights_all_index += 8;
-// 		off_row = coo/(112/N_SPO);
-// 		off_col = coo%(112/N_SPO);
-// 	 	for (int row = 0; row < N_SPO; row ++) {
-// 	 		for (int col = 0; col < N_SPO; col ++) {
-// 				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
-// 	 			for (int coi = 0; coi < N_COI; coi ++) {
-// //					load_buf_from_buf_all(row, col, 0, 0, 7);
-// 					pgconv64_1x1_1bit(pg_buf_all, weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 7);
-// 	 			}
-// 	 			int coo_cat = coo;
-// 	 			if (coo > N_COI) {
-// 	 				coo_cat = coo - N_COI;
-// 	 			}
-// 				store_bufs_organize(DDR_buff_merge, 0, row, col, coo, off_row, off_col, 7, 1);
-// 	 		}
-// 	 	}
-// 	 }
-//
-//
-//      /////////////////////////////// 1024 7 7 ////////////////////////////
-//
-//      N_CII   = 1024 / WEIGHT_DEPTH;
-//      N_CIO   = 1024 / BLK_DEPTH;
-//      N_COI   = 1024 / WEIGHT_DEPTH;
-//      N_COO   = 1024 / BLK_DEPTH;
-//      N_SPI	= 7/ 7;
-//      N_SPO	= 7/ 7;
-//      stride  = 1;
-//
-//      for (int cio = 0; cio < N_CIO; cio ++) {
-// 	 	load_weights_3x3_all(conv_weight_3x3_all, weight_3x3_index, weights_all, weights_all_index);
-// 	 	weight_3x3_index += 4;
-// 	 	weights_all_index += 8;
-// 		off_row = cio/(112/N_SPO);
-// 		off_col = cio%(112/N_SPO);
-// 	 	for (int row = 0; row < N_SPI; row ++) {
-// 	 		for (int col = 0; col < N_SPI; col ++) {
-// 				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
-// 	 			for (int cii = 0; cii < N_CII; cii ++) {
-// //					load_buf_from_buf_all(row, col, 0, 0, 7);
-// 					pgconv64_1bit(pg_buf_all, weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 7, stride);
-// 	 			}
-// 				store_bufs_organize(DDR_buff_merge, 1, row, col, cio, off_row, off_col, 7, 1);
-// 	 		}
-// 	 	}
-// 	 }
-// 	 for (int coo = 0; coo < N_COO; coo ++) {
-// 	 	load_weights_1x1_all(conv_weight_1x1_all, weight_1x1_index, weights_all, weights_all_index);
-// 	 	weight_1x1_index += 4;
-// 	 	weights_all_index += 8;
-// 		off_row = coo/(112/N_SPO);
-// 		off_col = coo%(112/N_SPO);
-// 	 	for (int row = 0; row < N_SPO; row ++) {
-// 	 		for (int col = 0; col < N_SPO; col ++) {
-// 				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
-// 	 			for (int coi = 0; coi < N_COI; coi ++) {
-// //					load_buf_from_buf_all(row, col, 0, 0, 7);
-// 					pgconv64_1x1_1bit(pg_buf_all, weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 7);
-// 	 			}
-// 	 			int coo_cat = coo;
-// 	 			if (coo > N_COI) {
-// 	 				coo_cat = coo - N_COI;
-// 	 			}
-// 				store_bufs_organize(DDR_buff_merge, 0, row, col, coo, off_row, off_col, 7, 1);
-// 	 		}
-// 	 	}
-// 	 }
-//
-//
-//
-//
-//
-//     FIX_FM_acc out_buf[16][64];
-//
-//     avgpool:for (int c0 = 0; c0 < 16; c0 ++) {
-//             int coff = c0*2;
-//             load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, 0, 0, c0);
-//             for (int col = 0; col < 32; col ++) {
-//     #pragma HLS unroll
-//                 out_buf[c0][col] = avgpool_7x7(FM_buf0[col]);
-//             }
-//             coff += 1;
-//             load_buf_from_DDR(DDR_buff_merge, 0, FM_buf1, 0, 0, c0);
-//             for (int col = 0; col < 32; col ++) {
-//     #pragma HLS unroll
-//                 out_buf[c0][col+32] = avgpool_7x7(FM_buf1[col]);
-//             }
-//         }
-//
-//     FIX_WT linear_weight_buf[10][64];
-// #pragma HLS ARRAY_PARTITION variable=linear_weight_buf complete dim=1
-// #pragma HLS ARRAY_PARTITION variable=linear_weight_buf dim=2 cyclic factor=32
-//     FIX_WT linear_bias_buf[10];
-// #pragma HLS ARRAY_PARTITION variable=linear_bias_buf complete dim=1
-//
-//     classifier:for (int i = 0; i < 100; i ++) {
-//         for (int ii = 0; ii < 16; ii ++) {
-//
-//             uint256 DATA = 0;
-//             DATA.range(160, 0) = linear_bias_all[i].range(160, 0);
-//             for (int c = 0; c < 10; c++) {
-// #pragma HLS unroll
-//                 linear_bias_buf[c] = DATA.range(WT_RG+c*16, c*16);
-//             }
-//
-//             for (int cc = 0; cc < 10; cc ++) {
-//                 for (int r = 0; r < 2; r ++) {
-// #pragma HLS pipeline
-//                     uint512 DATA = 0;
-//                     DATA.range(511, 0) = linear_weight_all[i*160+ii*10+cc][r].range(511, 0);
-//                     for (int c = 0; c < 32; c++) {
-// #pragma HLS unroll
-//                         linear_weight_buf[cc][r*32 + c] = DATA.range(WT_RG+c*16, c*16);
-//                     }
-//                 }
-//             }
-//
-//             float result[10];
-//             matmul(out_buf[ii], linear_weight_buf, linear_bias_buf, result);
-//             for (int j = 0; j < 10; j ++) {
-// #pragma HLS pipeline
-//                 out[i*10+j] += result[j];
-//             }
-//         }
-//     }
+    /////////////////////////////// 128 56 56 ////////////////////////////
+
+    N_CII   = 64 / WEIGHT_DEPTH;
+    N_CIO   = 64 / BLK_DEPTH;
+    N_COI   = 64 / WEIGHT_DEPTH;
+    N_COO   = 128 / BLK_DEPTH;
+    N_SPI	= 56/ 7;
+    N_SPO	= 56/ 7;
+    stride  = 2;
+
+	off_row = 112/N_SPO;
+	off_col = 112%N_SPO;
+    for (int cio = 0; cio < N_CIO; cio ++) {
+		load_weights_3x3_all(conv_weight_3x3_all, weight_3x3_index, weights_all, weights_all_index);
+		weight_3x3_index += N_BLK;
+		weights_all_index += 8;
+		for (int row = 0; row < N_SPI; row ++) {
+			for (int col = 0; col < N_SPI; col ++) {
+				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
+				for (int cii = 0; cii < N_CII; cii ++) {
+//					load_buf_from_buf_all(row, col, 0, 0, 112);
+					pgconv64(pg_buf_all[1], pg_buf_all[0], weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 112, stride);
+				}
+				store_bufs_organize(DDR_buff_merge, 1, row, col, cio, 0, 0, 56, 2);
+			}
+		}
+	}
+
+	for (int coo = 0; coo < N_COO; coo ++) {
+		load_weights_1x1_all(conv_weight_1x1_all, weight_1x1_index, weights_all, weights_all_index);
+		weight_1x1_index += N_BLK;
+		weights_all_index += 8;
+		off_row = coo/(112/N_SPO);
+		off_col = coo%(112/N_SPO);
+		for (int row = 0; row < N_SPO; row ++) {
+			for (int col = 0; col < N_SPO; col ++) {
+				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
+				for (int coi = 0; coi < N_COI; coi ++) {
+//					load_buf_from_buf_all(row, col, 0, 0, 56);
+					pgconv64_1x1(pg_buf_all[1], pg_buf_all[0], weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 56);
+				}
+				int coo_cat = coo;
+				if (coo > N_COI) {
+					coo_cat = coo - N_COI;
+				}
+				store_bufs_organize(DDR_buff_merge, 0, row, col, coo, off_row, off_col, 56 ,1);
+			}
+		}
+	}
+
+
+
+     /////////////////////////////// 128 56 56 ////////////////////////////
+
+     N_CII   = 128 / WEIGHT_DEPTH;
+     N_CIO   = 128 / BLK_DEPTH;
+     N_COI   = 128 / WEIGHT_DEPTH;
+     N_COO   = 128 / BLK_DEPTH;
+     N_SPI	= 56/ 7;
+     N_SPO	= 56/ 7;
+     stride  = 1;
+
+
+
+     for (int cio = 0; cio < N_CIO; cio ++) {
+	 	load_weights_3x3_all(conv_weight_3x3_all, weight_3x3_index, weights_all, weights_all_index);
+	 	weight_3x3_index += N_BLK;
+	 	weights_all_index += 8;
+		off_row = cio/(112/N_SPI);
+		off_col = cio%(112/N_SPI);
+	 	for (int row = 0; row < N_SPI; row ++) {
+	 		for (int col = 0; col < N_SPI; col ++) {
+				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
+	 			for (int cii = 0; cii < N_CII; cii ++) {
+//					load_buf_from_buf_all(row, col, 0, 0, 56);
+	 				pgconv64(pg_buf_all[1], pg_buf_all[0], weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 56, stride);
+	 			}
+				store_bufs_organize(DDR_buff_merge, 1, row, col, cio, off_row, off_col, 56, 1);
+	 		}
+	 	}
+	 }
+
+
+	 for (int coo = 0; coo < N_COO; coo ++) {
+	 	load_weights_1x1_all(conv_weight_1x1_all, weight_1x1_index, weights_all, weights_all_index);
+	 	weight_1x1_index += 4;
+	 	weights_all_index += 8;
+		off_row = coo/(112/N_SPO);
+		off_col = coo%(112/N_SPO);
+	 	for (int row = 0; row < N_SPO; row ++) {
+	 		for (int col = 0; col < N_SPO; col ++) {
+				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
+	 			for (int coi = 0; coi < N_COI; coi ++) {
+//					load_buf_from_buf_all(row, col, 0, 0, 56);
+					pgconv64_1x1(pg_buf_all[1], pg_buf_all[0], weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 56);
+	 			}
+	 			int coo_cat = coo;
+	 			if (coo > N_COI) {
+	 				coo_cat = coo - N_COI;
+	 			}
+				store_bufs_organize(DDR_buff_merge, 0, row, col, coo, off_row, off_col, 56, 1);
+	 		}
+	 	}
+	 }
+
+
+      /////////////////////////////// 256 28 28 ////////////////////////////
+
+      N_CII   = 128 / WEIGHT_DEPTH;
+      N_CIO   = 128 / BLK_DEPTH;
+      N_COI   = 128 / WEIGHT_DEPTH;
+      N_COO   = 256 / BLK_DEPTH;
+      N_SPI	= 28/ 7;
+      N_SPO	= 28/ 7;
+      stride  = 2;
+      off_row = 112/N_SPO;
+      off_col = 112%N_SPO;
+      for (int cio = 0; cio < N_CIO; cio ++) {
+ 	 	load_weights_3x3_all(conv_weight_3x3_all, weight_3x3_index, weights_all, weights_all_index);
+ 	 	weight_3x3_index += 4;
+ 	 	weights_all_index += 8;
+ 		off_row = cio/(112/N_SPI);
+ 		off_col = cio%(112/N_SPI);
+ 	 	for (int row = 0; row < N_SPI; row ++) {
+ 	 		for (int col = 0; col < N_SPI; col ++) {
+ 				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
+ 	 			for (int cii = 0; cii < N_CII; cii ++) {
+ //					load_buf_from_buf_all(row, col, 0, 0, 56);
+ 	 				pgconv64(pg_buf_all[1], pg_buf_all[0], weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 56, stride);
+ 	 			}
+ 				int off_row = 112/N_SPO;
+ 				int off_col = 112%N_SPO;
+ 				store_bufs_organize(DDR_buff_merge, 1, row, col, cio, off_row, off_col, 28, 2);
+ 	 		}
+ 	 	}
+ 	 }
+
+ 	 for (int coo = 0; coo < N_COO; coo ++) {
+ 	 	load_weights_1x1_all(conv_weight_1x1_all, weight_1x1_index, weights_all, weights_all_index);
+ 	 	weight_1x1_index += 4;
+ 	 	weights_all_index += 8;
+ 		off_row = coo/(112/N_SPO);
+ 		off_col = coo%(112/N_SPO);
+ 	 	for (int row = 0; row < N_SPO; row ++) {
+ 	 		for (int col = 0; col < N_SPO; col ++) {
+ 				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
+ 	 			for (int coi = 0; coi < N_COI; coi ++) {
+ //					load_buf_from_buf_all(row, col, 0, 0, 28);
+ 					pgconv64_1x1(pg_buf_all[1], pg_buf_all[0], weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 28);
+ 	 			}
+ 	 			int coo_cat = coo;
+ 	 			if (coo > N_COI) {
+ 	 				coo_cat = coo - N_COI;
+ 	 			}
+ 				int off_row = 112/N_SPO;
+ 				int off_col = 112%N_SPO;
+ 				store_bufs_organize(DDR_buff_merge, 0, row, col, coo, off_row, off_col, 28, 1);
+ 	 		}
+ 	 	}
+ 	 }
+
+
+      /////////////////////////////// 256 28 28 ////////////////////////////
+
+      N_CII   = 256 / WEIGHT_DEPTH;
+      N_CIO   = 256 / BLK_DEPTH;
+      N_COI   = 256 / WEIGHT_DEPTH;
+      N_COO   = 256 / BLK_DEPTH;
+      N_SPI	= 28/ 7;
+      N_SPO	= 28/ 7;
+      stride  = 1;
+
+      for (int cio = 0; cio < N_CIO; cio ++) {
+ 	 	load_weights_3x3_all(conv_weight_3x3_all, weight_3x3_index, weights_all, weights_all_index);
+ 	 	weight_3x3_index += 4;
+ 	 	weights_all_index += 8;
+ 		off_row = cio/(112/N_SPI);
+ 		off_col = cio%(112/N_SPI);
+ 	 	for (int row = 0; row < N_SPI; row ++) {
+ 	 		for (int col = 0; col < N_SPI; col ++) {
+ 				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
+ 	 			for (int cii = 0; cii < N_CII; cii ++) {
+ //					load_buf_from_buf_all(row, col, 1, 0, 28);
+ 					pgconv64(pg_buf_all[1], pg_buf_all[0], weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 28, stride);
+ 	 			}
+ 				store_bufs_organize(DDR_buff_merge, 0, row, col, cio, off_row, off_col, 28, 1);
+ 	 		}
+ 	 	}
+ 	 }
+
+ 	 for (int coo = 0; coo < N_COO; coo ++) {
+ 	 	load_weights_1x1_all(conv_weight_1x1_all, weight_1x1_index, weights_all, weights_all_index);
+ 	 	weight_1x1_index += 4;
+ 	 	weights_all_index += 8;
+ 		off_row = coo/(112/N_SPI);
+ 		off_col = coo%(112/N_SPI);
+ 	 	for (int row = 0; row < N_SPO; row ++) {
+ 	 		for (int col = 0; col < N_SPO; col ++) {
+ 				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
+ 	 			for (int coi = 0; coi < N_COI; coi ++) {
+ //					load_buf_from_buf_all(row, col, 0, 0, 28);
+ 					pgconv64_1x1(pg_buf_all[1], pg_buf_all[0], weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 28);
+ 	 			}
+ 	 			int coo_cat = coo;
+ 	 			if (coo > N_COI) {
+ 	 				coo_cat = coo - N_COI;
+ 	 			}
+ 				store_bufs_organize(DDR_buff_merge, 0, row, col, coo, off_row, off_col, 28, 1);
+ 	 		}
+ 	 	}
+ 	 }
+
+
+      /////////////////////////////// 512 14 14 ////////////////////////////
+
+      N_CII   = 256 / WEIGHT_DEPTH;
+      N_CIO   = 256 / BLK_DEPTH;
+      N_COI   = 256 / WEIGHT_DEPTH;
+      N_COO   = 512 / BLK_DEPTH;
+      N_SPI	= 14/ 7;
+      N_SPO	= 14/ 7;
+      stride  = 2;
+
+      for (int cio = 0; cio < N_CIO; cio ++) {
+ 	 	load_weights_3x3_all(conv_weight_3x3_all, weight_3x3_index, weights_all, weights_all_index);
+ 	 	weight_3x3_index += 4;
+ 	 	weights_all_index += 8;
+ 		off_row = cio/(112/N_SPI);
+ 		off_col = cio%(112/N_SPI);
+ 	 	for (int row = 0; row < N_SPI; row ++) {
+ 	 		for (int col = 0; col < N_SPI; col ++) {
+ 				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
+ 	 			for (int cii = 0; cii < N_CII; cii ++) {
+ //					load_buf_from_buf_all(row, col, 0, 0, 28);
+ 					pgconv64(pg_buf_all[1], pg_buf_all[0], weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 28, stride);
+ 	 			}
+ 				store_bufs_organize(DDR_buff_merge, 1, row, col, cio, off_row, off_col, 14, 2);
+ 	 		}
+ 	 	}
+ 	 }
+
+ 	 for (int coo = 0; coo < N_COO; coo ++) {
+ 	 	load_weights_1x1_all(conv_weight_1x1_all, weight_1x1_index, weights_all, weights_all_index);
+ 	 	weight_1x1_index += 4;
+ 	 	weights_all_index += 8;
+ 	 	for (int row = 0; row < N_SPO; row ++) {
+ 	 		for (int col = 0; col < N_SPO; col ++) {
+ 				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
+ 	 			for (int coi = 0; coi < N_COI; coi ++) {
+ //					load_buf_from_buf_all(row, col, 0, 0, 14);
+ 					pgconv64_1x1(pg_buf_all[1], pg_buf_all[0], weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14);
+ 	 			}
+ 	 			int coo_cat = coo;
+ 	 			if (coo > N_COI) {
+ 	 				coo_cat = coo - N_COI;
+ 	 			}
+ 				store_bufs_organize(DDR_buff_merge, 0, row, col, coo, off_row, off_col, 14, 1);
+ 	 		}
+ 	 	}
+ 	 }
+
+      /////////////////////////////// 512 14 14 ////////////////////////////
+
+      N_CII   = 256 / WEIGHT_DEPTH;
+      N_CIO   = 256 / BLK_DEPTH;
+      N_COI   = 256 / WEIGHT_DEPTH;
+      N_COO   = 512 / BLK_DEPTH;
+      N_SPI	= 14/ 7;
+      N_SPO	= 14/ 7;
+      stride  = 1;
+
+      for (int cio = 0; cio < N_CIO; cio ++) {
+ 	 	load_weights_3x3_all(conv_weight_3x3_all, weight_3x3_index, weights_all, weights_all_index);
+ 	 	weight_3x3_index += 4;
+ 	 	weights_all_index += 8;
+ 		off_row = cio/(112/N_SPI);
+ 		off_col = cio%(112/N_SPI);
+ 	 	for (int row = 0; row < N_SPI; row ++) {
+ 	 		for (int col = 0; col < N_SPI; col ++) {
+ 				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
+ 	 			for (int cii = 0; cii < N_CII; cii ++) {
+ //					load_buf_from_buf_all(row, col, 0, 0, 14);
+ 					pgconv64(pg_buf_all[1], pg_buf_all[0], weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14, stride);
+ 	 			}
+ 				store_bufs_organize(DDR_buff_merge, 1, row, col, cio, off_row, off_col, 14, 1);
+ 	 		}
+ 	 	}
+ 	 }
+
+ 	 for (int coo = 0; coo < N_COO; coo ++) {
+ 	 	load_weights_1x1_all(conv_weight_1x1_all, weight_1x1_index, weights_all, weights_all_index);
+ 	 	weight_1x1_index += 4;
+ 	 	weights_all_index += 8;
+ 		off_row = coo/(112/N_SPO);
+ 		off_col = coo%(112/N_SPO);
+ 	 	for (int row = 0; row < N_SPO; row ++) {
+ 	 		for (int col = 0; col < N_SPO; col ++) {
+ 				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
+ 	 			for (int coi = 0; coi < N_COI; coi ++) {
+ //					load_buf_from_buf_all(row, col, 0, 0, 14);
+ 					pgconv64_1x1(pg_buf_all[1], pg_buf_all[0], weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14);
+ 	 			}
+ 	 			int coo_cat = coo;
+ 	 			if (coo > N_COI) {
+ 	 				coo_cat = coo - N_COI;
+ 	 			}
+ 				store_bufs_organize(DDR_buff_merge, 0, row, col, coo, off_row, off_col, 14, 1);
+ 	 		}
+ 	 	}
+ 	 }
+
+      /////////////////////////////// 512 14 14 ////////////////////////////
+
+      N_CII   = 256 / WEIGHT_DEPTH;
+      N_CIO   = 256 / BLK_DEPTH;
+      N_COI   = 256 / WEIGHT_DEPTH;
+      N_COO   = 512 / BLK_DEPTH;
+      N_SPI	= 14/ 7;
+      N_SPO	= 14/ 7;
+      stride  = 1;
+
+      for (int cio = 0; cio < N_CIO; cio ++) {
+ 	 	load_weights_3x3_all(conv_weight_3x3_all, weight_3x3_index, weights_all, weights_all_index);
+ 	 	weight_3x3_index += 4;
+ 	 	weights_all_index += 8;
+ 		off_row = cio/(112/N_SPI);
+ 		off_col = cio%(112/N_SPI);
+ 	 	for (int row = 0; row < N_SPI; row ++) {
+ 	 		for (int col = 0; col < N_SPI; col ++) {
+ 				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
+ 	 			for (int cii = 0; cii < N_CII; cii ++) {
+ //					load_buf_from_buf_all(row, col, 0, 0, 14);
+ 					pgconv64(pg_buf_all[1], pg_buf_all[0], weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14, stride);
+ 	 			}
+ 				store_bufs_organize(DDR_buff_merge, 1, row, col, cio, off_row, off_col, 14, 1);
+ 	 		}
+ 	 	}
+ 	 }
+
+ 	 for (int coo = 0; coo < N_COO; coo ++) {
+ 	 	load_weights_1x1_all(conv_weight_1x1_all, weight_1x1_index, weights_all, weights_all_index);
+ 	 	weight_1x1_index += 4;
+ 	 	weights_all_index += 8;
+ 		off_row = coo/(112/N_SPO);
+ 		off_col = coo%(112/N_SPO);
+ 	 	for (int row = 0; row < N_SPO; row ++) {
+ 	 		for (int col = 0; col < N_SPO; col ++) {
+ 				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
+ 	 			for (int coi = 0; coi < N_COI; coi ++) {
+ //					load_buf_from_buf_all(row, col, 0, 0, 14);
+ 					pgconv64_1x1(pg_buf_all[1], pg_buf_all[0], weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14);
+ 	 			}
+ 	 			int coo_cat = coo;
+ 	 			if (coo > N_COI) {
+ 	 				coo_cat = coo - N_COI;
+ 	 			}
+ 				store_bufs_organize(DDR_buff_merge, 0, row, col, coo, off_row, off_col, 14, 1);
+ 	 		}
+ 	 	}
+ 	 }
+
+      /////////////////////////////// 512 14 14 ////////////////////////////
+
+      N_CII   = 512 / WEIGHT_DEPTH;
+      N_CIO   = 512 / BLK_DEPTH;
+      N_COI   = 512 / WEIGHT_DEPTH;
+      N_COO   = 512 / BLK_DEPTH;
+      N_SPI	= 14/ 7;
+      N_SPO	= 14/ 7;
+      stride  = 1;
+
+
+      for (int cio = 0; cio < N_CIO; cio ++) {
+ 	 	load_weights_3x3_all(conv_weight_3x3_all, weight_3x3_index, weights_all, weights_all_index);
+ 	 	weight_3x3_index += 4;
+ 	 	weights_all_index += 8;
+ 		off_row = cio/(112/N_SPI);
+ 		off_col = cio%(112/N_SPI);
+ 	 	for (int row = 0; row < N_SPI; row ++) {
+ 	 		for (int col = 0; col < N_SPI; col ++) {
+ 				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
+ 	 			for (int cii = 0; cii < N_CII; cii ++) {
+ //					load_buf_from_buf_all(row, col, 0, 0, 14);
+ 					pgconv64(pg_buf_all[1], pg_buf_all[0], weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14, stride);
+ 	 			}
+ 				store_bufs_organize(DDR_buff_merge, 1, row, col, cio, off_row, off_col, 14, 1);
+ 	 		}
+ 	 	}
+ 	 }
+
+ 	 for (int coo = 0; coo < N_COO; coo ++) {
+ 	 	load_weights_1x1_all(conv_weight_1x1_all, weight_1x1_index, weights_all, weights_all_index);
+ 	 	weight_1x1_index += 4;
+ 	 	weights_all_index += 8;
+ 		off_row = coo/(112/N_SPO);
+ 		off_col = coo%(112/N_SPO);
+ 	 	for (int row = 0; row < N_SPO; row ++) {
+ 	 		for (int col = 0; col < N_SPO; col ++) {
+ 				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
+ 	 			for (int coi = 0; coi < N_COI; coi ++) {
+ //					load_buf_from_buf_all(row, col, 0, 0, 14);
+ 					pgconv64_1x1(pg_buf_all[1], pg_buf_all[0], weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14);
+ 	 			}
+ 	 			int coo_cat = coo;
+ 	 			if (coo > N_COI) {
+ 	 				coo_cat = coo - N_COI;
+ 	 			}
+ 				store_bufs_organize(DDR_buff_merge, 0, row, col, coo, off_row, off_col, 14, 1);
+ 	 		}
+ 	 	}
+ 	 }
+
+
+      /////////////////////////////// 512 14 14 ////////////////////////////
+
+      N_CII   = 512 / WEIGHT_DEPTH;
+      N_CIO   = 512 / BLK_DEPTH;
+      N_COI   = 512 / WEIGHT_DEPTH;
+      N_COO   = 512 / BLK_DEPTH;
+      N_SPI	= 14/ 7;
+      N_SPO	= 14/ 7;
+      stride  = 1;
+
+      for (int cio = 0; cio < N_CIO; cio ++) {
+ 	 	load_weights_3x3_all(conv_weight_3x3_all, weight_3x3_index, weights_all, weights_all_index);
+ 	 	weight_3x3_index += 4;
+ 	 	weights_all_index += 8;
+ 		off_row = cio/(112/N_SPI);
+ 		off_col = cio%(112/N_SPI);
+ 	 	for (int row = 0; row < N_SPI; row ++) {
+ 	 		for (int col = 0; col < N_SPI; col ++) {
+ 				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
+ 	 			for (int cii = 0; cii < N_CII; cii ++) {
+ //					load_buf_from_buf_all(row, col, 0, 0, 14);
+ 					pgconv64(pg_buf_all[1], pg_buf_all[0], weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14, stride);
+ 	 			}
+ 				store_bufs_organize(DDR_buff_merge, 1, row, col, cio, off_row, off_col, 14, 1);
+ 	 		}
+ 	 	}
+ 	 }
+
+ 	 for (int coo = 0; coo < N_COO; coo ++) {
+ 	 	load_weights_1x1_all(conv_weight_1x1_all, weight_1x1_index, weights_all, weights_all_index);
+ 	 	weight_1x1_index += 4;
+ 	 	weights_all_index += 8;
+ 		off_row = coo/(112/N_SPO);
+ 		off_col = coo%(112/N_SPO);
+ 	 	for (int row = 0; row < N_SPO; row ++) {
+ 	 		for (int col = 0; col < N_SPO; col ++) {
+ 				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
+ 	 			for (int coi = 0; coi < N_COI; coi ++) {
+ //					load_buf_from_buf_all(row, col, 0, 0, 14);
+ 					pgconv64_1x1(pg_buf_all[1], pg_buf_all[0], weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14);
+ 	 			}
+ 	 			int coo_cat = coo;
+ 	 			if (coo > N_COI) {
+ 	 				coo_cat = coo - N_COI;
+ 	 			}
+ 				store_bufs_organize(DDR_buff_merge, 0, row, col, coo, off_row, off_col, 14, 1);
+ 	 		}
+ 	 	}
+ 	 }
+
+
+      /////////////////////////////// 512 14 14 ////////////////////////////
+
+      N_CII   = 512 / WEIGHT_DEPTH;
+      N_CIO   = 512 / BLK_DEPTH;
+      N_COI   = 512 / WEIGHT_DEPTH;
+      N_COO   = 512 / BLK_DEPTH;
+      N_SPI	= 14/ 7;
+      N_SPO	= 14/ 7;
+      stride  = 1;
+
+
+      for (int cio = 0; cio < N_CIO; cio ++) {
+ 	 	load_weights_3x3_all(conv_weight_3x3_all, weight_3x3_index, weights_all, weights_all_index);
+ 	 	weight_3x3_index += 4;
+ 	 	weights_all_index += 8;
+ 		off_row = cio/(112/N_SPI);
+ 		off_col = cio%(112/N_SPI);
+ 	 	for (int row = 0; row < N_SPI; row ++) {
+ 	 		for (int col = 0; col < N_SPI; col ++) {
+ 				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
+ 	 			for (int cii = 0; cii < N_CII; cii ++) {
+ //					load_buf_from_buf_all(row, col, 0, 0, 14);
+ 					pgconv64(pg_buf_all[1], pg_buf_all[0], weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14, stride);
+ 	 			}
+ 				store_bufs_organize(DDR_buff_merge, 1, row, col, cio, off_row, off_col, 14, 1);
+ 	 		}
+ 	 	}
+ 	 }
+
+ 	 for (int coo = 0; coo < N_COO; coo ++) {
+ 	 	load_weights_1x1_all(conv_weight_1x1_all, weight_1x1_index, weights_all, weights_all_index);
+ 	 	weight_1x1_index += 4;
+ 	 	weights_all_index += 8;
+ 		off_row = coo/(112/N_SPO);
+ 		off_col = coo%(112/N_SPO);
+ 	 	for (int row = 0; row < N_SPO; row ++) {
+ 	 		for (int col = 0; col < N_SPO; col ++) {
+ 				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
+ 	 			for (int coi = 0; coi < N_COI; coi ++) {
+ //					load_buf_from_buf_all(row, col, 0, 0, 14);
+ 					pgconv64_1x1(pg_buf_all[1], pg_buf_all[0], weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14);
+ 	 			}
+ 	 			int coo_cat = coo;
+ 	 			if (coo > N_COI) {
+ 	 				coo_cat = coo - N_COI;
+ 	 			}
+ 				store_bufs_organize(DDR_buff_merge, 0, row, col, coo, off_row, off_col, 14, 1);
+ 	 		}
+ 	 	}
+ 	 }
+
+
+      /////////////////////////////// 1024 7 7 ////////////////////////////
+
+      N_CII   = 512 / WEIGHT_DEPTH;
+      N_CIO   = 512 / BLK_DEPTH;
+      N_COI   = 512 / WEIGHT_DEPTH;
+      N_COO   = 1024 / BLK_DEPTH;
+      N_SPI	= 7/ 7;
+      N_SPO	= 7/ 7;
+      stride  = 2;
+
+      for (int cio = 0; cio < N_CIO; cio ++) {
+ 	 	load_weights_3x3_all(conv_weight_3x3_all, weight_3x3_index, weights_all, weights_all_index);
+ 	 	weight_3x3_index += 4;
+ 	 	weights_all_index += 8;
+ 		off_row = cio/(112/N_SPO);
+ 		off_col = cio%(112/N_SPO);
+ 	 	for (int row = 0; row < N_SPI; row ++) {
+ 	 		for (int col = 0; col < N_SPI; col ++) {
+ 				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
+ 	 			for (int cii = 0; cii < N_CII; cii ++) {
+ //					load_buf_from_buf_all(row, col, 0, 0, 14);
+ 					pgconv64(pg_buf_all[1], pg_buf_all[0], weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14, stride);
+ 	 			}
+ 				store_bufs_organize(DDR_buff_merge, 1, row, col, cio, off_row, off_col, 7, 2);
+ 	 		}
+ 	 	}
+ 	 }
+
+ 	 for (int coo = 0; coo < N_COO; coo ++) {
+ 	 	load_weights_1x1_all(conv_weight_1x1_all, weight_1x1_index, weights_all, weights_all_index);
+ 	 	weight_1x1_index += 4;
+ 	 	weights_all_index += 8;
+ 		off_row = coo/(112/N_SPO);
+ 		off_col = coo%(112/N_SPO);
+ 	 	for (int row = 0; row < N_SPO; row ++) {
+ 	 		for (int col = 0; col < N_SPO; col ++) {
+ 				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
+ 	 			for (int coi = 0; coi < N_COI; coi ++) {
+ //					load_buf_from_buf_all(row, col, 0, 0, 7);
+ 					pgconv64_1x1(pg_buf_all[1], pg_buf_all[0], weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 7);
+ 	 			}
+ 	 			int coo_cat = coo;
+ 	 			if (coo > N_COI) {
+ 	 				coo_cat = coo - N_COI;
+ 	 			}
+ 				store_bufs_organize(DDR_buff_merge, 0, row, col, coo, off_row, off_col, 7, 1);
+ 	 		}
+ 	 	}
+ 	 }
+
+
+      /////////////////////////////// 1024 7 7 ////////////////////////////
+
+      N_CII   = 1024 / WEIGHT_DEPTH;
+      N_CIO   = 1024 / BLK_DEPTH;
+      N_COI   = 1024 / WEIGHT_DEPTH;
+      N_COO   = 1024 / BLK_DEPTH;
+      N_SPI	= 7/ 7;
+      N_SPO	= 7/ 7;
+      stride  = 1;
+
+      for (int cio = 0; cio < N_CIO; cio ++) {
+ 	 	load_weights_3x3_all(conv_weight_3x3_all, weight_3x3_index, weights_all, weights_all_index);
+ 	 	weight_3x3_index += 4;
+ 	 	weights_all_index += 8;
+ 		off_row = cio/(112/N_SPO);
+ 		off_col = cio%(112/N_SPO);
+ 	 	for (int row = 0; row < N_SPI; row ++) {
+ 	 		for (int col = 0; col < N_SPI; col ++) {
+ 				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
+ 	 			for (int cii = 0; cii < N_CII; cii ++) {
+ //					load_buf_from_buf_all(row, col, 0, 0, 7);
+ 					pgconv64(pg_buf_all[1], pg_buf_all[0], weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 7, stride);
+ 	 			}
+ 				store_bufs_organize(DDR_buff_merge, 1, row, col, cio, off_row, off_col, 7, 1);
+ 	 		}
+ 	 	}
+ 	 }
+ 	 for (int coo = 0; coo < N_COO; coo ++) {
+ 	 	load_weights_1x1_all(conv_weight_1x1_all, weight_1x1_index, weights_all, weights_all_index);
+ 	 	weight_1x1_index += 4;
+ 	 	weights_all_index += 8;
+ 		off_row = coo/(112/N_SPO);
+ 		off_col = coo%(112/N_SPO);
+ 	 	for (int row = 0; row < N_SPO; row ++) {
+ 	 		for (int col = 0; col < N_SPO; col ++) {
+ 				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
+ 	 			for (int coi = 0; coi < N_COI; coi ++) {
+ //					load_buf_from_buf_all(row, col, 0, 0, 7);
+ 					pgconv64_1x1(pg_buf_all[1], pg_buf_all[0], weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 7);
+ 	 			}
+ 	 			int coo_cat = coo;
+ 	 			if (coo > N_COI) {
+ 	 				coo_cat = coo - N_COI;
+ 	 			}
+ 				store_bufs_organize(DDR_buff_merge, 0, row, col, coo, off_row, off_col, 7, 1);
+ 	 		}
+ 	 	}
+ 	 }
+
+
+
+
+
+     FIX_FM_acc out_buf[16][64];
+
+     avgpool:for (int c0 = 0; c0 < 16; c0 ++) {
+             int coff = c0*2;
+             load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, 0, 0, c0);
+             for (int col = 0; col < 32; col ++) {
+     #pragma HLS unroll
+                 out_buf[c0][col] = avgpool_7x7(FM_buf0[col]);
+             }
+             coff += 1;
+             load_buf_from_DDR(DDR_buff_merge, 0, FM_buf1, 0, 0, c0);
+             for (int col = 0; col < 32; col ++) {
+     #pragma HLS unroll
+                 out_buf[c0][col+32] = avgpool_7x7(FM_buf1[col]);
+             }
+         }
+
+     FIX_WT linear_weight_buf[10][64];
+ #pragma HLS ARRAY_PARTITION variable=linear_weight_buf complete dim=1
+ #pragma HLS ARRAY_PARTITION variable=linear_weight_buf dim=2 cyclic factor=32
+     FIX_WT linear_bias_buf[10];
+ #pragma HLS ARRAY_PARTITION variable=linear_bias_buf complete dim=1
+
+     classifier:for (int i = 0; i < 100; i ++) {
+         for (int ii = 0; ii < 16; ii ++) {
+
+             uint256 DATA = 0;
+             DATA.range(160, 0) = linear_bias_all[i].range(160, 0);
+             for (int c = 0; c < 10; c++) {
+ #pragma HLS unroll
+                 linear_bias_buf[c] = DATA.range(WT_RG+c*16, c*16);
+             }
+
+             for (int cc = 0; cc < 10; cc ++) {
+                 for (int r = 0; r < 2; r ++) {
+ #pragma HLS pipeline
+                     uint512 DATA = 0;
+                     DATA.range(511, 0) = linear_weight_all[i*160+ii*10+cc][r].range(511, 0);
+                     for (int c = 0; c < 32; c++) {
+ #pragma HLS unroll
+                         linear_weight_buf[cc][r*32 + c] = DATA.range(WT_RG+c*16, c*16);
+                     }
+                 }
+             }
+
+             float result[10];
+             matmul(out_buf[ii], linear_weight_buf, linear_bias_buf, result);
+             for (int j = 0; j < 10; j ++) {
+ #pragma HLS pipeline
+                 out[i*10+j] += result[j];
+             }
+         }
+     }
 
     return;
 }

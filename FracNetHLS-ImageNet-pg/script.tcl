@@ -3,7 +3,7 @@
 ## Please DO NOT edit it.
 ## Copyright (C) 1986-2019 Xilinx, Inc. All Rights Reserved.
 ############################################################
-open_project model -reset
+open_project model_pg -reset
 
 set_top FracNet
 add_files pgconv.cc
@@ -18,7 +18,7 @@ config_export -format ip_catalog -rtl verilog -vivado_optimization_level 2 -viva
 set_clock_uncertainty 12.5%
 
 #csim_design -ldflags {-Wl,--stack,10485670} -clean
-csynth_design
+#csynth_design
 #cosim_design -ldflags {-Wl,--stack,10485670}
-export_design -rtl verilog -format ip_catalog
+#export_design -rtl verilog -format ip_catalog
 exit
