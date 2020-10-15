@@ -17,7 +17,8 @@ using namespace std;
 // feature map buffers
 FIX_FM FM_buf0[BLK_DEPTH][9][9];
 FIX_FM FM_buf1[BLK_DEPTH][9][9];
-uint64 pg_buf_all[2][12996];//114*114
+uint64 pg_buf_all_1[12996];//114*114
+uint64 pg_buf_all_0[12996];//114*114
 uint64 pg_buf_all_in[12996];
 uint64 pg_buf[3][9][9];
 FIX_FM_acc FM_buf_acc0[BLK_DEPTH][9][9];
@@ -54,27 +55,27 @@ void copy_input_layer_buf_to_DDR(uint512* dest, int row_offset, int col_offset)
     }
 }
 
-void load_buf_from_buf_all(int row, int col, int coff_row, int coff_col, int map_dim)
-{
-//#pragma HLS ARRAY_PARTITION variable=pg_buf complete dim=1
-	// The second dimension is 114*114
-	// coff_row and coff_col are for channel multipliers
-	// for example, 256*28*28, first 28*28 is the first 64 channels
-	// therefore the row offset is (coff_row*map_dim + row*7)*114 + (coff_col*map_dim + col*7)
-	// it goes
-	int index = (coff_row*map_dim + row*7)*114 + (coff_col*map_dim + col*7);
-    for (int h = 0; h < 9; h ++) {
-        for (int w = 0; w < 9; w ++) {
-#pragma HLS pipeline
-            for (int c = 0; c < 64; c ++) {
-#pragma HLS unroll
-            	uint1 tmp = pg_buf_all[c][index + w];
-                pg_buf[0][h][w][c] = tmp;
-            }
-        }
-        index += 114;
-    }
-}
+//void load_buf_from_buf_all(int row, int col, int coff_row, int coff_col, int map_dim)
+//{
+////#pragma HLS ARRAY_PARTITION variable=pg_buf complete dim=1
+//	// The second dimension is 114*114
+//	// coff_row and coff_col are for channel multipliers
+//	// for example, 256*28*28, first 28*28 is the first 64 channels
+//	// therefore the row offset is (coff_row*map_dim + row*7)*114 + (coff_col*map_dim + col*7)
+//	// it goes
+//	int index = (coff_row*map_dim + row*7)*114 + (coff_col*map_dim + col*7);
+//    for (int h = 0; h < 9; h ++) {
+//        for (int w = 0; w < 9; w ++) {
+//#pragma HLS pipeline
+//            for (int c = 0; c < 64; c ++) {
+//#pragma HLS unroll
+//            	uint1 tmp = pg_buf_all[c][index + w];
+//                pg_buf[0][h][w][c] = tmp;
+//            }
+//        }
+//        index += 114;
+//    }
+//}
 
 
 void load_buf_from_DDR(uint512* src, int src_offset, FIX_FM dest[BLK_DEPTH][9][9], int row_offset, int col_offset, int ch_offset)
@@ -348,8 +349,8 @@ void store_bufs_organize(uint512* ddr_ptr, int dest_offset, int row_offset, int 
                 DATA0[b*32+c] = sn[0];
             }
             int b = ch_offset%2;
-            pg_buf_all[1][index + col].range(b*32 + 31, b*32) = DATA1.range(31,0);
-            pg_buf_all[0][index + col].range(b*32 + 31, b*32) = DATA0.range(31,0);
+            pg_buf_all_1[index + col].range(b*32 + 31, b*32) = DATA1.range(31,0);
+            pg_buf_all_0[index + col].range(b*32 + 31, b*32) = DATA0.range(31,0);
             dest_ptr[col-1].range(511, 0) = DATA.range(511, 0);
         }
         dest_ptr += 114;
@@ -536,7 +537,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
 				load_input(row_off, col_off, ch_off, image_thermo);
 				for (int row = 0; row < 12; row ++) {
 					for (int col = 0; col < 12; col ++) {
-						pgconv64(pg_buf_all[1], pg_buf_all_in, weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, 0, 0, 112, stride);
+						pgconv64(pg_buf_all_1, pg_buf_all_in, weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, 0, 0, 112, stride);
 
 						copy_input_layer_buf_to_DDR(DDR_buff_merge, row, col);
 						int buf_index = (row*4 + 1)*114 + col*4 + 1;
@@ -547,8 +548,8 @@ void FracNet(  uint32 image_thermo[3*226*226],
 									FIX_FM_acc fm = FM_buf_acc0[c][row][col];
 									FIX_FM_acc d0 = batch_norm(fm,  conv1_bn_weights[ch_off], conv1_bn_bias[ch_off]);
 									uint2 d = (uint2) d0;
-									pg_buf_all[1][buf_index + nn][c] = (uint2) d[1];
-									pg_buf_all[0][buf_index + nn][c] = (uint2) d[0];
+									pg_buf_all_1[buf_index + nn][c] = (uint2) d[1];
+									pg_buf_all_0[buf_index + nn][c] = (uint2) d[0];
 								}
 							}
 							buf_index += 114;
@@ -579,7 +580,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
 				for (int cii = 0; cii < N_CII; cii ++) {
 					// row, col, coff_row, coff_col, map_dim
 //					load_buf_from_buf_all(row, col, 0, 0, 112);
-					pgconv64(pg_buf_all[1], pg_buf_all[0], weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, 0, 0, 112, stride);
+					pgconv64(pg_buf_all_1, pg_buf_all_0, weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, 0, 0, 112, stride);
 				}
 				store_bufs_organize(DDR_buff_merge, 1, row, col, cio, 0, 0, 112, 1);
 			}
@@ -596,7 +597,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
 				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
 				for (int coi = 0; coi < N_COI; coi ++) {
 //					load_buf_from_buf_all(row, col, 0, 0, 112);
-					pgconv64_1x1(pg_buf_all[1], pg_buf_all[0], weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, 0, 0, 112);
+					pgconv64_1x1(pg_buf_all_1, pg_buf_all_0, weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, 0, 0, 112);
 				}
 				int coo_cat = coo;
 				if (coo > N_COI) {
@@ -630,7 +631,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
 				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
 				for (int cii = 0; cii < N_CII; cii ++) {
 //					load_buf_from_buf_all(row, col, 0, 0, 112);
-					pgconv64(pg_buf_all[1], pg_buf_all[0], weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 112, stride);
+					pgconv64(pg_buf_all_1, pg_buf_all_0, weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 112, stride);
 				}
 				store_bufs_organize(DDR_buff_merge, 1, row, col, cio, 0, 0, 56, 2);
 			}
@@ -648,7 +649,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
 				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
 				for (int coi = 0; coi < N_COI; coi ++) {
 //					load_buf_from_buf_all(row, col, 0, 0, 56);
-					pgconv64_1x1(pg_buf_all[1], pg_buf_all[0], weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 56);
+					pgconv64_1x1(pg_buf_all_1, pg_buf_all_0, weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 56);
 				}
 				int coo_cat = coo;
 				if (coo > N_COI) {
@@ -684,7 +685,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
 				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
 	 			for (int cii = 0; cii < N_CII; cii ++) {
 //					load_buf_from_buf_all(row, col, 0, 0, 56);
-	 				pgconv64(pg_buf_all[1], pg_buf_all[0], weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 56, stride);
+	 				pgconv64(pg_buf_all_1, pg_buf_all_0, weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 56, stride);
 	 			}
 				store_bufs_organize(DDR_buff_merge, 1, row, col, cio, off_row, off_col, 56, 1);
 	 		}
@@ -703,7 +704,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
 				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
 	 			for (int coi = 0; coi < N_COI; coi ++) {
 //					load_buf_from_buf_all(row, col, 0, 0, 56);
-					pgconv64_1x1(pg_buf_all[1], pg_buf_all[0], weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 56);
+					pgconv64_1x1(pg_buf_all_1, pg_buf_all_0, weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 56);
 	 			}
 	 			int coo_cat = coo;
 	 			if (coo > N_COI) {
@@ -737,7 +738,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
  				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
  	 			for (int cii = 0; cii < N_CII; cii ++) {
  //					load_buf_from_buf_all(row, col, 0, 0, 56);
- 	 				pgconv64(pg_buf_all[1], pg_buf_all[0], weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 56, stride);
+ 	 				pgconv64(pg_buf_all_1, pg_buf_all_0, weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 56, stride);
  	 			}
  				int off_row = 112/N_SPO;
  				int off_col = 112%N_SPO;
@@ -757,7 +758,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
  				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
  	 			for (int coi = 0; coi < N_COI; coi ++) {
  //					load_buf_from_buf_all(row, col, 0, 0, 28);
- 					pgconv64_1x1(pg_buf_all[1], pg_buf_all[0], weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 28);
+ 					pgconv64_1x1(pg_buf_all_1, pg_buf_all_0, weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 28);
  	 			}
  	 			int coo_cat = coo;
  	 			if (coo > N_COI) {
@@ -792,7 +793,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
  				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
  	 			for (int cii = 0; cii < N_CII; cii ++) {
  //					load_buf_from_buf_all(row, col, 1, 0, 28);
- 					pgconv64(pg_buf_all[1], pg_buf_all[0], weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 28, stride);
+ 					pgconv64(pg_buf_all_1, pg_buf_all_0, weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 28, stride);
  	 			}
  				store_bufs_organize(DDR_buff_merge, 0, row, col, cio, off_row, off_col, 28, 1);
  	 		}
@@ -810,7 +811,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
  				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
  	 			for (int coi = 0; coi < N_COI; coi ++) {
  //					load_buf_from_buf_all(row, col, 0, 0, 28);
- 					pgconv64_1x1(pg_buf_all[1], pg_buf_all[0], weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 28);
+ 					pgconv64_1x1(pg_buf_all_1, pg_buf_all_0, weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 28);
  	 			}
  	 			int coo_cat = coo;
  	 			if (coo > N_COI) {
@@ -843,7 +844,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
  				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
  	 			for (int cii = 0; cii < N_CII; cii ++) {
  //					load_buf_from_buf_all(row, col, 0, 0, 28);
- 					pgconv64(pg_buf_all[1], pg_buf_all[0], weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 28, stride);
+ 					pgconv64(pg_buf_all_1, pg_buf_all_0, weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 28, stride);
  	 			}
  				store_bufs_organize(DDR_buff_merge, 1, row, col, cio, off_row, off_col, 14, 2);
  	 		}
@@ -859,7 +860,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
  				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
  	 			for (int coi = 0; coi < N_COI; coi ++) {
  //					load_buf_from_buf_all(row, col, 0, 0, 14);
- 					pgconv64_1x1(pg_buf_all[1], pg_buf_all[0], weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14);
+ 					pgconv64_1x1(pg_buf_all_1, pg_buf_all_0, weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14);
  	 			}
  	 			int coo_cat = coo;
  	 			if (coo > N_COI) {
@@ -891,7 +892,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
  				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
  	 			for (int cii = 0; cii < N_CII; cii ++) {
  //					load_buf_from_buf_all(row, col, 0, 0, 14);
- 					pgconv64(pg_buf_all[1], pg_buf_all[0], weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14, stride);
+ 					pgconv64(pg_buf_all_1, pg_buf_all_0, weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14, stride);
  	 			}
  				store_bufs_organize(DDR_buff_merge, 1, row, col, cio, off_row, off_col, 14, 1);
  	 		}
@@ -909,7 +910,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
  				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
  	 			for (int coi = 0; coi < N_COI; coi ++) {
  //					load_buf_from_buf_all(row, col, 0, 0, 14);
- 					pgconv64_1x1(pg_buf_all[1], pg_buf_all[0], weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14);
+ 					pgconv64_1x1(pg_buf_all_1, pg_buf_all_0, weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14);
  	 			}
  	 			int coo_cat = coo;
  	 			if (coo > N_COI) {
@@ -941,7 +942,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
  				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
  	 			for (int cii = 0; cii < N_CII; cii ++) {
  //					load_buf_from_buf_all(row, col, 0, 0, 14);
- 					pgconv64(pg_buf_all[1], pg_buf_all[0], weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14, stride);
+ 					pgconv64(pg_buf_all_1, pg_buf_all_0, weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14, stride);
  	 			}
  				store_bufs_organize(DDR_buff_merge, 1, row, col, cio, off_row, off_col, 14, 1);
  	 		}
@@ -959,7 +960,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
  				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
  	 			for (int coi = 0; coi < N_COI; coi ++) {
  //					load_buf_from_buf_all(row, col, 0, 0, 14);
- 					pgconv64_1x1(pg_buf_all[1], pg_buf_all[0], weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14);
+ 					pgconv64_1x1(pg_buf_all_1, pg_buf_all_0, weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14);
  	 			}
  	 			int coo_cat = coo;
  	 			if (coo > N_COI) {
@@ -992,7 +993,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
  				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
  	 			for (int cii = 0; cii < N_CII; cii ++) {
  //					load_buf_from_buf_all(row, col, 0, 0, 14);
- 					pgconv64(pg_buf_all[1], pg_buf_all[0], weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14, stride);
+ 					pgconv64(pg_buf_all_1, pg_buf_all_0, weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14, stride);
  	 			}
  				store_bufs_organize(DDR_buff_merge, 1, row, col, cio, off_row, off_col, 14, 1);
  	 		}
@@ -1010,7 +1011,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
  				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
  	 			for (int coi = 0; coi < N_COI; coi ++) {
  //					load_buf_from_buf_all(row, col, 0, 0, 14);
- 					pgconv64_1x1(pg_buf_all[1], pg_buf_all[0], weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14);
+ 					pgconv64_1x1(pg_buf_all_1, pg_buf_all_0, weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14);
  	 			}
  	 			int coo_cat = coo;
  	 			if (coo > N_COI) {
@@ -1043,7 +1044,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
  				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
  	 			for (int cii = 0; cii < N_CII; cii ++) {
  //					load_buf_from_buf_all(row, col, 0, 0, 14);
- 					pgconv64(pg_buf_all[1], pg_buf_all[0], weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14, stride);
+ 					pgconv64(pg_buf_all_1, pg_buf_all_0, weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14, stride);
  	 			}
  				store_bufs_organize(DDR_buff_merge, 1, row, col, cio, off_row, off_col, 14, 1);
  	 		}
@@ -1061,7 +1062,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
  				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
  	 			for (int coi = 0; coi < N_COI; coi ++) {
  //					load_buf_from_buf_all(row, col, 0, 0, 14);
- 					pgconv64_1x1(pg_buf_all[1], pg_buf_all[0], weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14);
+ 					pgconv64_1x1(pg_buf_all_1, pg_buf_all_0, weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14);
  	 			}
  	 			int coo_cat = coo;
  	 			if (coo > N_COI) {
@@ -1095,7 +1096,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
  				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
  	 			for (int cii = 0; cii < N_CII; cii ++) {
  //					load_buf_from_buf_all(row, col, 0, 0, 14);
- 					pgconv64(pg_buf_all[1], pg_buf_all[0], weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14, stride);
+ 					pgconv64(pg_buf_all_1, pg_buf_all_0, weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14, stride);
  	 			}
  				store_bufs_organize(DDR_buff_merge, 1, row, col, cio, off_row, off_col, 14, 1);
  	 		}
@@ -1113,7 +1114,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
  				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
  	 			for (int coi = 0; coi < N_COI; coi ++) {
  //					load_buf_from_buf_all(row, col, 0, 0, 14);
- 					pgconv64_1x1(pg_buf_all[1], pg_buf_all[0], weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14);
+ 					pgconv64_1x1(pg_buf_all_1, pg_buf_all_0, weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14);
  	 			}
  	 			int coo_cat = coo;
  	 			if (coo > N_COI) {
@@ -1146,7 +1147,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
  				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
  	 			for (int cii = 0; cii < N_CII; cii ++) {
  //					load_buf_from_buf_all(row, col, 0, 0, 14);
- 					pgconv64(pg_buf_all[1], pg_buf_all[0], weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14, stride);
+ 					pgconv64(pg_buf_all_1, pg_buf_all_0, weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 14, stride);
  	 			}
  				store_bufs_organize(DDR_buff_merge, 1, row, col, cio, off_row, off_col, 7, 2);
  	 		}
@@ -1164,7 +1165,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
  				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
  	 			for (int coi = 0; coi < N_COI; coi ++) {
  //					load_buf_from_buf_all(row, col, 0, 0, 7);
- 					pgconv64_1x1(pg_buf_all[1], pg_buf_all[0], weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 7);
+ 					pgconv64_1x1(pg_buf_all_1, pg_buf_all_0, weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 7);
  	 			}
  	 			int coo_cat = coo;
  	 			if (coo > N_COI) {
@@ -1197,7 +1198,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
  				load_buf_from_DDR(DDR_buff_merge, 0, FM_buf0, row, col, cio);
  	 			for (int cii = 0; cii < N_CII; cii ++) {
  //					load_buf_from_buf_all(row, col, 0, 0, 7);
- 					pgconv64(pg_buf_all[1], pg_buf_all[0], weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 7, stride);
+ 					pgconv64(pg_buf_all_1, pg_buf_all_0, weight_buf_3x3[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 7, stride);
  	 			}
  				store_bufs_organize(DDR_buff_merge, 1, row, col, cio, off_row, off_col, 7, 1);
  	 		}
@@ -1214,7 +1215,7 @@ void FracNet(  uint32 image_thermo[3*226*226],
  				load_buf_from_DDR(DDR_buff_merge, 1, FM_buf0, row, col, coo);
  	 			for (int coi = 0; coi < N_COI; coi ++) {
  //					load_buf_from_buf_all(row, col, 0, 0, 7);
- 					pgconv64_1x1(pg_buf_all[1], pg_buf_all[0], weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 7);
+ 					pgconv64_1x1(pg_buf_all_1, pg_buf_all_0, weight_buf_1x1[0], thres_buf[0], FM_buf_acc0, row, col, off_row, off_col, 7);
  	 			}
  	 			int coo_cat = coo;
  	 			if (coo > N_COI) {
