@@ -321,7 +321,7 @@ void store_bufs_organize(uint512* ddr_ptr, int dest_offset, int row_offset, int 
 #pragma HLS PIPELINE II=1
         	int row, col;
         	if (stride ==2) {
-        		row = row0*2 +1;
+        		row = row0*2 + 1;
         		col = col0*2 + 1;
         	} else {
         		row = row0+1;
