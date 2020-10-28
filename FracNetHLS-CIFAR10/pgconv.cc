@@ -3,27 +3,38 @@
 #include <stdio.h>
 #include <math.h>
 #include <ap_fixed.h>
-#include "hls_stream.h"
 
-
-const static uint4 lut16[] = {0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2, 3, 2, 3, 3, 4};
+#define CH_OUT 64
+#define CH_OUT_PAR 16
+//const static uint4 lut16[] = {0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2, 3, 2, 3, 3, 4};
+//
+//inline uint6 compute_engine_32(uint32 b, uint32 w)
+//{
+//#pragma HLS PIPELINE
+//    uint32 t = ~(b^w);
+//    ap_int<4> add0, add1, add2, add3;
+//    ap_int<5> add4, add5;
+//
+//    add0 = lut16[(int)t.range(3,  0 )] + lut16[(int)t.range(7,  4 )];
+//    add1 = lut16[(int)t.range(11, 8 )] + lut16[(int)t.range(15, 12)];
+//    add2 = lut16[(int)t.range(19, 16)] + lut16[(int)t.range(23, 20)];
+//    add3 = lut16[(int)t.range(27, 24)] + lut16[(int)t.range(31, 28)];
+//
+//    add4 = add0 + add1;
+//    add5 = add2 + add3;
+//
+//    return add4 + add5;
+//}
 
 inline uint6 compute_engine_32(uint32 b, uint32 w)
 {
-#pragma HLS PIPELINE
+#pragma HLS LATENCY max=1
     uint32 t = ~(b^w);
-    ap_int<4> add0, add1, add2, add3;
-    ap_int<5> add4, add5;
-
-    add0 = lut16[(int)t.range(3,  0 )] + lut16[(int)t.range(7,  4 )];
-    add1 = lut16[(int)t.range(11, 8 )] + lut16[(int)t.range(15, 12)];
-    add2 = lut16[(int)t.range(19, 16)] + lut16[(int)t.range(23, 20)];
-    add3 = lut16[(int)t.range(27, 24)] + lut16[(int)t.range(31, 28)];
-
-    add4 = add0 + add1;
-    add5 = add2 + add3;
-
-    return add4 + add5;
+    uint6 sum;
+    for (int i = 0; i < 32; i ++) {
+    	sum += t[i];
+    }
+    return sum;
 }
 
 inline uint8 sum_engine(uint6 t0,
@@ -91,7 +102,7 @@ void pgconv32_2bit(uint2 bottom[32][11][11],
 
 	for (int row = 2; row < 9; row ++) {
 		for (int col = 2; col < 9; col ++) {
-#pragma HLS PIPELINE
+#pragma HLS
 			uint32 bottom_buf_1[3][3];
 			uint32 bottom_buf_0[3][3];
 			for (int cii = 0; cii < 32; cii ++) {
@@ -161,15 +172,15 @@ void pgconv32_1bit(uint1 bottom[32][11][11],
 					uint1 stride
 )
 {
-#pragma HLS array_partition variable=bottom dim=1 complete
-#pragma HLS array_partition variable=weights dim=1 complete
-#pragma HLS array_partition variable=thres dim=1 complete
-#pragma HLS array_partition variable=bn_weights dim=1 complete
-#pragma HLS array_partition variable=bn_bias dim=1 complete
-#pragma HLS array_partition variable=relu_shiftx dim=1 complete
-#pragma HLS array_partition variable=relu_shifty dim=1 complete
-#pragma HLS array_partition variable=relu_weights dim=1 complete
-#pragma HLS array_partition variable=top dim=1 complete
+// #pragma HLS array_partition variable=bottom dim=1 complete
+// #pragma HLS array_partition variable=weights dim=1 complete
+// #pragma HLS array_partition variable=thres dim=1 complete
+// #pragma HLS array_partition variable=bn_weights dim=1 complete
+// #pragma HLS array_partition variable=bn_bias dim=1 complete
+// #pragma HLS array_partition variable=relu_shiftx dim=1 complete
+// #pragma HLS array_partition variable=relu_shifty dim=1 complete
+// #pragma HLS array_partition variable=relu_weights dim=1 complete
+// #pragma HLS array_partition variable=top dim=1 complete
 
 	int s = 1;
 	if (stride == 1) {
