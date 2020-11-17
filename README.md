@@ -15,3 +15,11 @@ The bin files contain a thousand images and their labels. The software accuracy 
 In order to debug, there are different approaches. Typically, we can simply instantiate the top level of the hardware in the software and step through it. Otherwise, we can take parts of the hardware and unit-test them. 
 
 I will keep updating. 
+
+## Update 11/17:
+
+The current version passes csim. The optimizations are ok. However, there's too much LUTs usage.
+Possible reason is that we pack the pgconv into a function. We need to write it the old way.
+I will do that when I get up. 
+
+Also, based on testing, ap_fixed<16, 10> for FM and <16, 4> for WT is good enough, giving us 95+ accuracy. 
