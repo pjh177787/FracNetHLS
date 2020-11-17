@@ -652,12 +652,12 @@ int main(int argc, char **argv)
 		}
 
 
-		if (k %10 == 9) {
+//		if (k %10 == 9) {
 			cout << "Processed " << k + 1 << " pictures. " << endl;
 //			cout << "Software has "<< correct_sw << "/" << k + 1 << " correct." << endl;
 			cout << "Hardware has "<< correct_hw << "/" << k + 1 << " correct." << endl;
-			cout << "\n" << endl;
-		}
+//			cout << "\n" << endl;
+//		}
 	}
 
 	return 0;

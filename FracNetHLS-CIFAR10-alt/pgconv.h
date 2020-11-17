@@ -41,6 +41,9 @@ void pg_conv3x3_tile(
 		int H_fmap_out
 )
 {
+#pragma HLS ARRAY_PARTITION variable=msb_outputs complete dim=1
+#pragma HLS ARRAY_PARTITION variable=lsb_outputs complete dim=1
+
 	Loop_Tile:
 	for (int cin=0; cin<in_channels; cin++) {
 		uint16 msb_line_buffer[2][WIDTH];
