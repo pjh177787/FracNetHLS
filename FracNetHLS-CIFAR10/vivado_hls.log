@@ -6,24 +6,142 @@
 
 source C:/Xilinx/Vivado/2019.2/scripts/vivado_hls/hls.tcl -notrace
 INFO: [HLS 200-10] Running 'C:/Xilinx/Vivado/2019.2/bin/unwrapped/win64.o/vivado_hls.exe'
-INFO: [HLS 200-10] For user 'Aperture' on host 'desktop-apertur' (Windows NT_amd64 version 6.2) on Tue Oct 27 23:22:15 -0500 2020
+INFO: [HLS 200-10] For user 'Aperture' on host 'desktop-apertur' (Windows NT_amd64 version 6.2) on Sun Nov 01 22:24:26 -0600 2020
 INFO: [HLS 200-10] In directory 'C:/Users/Aperture/Git/FracNetHLS/FracNetHLS-CIFAR10'
 Sourcing Tcl script 'script.tcl'
-INFO: [HLS 200-10] Creating and opening project 'C:/Users/Aperture/Git/FracNetHLS/FracNetHLS-CIFAR10/model'.
+INFO: [HLS 200-10] Opening project 'C:/Users/Aperture/Git/FracNetHLS/FracNetHLS-CIFAR10/model'.
 INFO: [HLS 200-10] Adding design file 'biconv.cc' to the project
 INFO: [HLS 200-10] Adding design file 'matmul.cc' to the project
 INFO: [HLS 200-10] Adding design file 'net_hls.cc' to the project
 INFO: [HLS 200-10] Adding design file 'pgconv.cc' to the project
 INFO: [HLS 200-10] Adding design file 'pgconv64.h' to the project
-INFO: [HLS 200-10] Adding design file 'weights.h' to the project
 INFO: [HLS 200-10] Adding design file 'weights_tb.h' to the project
 INFO: [HLS 200-10] Adding test bench file 'bin/conv1_input.bin' to the project
 INFO: [HLS 200-10] Adding test bench file 'bin/labels.bin' to the project
 INFO: [HLS 200-10] Adding test bench file 'tb.cc' to the project
-INFO: [HLS 200-10] Creating and opening solution 'C:/Users/Aperture/Git/FracNetHLS/FracNetHLS-CIFAR10/model/solution1'.
-INFO: [HLS 200-10] Setting target device to 'xczu3eg-sbva484-1-e'
+INFO: [HLS 200-10] Opening solution 'C:/Users/Aperture/Git/FracNetHLS/FracNetHLS-CIFAR10/model/solution1'.
 INFO: [SYN 201-201] Setting up clock 'default' with a period of 4ns.
+INFO: [SYN 201-201] Setting up clock 'default' with an uncertainty of 0.5ns.
+INFO: [HLS 200-10] Setting target device to 'xczu3eg-sbva484-1-e'
 INFO: [HLS 200-435] Setting 'config_sdx -target' configuration: config_export -vivado_optimization_level=2
 INFO: [HLS 200-435] Setting 'config_sdx -target' configuration: set_clock_uncertainty default
-INFO: [SYN 201-201] Setting up clock 'default' with an uncertainty of 0.5ns.
-[2Kvivado_hls> [12C^C
+INFO: [HLS 200-435] Setting 'config_sdx -target' configuration: config_export -vivado_optimization_level=2
+INFO: [HLS 200-435] Setting 'config_sdx -target' configuration: set_clock_uncertainty default
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+   Compiling ../../../../tb.cc in debug mode
+   Compiling ../../../../pgconv.cc in debug mode
+   Compiling ../../../../net_hls.cc in debug mode
+   Compiling ../../../../matmul.cc in debug mode
+   Compiling ../../../../biconv.cc in debug mode
+   Generating csim.exe
+In file included from C:/Xilinx/Vivado/2019.2/include/floating_point_v7_0_bitacc_cmodel.h:143:0,
+                 from C:/Xilinx/Vivado/2019.2/include/hls_fpo.h:186,
+                 from C:/Xilinx/Vivado/2019.2/include/hls_half.h:44,
+                 from C:/Xilinx/Vivado/2019.2/include/etc/ap_private.h:90,
+                 from C:/Xilinx/Vivado/2019.2/include/ap_common.h:641,
+                 from C:/Xilinx/Vivado/2019.2/include/ap_int.h:54,
+                 from ../../../../net_hls.h:4,
+                 from ../../../../tb.cc:5:
+C:/Xilinx/Vivado/2019.2/include/gmp.h:62:0: warning: "__GMP_LIBGMP_DLL" redefined
+ #define __GMP_LIBGMP_DLL  0
+ 
+In file included from C:/Xilinx/Vivado/2019.2/include/hls_fpo.h:186:0,
+                 from C:/Xilinx/Vivado/2019.2/include/hls_half.h:44,
+                 from C:/Xilinx/Vivado/2019.2/include/etc/ap_private.h:90,
+                 from C:/Xilinx/Vivado/2019.2/include/ap_common.h:641,
+                 from C:/Xilinx/Vivado/2019.2/include/ap_int.h:54,
+                 from ../../../../net_hls.h:4,
+                 from ../../../../tb.cc:5:
+C:/Xilinx/Vivado/2019.2/include/floating_point_v7_0_bitacc_cmodel.h:135:0: note: this is the location of the previous definition
+ #define __GMP_LIBGMP_DLL 1
+ 
+In file included from C:/Xilinx/Vivado/2019.2/include/floating_point_v7_0_bitacc_cmodel.h:143:0,
+                 from C:/Xilinx/Vivado/2019.2/include/hls_fpo.h:186,
+                 from C:/Xilinx/Vivado/2019.2/include/hls_half.h:44,
+                 from C:/Xilinx/Vivado/2019.2/include/etc/ap_private.h:90,
+                 from C:/Xilinx/Vivado/2019.2/include/ap_common.h:641,
+                 from C:/Xilinx/Vivado/2019.2/include/ap_int.h:54,
+                 from ../../../../net_hls.h:4,
+                 from ../../../../pgconv.cc:2:
+C:/Xilinx/Vivado/2019.2/include/gmp.h:62:0: warning: "__GMP_LIBGMP_DLL" redefined
+ #define __GMP_LIBGMP_DLL  0
+ 
+In file included from C:/Xilinx/Vivado/2019.2/include/hls_fpo.h:186:0,
+                 from C:/Xilinx/Vivado/2019.2/include/hls_half.h:44,
+                 from C:/Xilinx/Vivado/2019.2/include/etc/ap_private.h:90,
+                 from C:/Xilinx/Vivado/2019.2/include/ap_common.h:641,
+                 from C:/Xilinx/Vivado/2019.2/include/ap_int.h:54,
+                 from ../../../../net_hls.h:4,
+                 from ../../../../pgconv.cc:2:
+C:/Xilinx/Vivado/2019.2/include/floating_point_v7_0_bitacc_cmodel.h:135:0: note: this is the location of the previous definition
+ #define __GMP_LIBGMP_DLL 1
+ 
+In file included from C:/Xilinx/Vivado/2019.2/include/floating_point_v7_0_bitacc_cmodel.h:143:0,
+                 from C:/Xilinx/Vivado/2019.2/include/hls_fpo.h:186,
+                 from C:/Xilinx/Vivado/2019.2/include/hls_half.h:44,
+                 from C:/Xilinx/Vivado/2019.2/include/etc/ap_private.h:90,
+                 from C:/Xilinx/Vivado/2019.2/include/ap_common.h:641,
+                 from C:/Xilinx/Vivado/2019.2/include/ap_int.h:54,
+                 from ../../../../net_hls.h:4,
+                 from ../../../../net_hls.cc:2:
+C:/Xilinx/Vivado/2019.2/include/gmp.h:62:0: warning: "__GMP_LIBGMP_DLL" redefined
+ #define __GMP_LIBGMP_DLL  0
+ 
+In file included from C:/Xilinx/Vivado/2019.2/include/hls_fpo.h:186:0,
+                 from C:/Xilinx/Vivado/2019.2/include/hls_half.h:44,
+                 from C:/Xilinx/Vivado/2019.2/include/etc/ap_private.h:90,
+                 from C:/Xilinx/Vivado/2019.2/include/ap_common.h:641,
+                 from C:/Xilinx/Vivado/2019.2/include/ap_int.h:54,
+                 from ../../../../net_hls.h:4,
+                 from ../../../../net_hls.cc:2:
+C:/Xilinx/Vivado/2019.2/include/floating_point_v7_0_bitacc_cmodel.h:135:0: note: this is the location of the previous definition
+ #define __GMP_LIBGMP_DLL 1
+ 
+In file included from C:/Xilinx/Vivado/2019.2/include/floating_point_v7_0_bitacc_cmodel.h:143:0,
+                 from C:/Xilinx/Vivado/2019.2/include/hls_fpo.h:186,
+                 from C:/Xilinx/Vivado/2019.2/include/hls_half.h:44,
+                 from C:/Xilinx/Vivado/2019.2/include/etc/ap_private.h:90,
+                 from C:/Xilinx/Vivado/2019.2/include/ap_common.h:641,
+                 from C:/Xilinx/Vivado/2019.2/include/ap_int.h:54,
+                 from ../../../../net_hls.h:4,
+                 from ../../../../matmul.cc:1:
+C:/Xilinx/Vivado/2019.2/include/gmp.h:62:0: warning: "__GMP_LIBGMP_DLL" redefined
+ #define __GMP_LIBGMP_DLL  0
+ 
+In file included from C:/Xilinx/Vivado/2019.2/include/hls_fpo.h:186:0,
+                 from C:/Xilinx/Vivado/2019.2/include/hls_half.h:44,
+                 from C:/Xilinx/Vivado/2019.2/include/etc/ap_private.h:90,
+                 from C:/Xilinx/Vivado/2019.2/include/ap_common.h:641,
+                 from C:/Xilinx/Vivado/2019.2/include/ap_int.h:54,
+                 from ../../../../net_hls.h:4,
+                 from ../../../../matmul.cc:1:
+C:/Xilinx/Vivado/2019.2/include/floating_point_v7_0_bitacc_cmodel.h:135:0: note: this is the location of the previous definition
+ #define __GMP_LIBGMP_DLL 1
+ 
+In file included from C:/Xilinx/Vivado/2019.2/include/floating_point_v7_0_bitacc_cmodel.h:143:0,
+                 from C:/Xilinx/Vivado/2019.2/include/hls_fpo.h:186,
+                 from C:/Xilinx/Vivado/2019.2/include/hls_half.h:44,
+                 from C:/Xilinx/Vivado/2019.2/include/etc/ap_private.h:90,
+                 from C:/Xilinx/Vivado/2019.2/include/ap_common.h:641,
+                 from C:/Xilinx/Vivado/2019.2/include/ap_int.h:54,
+                 from ../../../../net_hls.h:4,
+                 from ../../../../biconv.cc:1:
+C:/Xilinx/Vivado/2019.2/include/gmp.h:62:0: warning: "__GMP_LIBGMP_DLL" redefined
+ #define __GMP_LIBGMP_DLL  0
+ 
+In file included from C:/Xilinx/Vivado/2019.2/include/hls_fpo.h:186:0,
+                 from C:/Xilinx/Vivado/2019.2/include/hls_half.h:44,
+                 from C:/Xilinx/Vivado/2019.2/include/etc/ap_private.h:90,
+                 from C:/Xilinx/Vivado/2019.2/include/ap_common.h:641,
+                 from C:/Xilinx/Vivado/2019.2/include/ap_int.h:54,
+                 from ../../../../net_hls.h:4,
+                 from ../../../../biconv.cc:1:
+C:/Xilinx/Vivado/2019.2/include/floating_point_v7_0_bitacc_cmodel.h:135:0: note: this is the location of the previous definition
+ #define __GMP_LIBGMP_DLL 1
+ 
+
+Accuracy = 96.2%
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+[2Kvivado_hls> [12C

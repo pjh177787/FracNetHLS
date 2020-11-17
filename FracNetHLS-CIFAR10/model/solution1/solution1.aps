@@ -1,4 +1,8 @@
 <AutoPilot:solution xmlns:AutoPilot="com.autoesl.autopilot.solution">
+    <config>
+        <config_sdx target="none"/>
+        <config_export vivado_optimization_level="2" format="ip_catalog" rtl="verilog" vivado_phys_opt="place" vivado_report_level="0"/>
+    </config>
     <name>
         <value string="solution1"/>
     </name>
@@ -12,10 +16,6 @@
         <library value="xilinx/zynquplus/zynquplus" name="DefaultPlatform"/>
         <library value="xilinx/zynquplus/zynquplus_fpv7" name="DefaultPlatform"/>
     </libraryList>
-    <config>
-        <config_sdx target="none"/>
-        <config_export vivado_optimization_level="2" format="ip_catalog" rtl="verilog" vivado_phys_opt="place" vivado_report_level="0"/>
-    </config>
     <clockList>
         <clock name="default" default="false" uncertainty="12.5%" period="4"/>
     </clockList>
