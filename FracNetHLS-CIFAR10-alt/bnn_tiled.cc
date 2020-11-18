@@ -6,7 +6,7 @@ using namespace std;
 void FracNet_T(
 		uint16 image[6][32][32],
 		// float output[64*32*32]
-					 float output[10]
+		float output[10]
 )
 {
 #pragma HLS INTERFACE m_axi port=image offset=slave bundle=IMG
@@ -121,22 +121,20 @@ void FracNet_T(
 	quant_and_pack(out_buf_1, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
 	LOOP_Layer1_0_PGConv1:
 	for (int ch_t = 0; ch_t < out_channels/OUT_CHANNEL_PARALLELISM; ch_t ++) {
+		out_channel_start = ch_t*OUT_CHANNEL_PARALLELISM;
+		load_weights_tile<1, 16>(
+				layer1_0_conv1_weight_fix, layer1_0_conv1_threshold_fix,
+				weight_tile_buffer, threshold_tile_buffer,
+				out_channel_start, in_channels_after_pack
+		);
+		pg_conv3x3_tile(
+				msb_fmap, lsb_fmap, weight_tile_buffer,
+				out_buf_t0, out_buf_t1,
+				in_channels_after_pack, H_fmap_out
+		);
 		for (int row = 0; row < H_fmap_out; row ++){
 			for (int col = 0; col < H_fmap_out; col ++){
 #pragma HLS PIPELINE
-				if (row == 0 && col == 0) {
-					out_channel_start = ch_t*OUT_CHANNEL_PARALLELISM;
-					load_weights_tile<1, 16>(
-							layer1_0_conv1_weight_fix, layer1_0_conv1_threshold_fix,
-							weight_tile_buffer, threshold_tile_buffer,
-							out_channel_start, in_channels_after_pack
-					);
-					pg_conv3x3_tile(
-							msb_fmap, lsb_fmap, weight_tile_buffer,
-							out_buf_t0, out_buf_t1,
-							in_channels_after_pack, H_fmap_out
-					);
-				}
 				for (int ch_offset=0; ch_offset<OUT_CHANNEL_PARALLELISM; ch_offset++){
 					msb_register[ch_offset] = out_buf_t0[ch_offset][row+1][col+1];
 					lsb_register[ch_offset] = out_buf_t1[ch_offset][row+1][col+1];
@@ -162,22 +160,20 @@ void FracNet_T(
 	quant_and_pack(out_buf_1, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
 	LOOP_Layer1_0_PGConv2:
 	for (int ch_t = 0; ch_t < out_channels/OUT_CHANNEL_PARALLELISM; ch_t ++) {
+		out_channel_start = ch_t*OUT_CHANNEL_PARALLELISM;
+		load_weights_tile<1, 16>(
+				layer1_0_conv2_weight_fix, layer1_0_conv2_threshold_fix,
+				weight_tile_buffer, threshold_tile_buffer,
+				out_channel_start, in_channels_after_pack
+		);
+		pg_conv3x3_tile(
+				msb_fmap, lsb_fmap, weight_tile_buffer,
+				out_buf_t0, out_buf_t1,
+				in_channels_after_pack, H_fmap_out
+		);
 		for (int row = 0; row < H_fmap_out; row ++){
 			for (int col = 0; col < H_fmap_out; col ++){
 #pragma HLS PIPELINE
-				if (row == 0 && col == 0) {
-					out_channel_start = ch_t*OUT_CHANNEL_PARALLELISM;
-					load_weights_tile<1, 16>(
-							layer1_0_conv2_weight_fix, layer1_0_conv2_threshold_fix,
-							weight_tile_buffer, threshold_tile_buffer,
-							out_channel_start, in_channels_after_pack
-					);
-					pg_conv3x3_tile(
-							msb_fmap, lsb_fmap, weight_tile_buffer,
-							out_buf_t0, out_buf_t1,
-							in_channels_after_pack, H_fmap_out
-					);
-				}
 				for (int ch_offset=0; ch_offset<OUT_CHANNEL_PARALLELISM; ch_offset++){
 					msb_register[ch_offset] = out_buf_t0[ch_offset][row+1][col+1];
 					lsb_register[ch_offset] = out_buf_t1[ch_offset][row+1][col+1];
@@ -203,22 +199,20 @@ void FracNet_T(
 	quant_and_pack(out_buf_1, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
 	LOOP_Layer1_1_PGConv1:
 	for (int ch_t = 0; ch_t < out_channels/OUT_CHANNEL_PARALLELISM; ch_t ++) {
+		out_channel_start = ch_t*OUT_CHANNEL_PARALLELISM;
+		load_weights_tile<1, 16>(
+				layer1_1_conv1_weight_fix, layer1_1_conv1_threshold_fix,
+				weight_tile_buffer, threshold_tile_buffer,
+				out_channel_start, in_channels_after_pack
+		);
+		pg_conv3x3_tile(
+				msb_fmap, lsb_fmap, weight_tile_buffer,
+				out_buf_t0, out_buf_t1,
+				in_channels_after_pack, H_fmap_out
+		);
 		for (int row = 0; row < H_fmap_out; row ++){
 			for (int col = 0; col < H_fmap_out; col ++){
 #pragma HLS PIPELINE
-				if (row == 0 && col == 0) {
-					out_channel_start = ch_t*OUT_CHANNEL_PARALLELISM;
-					load_weights_tile<1, 16>(
-							layer1_1_conv1_weight_fix, layer1_1_conv1_threshold_fix,
-							weight_tile_buffer, threshold_tile_buffer,
-							out_channel_start, in_channels_after_pack
-					);
-					pg_conv3x3_tile(
-							msb_fmap, lsb_fmap, weight_tile_buffer,
-							out_buf_t0, out_buf_t1,
-							in_channels_after_pack, H_fmap_out
-					);
-				}
 				for (int ch_offset=0; ch_offset<OUT_CHANNEL_PARALLELISM; ch_offset++){
 					msb_register[ch_offset] = out_buf_t0[ch_offset][row+1][col+1];
 					lsb_register[ch_offset] = out_buf_t1[ch_offset][row+1][col+1];
@@ -244,22 +238,20 @@ void FracNet_T(
 	quant_and_pack(out_buf_1, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
 	LOOP_Layer1_1_PGConv2:
 	for (int ch_t = 0; ch_t < out_channels/OUT_CHANNEL_PARALLELISM; ch_t ++) {
+		out_channel_start = ch_t*OUT_CHANNEL_PARALLELISM;
+		load_weights_tile<1, 16>(
+				layer1_1_conv2_weight_fix, layer1_1_conv2_threshold_fix,
+				weight_tile_buffer, threshold_tile_buffer,
+				out_channel_start, in_channels_after_pack
+		);
+		pg_conv3x3_tile(
+				msb_fmap, lsb_fmap, weight_tile_buffer,
+				out_buf_t0, out_buf_t1,
+				in_channels_after_pack, H_fmap_out
+		);
 		for (int row = 0; row < H_fmap_out; row ++){
 			for (int col = 0; col < H_fmap_out; col ++){
 #pragma HLS PIPELINE
-				if (row == 0 && col == 0) {
-					out_channel_start = ch_t*OUT_CHANNEL_PARALLELISM;
-					load_weights_tile<1, 16>(
-							layer1_1_conv2_weight_fix, layer1_1_conv2_threshold_fix,
-							weight_tile_buffer, threshold_tile_buffer,
-							out_channel_start, in_channels_after_pack
-					);
-					pg_conv3x3_tile(
-							msb_fmap, lsb_fmap, weight_tile_buffer,
-							out_buf_t0, out_buf_t1,
-							in_channels_after_pack, H_fmap_out
-					);
-				}
 				for (int ch_offset=0; ch_offset<OUT_CHANNEL_PARALLELISM; ch_offset++){
 					msb_register[ch_offset] = out_buf_t0[ch_offset][row+1][col+1];
 					lsb_register[ch_offset] = out_buf_t1[ch_offset][row+1][col+1];
@@ -285,22 +277,20 @@ void FracNet_T(
 	quant_and_pack(out_buf_1, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
 	LOOP_Layer1_2_PGConv1:
 	for (int ch_t = 0; ch_t < out_channels/OUT_CHANNEL_PARALLELISM; ch_t ++) {
+		out_channel_start = ch_t*OUT_CHANNEL_PARALLELISM;
+		load_weights_tile<1, 16>(
+				layer1_2_conv1_weight_fix, layer1_2_conv1_threshold_fix,
+				weight_tile_buffer, threshold_tile_buffer,
+				out_channel_start, in_channels_after_pack
+		);
+		pg_conv3x3_tile(
+				msb_fmap, lsb_fmap, weight_tile_buffer,
+				out_buf_t0, out_buf_t1,
+				in_channels_after_pack, H_fmap_out
+		);
 		for (int row = 0; row < H_fmap_out; row ++){
 			for (int col = 0; col < H_fmap_out; col ++){
 #pragma HLS PIPELINE
-				if (row == 0 && col == 0) {
-					out_channel_start = ch_t*OUT_CHANNEL_PARALLELISM;
-					load_weights_tile<1, 16>(
-							layer1_2_conv1_weight_fix, layer1_2_conv1_threshold_fix,
-							weight_tile_buffer, threshold_tile_buffer,
-							out_channel_start, in_channels_after_pack
-					);
-					pg_conv3x3_tile(
-							msb_fmap, lsb_fmap, weight_tile_buffer,
-							out_buf_t0, out_buf_t1,
-							in_channels_after_pack, H_fmap_out
-					);
-				}
 				for (int ch_offset=0; ch_offset<OUT_CHANNEL_PARALLELISM; ch_offset++){
 					msb_register[ch_offset] = out_buf_t0[ch_offset][row+1][col+1];
 					lsb_register[ch_offset] = out_buf_t1[ch_offset][row+1][col+1];
@@ -326,22 +316,20 @@ void FracNet_T(
 	quant_and_pack(out_buf_1, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
 	LOOP_Layer1_2_PGConv2:
 	for (int ch_t = 0; ch_t < out_channels/OUT_CHANNEL_PARALLELISM; ch_t ++) {
+		out_channel_start = ch_t*OUT_CHANNEL_PARALLELISM;
+		load_weights_tile<1, 16>(
+				layer1_2_conv2_weight_fix, layer1_2_conv2_threshold_fix,
+				weight_tile_buffer, threshold_tile_buffer,
+				out_channel_start, in_channels_after_pack
+		);
+		pg_conv3x3_tile(
+				msb_fmap, lsb_fmap, weight_tile_buffer,
+				out_buf_t0, out_buf_t1,
+				in_channels_after_pack, H_fmap_out
+		);
 		for (int row = 0; row < H_fmap_out; row ++){
 			for (int col = 0; col < H_fmap_out; col ++){
 #pragma HLS PIPELINE
-				if (row == 0 && col == 0) {
-					out_channel_start = ch_t*OUT_CHANNEL_PARALLELISM;
-					load_weights_tile<1, 16>(
-							layer1_2_conv2_weight_fix, layer1_2_conv2_threshold_fix,
-							weight_tile_buffer, threshold_tile_buffer,
-							out_channel_start, in_channels_after_pack
-					);
-					pg_conv3x3_tile(
-							msb_fmap, lsb_fmap, weight_tile_buffer,
-							out_buf_t0, out_buf_t1,
-							in_channels_after_pack, H_fmap_out
-					);
-				}
 				for (int ch_offset=0; ch_offset<OUT_CHANNEL_PARALLELISM; ch_offset++){
 					msb_register[ch_offset] = out_buf_t0[ch_offset][row+1][col+1];
 					lsb_register[ch_offset] = out_buf_t1[ch_offset][row+1][col+1];
@@ -378,22 +366,20 @@ void FracNet_T(
 	quant_and_pack(out_buf_1, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
 	LOOP_layer2_0_PGConv1:
 	for (int ch_t = 0; ch_t < out_channels/OUT_CHANNEL_PARALLELISM; ch_t ++) {
+		out_channel_start = ch_t*OUT_CHANNEL_PARALLELISM;
+		load_weights_tile<1, 32>(
+				layer2_0_conv1_weight_fix, layer2_0_conv1_threshold_fix,
+				weight_tile_buffer, threshold_tile_buffer,
+				out_channel_start, in_channels_after_pack
+		);
+		pg_conv3x3_tile(
+				msb_fmap, lsb_fmap, weight_tile_buffer,
+				out_buf_t0, out_buf_t1,
+				in_channels_after_pack, H_fmap_out
+		);
 		for (int row = 0; row < 16; row ++){
 			for (int col = 0; col < 16; col ++){
 #pragma HLS PIPELINE
-				if (row == 0 && col == 0) {
-					out_channel_start = ch_t*OUT_CHANNEL_PARALLELISM;
-					load_weights_tile<1, 32>(
-							layer2_0_conv1_weight_fix, layer2_0_conv1_threshold_fix,
-							weight_tile_buffer, threshold_tile_buffer,
-							out_channel_start, in_channels_after_pack
-					);
-					pg_conv3x3_tile(
-							msb_fmap, lsb_fmap, weight_tile_buffer,
-							out_buf_t0, out_buf_t1,
-							in_channels_after_pack, H_fmap_out
-					);
-				}
 				for (int ch_offset=0; ch_offset<OUT_CHANNEL_PARALLELISM; ch_offset++){
 					msb_register[ch_offset] = out_buf_t0[ch_offset][row*2+1][col*2+1];
 					lsb_register[ch_offset] = out_buf_t1[ch_offset][row*2+1][col*2+1];
@@ -430,22 +416,20 @@ void FracNet_T(
 	quant_and_pack(out_buf_1, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
 	LOOP_layer2_0_PGConv2:
 	for (int ch_t = 0; ch_t < out_channels/OUT_CHANNEL_PARALLELISM; ch_t ++) {
+		out_channel_start = ch_t*OUT_CHANNEL_PARALLELISM;
+		load_weights_tile<2, 32>(
+				layer2_0_conv2_weight_fix, layer2_0_conv2_threshold_fix,
+				weight_tile_buffer, threshold_tile_buffer,
+				out_channel_start, in_channels_after_pack
+		);
+		pg_conv3x3_tile(
+				msb_fmap, lsb_fmap, weight_tile_buffer,
+				out_buf_t0, out_buf_t1,
+				in_channels_after_pack, H_fmap_out
+		);
 		for (int row = 0; row < H_fmap_out; row ++){
 			for (int col = 0; col < H_fmap_out; col ++){
 #pragma HLS PIPELINE
-				if (row == 0 && col == 0) {
-					out_channel_start = ch_t*OUT_CHANNEL_PARALLELISM;
-					load_weights_tile<2, 32>(
-							layer2_0_conv2_weight_fix, layer2_0_conv2_threshold_fix,
-							weight_tile_buffer, threshold_tile_buffer,
-							out_channel_start, in_channels_after_pack
-					);
-					pg_conv3x3_tile(
-							msb_fmap, lsb_fmap, weight_tile_buffer,
-							out_buf_t0, out_buf_t1,
-							in_channels_after_pack, H_fmap_out
-					);
-				}
 				for (int ch_offset=0; ch_offset<OUT_CHANNEL_PARALLELISM; ch_offset++){
 					msb_register[ch_offset] = out_buf_t0[ch_offset][row+1][col+1];
 					lsb_register[ch_offset] = out_buf_t1[ch_offset][row+1][col+1];
@@ -471,22 +455,20 @@ void FracNet_T(
 	quant_and_pack(out_buf_1, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
 	LOOP_layer2_1_PGConv1:
 	for (int ch_t = 0; ch_t < out_channels/OUT_CHANNEL_PARALLELISM; ch_t ++) {
+		out_channel_start = ch_t*OUT_CHANNEL_PARALLELISM;
+		load_weights_tile<2, 32>(
+				layer2_1_conv1_weight_fix, layer2_1_conv1_threshold_fix,
+				weight_tile_buffer, threshold_tile_buffer,
+				out_channel_start, in_channels_after_pack
+		);
+		pg_conv3x3_tile(
+				msb_fmap, lsb_fmap, weight_tile_buffer,
+				out_buf_t0, out_buf_t1,
+				in_channels_after_pack, H_fmap_out
+		);
 		for (int row = 0; row < H_fmap_out; row ++){
 			for (int col = 0; col < H_fmap_out; col ++){
 #pragma HLS PIPELINE
-				if (row == 0 && col == 0) {
-					out_channel_start = ch_t*OUT_CHANNEL_PARALLELISM;
-					load_weights_tile<2, 32>(
-							layer2_1_conv1_weight_fix, layer2_1_conv1_threshold_fix,
-							weight_tile_buffer, threshold_tile_buffer,
-							out_channel_start, in_channels_after_pack
-					);
-					pg_conv3x3_tile(
-							msb_fmap, lsb_fmap, weight_tile_buffer,
-							out_buf_t0, out_buf_t1,
-							in_channels_after_pack, H_fmap_out
-					);
-				}
 				for (int ch_offset=0; ch_offset<OUT_CHANNEL_PARALLELISM; ch_offset++){
 					msb_register[ch_offset] = out_buf_t0[ch_offset][row+1][col+1];
 					lsb_register[ch_offset] = out_buf_t1[ch_offset][row+1][col+1];
@@ -512,22 +494,20 @@ void FracNet_T(
 	quant_and_pack(out_buf_1, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
 	LOOP_layer2_1_PGConv2:
 	for (int ch_t = 0; ch_t < out_channels/OUT_CHANNEL_PARALLELISM; ch_t ++) {
+		out_channel_start = ch_t*OUT_CHANNEL_PARALLELISM;
+		load_weights_tile<2, 32>(
+				layer2_1_conv2_weight_fix, layer2_1_conv2_threshold_fix,
+				weight_tile_buffer, threshold_tile_buffer,
+				out_channel_start, in_channels_after_pack
+		);
+		pg_conv3x3_tile(
+				msb_fmap, lsb_fmap, weight_tile_buffer,
+				out_buf_t0, out_buf_t1,
+				in_channels_after_pack, H_fmap_out
+		);
 		for (int row = 0; row < H_fmap_out; row ++){
 			for (int col = 0; col < H_fmap_out; col ++){
 #pragma HLS PIPELINE
-				if (row == 0 && col == 0) {
-					out_channel_start = ch_t*OUT_CHANNEL_PARALLELISM;
-					load_weights_tile<2, 32>(
-							layer2_1_conv2_weight_fix, layer2_1_conv2_threshold_fix,
-							weight_tile_buffer, threshold_tile_buffer,
-							out_channel_start, in_channels_after_pack
-					);
-					pg_conv3x3_tile(
-							msb_fmap, lsb_fmap, weight_tile_buffer,
-							out_buf_t0, out_buf_t1,
-							in_channels_after_pack, H_fmap_out
-					);
-				}
 				for (int ch_offset=0; ch_offset<OUT_CHANNEL_PARALLELISM; ch_offset++){
 					msb_register[ch_offset] = out_buf_t0[ch_offset][row+1][col+1];
 					lsb_register[ch_offset] = out_buf_t1[ch_offset][row+1][col+1];
@@ -553,22 +533,20 @@ void FracNet_T(
 	quant_and_pack(out_buf_1, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
 	LOOP_layer2_2_PGConv1:
 	for (int ch_t = 0; ch_t < out_channels/OUT_CHANNEL_PARALLELISM; ch_t ++) {
+		out_channel_start = ch_t*OUT_CHANNEL_PARALLELISM;
+		load_weights_tile<2, 32>(
+				layer2_2_conv1_weight_fix, layer2_2_conv1_threshold_fix,
+				weight_tile_buffer, threshold_tile_buffer,
+				out_channel_start, in_channels_after_pack
+		);
+		pg_conv3x3_tile(
+				msb_fmap, lsb_fmap, weight_tile_buffer,
+				out_buf_t0, out_buf_t1,
+				in_channels_after_pack, H_fmap_out
+		);
 		for (int row = 0; row < H_fmap_out; row ++){
 			for (int col = 0; col < H_fmap_out; col ++){
 #pragma HLS PIPELINE
-				if (row == 0 && col == 0) {
-					out_channel_start = ch_t*OUT_CHANNEL_PARALLELISM;
-					load_weights_tile<2, 32>(
-							layer2_2_conv1_weight_fix, layer2_2_conv1_threshold_fix,
-							weight_tile_buffer, threshold_tile_buffer,
-							out_channel_start, in_channels_after_pack
-					);
-					pg_conv3x3_tile(
-							msb_fmap, lsb_fmap, weight_tile_buffer,
-							out_buf_t0, out_buf_t1,
-							in_channels_after_pack, H_fmap_out
-					);
-				}
 				for (int ch_offset=0; ch_offset<OUT_CHANNEL_PARALLELISM; ch_offset++){
 					msb_register[ch_offset] = out_buf_t0[ch_offset][row+1][col+1];
 					lsb_register[ch_offset] = out_buf_t1[ch_offset][row+1][col+1];
@@ -594,22 +572,20 @@ void FracNet_T(
 	quant_and_pack(out_buf_1, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
 	LOOP_layer2_2_PGConv2:
 	for (int ch_t = 0; ch_t < out_channels/OUT_CHANNEL_PARALLELISM; ch_t ++) {
+		out_channel_start = ch_t*OUT_CHANNEL_PARALLELISM;
+		load_weights_tile<2, 32>(
+				layer2_2_conv2_weight_fix, layer2_2_conv2_threshold_fix,
+				weight_tile_buffer, threshold_tile_buffer,
+				out_channel_start, in_channels_after_pack
+		);
+		pg_conv3x3_tile(
+				msb_fmap, lsb_fmap, weight_tile_buffer,
+				out_buf_t0, out_buf_t1,
+				in_channels_after_pack, H_fmap_out
+		);
 		for (int row = 0; row < H_fmap_out; row ++){
 			for (int col = 0; col < H_fmap_out; col ++){
 #pragma HLS PIPELINE
-				if (row == 0 && col == 0) {
-					out_channel_start = ch_t*OUT_CHANNEL_PARALLELISM;
-					load_weights_tile<2, 32>(
-							layer2_2_conv2_weight_fix, layer2_2_conv2_threshold_fix,
-							weight_tile_buffer, threshold_tile_buffer,
-							out_channel_start, in_channels_after_pack
-					);
-					pg_conv3x3_tile(
-							msb_fmap, lsb_fmap, weight_tile_buffer,
-							out_buf_t0, out_buf_t1,
-							in_channels_after_pack, H_fmap_out
-					);
-				}
 				for (int ch_offset=0; ch_offset<OUT_CHANNEL_PARALLELISM; ch_offset++){
 					msb_register[ch_offset] = out_buf_t0[ch_offset][row+1][col+1];
 					lsb_register[ch_offset] = out_buf_t1[ch_offset][row+1][col+1];
@@ -645,22 +621,20 @@ void FracNet_T(
 	quant_and_pack(out_buf_1, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
 	LOOP_layer3_0_PGConv1:
 	for (int ch_t = 0; ch_t < out_channels/OUT_CHANNEL_PARALLELISM; ch_t ++) {
+		out_channel_start = ch_t*OUT_CHANNEL_PARALLELISM;
+		load_weights_tile<2, 64>(
+				layer3_0_conv1_weight_fix, layer3_0_conv1_threshold_fix,
+				weight_tile_buffer, threshold_tile_buffer,
+				out_channel_start, in_channels_after_pack
+		);
+		pg_conv3x3_tile(
+				msb_fmap, lsb_fmap, weight_tile_buffer,
+				out_buf_t0, out_buf_t1,
+				in_channels_after_pack, H_fmap_out
+		);
 		for (int row = 0; row < 8; row ++){
 			for (int col = 0; col < 8; col ++){
 #pragma HLS PIPELINE
-				if (row == 0 && col == 0) {
-					out_channel_start = ch_t*OUT_CHANNEL_PARALLELISM;
-					load_weights_tile<2, 64>(
-							layer3_0_conv1_weight_fix, layer3_0_conv1_threshold_fix,
-							weight_tile_buffer, threshold_tile_buffer,
-							out_channel_start, in_channels_after_pack
-					);
-					pg_conv3x3_tile(
-							msb_fmap, lsb_fmap, weight_tile_buffer,
-							out_buf_t0, out_buf_t1,
-							in_channels_after_pack, H_fmap_out
-					);
-				}
 				for (int ch_offset=0; ch_offset<OUT_CHANNEL_PARALLELISM; ch_offset++){
 					msb_register[ch_offset] = out_buf_t0[ch_offset][row*2+1][col*2+1];
 					lsb_register[ch_offset] = out_buf_t1[ch_offset][row*2+1][col*2+1];
@@ -697,22 +671,20 @@ void FracNet_T(
 	quant_and_pack(out_buf_1, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
 	LOOP_layer3_0_PGConv2:
 	for (int ch_t = 0; ch_t < out_channels/OUT_CHANNEL_PARALLELISM; ch_t ++) {
+		out_channel_start = ch_t*OUT_CHANNEL_PARALLELISM;
+		load_weights_tile<4, 64>(
+				layer3_0_conv2_weight_fix, layer3_0_conv2_threshold_fix,
+				weight_tile_buffer, threshold_tile_buffer,
+				out_channel_start, in_channels_after_pack
+		);
+		pg_conv3x3_tile(
+				msb_fmap, lsb_fmap, weight_tile_buffer,
+				out_buf_t0, out_buf_t1,
+				in_channels_after_pack, H_fmap_out
+		);
 		for (int row = 0; row < H_fmap_out; row ++){
 			for (int col = 0; col < H_fmap_out; col ++){
 #pragma HLS PIPELINE
-				if (row == 0 && col == 0) {
-					out_channel_start = ch_t*OUT_CHANNEL_PARALLELISM;
-					load_weights_tile<4, 64>(
-							layer3_0_conv2_weight_fix, layer3_0_conv2_threshold_fix,
-							weight_tile_buffer, threshold_tile_buffer,
-							out_channel_start, in_channels_after_pack
-					);
-					pg_conv3x3_tile(
-							msb_fmap, lsb_fmap, weight_tile_buffer,
-							out_buf_t0, out_buf_t1,
-							in_channels_after_pack, H_fmap_out
-					);
-				}
 				for (int ch_offset=0; ch_offset<OUT_CHANNEL_PARALLELISM; ch_offset++){
 					msb_register[ch_offset] = out_buf_t0[ch_offset][row+1][col+1];
 					lsb_register[ch_offset] = out_buf_t1[ch_offset][row+1][col+1];
@@ -738,22 +710,20 @@ void FracNet_T(
 	quant_and_pack(out_buf_1, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
 	LOOP_layer3_1_PGConv1:
 	for (int ch_t = 0; ch_t < out_channels/OUT_CHANNEL_PARALLELISM; ch_t ++) {
+		out_channel_start = ch_t*OUT_CHANNEL_PARALLELISM;
+		load_weights_tile<4, 64>(
+				layer3_1_conv1_weight_fix, layer3_1_conv1_threshold_fix,
+				weight_tile_buffer, threshold_tile_buffer,
+				out_channel_start, in_channels_after_pack
+		);
+		pg_conv3x3_tile(
+				msb_fmap, lsb_fmap, weight_tile_buffer,
+				out_buf_t0, out_buf_t1,
+				in_channels_after_pack, H_fmap_out
+		);
 		for (int row = 0; row < H_fmap_out; row ++){
 			for (int col = 0; col < H_fmap_out; col ++){
 #pragma HLS PIPELINE
-				if (row == 0 && col == 0) {
-					out_channel_start = ch_t*OUT_CHANNEL_PARALLELISM;
-					load_weights_tile<4, 64>(
-							layer3_1_conv1_weight_fix, layer3_1_conv1_threshold_fix,
-							weight_tile_buffer, threshold_tile_buffer,
-							out_channel_start, in_channels_after_pack
-					);
-					pg_conv3x3_tile(
-							msb_fmap, lsb_fmap, weight_tile_buffer,
-							out_buf_t0, out_buf_t1,
-							in_channels_after_pack, H_fmap_out
-					);
-				}
 				for (int ch_offset=0; ch_offset<OUT_CHANNEL_PARALLELISM; ch_offset++){
 					msb_register[ch_offset] = out_buf_t0[ch_offset][row+1][col+1];
 					lsb_register[ch_offset] = out_buf_t1[ch_offset][row+1][col+1];
@@ -779,22 +749,20 @@ void FracNet_T(
 	quant_and_pack(out_buf_1, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
 	LOOP_layer3_1_PGConv2:
 	for (int ch_t = 0; ch_t < out_channels/OUT_CHANNEL_PARALLELISM; ch_t ++) {
+		out_channel_start = ch_t*OUT_CHANNEL_PARALLELISM;
+		load_weights_tile<4, 64>(
+				layer3_1_conv2_weight_fix, layer3_1_conv2_threshold_fix,
+				weight_tile_buffer, threshold_tile_buffer,
+				out_channel_start, in_channels_after_pack
+		);
+		pg_conv3x3_tile(
+				msb_fmap, lsb_fmap, weight_tile_buffer,
+				out_buf_t0, out_buf_t1,
+				in_channels_after_pack, H_fmap_out
+		);
 		for (int row = 0; row < H_fmap_out; row ++){
 			for (int col = 0; col < H_fmap_out; col ++){
 #pragma HLS PIPELINE
-				if (row == 0 && col == 0) {
-					out_channel_start = ch_t*OUT_CHANNEL_PARALLELISM;
-					load_weights_tile<4, 64>(
-							layer3_1_conv2_weight_fix, layer3_1_conv2_threshold_fix,
-							weight_tile_buffer, threshold_tile_buffer,
-							out_channel_start, in_channels_after_pack
-					);
-					pg_conv3x3_tile(
-							msb_fmap, lsb_fmap, weight_tile_buffer,
-							out_buf_t0, out_buf_t1,
-							in_channels_after_pack, H_fmap_out
-					);
-				}
 				for (int ch_offset=0; ch_offset<OUT_CHANNEL_PARALLELISM; ch_offset++){
 					msb_register[ch_offset] = out_buf_t0[ch_offset][row+1][col+1];
 					lsb_register[ch_offset] = out_buf_t1[ch_offset][row+1][col+1];
@@ -820,22 +788,20 @@ void FracNet_T(
 	quant_and_pack(out_buf_1, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
 	LOOP_layer3_2_PGConv1:
 	for (int ch_t = 0; ch_t < out_channels/OUT_CHANNEL_PARALLELISM; ch_t ++) {
+		out_channel_start = ch_t*OUT_CHANNEL_PARALLELISM;
+		load_weights_tile<4, 64>(
+				layer3_2_conv2_weight_fix, layer3_2_conv2_threshold_fix,
+				weight_tile_buffer, threshold_tile_buffer,
+				out_channel_start, in_channels_after_pack
+		);
+		pg_conv3x3_tile(
+				msb_fmap, lsb_fmap, weight_tile_buffer,
+				out_buf_t0, out_buf_t1,
+				in_channels_after_pack, H_fmap_out
+		);
 		for (int row = 0; row < H_fmap_out; row ++){
 			for (int col = 0; col < H_fmap_out; col ++){
 #pragma HLS PIPELINE
-				if (row == 0 && col == 0) {
-					out_channel_start = ch_t*OUT_CHANNEL_PARALLELISM;
-					load_weights_tile<4, 64>(
-							layer3_2_conv1_weight_fix, layer3_2_conv1_threshold_fix,
-							weight_tile_buffer, threshold_tile_buffer,
-							out_channel_start, in_channels_after_pack
-					);
-					pg_conv3x3_tile(
-							msb_fmap, lsb_fmap, weight_tile_buffer,
-							out_buf_t0, out_buf_t1,
-							in_channels_after_pack, H_fmap_out
-					);
-				}
 				for (int ch_offset=0; ch_offset<OUT_CHANNEL_PARALLELISM; ch_offset++){
 					msb_register[ch_offset] = out_buf_t0[ch_offset][row+1][col+1];
 					lsb_register[ch_offset] = out_buf_t1[ch_offset][row+1][col+1];
@@ -861,22 +827,20 @@ void FracNet_T(
 	quant_and_pack(out_buf_1, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
 	LOOP_layer3_2_PGConv2:
 	for (int ch_t = 0; ch_t < out_channels/OUT_CHANNEL_PARALLELISM; ch_t ++) {
+		out_channel_start = ch_t*OUT_CHANNEL_PARALLELISM;
+		load_weights_tile<4, 64>(
+				layer3_2_conv2_weight_fix, layer3_2_conv2_threshold_fix,
+				weight_tile_buffer, threshold_tile_buffer,
+				out_channel_start, in_channels_after_pack
+		);
+		pg_conv3x3_tile(
+				msb_fmap, lsb_fmap, weight_tile_buffer,
+				out_buf_t0, out_buf_t1,
+				in_channels_after_pack, H_fmap_out
+		);
 		for (int row = 0; row < H_fmap_out; row ++){
 			for (int col = 0; col < H_fmap_out; col ++){
 #pragma HLS PIPELINE
-				if (row == 0 && col == 0) {
-					out_channel_start = ch_t*OUT_CHANNEL_PARALLELISM;
-					load_weights_tile<4, 64>(
-							layer3_2_conv2_weight_fix, layer3_2_conv2_threshold_fix,
-							weight_tile_buffer, threshold_tile_buffer,
-							out_channel_start, in_channels_after_pack
-					);
-					pg_conv3x3_tile(
-							msb_fmap, lsb_fmap, weight_tile_buffer,
-							out_buf_t0, out_buf_t1,
-							in_channels_after_pack, H_fmap_out
-					);
-				}
 				for (int ch_offset=0; ch_offset<OUT_CHANNEL_PARALLELISM; ch_offset++){
 					msb_register[ch_offset] = out_buf_t0[ch_offset][row+1][col+1];
 					lsb_register[ch_offset] = out_buf_t1[ch_offset][row+1][col+1];
@@ -897,18 +861,18 @@ void FracNet_T(
 	shortcut(out_buf_1, out_buf_0, H_fmap_out, out_channels);
 	batchnorm(out_buf_1, layer3_2_bn4_weight_fix, layer3_2_bn4_bias_fix, H_fmap_out, out_channels); // out_buf_2 -> shortcuts
 
-FIX_FM_acc pool_out_buf[64];
+	FIX_FM_acc pool_out_buf[64];
 #pragma HLS ARRAY_PARTITION variable=pool_out_buf complete dim=1
-    FIX_FM_acc linear_out_buf[10];
+	FIX_FM_acc linear_out_buf[10];
 #pragma HLS ARRAY_PARTITION variable=linear_out_buf complete dim=1
 
-    avgpool_8x8(out_buf_1, pool_out_buf);
-    matmul(pool_out_buf, linear_weight_fix, linear_bias_fix, linear_out_buf);
+	avgpool_8x8(out_buf_1, pool_out_buf);
+	matmul(pool_out_buf, linear_weight_fix, linear_bias_fix, linear_out_buf);
 
 
-    for(int i=0; i<10; i++){
-        output[i] = linear_out_buf[i];
-    }
+	for(int i=0; i<10; i++){
+		output[i] = linear_out_buf[i];
+	}
 	// for(int i=0; i<64; i++){
 	// 	for(int j=0; j<32; j++){
 	// 		for(int k=0; k<32; k++){

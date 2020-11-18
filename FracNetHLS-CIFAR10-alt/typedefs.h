@@ -6,7 +6,7 @@
 //#include <ap_int.h>
 #include <ap_fixed.h>
 
-#define SW_TEST
+//#define SW_TEST
 
 #ifdef SW_TEST
 	typedef float FIX_32_4;	//fix point
@@ -24,24 +24,24 @@
 	typedef float FIX_16_10;
 
 #else
-	typedef ap_fixed<24, 10, AP_RND, AP_SAT> FIX_FM;	//fix point for feature map
-	typedef ap_fixed<24, 10, AP_RND, AP_SAT> FIX_FM_acc;	//fix point for accumulation (14, 6) (16, 10)
-	typedef ap_fixed<16, 4, AP_RND, AP_SAT> FIX_WT;	//fix point for weights (11, 4) (16, 4)
-	typedef ap_fixed<8, 8, AP_RND, AP_SAT> FIX_INT; //signed int
-	typedef ap_fixed<16, 3, AP_RND, AP_SAT> FIX_OUT;
-
-	typedef ap_fixed<16, 8, AP_RND, AP_SAT> FIX_16_8;
-	typedef ap_fixed<16, 6, AP_RND, AP_SAT> FIX_16_6;
-	typedef ap_fixed<16, 5, AP_RND, AP_SAT> FIX_16_5;
-	typedef ap_fixed<16, 4, AP_RND, AP_SAT> FIX_16_4;
-	typedef ap_fixed<16, 3, AP_RND, AP_SAT> FIX_16_3;
-	typedef ap_fixed<16, 10, AP_RND, AP_SAT> FIX_16_10;
-	typedef ap_fixed<32,16, AP_RND, AP_SAT> FIX_32_16;
-	typedef ap_fixed<32,12, AP_RND, AP_SAT> FIX_32_12;
-	typedef ap_fixed<32,10, AP_RND, AP_SAT> FIX_32_10;
-	typedef ap_fixed<32, 4, AP_RND, AP_SAT> FIX_32_4;
-	typedef ap_fixed<32, 7, AP_RND, AP_SAT> FIX_32_7;
-	typedef ap_fixed<32,25, AP_RND, AP_SAT> FIX_32_25;
+//	typedef ap_fixed<14, 9, AP_RND, AP_SAT> FIX_FM;	//fix point for feature map
+	typedef ap_fixed<14, 9, AP_RND, AP_SAT> FIX_FM_acc;	//fix point for accumulation (14, 6) (16, 10)
+	typedef ap_fixed<10, 3, AP_RND, AP_SAT> FIX_WT;	//fix point for weights (11, 4) (16, 4)
+//	typedef ap_fixed<8, 8, AP_RND, AP_SAT> FIX_INT; //signed int
+//	typedef ap_fixed<16, 3, AP_RND, AP_SAT> FIX_OUT;
+//
+//	typedef ap_fixed<16, 8, AP_RND, AP_SAT> FIX_16_8;
+//	typedef ap_fixed<16, 6, AP_RND, AP_SAT> FIX_16_6;
+//	typedef ap_fixed<16, 5, AP_RND, AP_SAT> FIX_16_5;
+//	typedef ap_fixed<16, 4, AP_RND, AP_SAT> FIX_16_4;
+//	typedef ap_fixed<16, 3, AP_RND, AP_SAT> FIX_16_3;
+//	typedef ap_fixed<16, 10, AP_RND, AP_SAT> FIX_16_10;
+//	typedef ap_fixed<32,16, AP_RND, AP_SAT> FIX_32_16;
+//	typedef ap_fixed<32,12, AP_RND, AP_SAT> FIX_32_12;
+//	typedef ap_fixed<32,10, AP_RND, AP_SAT> FIX_32_10;
+//	typedef ap_fixed<32, 4, AP_RND, AP_SAT> FIX_32_4;
+//	typedef ap_fixed<32, 7, AP_RND, AP_SAT> FIX_32_7;
+//	typedef ap_fixed<32,25, AP_RND, AP_SAT> FIX_32_25;
 
 #endif
 

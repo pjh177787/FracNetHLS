@@ -152,16 +152,19 @@ void load_weights_tile(
 		int in_channels
 )
 {
-
+#pragma HLS ARRAY_PARTITION variable=weight_src cyclic factor=8 dim=1
+#pragma HLS ARRAY_PARTITION variable=weight_src complete dim=3
+#pragma HLS ARRAY_PARTITION variable=weight_src complete dim=4
+#pragma HLS ARRAY_PARTITION variable=threshold_src cyclic factor=8 dim=1
 
 	LOOP_Load_Weights_Tile:
 	for(int n_filter=0; n_filter<OUT_CHANNEL_PARALLELISM; n_filter++){
 		for(int c_in=0; c_in<in_channels; c_in++){
 #pragma HLS PIPELINE
+			threshold_dest[n_filter] = threshold_src[start_filter_id+n_filter];
 			for(int k_row=0; k_row<3; k_row++){
 				for(int k_col=0; k_col<3; k_col++){
 					weight_dest[n_filter][c_in][k_row][k_col] = weight_src[start_filter_id+n_filter][c_in][k_row][k_col];
-					threshold_dest[n_filter] = threshold_src[start_filter_id+n_filter];
 				}
 			}
 		}
