@@ -8,5 +8,9 @@ void FracNet(
     float output[10]
 );
 
+void FracNet_T(
+    uint16 image[6][32][32],
+    float out[64*32*32]
+);
 
 #endif

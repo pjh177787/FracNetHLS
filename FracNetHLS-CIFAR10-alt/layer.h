@@ -114,7 +114,6 @@ void merge_tile( // merge results to msb_outputs
 void shortcut( // add results to input_a (make first row & col invalid)
 		FIX_FM_acc input_a[CHANNEL_OUT][WIDTH][WIDTH],
 		FIX_FM_acc input_b[CHANNEL_OUT][WIDTH][WIDTH],
-		FIX_FM_acc outputs[CHANNEL_OUT][WIDTH][WIDTH],
 		int H_fmap,
 		int out_channels
 )
@@ -125,7 +124,6 @@ void shortcut( // add results to input_a (make first row & col invalid)
 		for (int i=0; i<H_fmap; i++) { // possible to add dataflow
 			for (int j=0; j<H_fmap; j++) {
 #pragma HLS PIPELINE
-
 				FIX_FM_acc out_feature[BN_CHANNEL_PARALLELISM];
 #pragma HLS ARRAY_PARTITION variable=out_feature complete dim=1
 				for (int channel_pt=0; channel_pt<BN_CHANNEL_PARALLELISM; channel_pt++) {
@@ -137,26 +135,24 @@ void shortcut( // add results to input_a (make first row & col invalid)
 				}
 
 				for (int channel_pt=0; channel_pt<BN_CHANNEL_PARALLELISM; channel_pt++) {
-					outputs[channel_start+channel_pt][i+1][j+1] = out_feature[channel_pt];
+					input_a[channel_start+channel_pt][i][j] = out_feature[channel_pt];
 				}
-
 			}
 		}
 	}
-
 }
 
 template <int W_CH_IN, int W_CH_OUT>
 void load_weights_tile(
-		const uint16 src[W_CH_OUT][W_CH_IN][3][3],
-		uint16 dest[OUT_CHANNEL_PARALLELISM][CHANNEL_IN][3][3],
+		const uint16 weight_src[W_CH_OUT][W_CH_IN][3][3],
+		const FIX_WT threshold_src[W_CH_OUT],
+		uint16 weight_dest[OUT_CHANNEL_PARALLELISM][CHANNEL_IN][3][3],
+		FIX_WT threshold_dest[OUT_CHANNEL_PARALLELISM],
 		int start_filter_id,
 		int in_channels
 )
 {
 
-#pragma HLS ARRAY_PARTITION variable=src complete dim=3
-#pragma HLS ARRAY_PARTITION variable=src complete dim=4
 
 	LOOP_Load_Weights_Tile:
 	for(int n_filter=0; n_filter<OUT_CHANNEL_PARALLELISM; n_filter++){
@@ -164,7 +160,8 @@ void load_weights_tile(
 #pragma HLS PIPELINE
 			for(int k_row=0; k_row<3; k_row++){
 				for(int k_col=0; k_col<3; k_col++){
-					dest[n_filter][c_in][k_row][k_col] = src[start_filter_id+n_filter][c_in][k_row][k_col];
+					weight_dest[n_filter][c_in][k_row][k_col] = weight_src[start_filter_id+n_filter][c_in][k_row][k_col];
+					threshold_dest[n_filter] = threshold_src[start_filter_id+n_filter];
 				}
 			}
 		}
@@ -198,7 +195,7 @@ void batchnorm(
 				FIX_FM_acc out_feature[BN_CHANNEL_PARALLELISM];
 #pragma HLS ARRAY_PARTITION variable=out_feature complete dim=1
 				for (int channel_pt=0; channel_pt<BN_CHANNEL_PARALLELISM; channel_pt++) {
-					out_feature[channel_pt] = outputs[channel_start+channel_pt][i+1][j+1]; // the first row and column are invalid
+					out_feature[channel_pt] = outputs[channel_start+channel_pt][i][j]; // the first row and column are invalid
 				}
 
 				for (int channel_pt=0; channel_pt<BN_CHANNEL_PARALLELISM; channel_pt++) {
@@ -215,44 +212,44 @@ void batchnorm(
 	}
 }
 
-void batchnorm_s2(
-		FIX_FM_acc outputs[CHANNEL_OUT][WIDTH][WIDTH],
-		const FIX_WT* norm_weights,
-		const FIX_WT* norm_bias,
-		int H_fmap,
-		int out_channels
-)
-{
-
-#pragma HLS ARRAY_PARTITION variable=norm_weights cyclic factor=8 dim=1
-#pragma HLS ARRAY_PARTITION variable=norm_bias cyclic factor=8 dim=1
-
-	LOOP_BN:
-	for (int tile=0; tile<out_channels/BN_CHANNEL_PARALLELISM; tile++) {
-		int channel_start = tile * BN_CHANNEL_PARALLELISM;
-		for (int i=0; i<H_fmap; i++) { // possible to add dataflow
-			for (int j=0; j<H_fmap; j++) {
-#pragma HLS PIPELINE
-
-				FIX_FM_acc out_feature[BN_CHANNEL_PARALLELISM];
-#pragma HLS ARRAY_PARTITION variable=out_feature complete dim=1
-				for (int channel_pt=0; channel_pt<BN_CHANNEL_PARALLELISM; channel_pt++) {
-					out_feature[channel_pt] = outputs[channel_start+channel_pt][i*2+1][j*2+1]; // the first row and column are invalid
-				}
-
-				for (int channel_pt=0; channel_pt<BN_CHANNEL_PARALLELISM; channel_pt++) {
-					int ch = channel_start + channel_pt;
-					out_feature[channel_pt] = norm_weights[ch] * out_feature[channel_pt] + norm_bias[ch];
-				}
-
-				for (int channel_pt=0; channel_pt<BN_CHANNEL_PARALLELISM; channel_pt++) {
-					outputs[channel_start+channel_pt][i][j] = out_feature[channel_pt];
-				}
-
-			}
-		}
-	}
-}
+//void batchnorm_s2(
+//		FIX_FM_acc outputs[CHANNEL_OUT][WIDTH][WIDTH],
+//		const FIX_WT* norm_weights,
+//		const FIX_WT* norm_bias,
+//		int H_fmap,
+//		int out_channels
+//)
+//{
+//
+//#pragma HLS ARRAY_PARTITION variable=norm_weights cyclic factor=8 dim=1
+//#pragma HLS ARRAY_PARTITION variable=norm_bias cyclic factor=8 dim=1
+//
+//	LOOP_BN:
+//	for (int tile=0; tile<out_channels/BN_CHANNEL_PARALLELISM; tile++) {
+//		int channel_start = tile * BN_CHANNEL_PARALLELISM;
+//		for (int i=0; i<H_fmap; i++) { // possible to add dataflow
+//			for (int j=0; j<H_fmap; j++) {
+//#pragma HLS PIPELINE
+//
+//				FIX_FM_acc out_feature[BN_CHANNEL_PARALLELISM];
+//#pragma HLS ARRAY_PARTITION variable=out_feature complete dim=1
+//				for (int channel_pt=0; channel_pt<BN_CHANNEL_PARALLELISM; channel_pt++) {
+//					out_feature[channel_pt] = outputs[channel_start+channel_pt][i*2][j*2]; // the first row and column are invalid
+//				}
+//
+//				for (int channel_pt=0; channel_pt<BN_CHANNEL_PARALLELISM; channel_pt++) {
+//					int ch = channel_start + channel_pt;
+//					out_feature[channel_pt] = norm_weights[ch] * out_feature[channel_pt] + norm_bias[ch];
+//				}
+//
+//				for (int channel_pt=0; channel_pt<BN_CHANNEL_PARALLELISM; channel_pt++) {
+//					outputs[channel_start+channel_pt][i][j] = out_feature[channel_pt];
+//				}
+//
+//			}
+//		}
+//	}
+//}
 
 void rprelu(
 		FIX_FM_acc outputs[CHANNEL_OUT][WIDTH][WIDTH],

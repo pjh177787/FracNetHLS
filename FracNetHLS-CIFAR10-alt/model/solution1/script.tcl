@@ -4,15 +4,15 @@
 ## Copyright (C) 1986-2019 Xilinx, Inc. All Rights Reserved.
 ############################################################
 open_project model
-set_top avgpool_8x8
-add_files weights_fracnet.h
-add_files typedefs.h
-add_files pgconv.h
-add_files layer.h
-add_files dimension_def.h
-add_files bnn.h
-add_files bnn.cc
+set_top FracNet_T
 add_files biconv.h
+add_files bnn.h
+add_files bnn_tiled.cc
+add_files dimension_def.h
+add_files layer.h
+add_files pgconv.h
+add_files typedefs.h
+add_files weights_fracnet.h
 add_files -tb bin/conv1_input.bin
 add_files -tb bin/labels.bin
 add_files -tb tb.cc -cflags "-Wno-unknown-pragmas"
@@ -24,7 +24,7 @@ config_sdx -target none
 config_export -format ip_catalog -rtl verilog -vivado_optimization_level 2 -vivado_phys_opt place -vivado_report_level 0
 set_clock_uncertainty 12.5%
 #source "./model/solution1/directives.tcl"
-csim_design
+csim_design -clean -O
 csynth_design
 cosim_design
 export_design -rtl verilog -format ip_catalog

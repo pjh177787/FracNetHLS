@@ -47,14 +47,14 @@
 			<location>C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt/biconv.h</location>
 		</link>
 		<link>
-			<name>source/bnn.cc</name>
-			<type>1</type>
-			<location>C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt/bnn.cc</location>
-		</link>
-		<link>
 			<name>source/bnn.h</name>
 			<type>1</type>
 			<location>C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt/bnn.h</location>
+		</link>
+		<link>
+			<name>source/bnn_tiled.cc</name>
+			<type>1</type>
+			<location>C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt/bnn_tiled.cc</location>
 		</link>
 		<link>
 			<name>source/dimension_def.h</name>

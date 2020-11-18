@@ -6,14 +6,14 @@
     <originFiles name="pgconv.h" path="C:\Users\Aperture\Git\FracNetHLS-CIFAR10-alt\pgconv.h"/>
     <originFiles name="layer.h" path="C:\Users\Aperture\Git\FracNetHLS-CIFAR10-alt\layer.h"/>
     <originFiles name="dimension_def.h" path="C:\Users\Aperture\Git\FracNetHLS-CIFAR10-alt\dimension_def.h"/>
-    <originFiles name="bnn.h" path="C:\Users\Aperture\Git\FracNetHLS-CIFAR10-alt\bnn.h"/>
-    <originFiles name="bnn.cc" path="C:\Users\Aperture\Git\FracNetHLS-CIFAR10-alt\bnn.cc"/>
     <originFiles name="biconv.h" path="C:\Users\Aperture\Git\FracNetHLS-CIFAR10-alt\biconv.h"/>
+    <originFiles name="bnn_tiled.cc" path="C:\Users\Aperture\Git\FracNetHLS-CIFAR10-alt\bnn_tiled.cc"/>
+    <originFiles name="bnn.h" path="C:\Users\Aperture\Git\FracNetHLS-CIFAR10-alt\bnn.h"/>
   </source>
   <testbench>
-    <originFiles name="tb.cc" path="C:\Users\Aperture\Git\FracNetHLS-CIFAR10-alt\tb.cc"/>
-    <originFiles name="weights_tb.h" path="C:\Users\Aperture\Git\FracNetHLS-CIFAR10-alt\weights_tb.h"/>
     <originFiles name="conv1_input.bin" path="C:\Users\Aperture\Git\FracNetHLS-CIFAR10-alt\bin\conv1_input.bin"/>
     <originFiles name="labels.bin" path="C:\Users\Aperture\Git\FracNetHLS-CIFAR10-alt\bin\labels.bin"/>
+    <originFiles name="tb.cc" path="C:\Users\Aperture\Git\FracNetHLS-CIFAR10-alt\tb.cc"/>
+    <originFiles name="weights_tb.h" path="C:\Users\Aperture\Git\FracNetHLS-CIFAR10-alt\weights_tb.h"/>
   </testbench>
 </autopilotfilemapping:AutoPilotFileMapping>

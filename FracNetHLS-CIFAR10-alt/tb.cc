@@ -430,12 +430,17 @@ void FracNet_sw(float image[96][32][32]) {
 	conv1(image, conv1_weight, conv1_out);
 	bn<16, 32, 32>(conv1_out, bn1_weight, bn1_bias, bn1_out);
 
+	////////////////////////////////////
+	//////////// LAYER 1 ///////////////
+	////////////////////////////////////
+
 	quant_sign<16, 32, 32>(bn1_out, layer1_0_binarize1_out);
 	layer1_pgconv<16, 16, 32, 32, 32, 32>(layer1_0_binarize1_out, layer1_0_conv1_weight, layer1_0_conv1_threshold, layer1_0_pgconv1_out);
 	bn<16, 32, 32>(layer1_0_pgconv1_out, layer1_0_bn1_weight, layer1_0_bn1_bias, layer1_0_bn1_out);
 	rprelu<16, 32, 32>(layer1_0_bn1_out, layer1_0_rprelu1_shift_x_bias, layer1_0_rprelu1_shift_y_bias, layer1_0_rprelu1_prelu_weight, layer1_0_rprelu1_out);
 	shortcut<16, 32, 32>(layer1_0_rprelu1_out, bn1_out, layer1_0_shortcut1_out);
 	bn<16, 32, 32>(layer1_0_shortcut1_out, layer1_0_bn3_weight, layer1_0_bn3_bias, layer1_0_bn3_out);
+
 	quant_sign<16, 32, 32>(layer1_0_bn3_out, layer1_0_binarize2_out);
 	layer1_pgconv<16, 16, 32, 32, 32, 32>(layer1_0_binarize2_out, layer1_0_conv2_weight, layer1_0_conv2_threshold, layer1_0_pgconv2_out);
 	bn<16, 32, 32>(layer1_0_pgconv2_out, layer1_0_bn2_weight, layer1_0_bn2_bias, layer1_0_bn2_out);
@@ -449,6 +454,7 @@ void FracNet_sw(float image[96][32][32]) {
 	rprelu<16, 32, 32>(layer1_1_bn1_out, layer1_1_rprelu1_shift_x_bias, layer1_1_rprelu1_shift_y_bias, layer1_1_rprelu1_prelu_weight, layer1_1_rprelu1_out);
 	shortcut<16, 32, 32>(layer1_1_rprelu1_out, layer1_0_bn4_out, layer1_1_shortcut1_out);
 	bn<16, 32, 32>(layer1_1_shortcut1_out, layer1_1_bn3_weight, layer1_1_bn3_bias, layer1_1_bn3_out);
+
 	quant_sign<16, 32, 32>(layer1_1_bn3_out, layer1_1_binarize2_out);
 	layer1_pgconv<16, 16, 32, 32, 32, 32>(layer1_1_binarize2_out, layer1_1_conv2_weight, layer1_1_conv2_threshold, layer1_1_pgconv2_out);
 	bn<16, 32, 32>(layer1_1_pgconv2_out, layer1_1_bn2_weight, layer1_1_bn2_bias, layer1_1_bn2_out);
@@ -462,12 +468,18 @@ void FracNet_sw(float image[96][32][32]) {
 	rprelu<16, 32, 32>(layer1_2_bn1_out, layer1_2_rprelu1_shift_x_bias, layer1_2_rprelu1_shift_y_bias, layer1_2_rprelu1_prelu_weight, layer1_2_rprelu1_out);
 	shortcut<16, 32, 32>(layer1_2_rprelu1_out, layer1_1_bn4_out, layer1_2_shortcut1_out);
 	bn<16, 32, 32>(layer1_2_shortcut1_out, layer1_2_bn3_weight, layer1_2_bn3_bias, layer1_2_bn3_out);
+
 	quant_sign<16, 32, 32>(layer1_2_bn3_out, layer1_2_binarize2_out);
 	layer1_pgconv<16, 16, 32, 32, 32, 32>(layer1_2_binarize2_out, layer1_2_conv2_weight, layer1_2_conv2_threshold, layer1_2_pgconv2_out);
 	bn<16, 32, 32>(layer1_2_pgconv2_out, layer1_2_bn2_weight, layer1_2_bn2_bias, layer1_2_bn2_out);
 	rprelu<16, 32, 32>(layer1_2_bn2_out, layer1_2_rprelu2_shift_x_bias, layer1_2_rprelu2_shift_y_bias, layer1_2_rprelu2_prelu_weight, layer1_2_rprelu2_out);
 	shortcut<16, 32, 32>(layer1_2_rprelu2_out, layer1_2_bn3_out, layer1_2_shortcut2_out);
 	bn<16, 32, 32>(layer1_2_shortcut2_out, layer1_2_bn4_weight, layer1_2_bn4_bias, layer1_2_bn4_out);
+
+
+	////////////////////////////////////
+	//////////// LAYER 2 ///////////////
+	////////////////////////////////////
 
 	quant_sign<16, 32, 32>(layer1_2_bn4_out, layer2_0_binarize1_out);
 	layer2_pgconv<16, 32, 32, 32, 16, 16>(layer2_0_binarize1_out, layer2_0_conv1_weight, layer2_0_conv1_threshold, layer2_0_pgconv1_out);
@@ -511,6 +523,10 @@ void FracNet_sw(float image[96][32][32]) {
 	rprelu<32, 16, 16>(layer2_2_bn2_out, layer2_2_rprelu2_shift_x_bias, layer2_2_rprelu2_shift_y_bias, layer2_2_rprelu2_prelu_weight, layer2_2_rprelu2_out);
 	shortcut<32, 16, 16>(layer2_2_rprelu2_out, layer2_2_bn3_out, layer2_2_shortcut2_out);
 	bn<32, 16, 16>(layer2_2_shortcut2_out, layer2_2_bn4_weight, layer2_2_bn4_bias, layer2_2_bn4_out);
+
+	////////////////////////////////////
+	//////////// LAYER 3 ///////////////
+	////////////////////////////////////
 
 	quant_sign<32, 16, 16>(layer2_2_bn4_out, layer3_0_binarize1_out);
 	layer3_pgconv<32, 64, 16, 16, 8, 8>(layer3_0_binarize1_out, layer3_0_conv1_weight, layer3_0_conv1_threshold, layer3_0_pgconv1_out);
@@ -597,27 +613,44 @@ int main(int argc, char **argv)
 		//////// SOFTWARE /////////////
 		////////////////////////////////
 
-//		FracNet_sw(image);
-//
-//		int predict = 0;
-//		p = -1000;
-//		for (int i = 0; i < 10; i ++) {
-//			float cl = classifier_out[i];
-//			if (cl > p) {
-//				p = cl;
-//				predict = i;
-//			}
-//		}
-//		int label = labels[k];
-//		if (predict == label) {
-//			correct_sw ++;
-//		}
+		FracNet_sw(image);
+
+		int predict = 0;
+		p = -1000;
+		for (int i = 0; i < 10; i ++) {
+			float cl = classifier_out[i];
+			if (cl > p) {
+				p = cl;
+				predict = i;
+			}
+		}
+		int label = labels[k];
+		if (predict == label) {
+			correct_sw ++;
+		}
+		cout << "Processed " << k + 1 << " pictures. " << endl;
+		cout << "Software has "<< correct_sw << "/" << k + 1 << " correct." << endl;
+		// cout << "Hardware has "<< correct_hw << "/" << k + 1 << " correct." << endl;
+
+
+		//		int print_row = 16;
+		//		int print_col = 32;
+		//
+		//		cout << "tb output layer3_2_bn4_out" << endl;
+		//		for (int row = 0; row < print_row; row ++) {
+		//			for (int col = 0; col < print_col; col ++) {
+		//				cout << layer3_2_bn4_out[0][row][col] << "  ";
+		//			}
+		//			cout << endl;
+		//		}
+		//		cout << "-------------------- above is tb.cc output ---------------------------" << endl;
 
 
 		////////////////////////////////
 		//////// HARDWARE //////////////
 		////////////////////////////////
 
+		//		float accelerator_output[64*32*32];
 		float accelerator_output[10];
 
 		uint16 image_hw[6][32][32] = {0};
@@ -636,7 +669,36 @@ int main(int argc, char **argv)
 			}
 		}
 
-		FracNet(image_hw, accelerator_output);
+		FracNet_T(image_hw, accelerator_output);
+
+		//		cout << endl << "accelerator output: "<< endl;
+		//		for (int row = 0; row < print_row; row ++) {
+		//			for(int col = 0; col < print_col; col ++) {
+		//				cout << accelerator_output[row*32 + col] << "  ";
+		//			}
+		//			cout << endl;
+		//		}
+		//
+		//        FIX_FM_acc err = 0;
+		//        FIX_FM_acc total_err = 0;
+		//        FIX_FM_acc max_err = 0;
+		//        int err_cnt = 0;
+		//        int total = 0;
+		//        for(int i=0; i<64; i++){
+		//            for(int j=0; j<8; j++){
+		//                for(int k=0; k<8; k++){
+		//                    err = hls::absf(accelerator_output[i*32*32+j*32+k] - FIX_FM_acc(layer3_2_bn4_out[i][j][k]));
+		//                    if (err > max_err) max_err = err;
+		//                    if (err > 0.1) err_cnt += 1;
+		//                    //if (err != 0) cout << "(" << i << ", " << j << ", " << k << ") ";
+		//                    total_err += err;
+		//                    total += 1;
+		//                }
+		//            }
+		//        }
+		//        cout << endl << "Total absolute error: " << total_err << endl;
+		//        cout << "Total number of errors: " << err_cnt << "/" << total << endl;
+		//        cout << "Maximum absolute pixel error: " << max_err << endl;
 
 		int predict_hw = 0;
 		p = -1000;
@@ -651,13 +713,9 @@ int main(int argc, char **argv)
 			correct_hw ++;
 		}
 
+		cout << "Hardware has "<< correct_hw << "/" << k + 1 << " correct." << endl;
+		cout << "\n" << endl;
 
-//		if (k %10 == 9) {
-			cout << "Processed " << k + 1 << " pictures. " << endl;
-//			cout << "Software has "<< correct_sw << "/" << k + 1 << " correct." << endl;
-			cout << "Hardware has "<< correct_hw << "/" << k + 1 << " correct." << endl;
-//			cout << "\n" << endl;
-//		}
 	}
 
 	return 0;

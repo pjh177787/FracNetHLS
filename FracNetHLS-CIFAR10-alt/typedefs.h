@@ -6,7 +6,7 @@
 //#include <ap_int.h>
 #include <ap_fixed.h>
 
-//#define SW_TEST
+#define SW_TEST
 
 #ifdef SW_TEST
 	typedef float FIX_32_4;	//fix point
