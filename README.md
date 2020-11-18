@@ -23,3 +23,9 @@ Possible reason is that we pack the pgconv into a function. We need to write it 
 I will do that when I get up. 
 
 Also, based on testing, ap_fixed<16, 10> for FM and <16, 4> for WT is good enough, giving us 95+ accuracy. 
+
+## Update 11/18:
+
+BRAM is no longer a problem. LUTs is still quite a lot. Too many muxes on the memory ports and stuff. Need to look more into that. 
+More simulations say <14, 9> for FM and <10, 3> for WT should be good enough. We can look further into that.
+I'll update more after I get some sleep. 
