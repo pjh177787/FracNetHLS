@@ -619,50 +619,54 @@ int main(int argc, char **argv)
 		p = -1000;
 		for (int i = 0; i < 10; i ++) {
 			float cl = classifier_out[i];
+			cout << classifier_out[i] << "  ";
 			if (cl > p) {
 				p = cl;
 				predict = i;
 			}
 		}
+		cout << endl;
 		int label = labels[k];
 		if (predict == label) {
 			correct_sw ++;
 		}
 		cout << "Processed " << k + 1 << " pictures. " << endl;
 		cout << "Software has "<< correct_sw << "/" << k + 1 << " correct." << endl;
-		// cout << "Hardware has "<< correct_hw << "/" << k + 1 << " correct." << endl;
 
 
-		//		int print_row = 16;
-		//		int print_col = 32;
-		//
-		//		cout << "tb output layer3_2_bn4_out" << endl;
-		//		for (int row = 0; row < print_row; row ++) {
-		//			for (int col = 0; col < print_col; col ++) {
-		//				cout << layer3_2_bn4_out[0][row][col] << "  ";
-		//			}
-		//			cout << endl;
-		//		}
-		//		cout << "-------------------- above is tb.cc output ---------------------------" << endl;
+//		int print_row = 16;
+//		int print_col = 32;
+
+//		cout << "tb output bn1_out" << endl;
+//		for (int row = 0; row < print_row; row ++) {
+//			for (int col = 0; col < print_col; col ++) {
+//				cout << bn1_out[0][row][col] << "  ";
+//			}
+//			cout << endl;
+//		}
+
+		cout << "-------------------- above is tb.cc output ---------------------------" << endl;
+
+
 
 
 		////////////////////////////////
 		//////// HARDWARE //////////////
 		////////////////////////////////
 
-		//		float accelerator_output[64*32*32];
+//		float accelerator_output[64*32*32];
 		float accelerator_output[10];
 
-		uint16 image_hw[6][32][32] = {0};
+		uint64 image_hw[3][32][32] = {0};
 
-		for(int j = 0; j < 6; j ++){
+		for(int j = 0; j < 3; j ++){
 			for(int row = 0; row < 32; row ++){
 				for(int col = 0; col < 32; col ++){
-					for(int b = 0; b < 16; b ++){
-						if (image[j*16 + b][row][col] > 0) {
-							image_hw[j][row][col][15 - b] = 1;
+					for(int b = 0; b < 32; b ++){
+						if (image[j*32 + b][row][col] > 0) {
+							image_hw[j][row][col][63 - b] = 1;
 						} else {
-							image_hw[j][row][col][15 - b] = 0;
+							image_hw[j][row][col][63 - b] = 0;
 						}
 					}
 				}
@@ -671,44 +675,48 @@ int main(int argc, char **argv)
 
 		FracNet_T(image_hw, accelerator_output);
 
-		//		cout << endl << "accelerator output: "<< endl;
-		//		for (int row = 0; row < print_row; row ++) {
-		//			for(int col = 0; col < print_col; col ++) {
-		//				cout << accelerator_output[row*32 + col] << "  ";
-		//			}
-		//			cout << endl;
-		//		}
-		//
-		//        FIX_FM_acc err = 0;
-		//        FIX_FM_acc total_err = 0;
-		//        FIX_FM_acc max_err = 0;
-		//        int err_cnt = 0;
-		//        int total = 0;
-		//        for(int i=0; i<64; i++){
-		//            for(int j=0; j<8; j++){
-		//                for(int k=0; k<8; k++){
-		//                    err = hls::absf(accelerator_output[i*32*32+j*32+k] - FIX_FM_acc(layer3_2_bn4_out[i][j][k]));
-		//                    if (err > max_err) max_err = err;
-		//                    if (err > 0.1) err_cnt += 1;
-		//                    //if (err != 0) cout << "(" << i << ", " << j << ", " << k << ") ";
-		//                    total_err += err;
-		//                    total += 1;
-		//                }
-		//            }
-		//        }
-		//        cout << endl << "Total absolute error: " << total_err << endl;
-		//        cout << "Total number of errors: " << err_cnt << "/" << total << endl;
-		//        cout << "Maximum absolute pixel error: " << max_err << endl;
+
+//		cout << endl << "accelerator output: "<< endl;
+//		for (int row = 0; row < print_row; row ++) {
+//			for(int col = 0; col < print_col; col ++) {
+//				cout << accelerator_output[row*32 + col] << "  ";
+//			}
+//			cout << endl;
+//		}
+//
+//		FIX_FM_acc err = 0;
+//		FIX_FM_acc total_err = 0;
+//		FIX_FM_acc max_err = 0;
+//		int err_cnt = 0;
+//		int total = 0;
+//		for(int i=0; i<16; i++){
+//			for(int j=0; j<32; j++){
+//				for(int k=0; k<32; k++){
+//					err = hls::absf(accelerator_output[i*32*32+j*32+k] - FIX_FM_acc(bn1_out[i][j][k]));
+//					if (err > max_err) max_err = err;
+//					if (err > 0.1) err_cnt += 1;
+//					//if (err != 0) cout << "(" << i << ", " << j << ", " << k << ") ";
+//					total_err += err;
+//					total += 1;
+//				}
+//			}
+//		}
+//		cout << endl << "Total absolute error: " << total_err << endl;
+//		cout << "Total number of errors: " << err_cnt << "/" << total << endl;
+//		cout << "Maximum absolute pixel error: " << max_err << endl;
+
 
 		int predict_hw = 0;
 		p = -1000;
 		for (int i = 0; i < 10; i ++) {
 			float cl = accelerator_output[i];
+			cout << accelerator_output[i] << "  ";
 			if (cl > p) {
 				p = cl;
 				predict_hw = i;
 			}
 		}
+		cout << endl;
 		if (predict_hw == labels[k]) {
 			correct_hw ++;
 		}

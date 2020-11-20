@@ -1,5 +1,5 @@
 
-#define CHANNEL_IN 6
+#define CHANNEL_IN 3
 #define CHANNEL_OUT 64
 #define CHANNEL_OUT_T 8
 #define WIDTH 33
