@@ -172,7 +172,7 @@ inline void load_weights_tile(
 
 	LOOP_Load_Weights_Tile:
 	for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
-		//#pragma HLS PIPELINE
+		#pragma HLS PIPELINE
 		threshold_dest[ch] = threshold_src[c_out][ch];
 		bn_weight_0_dest[ch] = bn_weight_0_src[c_out][ch];
 		bn_weight_1_dest[ch] = bn_weight_1_src[c_out][ch];

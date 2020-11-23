@@ -101,9 +101,13 @@ void FracNet_T(
 				c_out
 		);
 		for(int c_in = 0; c_in < in_channels_after_pack; c_in ++){
-			load_conv_weights_tile(
-					conv1_weight_fix[c_out][c_in], weight_tile_buffer
-			);
+			for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
+				for(int k_row=0; k_row<3; k_row++){
+					for(int k_col=0; k_col<3; k_col++){
+						 weight_tile_buffer[ch][k_row][k_col] = conv1_weight_fix[c_out][c_in][ch][k_row][k_col];
+					}
+				}
+			}
 			pg_conv3x3_tile(
 					msb_fmap, lsb_fmap, weight_tile_buffer,
 					out_buf_t0, out_buf_t1,
@@ -134,6 +138,13 @@ void FracNet_T(
 	LOOP_layer1_0_PGConv1:
 	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
 		int c_in = 0;
+		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
+			for(int k_row=0; k_row<3; k_row++){
+				for(int k_col=0; k_col<3; k_col++){
+					 weight_tile_buffer[ch][k_row][k_col] = layer1_0_conv1_weight_fix[c_out][ch][k_row][k_col];
+				}
+			}
+		}
 		load_weights_tile(
 				layer1_0_conv1_threshold_fix,
 				layer1_0_bn1_weight_fix, layer1_0_bn3_weight_fix,
@@ -147,9 +158,6 @@ void FracNet_T(
 				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
 				relu_weight_tile_buffer,
 				c_out
-		);
-		load_conv_weights_tile(
-				layer1_0_conv1_weight_fix[c_out], weight_tile_buffer
 		);
 		pg_conv3x3_tile(
 				msb_fmap, lsb_fmap, weight_tile_buffer,
@@ -175,6 +183,13 @@ void FracNet_T(
 	LOOP_layer1_0_PGConv2:
 	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
 		int c_in = 0;
+		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
+			for(int k_row=0; k_row<3; k_row++){
+				for(int k_col=0; k_col<3; k_col++){
+					 weight_tile_buffer[ch][k_row][k_col] = layer1_0_conv2_weight_fix[c_out][ch][k_row][k_col];
+				}
+			}
+		}
 		load_weights_tile(
 				layer1_0_conv2_threshold_fix,
 				layer1_0_bn2_weight_fix, layer1_0_bn4_weight_fix,
@@ -188,9 +203,6 @@ void FracNet_T(
 				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
 				relu_weight_tile_buffer,
 				c_out
-		);
-		load_conv_weights_tile(
-				layer1_0_conv2_weight_fix[c_out], weight_tile_buffer
 		);
 		pg_conv3x3_tile(
 				msb_fmap, lsb_fmap, weight_tile_buffer,
@@ -216,6 +228,13 @@ void FracNet_T(
 	LOOP_layer1_1_PGConv1:
 	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
 		int c_in = 0;
+		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
+			for(int k_row=0; k_row<3; k_row++){
+				for(int k_col=0; k_col<3; k_col++){
+					 weight_tile_buffer[ch][k_row][k_col] = layer1_1_conv1_weight_fix[c_out][ch][k_row][k_col];
+				}
+			}
+		}
 		load_weights_tile(
 				layer1_1_conv1_threshold_fix,
 				layer1_1_bn1_weight_fix, layer1_1_bn3_weight_fix,
@@ -229,9 +248,6 @@ void FracNet_T(
 				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
 				relu_weight_tile_buffer,
 				c_out
-		);
-		load_conv_weights_tile(
-				layer1_1_conv1_weight_fix[c_out], weight_tile_buffer
 		);
 		pg_conv3x3_tile(
 				msb_fmap, lsb_fmap, weight_tile_buffer,
@@ -257,6 +273,13 @@ void FracNet_T(
 	LOOP_layer1_1_PGConv2:
 	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
 		int c_in = 0;
+		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
+			for(int k_row=0; k_row<3; k_row++){
+				for(int k_col=0; k_col<3; k_col++){
+					 weight_tile_buffer[ch][k_row][k_col] = layer1_1_conv2_weight_fix[c_out][ch][k_row][k_col];
+				}
+			}
+		}
 		load_weights_tile(
 				layer1_1_conv2_threshold_fix,
 				layer1_1_bn2_weight_fix, layer1_1_bn4_weight_fix,
@@ -270,9 +293,6 @@ void FracNet_T(
 				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
 				relu_weight_tile_buffer,
 				c_out
-		);
-		load_conv_weights_tile(
-				layer1_1_conv2_weight_fix[c_out], weight_tile_buffer
 		);
 		pg_conv3x3_tile(
 				msb_fmap, lsb_fmap, weight_tile_buffer,
@@ -298,6 +318,13 @@ void FracNet_T(
 	LOOP_layer1_2_PGConv1:
 	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
 		int c_in = 0;
+		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
+			for(int k_row=0; k_row<3; k_row++){
+				for(int k_col=0; k_col<3; k_col++){
+					 weight_tile_buffer[ch][k_row][k_col] = layer1_2_conv1_weight_fix[c_out][ch][k_row][k_col];
+				}
+			}
+		}
 		load_weights_tile(
 				layer1_2_conv1_threshold_fix,
 				layer1_2_bn1_weight_fix, layer1_2_bn3_weight_fix,
@@ -311,9 +338,6 @@ void FracNet_T(
 				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
 				relu_weight_tile_buffer,
 				c_out
-		);
-		load_conv_weights_tile(
-				layer1_2_conv1_weight_fix[c_out], weight_tile_buffer
 		);
 		pg_conv3x3_tile(
 				msb_fmap, lsb_fmap, weight_tile_buffer,
@@ -339,6 +363,13 @@ void FracNet_T(
 	LOOP_layer1_2_PGConv2:
 	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
 		int c_in = 0;
+		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
+			for(int k_row=0; k_row<3; k_row++){
+				for(int k_col=0; k_col<3; k_col++){
+					 weight_tile_buffer[ch][k_row][k_col] = layer1_2_conv2_weight_fix[c_out][ch][k_row][k_col];
+				}
+			}
+		}
 		load_weights_tile(
 				layer1_2_conv2_threshold_fix,
 				layer1_2_bn2_weight_fix, layer1_2_bn4_weight_fix,
@@ -352,9 +383,6 @@ void FracNet_T(
 				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
 				relu_weight_tile_buffer,
 				c_out
-		);
-		load_conv_weights_tile(
-				layer1_2_conv2_weight_fix[c_out], weight_tile_buffer
 		);
 		pg_conv3x3_tile(
 				msb_fmap, lsb_fmap, weight_tile_buffer,
@@ -392,6 +420,13 @@ void FracNet_T(
 	LOOP_layer2_0_PGConv1:
 	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
 		int c_in = 0;
+		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
+			for(int k_row=0; k_row<3; k_row++){
+				for(int k_col=0; k_col<3; k_col++){
+					 weight_tile_buffer[ch][k_row][k_col] = layer2_0_conv1_weight_fix[c_out][ch][k_row][k_col];
+				}
+			}
+		}
 		load_weights_tile(
 				layer2_0_conv1_threshold_fix,
 				layer2_0_bn1_weight_fix, layer2_0_bn3_weight_fix,
@@ -405,9 +440,6 @@ void FracNet_T(
 				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
 				relu_weight_tile_buffer,
 				c_out
-		);
-		load_conv_weights_tile(
-				layer2_0_conv1_weight_fix[c_out], weight_tile_buffer
 		);
 		pg_conv3x3_tile(
 				msb_fmap, lsb_fmap, weight_tile_buffer,
@@ -444,6 +476,13 @@ void FracNet_T(
 	LOOP_layer2_0_PGConv2:
 	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
 		int c_in = 0;
+		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
+			for(int k_row=0; k_row<3; k_row++){
+				for(int k_col=0; k_col<3; k_col++){
+					 weight_tile_buffer[ch][k_row][k_col] = layer2_0_conv2_weight_fix[c_out][ch][k_row][k_col];
+				}
+			}
+		}
 		load_weights_tile(
 				layer2_0_conv2_threshold_fix,
 				layer2_0_bn2_weight_fix, layer2_0_bn4_weight_fix,
@@ -457,9 +496,6 @@ void FracNet_T(
 				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
 				relu_weight_tile_buffer,
 				c_out
-		);
-		load_conv_weights_tile(
-				layer2_0_conv2_weight_fix[c_out], weight_tile_buffer
 		);
 		pg_conv3x3_tile(
 				msb_fmap, lsb_fmap, weight_tile_buffer,
@@ -485,6 +521,13 @@ void FracNet_T(
 	LOOP_layer2_1_PGConv1:
 	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
 		int c_in = 0;
+		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
+			for(int k_row=0; k_row<3; k_row++){
+				for(int k_col=0; k_col<3; k_col++){
+					 weight_tile_buffer[ch][k_row][k_col] = layer2_1_conv1_weight_fix[c_out][ch][k_row][k_col];
+				}
+			}
+		}
 		load_weights_tile(
 				layer2_1_conv1_threshold_fix,
 				layer2_1_bn1_weight_fix, layer2_1_bn3_weight_fix,
@@ -498,9 +541,6 @@ void FracNet_T(
 				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
 				relu_weight_tile_buffer,
 				c_out
-		);
-		load_conv_weights_tile(
-				layer2_1_conv1_weight_fix[c_out], weight_tile_buffer
 		);
 		pg_conv3x3_tile(
 				msb_fmap, lsb_fmap, weight_tile_buffer,
@@ -526,6 +566,13 @@ void FracNet_T(
 	LOOP_layer2_1_PGConv2:
 	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
 		int c_in = 0;
+		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
+			for(int k_row=0; k_row<3; k_row++){
+				for(int k_col=0; k_col<3; k_col++){
+					 weight_tile_buffer[ch][k_row][k_col] = layer2_1_conv2_weight_fix[c_out][ch][k_row][k_col];
+				}
+			}
+		}
 		load_weights_tile(
 				layer2_1_conv2_threshold_fix,
 				layer2_1_bn2_weight_fix, layer2_1_bn4_weight_fix,
@@ -539,9 +586,6 @@ void FracNet_T(
 				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
 				relu_weight_tile_buffer,
 				c_out
-		);
-		load_conv_weights_tile(
-				layer2_1_conv2_weight_fix[c_out], weight_tile_buffer
 		);
 		pg_conv3x3_tile(
 				msb_fmap, lsb_fmap, weight_tile_buffer,
@@ -567,6 +611,13 @@ void FracNet_T(
 	LOOP_layer2_2_PGConv1:
 	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
 		int c_in = 0;
+		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
+			for(int k_row=0; k_row<3; k_row++){
+				for(int k_col=0; k_col<3; k_col++){
+					 weight_tile_buffer[ch][k_row][k_col] = layer2_2_conv1_weight_fix[c_out][ch][k_row][k_col];
+				}
+			}
+		}
 		load_weights_tile(
 				layer2_2_conv1_threshold_fix,
 				layer2_2_bn1_weight_fix, layer2_2_bn3_weight_fix,
@@ -580,9 +631,6 @@ void FracNet_T(
 				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
 				relu_weight_tile_buffer,
 				c_out
-		);
-		load_conv_weights_tile(
-				layer2_2_conv1_weight_fix[c_out], weight_tile_buffer
 		);
 		pg_conv3x3_tile(
 				msb_fmap, lsb_fmap, weight_tile_buffer,
@@ -608,6 +656,13 @@ void FracNet_T(
 	LOOP_layer2_2_PGConv2:
 	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
 		int c_in = 0;
+		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
+			for(int k_row=0; k_row<3; k_row++){
+				for(int k_col=0; k_col<3; k_col++){
+					 weight_tile_buffer[ch][k_row][k_col] = layer2_2_conv2_weight_fix[c_out][ch][k_row][k_col];
+				}
+			}
+		}
 		load_weights_tile(
 				layer2_2_conv2_threshold_fix,
 				layer2_2_bn2_weight_fix, layer2_2_bn4_weight_fix,
@@ -621,9 +676,6 @@ void FracNet_T(
 				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
 				relu_weight_tile_buffer,
 				c_out
-		);
-		load_conv_weights_tile(
-				layer2_2_conv2_weight_fix[c_out], weight_tile_buffer
 		);
 		pg_conv3x3_tile(
 				msb_fmap, lsb_fmap, weight_tile_buffer,
@@ -661,6 +713,13 @@ void FracNet_T(
 	LOOP_layer3_0_PGConv1:
 	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
 		int c_in = 0;
+		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
+			for(int k_row=0; k_row<3; k_row++){
+				for(int k_col=0; k_col<3; k_col++){
+					 weight_tile_buffer[ch][k_row][k_col] = layer3_0_conv1_weight_fix[c_out][ch][k_row][k_col];
+				}
+			}
+		}
 		load_weights_tile(
 				layer3_0_conv1_threshold_fix,
 				layer3_0_bn1_weight_fix, layer3_0_bn3_weight_fix,
@@ -674,9 +733,6 @@ void FracNet_T(
 				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
 				relu_weight_tile_buffer,
 				c_out
-		);
-		load_conv_weights_tile(
-				layer3_0_conv1_weight_fix[c_out], weight_tile_buffer
 		);
 		pg_conv3x3_tile(
 				msb_fmap, lsb_fmap, weight_tile_buffer,
@@ -713,6 +769,13 @@ void FracNet_T(
 	LOOP_layer3_0_PGConv2:
 	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
 		int c_in = 0;
+		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
+			for(int k_row=0; k_row<3; k_row++){
+				for(int k_col=0; k_col<3; k_col++){
+					 weight_tile_buffer[ch][k_row][k_col] = layer3_0_conv2_weight_fix[c_out][ch][k_row][k_col];
+				}
+			}
+		}
 		load_weights_tile(
 				layer3_0_conv2_threshold_fix,
 				layer3_0_bn2_weight_fix, layer3_0_bn4_weight_fix,
@@ -726,9 +789,6 @@ void FracNet_T(
 				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
 				relu_weight_tile_buffer,
 				c_out
-		);
-		load_conv_weights_tile(
-				layer3_0_conv2_weight_fix[c_out], weight_tile_buffer
 		);
 		pg_conv3x3_tile(
 				msb_fmap, lsb_fmap, weight_tile_buffer,
@@ -754,6 +814,13 @@ void FracNet_T(
 	LOOP_layer3_1_PGConv1:
 	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
 		int c_in = 0;
+		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
+			for(int k_row=0; k_row<3; k_row++){
+				for(int k_col=0; k_col<3; k_col++){
+					 weight_tile_buffer[ch][k_row][k_col] = layer3_1_conv1_weight_fix[c_out][ch][k_row][k_col];
+				}
+			}
+		}
 		load_weights_tile(
 				layer3_1_conv1_threshold_fix,
 				layer3_1_bn1_weight_fix, layer3_1_bn3_weight_fix,
@@ -767,9 +834,6 @@ void FracNet_T(
 				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
 				relu_weight_tile_buffer,
 				c_out
-		);
-		load_conv_weights_tile(
-				layer3_1_conv1_weight_fix[c_out], weight_tile_buffer
 		);
 		pg_conv3x3_tile(
 				msb_fmap, lsb_fmap, weight_tile_buffer,
@@ -795,6 +859,13 @@ void FracNet_T(
 	LOOP_layer3_1_PGConv2:
 	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
 		int c_in = 0;
+		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
+			for(int k_row=0; k_row<3; k_row++){
+				for(int k_col=0; k_col<3; k_col++){
+					 weight_tile_buffer[ch][k_row][k_col] = layer3_1_conv2_weight_fix[c_out][ch][k_row][k_col];
+				}
+			}
+		}
 		load_weights_tile(
 				layer3_1_conv2_threshold_fix,
 				layer3_1_bn2_weight_fix, layer3_1_bn4_weight_fix,
@@ -808,9 +879,6 @@ void FracNet_T(
 				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
 				relu_weight_tile_buffer,
 				c_out
-		);
-		load_conv_weights_tile(
-				layer3_1_conv2_weight_fix[c_out], weight_tile_buffer
 		);
 		pg_conv3x3_tile(
 				msb_fmap, lsb_fmap, weight_tile_buffer,
@@ -836,6 +904,13 @@ void FracNet_T(
 	LOOP_layer3_2_PGConv1:
 	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
 		int c_in = 0;
+		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
+			for(int k_row=0; k_row<3; k_row++){
+				for(int k_col=0; k_col<3; k_col++){
+					 weight_tile_buffer[ch][k_row][k_col] = layer3_2_conv1_weight_fix[c_out][ch][k_row][k_col];
+				}
+			}
+		}
 		load_weights_tile(
 				layer3_2_conv1_threshold_fix,
 				layer3_2_bn1_weight_fix, layer3_2_bn3_weight_fix,
@@ -849,9 +924,6 @@ void FracNet_T(
 				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
 				relu_weight_tile_buffer,
 				c_out
-		);
-		load_conv_weights_tile(
-				layer3_2_conv1_weight_fix[c_out], weight_tile_buffer
 		);
 		pg_conv3x3_tile(
 				msb_fmap, lsb_fmap, weight_tile_buffer,
@@ -877,6 +949,13 @@ void FracNet_T(
 	LOOP_layer3_2_PGConv2:
 	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
 		int c_in = 0;
+		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
+			for(int k_row=0; k_row<3; k_row++){
+				for(int k_col=0; k_col<3; k_col++){
+					 weight_tile_buffer[ch][k_row][k_col] = layer3_2_conv2_weight_fix[c_out][ch][k_row][k_col];
+				}
+			}
+		}
 		load_weights_tile(
 				layer3_2_conv2_threshold_fix,
 				layer3_2_bn2_weight_fix, layer3_2_bn4_weight_fix,
@@ -890,9 +969,6 @@ void FracNet_T(
 				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
 				relu_weight_tile_buffer,
 				c_out
-		);
-		load_conv_weights_tile(
-				layer3_2_conv2_weight_fix[c_out], weight_tile_buffer
 		);
 		pg_conv3x3_tile(
 				msb_fmap, lsb_fmap, weight_tile_buffer,
