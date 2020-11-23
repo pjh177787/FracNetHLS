@@ -6,20 +6,36 @@
 #include <iostream>
 
 using namespace std;
-
+const uint64 m1 = 6148914691236517205;
+const uint64 m2 = 3689348814741910323;
+const uint64 m4 = 1085102592571150095;
 
 inline uint8 compute_engine_64(uint64 b, uint64 w)
 {
 #pragma HLS latency max=1
-	uint64 t = b^w;
-	uint8 sum = 0;
-	for(int i = 0; i < 64; i++){
-#pragma HLS UNROLL
-		sum += t[i];
-	}
-	// use yichi method
-	return sum;
+    uint64 x = b^w;
+
+    x -= (x >> 1) & m1;
+    x = (x & m2) + ((x >> 2) & m2);
+    x = (x + (x >> 4)) & m4;
+    x += x >>  8;
+    x += x >> 16;
+    x += x >> 32;
+    return (x & 0x7f);
 }
+
+//inline uint8 compute_engine_64(uint64 b, uint64 w)
+//{
+//#pragma HLS latency max=1
+//	uint64 t = b^w;
+//	uint8 sum = 0;
+//	for(int i = 0; i < 64; i++){
+//#pragma HLS UNROLL
+//		sum += t[i];
+//	}
+//	// use yichi method
+//	return sum;
+//}
 
 
 /*
@@ -31,8 +47,8 @@ inline uint8 compute_engine_64(uint64 b, uint64 w)
  */
 
 void pg_conv3x3_tile( 
-		uint64 msb_inputs[WIDTH][WIDTH], // [6][32+1][32+1] padded inputs, padding len = 1
-		uint64 lsb_inputs[WIDTH][WIDTH],
+		uint64 msb_inputs[CHANNEL_IN][WIDTH][WIDTH], // [6][32+1][32+1] padded inputs, padding len = 1
+		uint64 lsb_inputs[CHANNEL_IN][WIDTH][WIDTH],
 		const uint64 weights[OUT_CHANNEL_PARALLELISM][3][3],
 		FIX_FM_acc msb_outputs[CHANNEL_OUT_T][WIDTH][WIDTH], // [8][32+1][32+1]
 		FIX_FM_acc lsb_outputs[CHANNEL_OUT_T][WIDTH][WIDTH],
@@ -77,11 +93,11 @@ void pg_conv3x3_tile(
 
 			msb_window_buffer[0][2] = (msb_line_buffer[0][col]);
 			msb_window_buffer[1][2] = (msb_line_buffer[0][col] = msb_line_buffer[1][col]);
-			msb_window_buffer[2][2] = (msb_line_buffer[1][col] = msb_inputs[row][col]);
+			msb_window_buffer[2][2] = (msb_line_buffer[1][col] = msb_inputs[c_in][row][col]);
 
 			lsb_window_buffer[0][2] = (lsb_line_buffer[0][col]);
 			lsb_window_buffer[1][2] = (lsb_line_buffer[0][col] = lsb_line_buffer[1][col]);
-			lsb_window_buffer[2][2] = (lsb_line_buffer[1][col] = lsb_inputs[row][col]);
+			lsb_window_buffer[2][2] = (lsb_line_buffer[1][col] = lsb_inputs[0][row][col]);
 
 			// copy output features into registers
 			for (int channel_pt=0; channel_pt<OUT_CHANNEL_PARALLELISM; channel_pt++) {

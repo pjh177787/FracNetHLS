@@ -9,7 +9,7 @@
 
 using namespace std;
 
-#define NUM_TESTS 10
+#define NUM_TESTS 1
 
 unsigned char images[NUM_TESTS*96*32*32];
 unsigned char labels[NUM_TESTS];
@@ -644,7 +644,6 @@ int main(int argc, char **argv)
 //			}
 //			cout << endl;
 //		}
-
 //		cout << "-------------------- above is tb.cc output ---------------------------" << endl;
 
 
@@ -683,7 +682,7 @@ int main(int argc, char **argv)
 //			}
 //			cout << endl;
 //		}
-
+//
 //		FIX_FM_acc err = 0;
 //		FIX_FM_acc total_err = 0;
 //		FIX_FM_acc max_err = 0;

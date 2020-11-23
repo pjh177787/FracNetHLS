@@ -16,9 +16,12 @@ void FracNet_T(
 #pragma HLS ALLOCATION instances=pg_conv3x3_tile limit=1 function
 #pragma HLS ALLOCATION instances=bn_relu_shortcut limit=1 function
 #pragma HLS ALLOCATION instances=quant_and_pack limit=1 function
+#pragma HLS ALLOCATION instances=load_weights_tile limit=1 function
 
 	uint64 msb_fmap[3][WIDTH][WIDTH];
-	//	uint64 lsb_fmap[WIDTH][WIDTH];
+	uint64 lsb_fmap[1][WIDTH][WIDTH];
+#pragma HLS ARRAY_PARTITION variable=msb_fmap complete dim=1
+#pragma HLS ARRAY_PARTITION variable=lsb_fmap complete dim=1
 
 	FIX_FM_acc out_buf_0[CHANNEL_OUT/CHANNEL_OUT_T][CHANNEL_OUT_T][WIDTH][WIDTH];
 	FIX_FM_acc out_buf_t0[CHANNEL_OUT_T][WIDTH][WIDTH];
@@ -28,13 +31,13 @@ void FracNet_T(
 #pragma HLS ARRAY_PARTITION variable=out_buf_t1 complete dim=1
 
 	uint64 weight_tile_buffer[OUT_CHANNEL_PARALLELISM][3][3];
-#pragma HLS ARRAY_PARTITION variable=weight_tile_buffer complete dim=1
+	//#pragma HLS ARRAY_PARTITION variable=weight_tile_buffer complete dim=1
 #pragma HLS ARRAY_PARTITION variable=weight_tile_buffer complete dim=2
 #pragma HLS ARRAY_PARTITION variable=weight_tile_buffer complete dim=3
-//
-//	FIX_WT threshold_tile_buffer[OUT_CHANNEL_PARALLELISM];
-//#pragma HLS ARRAY_PARTITION variable=threshold_tile_buffer complete dim=1
-//
+
+	FIX_WT threshold_tile_buffer[OUT_CHANNEL_PARALLELISM];
+#pragma HLS ARRAY_PARTITION variable=threshold_tile_buffer complete dim=1
+
 	FIX_WT bn_weight_0_tile_buffer[OUT_CHANNEL_PARALLELISM];
 	FIX_WT bn_weight_1_tile_buffer[OUT_CHANNEL_PARALLELISM];
 #pragma HLS ARRAY_PARTITION variable=bn_weight_0_tile_buffer complete dim=1
@@ -44,15 +47,15 @@ void FracNet_T(
 	FIX_WT bn_bias_1_tile_buffer[OUT_CHANNEL_PARALLELISM];
 #pragma HLS ARRAY_PARTITION variable=bn_bias_0_tile_buffer complete dim=1
 #pragma HLS ARRAY_PARTITION variable=bn_bias_1_tile_buffer complete dim=1
-//
-//	FIX_WT relu_x_bias_tile_buffer[OUT_CHANNEL_PARALLELISM];
-//#pragma HLS ARRAY_PARTITION variable=relu_x_bias_tile_buffer complete dim=1
-//
-//	FIX_WT relu_y_bias_tile_buffer[OUT_CHANNEL_PARALLELISM];
-//#pragma HLS ARRAY_PARTITION variable=relu_y_bias_tile_buffer complete dim=1
-//
-//	FIX_WT relu_weight_tile_buffer[OUT_CHANNEL_PARALLELISM];
-//#pragma HLS ARRAY_PARTITION variable=relu_weight_tile_buffer complete dim=1
+
+	FIX_WT relu_x_bias_tile_buffer[OUT_CHANNEL_PARALLELISM];
+#pragma HLS ARRAY_PARTITION variable=relu_x_bias_tile_buffer complete dim=1
+
+	FIX_WT relu_y_bias_tile_buffer[OUT_CHANNEL_PARALLELISM];
+#pragma HLS ARRAY_PARTITION variable=relu_y_bias_tile_buffer complete dim=1
+
+	FIX_WT relu_weight_tile_buffer[OUT_CHANNEL_PARALLELISM];
+#pragma HLS ARRAY_PARTITION variable=relu_weight_tile_buffer complete dim=1
 
 	int H_fmap_in, H_fmap_out, in_channels, in_channels_after_pack, out_channels, out_channel_start, stride;
 
@@ -81,39 +84,37 @@ void FracNet_T(
 	out_channels = 16;
 	H_fmap_out = 32;
 
-//#pragma HLS ARRAY_PARTITION variable=conv1_weight_fix complete dim=4
-//#pragma HLS ARRAY_PARTITION variable=conv1_weight_fix complete dim=5
-#pragma HLS ARRAY_PARTITION variable=bn1_weight_fix cyclic factor=8 dim=2
-#pragma HLS ARRAY_PARTITION variable=bn1_bias_fix cyclic factor=8 dim=2
-
 	LOOP_Conv1:
-	for (int ch_t = 0; ch_t < out_channels/OUT_CHANNEL_PARALLELISM; ch_t ++){
-//		out_channel_start = ch_t*OUT_CHANNEL_PARALLELISM;
+	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++){
+		load_weights_tile(
+				layer1_0_conv1_threshold_fix,
+				bn1_weight_fix, bn1_bias_fix,
+				layer1_0_bn1_bias_fix, layer1_0_bn3_bias_fix,
+				layer1_0_rprelu1_shift_x_bias_fix, layer1_0_rprelu1_shift_y_bias_fix,
+				layer1_0_rprelu1_prelu_weight_fix,
+
+				threshold_tile_buffer,
+				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+				relu_weight_tile_buffer,
+				c_out
+		);
 		for(int c_in = 0; c_in < in_channels_after_pack; c_in ++){
-//			for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
-//#pragma HLS PIPELINE
-//				for(int k_row = 0; k_row < 3; k_row ++){
-//					for(int k_col = 0; k_col < 3; k_col ++){
-//						weight_tile_buffer[ch][k_row][k_col] = conv1_weight_fix[ch_t][c_in][ch][k_row][k_col];
-//					}
-//				}
-//			}
+			load_conv_weights_tile(
+					conv1_weight_fix[c_out][c_in], weight_tile_buffer
+			);
 			pg_conv3x3_tile(
-					msb_fmap[c_in], msb_fmap[c_in], conv1_weight_fix[ch_t][c_in],
+					msb_fmap, lsb_fmap, weight_tile_buffer,
 					out_buf_t0, out_buf_t1,
 					c_in, in_channels, H_fmap_out
 			);
 		}
-
-		for (int row = 0; row < H_fmap_out; row ++) {
-			for (int col = 0; col < H_fmap_out; col ++) {
-#pragma HLS PIPELINE
-				for (int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++) {
-					//					out_buf_0[ch_t][ch][row][col] = out_buf_t0[ch][row+1][col+1];
-					out_buf_0[ch_t][ch][row][col] = bn1_weight_fix[ch_t][ch]*out_buf_t0[ch][row+1][col+1] + bn1_bias_fix[ch_t][ch];
-				}
-			}
-		}
+		bn1(
+				out_buf_0, out_buf_t0,
+				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+				stride, c_out, H_fmap_out
+		);
 	}
 
 	////////////////////////////////////////////////
@@ -129,157 +130,249 @@ void FracNet_T(
 
 	////////////////////////////////////////////////
 	//////////// layer1_0 PG1 /////////////////////
-	quant_and_pack(out_buf_0, msb_fmap, H_fmap_in, in_channels);
+	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
 	LOOP_layer1_0_PGConv1:
-	for (int ch_t = 0; ch_t < out_channels/OUT_CHANNEL_PARALLELISM; ch_t ++) {
-		// out_channel_start = ch_t*OUT_CHANNEL_PARALLELISM;
-		// load_weights_tile(
-		// 		layer1_0_conv1_weight_fix[ch_t], layer1_0_conv1_threshold_fix[ch_t],
-		// 		layer1_0_bn1_weight_fix[ch_t], layer1_0_bn3_weight_fix[ch_t],
-		// 		layer1_0_bn1_bias_fix[ch_t], layer1_0_bn3_bias_fix[ch_t],
-		// 		layer1_0_rprelu1_shift_x_bias_fix[ch_t], layer1_0_rprelu1_shift_y_bias_fix[ch_t],
-		// 		layer1_0_rprelu1_prelu_weight_fix[ch_t],
+	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
+		int c_in = 0;
+		load_weights_tile(
+				layer1_0_conv1_threshold_fix,
+				layer1_0_bn1_weight_fix, layer1_0_bn3_weight_fix,
+				layer1_0_bn1_bias_fix, layer1_0_bn3_bias_fix,
+				layer1_0_rprelu1_shift_x_bias_fix, layer1_0_rprelu1_shift_y_bias_fix,
+				layer1_0_rprelu1_prelu_weight_fix,
 
-		// 		weight_tile_buffer, threshold_tile_buffer,
-		// 		bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
-		// 		bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
-		// 		relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
-		// 		relu_weight_tile_buffer,
-		// 		out_channel_start, in_channels_after_pack
-		// );
+				threshold_tile_buffer,
+				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+				relu_weight_tile_buffer,
+				c_out
+		);
+		load_conv_weights_tile(
+				layer1_0_conv1_weight_fix[c_out], weight_tile_buffer
+		);
 		pg_conv3x3_tile(
-				msb_fmap[0], msb_fmap[1], layer1_0_conv1_weight_fix[ch_t],
+				msb_fmap, lsb_fmap, weight_tile_buffer,
 				out_buf_t0, out_buf_t1,
-				0, in_channels, H_fmap_out
+				c_in, in_channels, H_fmap_out
 		);
 		bn_relu_shortcut(
 				out_buf_0, out_buf_t0, out_buf_t1,
 
-				layer1_0_conv1_threshold_fix[ch_t],
-				layer1_0_bn1_weight_fix[ch_t], layer1_0_bn3_weight_fix[ch_t],
-				layer1_0_bn1_bias_fix[ch_t], layer1_0_bn3_bias_fix[ch_t],
-				layer1_0_rprelu1_shift_x_bias_fix[ch_t], layer1_0_rprelu1_shift_y_bias_fix[ch_t],
-				layer1_0_rprelu1_prelu_weight_fix[ch_t],
+				threshold_tile_buffer,
+				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+				relu_weight_tile_buffer,
 
-				stride, ch_t, H_fmap_out, out_channels
+				stride, c_out, H_fmap_out, out_channels
 		);
 	}
 
 	////////////////////////////////////////////////
 	//////////// layer1_0 PG2 /////////////////////
-	quant_and_pack(out_buf_0, msb_fmap, H_fmap_in, in_channels);
+	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
 	LOOP_layer1_0_PGConv2:
-	for (int ch_t = 0; ch_t < out_channels/OUT_CHANNEL_PARALLELISM; ch_t ++) {
+	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
+		int c_in = 0;
+		load_weights_tile(
+				layer1_0_conv2_threshold_fix,
+				layer1_0_bn2_weight_fix, layer1_0_bn4_weight_fix,
+				layer1_0_bn2_bias_fix, layer1_0_bn4_bias_fix,
+				layer1_0_rprelu2_shift_x_bias_fix, layer1_0_rprelu2_shift_y_bias_fix,
+				layer1_0_rprelu2_prelu_weight_fix,
+
+				threshold_tile_buffer,
+				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+				relu_weight_tile_buffer,
+				c_out
+		);
+		load_conv_weights_tile(
+				layer1_0_conv2_weight_fix[c_out], weight_tile_buffer
+		);
 		pg_conv3x3_tile(
-				msb_fmap[0], msb_fmap[1], layer1_0_conv2_weight_fix[ch_t],
+				msb_fmap, lsb_fmap, weight_tile_buffer,
 				out_buf_t0, out_buf_t1,
-				0, in_channels, H_fmap_out
+				c_in, in_channels, H_fmap_out
 		);
 		bn_relu_shortcut(
 				out_buf_0, out_buf_t0, out_buf_t1,
 
-				layer1_0_conv2_threshold_fix[ch_t],
-				layer1_0_bn2_weight_fix[ch_t], layer1_0_bn4_weight_fix[ch_t],
-				layer1_0_bn2_bias_fix[ch_t], layer1_0_bn4_bias_fix[ch_t],
-				layer1_0_rprelu2_shift_x_bias_fix[ch_t], layer1_0_rprelu2_shift_y_bias_fix[ch_t],
-				layer1_0_rprelu2_prelu_weight_fix[ch_t],
+				threshold_tile_buffer,
+				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+				relu_weight_tile_buffer,
 
-				stride, ch_t, H_fmap_out, out_channels
+				stride, c_out, H_fmap_out, out_channels
 		);
 	}
 
 	////////////////////////////////////////////////
 	//////////// layer1_1 PG1 /////////////////////
-	quant_and_pack(out_buf_0, msb_fmap, H_fmap_in, in_channels);
+	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
 	LOOP_layer1_1_PGConv1:
-	for (int ch_t = 0; ch_t < out_channels/OUT_CHANNEL_PARALLELISM; ch_t ++) {
+	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
+		int c_in = 0;
+		load_weights_tile(
+				layer1_1_conv1_threshold_fix,
+				layer1_1_bn1_weight_fix, layer1_1_bn3_weight_fix,
+				layer1_1_bn1_bias_fix, layer1_1_bn3_bias_fix,
+				layer1_1_rprelu1_shift_x_bias_fix, layer1_1_rprelu1_shift_y_bias_fix,
+				layer1_1_rprelu1_prelu_weight_fix,
+
+				threshold_tile_buffer,
+				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+				relu_weight_tile_buffer,
+				c_out
+		);
+		load_conv_weights_tile(
+				layer1_1_conv1_weight_fix[c_out], weight_tile_buffer
+		);
 		pg_conv3x3_tile(
-				msb_fmap[0], msb_fmap[1], layer1_1_conv1_weight_fix[ch_t],
+				msb_fmap, lsb_fmap, weight_tile_buffer,
 				out_buf_t0, out_buf_t1,
-				0, in_channels, H_fmap_out
+				c_in, in_channels, H_fmap_out
 		);
 		bn_relu_shortcut(
 				out_buf_0, out_buf_t0, out_buf_t1,
 
-				layer1_1_conv1_threshold_fix[ch_t],
-				layer1_1_bn1_weight_fix[ch_t], layer1_1_bn3_weight_fix[ch_t],
-				layer1_1_bn1_bias_fix[ch_t], layer1_1_bn3_bias_fix[ch_t],
-				layer1_1_rprelu1_shift_x_bias_fix[ch_t], layer1_1_rprelu1_shift_y_bias_fix[ch_t],
-				layer1_1_rprelu1_prelu_weight_fix[ch_t],
+				threshold_tile_buffer,
+				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+				relu_weight_tile_buffer,
 
-				stride, ch_t, H_fmap_out, out_channels
+				stride, c_out, H_fmap_out, out_channels
 		);
 	}
 
 	////////////////////////////////////////////////
 	//////////// layer1_1 PG2 /////////////////////
-	quant_and_pack(out_buf_0, msb_fmap, H_fmap_in, in_channels);
+	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
 	LOOP_layer1_1_PGConv2:
-	for (int ch_t = 0; ch_t < out_channels/OUT_CHANNEL_PARALLELISM; ch_t ++) {
+	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
+		int c_in = 0;
+		load_weights_tile(
+				layer1_1_conv2_threshold_fix,
+				layer1_1_bn2_weight_fix, layer1_1_bn4_weight_fix,
+				layer1_1_bn2_bias_fix, layer1_1_bn4_bias_fix,
+				layer1_1_rprelu2_shift_x_bias_fix, layer1_1_rprelu2_shift_y_bias_fix,
+				layer1_1_rprelu2_prelu_weight_fix,
+
+				threshold_tile_buffer,
+				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+				relu_weight_tile_buffer,
+				c_out
+		);
+		load_conv_weights_tile(
+				layer1_1_conv2_weight_fix[c_out], weight_tile_buffer
+		);
 		pg_conv3x3_tile(
-				msb_fmap[0], msb_fmap[1], layer1_1_conv2_weight_fix[ch_t],
+				msb_fmap, lsb_fmap, weight_tile_buffer,
 				out_buf_t0, out_buf_t1,
-				0, in_channels, H_fmap_out
+				c_in, in_channels, H_fmap_out
 		);
 		bn_relu_shortcut(
 				out_buf_0, out_buf_t0, out_buf_t1,
 
-				layer1_1_conv2_threshold_fix[ch_t],
-				layer1_1_bn2_weight_fix[ch_t], layer1_1_bn4_weight_fix[ch_t],
-				layer1_1_bn2_bias_fix[ch_t], layer1_1_bn4_bias_fix[ch_t],
-				layer1_1_rprelu2_shift_x_bias_fix[ch_t], layer1_1_rprelu2_shift_y_bias_fix[ch_t],
-				layer1_1_rprelu2_prelu_weight_fix[ch_t],
+				threshold_tile_buffer,
+				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+				relu_weight_tile_buffer,
 
-				stride, ch_t, H_fmap_out, out_channels
+				stride, c_out, H_fmap_out, out_channels
 		);
 	}
 
 	////////////////////////////////////////////////
 	//////////// layer1_2 PG1 /////////////////////
-	quant_and_pack(out_buf_0, msb_fmap, H_fmap_in, in_channels);
+	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
 	LOOP_layer1_2_PGConv1:
-	for (int ch_t = 0; ch_t < out_channels/OUT_CHANNEL_PARALLELISM; ch_t ++) {
+	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
+		int c_in = 0;
+		load_weights_tile(
+				layer1_2_conv1_threshold_fix,
+				layer1_2_bn1_weight_fix, layer1_2_bn3_weight_fix,
+				layer1_2_bn1_bias_fix, layer1_2_bn3_bias_fix,
+				layer1_2_rprelu1_shift_x_bias_fix, layer1_2_rprelu1_shift_y_bias_fix,
+				layer1_2_rprelu1_prelu_weight_fix,
+
+				threshold_tile_buffer,
+				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+				relu_weight_tile_buffer,
+				c_out
+		);
+		load_conv_weights_tile(
+				layer1_2_conv1_weight_fix[c_out], weight_tile_buffer
+		);
 		pg_conv3x3_tile(
-				msb_fmap[0], msb_fmap[1], layer1_2_conv1_weight_fix[ch_t],
+				msb_fmap, lsb_fmap, weight_tile_buffer,
 				out_buf_t0, out_buf_t1,
-				0, in_channels, H_fmap_out
+				c_in, in_channels, H_fmap_out
 		);
 		bn_relu_shortcut(
 				out_buf_0, out_buf_t0, out_buf_t1,
 
-				layer1_2_conv1_threshold_fix[ch_t],
-				layer1_2_bn1_weight_fix[ch_t], layer1_2_bn3_weight_fix[ch_t],
-				layer1_2_bn1_bias_fix[ch_t], layer1_2_bn3_bias_fix[ch_t],
-				layer1_2_rprelu1_shift_x_bias_fix[ch_t], layer1_2_rprelu1_shift_y_bias_fix[ch_t],
-				layer1_2_rprelu1_prelu_weight_fix[ch_t],
+				threshold_tile_buffer,
+				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+				relu_weight_tile_buffer,
 
-				stride, ch_t, H_fmap_out, out_channels
+				stride, c_out, H_fmap_out, out_channels
 		);
 	}
 
 	////////////////////////////////////////////////
 	//////////// layer1_2 PG2 /////////////////////
-	quant_and_pack(out_buf_0, msb_fmap, H_fmap_in, in_channels);
+	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
 	LOOP_layer1_2_PGConv2:
-	for (int ch_t = 0; ch_t < out_channels/OUT_CHANNEL_PARALLELISM; ch_t ++) {
+	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
+		int c_in = 0;
+		load_weights_tile(
+				layer1_2_conv2_threshold_fix,
+				layer1_2_bn2_weight_fix, layer1_2_bn4_weight_fix,
+				layer1_2_bn2_bias_fix, layer1_2_bn4_bias_fix,
+				layer1_2_rprelu2_shift_x_bias_fix, layer1_2_rprelu2_shift_y_bias_fix,
+				layer1_2_rprelu2_prelu_weight_fix,
+
+				threshold_tile_buffer,
+				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+				relu_weight_tile_buffer,
+				c_out
+		);
+		load_conv_weights_tile(
+				layer1_2_conv2_weight_fix[c_out], weight_tile_buffer
+		);
 		pg_conv3x3_tile(
-				msb_fmap[0], msb_fmap[1], layer1_2_conv2_weight_fix[ch_t],
+				msb_fmap, lsb_fmap, weight_tile_buffer,
 				out_buf_t0, out_buf_t1,
-				0, in_channels, H_fmap_out
+				c_in, in_channels, H_fmap_out
 		);
 		bn_relu_shortcut(
 				out_buf_0, out_buf_t0, out_buf_t1,
 
-				layer1_2_conv2_threshold_fix[ch_t],
-				layer1_2_bn2_weight_fix[ch_t], layer1_2_bn4_weight_fix[ch_t],
-				layer1_2_bn2_bias_fix[ch_t], layer1_2_bn4_bias_fix[ch_t],
-				layer1_2_rprelu2_shift_x_bias_fix[ch_t], layer1_2_rprelu2_shift_y_bias_fix[ch_t],
-				layer1_2_rprelu2_prelu_weight_fix[ch_t],
+				threshold_tile_buffer,
+				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+				relu_weight_tile_buffer,
 
-				stride, ch_t, H_fmap_out, out_channels
+				stride, c_out, H_fmap_out, out_channels
 		);
 	}
-
 
 	////////////////////////////////////////////////
 	//////////// LAYER 2 SPECIAL ///////////////////
@@ -294,25 +387,43 @@ void FracNet_T(
 
 	////////////////////////////////////////////////
 	//////////// layer2_0 PG1 /////////////////////
-	quant_and_pack(out_buf_0, msb_fmap, H_fmap_in, in_channels);
+	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
 	avgpool_concat(out_buf_0, H_fmap_out, in_channels);
 	LOOP_layer2_0_PGConv1:
-	for (int ch_t = 0; ch_t < out_channels/OUT_CHANNEL_PARALLELISM; ch_t ++) {
+	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
+		int c_in = 0;
+		load_weights_tile(
+				layer2_0_conv1_threshold_fix,
+				layer2_0_bn1_weight_fix, layer2_0_bn3_weight_fix,
+				layer2_0_bn1_bias_fix, layer2_0_bn3_bias_fix,
+				layer2_0_rprelu1_shift_x_bias_fix, layer2_0_rprelu1_shift_y_bias_fix,
+				layer2_0_rprelu1_prelu_weight_fix,
+
+				threshold_tile_buffer,
+				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+				relu_weight_tile_buffer,
+				c_out
+		);
+		load_conv_weights_tile(
+				layer2_0_conv1_weight_fix[c_out], weight_tile_buffer
+		);
 		pg_conv3x3_tile(
-				msb_fmap[0], msb_fmap[1], layer2_0_conv1_weight_fix[ch_t],
+				msb_fmap, lsb_fmap, weight_tile_buffer,
 				out_buf_t0, out_buf_t1,
-				0, in_channels, H_fmap_in
-		); // NOTE: You need H_fmap_in here for stride 2
+				c_in, in_channels, H_fmap_in
+		);
 		bn_relu_shortcut(
 				out_buf_0, out_buf_t0, out_buf_t1,
 
-				layer2_0_conv1_threshold_fix[ch_t],
-				layer2_0_bn1_weight_fix[ch_t], layer2_0_bn3_weight_fix[ch_t],
-				layer2_0_bn1_bias_fix[ch_t], layer2_0_bn3_bias_fix[ch_t],
-				layer2_0_rprelu1_shift_x_bias_fix[ch_t], layer2_0_rprelu1_shift_y_bias_fix[ch_t],
-				layer2_0_rprelu1_prelu_weight_fix[ch_t],
+				threshold_tile_buffer,
+				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+				relu_weight_tile_buffer,
 
-				stride, ch_t, H_fmap_out, out_channels
+				stride, c_out, H_fmap_out, out_channels
 		);
 	}
 
@@ -329,119 +440,208 @@ void FracNet_T(
 
 	////////////////////////////////////////////////
 	//////////// layer2_0 PG2 /////////////////////
-	quant_and_pack(out_buf_0, msb_fmap, H_fmap_in, in_channels);
+	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
 	LOOP_layer2_0_PGConv2:
-	for (int ch_t = 0; ch_t < out_channels/OUT_CHANNEL_PARALLELISM; ch_t ++) {
+	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
+		int c_in = 0;
+		load_weights_tile(
+				layer2_0_conv2_threshold_fix,
+				layer2_0_bn2_weight_fix, layer2_0_bn4_weight_fix,
+				layer2_0_bn2_bias_fix, layer2_0_bn4_bias_fix,
+				layer2_0_rprelu2_shift_x_bias_fix, layer2_0_rprelu2_shift_y_bias_fix,
+				layer2_0_rprelu2_prelu_weight_fix,
+
+				threshold_tile_buffer,
+				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+				relu_weight_tile_buffer,
+				c_out
+		);
+		load_conv_weights_tile(
+				layer2_0_conv2_weight_fix[c_out], weight_tile_buffer
+		);
 		pg_conv3x3_tile(
-				msb_fmap[0], msb_fmap[1], layer2_0_conv2_weight_fix[ch_t],
+				msb_fmap, lsb_fmap, weight_tile_buffer,
 				out_buf_t0, out_buf_t1,
-				0, in_channels, H_fmap_out
+				c_in, in_channels, H_fmap_out
 		);
 		bn_relu_shortcut(
 				out_buf_0, out_buf_t0, out_buf_t1,
 
-				layer2_0_conv2_threshold_fix[ch_t],
-				layer2_0_bn2_weight_fix[ch_t], layer2_0_bn4_weight_fix[ch_t],
-				layer2_0_bn2_bias_fix[ch_t], layer2_0_bn4_bias_fix[ch_t],
-				layer2_0_rprelu2_shift_x_bias_fix[ch_t], layer2_0_rprelu2_shift_y_bias_fix[ch_t],
-				layer2_0_rprelu2_prelu_weight_fix[ch_t],
+				threshold_tile_buffer,
+				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+				relu_weight_tile_buffer,
 
-				stride, ch_t, H_fmap_out, out_channels
+				stride, c_out, H_fmap_out, out_channels
 		);
 	}
 
 	////////////////////////////////////////////////
 	//////////// layer2_1 PG1 /////////////////////
-	quant_and_pack(out_buf_0, msb_fmap, H_fmap_in, in_channels);
+	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
 	LOOP_layer2_1_PGConv1:
-	for (int ch_t = 0; ch_t < out_channels/OUT_CHANNEL_PARALLELISM; ch_t ++) {
+	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
+		int c_in = 0;
+		load_weights_tile(
+				layer2_1_conv1_threshold_fix,
+				layer2_1_bn1_weight_fix, layer2_1_bn3_weight_fix,
+				layer2_1_bn1_bias_fix, layer2_1_bn3_bias_fix,
+				layer2_1_rprelu1_shift_x_bias_fix, layer2_1_rprelu1_shift_y_bias_fix,
+				layer2_1_rprelu1_prelu_weight_fix,
+
+				threshold_tile_buffer,
+				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+				relu_weight_tile_buffer,
+				c_out
+		);
+		load_conv_weights_tile(
+				layer2_1_conv1_weight_fix[c_out], weight_tile_buffer
+		);
 		pg_conv3x3_tile(
-				msb_fmap[0], msb_fmap[1], layer2_1_conv1_weight_fix[ch_t],
+				msb_fmap, lsb_fmap, weight_tile_buffer,
 				out_buf_t0, out_buf_t1,
-				0, in_channels, H_fmap_out
+				c_in, in_channels, H_fmap_out
 		);
 		bn_relu_shortcut(
 				out_buf_0, out_buf_t0, out_buf_t1,
 
-				layer2_1_conv1_threshold_fix[ch_t],
-				layer2_1_bn1_weight_fix[ch_t], layer2_1_bn3_weight_fix[ch_t],
-				layer2_1_bn1_bias_fix[ch_t], layer2_1_bn3_bias_fix[ch_t],
-				layer2_1_rprelu1_shift_x_bias_fix[ch_t], layer2_1_rprelu1_shift_y_bias_fix[ch_t],
-				layer2_1_rprelu1_prelu_weight_fix[ch_t],
+				threshold_tile_buffer,
+				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+				relu_weight_tile_buffer,
 
-				stride, ch_t, H_fmap_out, out_channels
+				stride, c_out, H_fmap_out, out_channels
 		);
 	}
 
 	////////////////////////////////////////////////
 	//////////// layer2_1 PG2 /////////////////////
-	quant_and_pack(out_buf_0, msb_fmap, H_fmap_in, in_channels);
+	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
 	LOOP_layer2_1_PGConv2:
-	for (int ch_t = 0; ch_t < out_channels/OUT_CHANNEL_PARALLELISM; ch_t ++) {
+	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
+		int c_in = 0;
+		load_weights_tile(
+				layer2_1_conv2_threshold_fix,
+				layer2_1_bn2_weight_fix, layer2_1_bn4_weight_fix,
+				layer2_1_bn2_bias_fix, layer2_1_bn4_bias_fix,
+				layer2_1_rprelu2_shift_x_bias_fix, layer2_1_rprelu2_shift_y_bias_fix,
+				layer2_1_rprelu2_prelu_weight_fix,
+
+				threshold_tile_buffer,
+				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+				relu_weight_tile_buffer,
+				c_out
+		);
+		load_conv_weights_tile(
+				layer2_1_conv2_weight_fix[c_out], weight_tile_buffer
+		);
 		pg_conv3x3_tile(
-				msb_fmap[0], msb_fmap[1], layer2_1_conv2_weight_fix[ch_t],
+				msb_fmap, lsb_fmap, weight_tile_buffer,
 				out_buf_t0, out_buf_t1,
-				0, in_channels, H_fmap_out
+				c_in, in_channels, H_fmap_out
 		);
 		bn_relu_shortcut(
 				out_buf_0, out_buf_t0, out_buf_t1,
 
-				layer2_1_conv2_threshold_fix[ch_t],
-				layer2_1_bn2_weight_fix[ch_t], layer2_1_bn4_weight_fix[ch_t],
-				layer2_1_bn2_bias_fix[ch_t], layer2_1_bn4_bias_fix[ch_t],
-				layer2_1_rprelu2_shift_x_bias_fix[ch_t], layer2_1_rprelu2_shift_y_bias_fix[ch_t],
-				layer2_1_rprelu2_prelu_weight_fix[ch_t],
+				threshold_tile_buffer,
+				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+				relu_weight_tile_buffer,
 
-				stride, ch_t, H_fmap_out, out_channels
+				stride, c_out, H_fmap_out, out_channels
 		);
 	}
 
 	////////////////////////////////////////////////
 	//////////// layer2_2 PG1 /////////////////////
-	quant_and_pack(out_buf_0, msb_fmap, H_fmap_in, in_channels);
+	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
 	LOOP_layer2_2_PGConv1:
-	for (int ch_t = 0; ch_t < out_channels/OUT_CHANNEL_PARALLELISM; ch_t ++) {
+	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
+		int c_in = 0;
+		load_weights_tile(
+				layer2_2_conv1_threshold_fix,
+				layer2_2_bn1_weight_fix, layer2_2_bn3_weight_fix,
+				layer2_2_bn1_bias_fix, layer2_2_bn3_bias_fix,
+				layer2_2_rprelu1_shift_x_bias_fix, layer2_2_rprelu1_shift_y_bias_fix,
+				layer2_2_rprelu1_prelu_weight_fix,
+
+				threshold_tile_buffer,
+				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+				relu_weight_tile_buffer,
+				c_out
+		);
+		load_conv_weights_tile(
+				layer2_2_conv1_weight_fix[c_out], weight_tile_buffer
+		);
 		pg_conv3x3_tile(
-				msb_fmap[0], msb_fmap[1], layer2_2_conv1_weight_fix[ch_t],
+				msb_fmap, lsb_fmap, weight_tile_buffer,
 				out_buf_t0, out_buf_t1,
-				0, in_channels, H_fmap_out
+				c_in, in_channels, H_fmap_out
 		);
 		bn_relu_shortcut(
 				out_buf_0, out_buf_t0, out_buf_t1,
 
-				layer2_2_conv1_threshold_fix[ch_t],
-				layer2_2_bn1_weight_fix[ch_t], layer2_2_bn3_weight_fix[ch_t],
-				layer2_2_bn1_bias_fix[ch_t], layer2_2_bn3_bias_fix[ch_t],
-				layer2_2_rprelu1_shift_x_bias_fix[ch_t], layer2_2_rprelu1_shift_y_bias_fix[ch_t],
-				layer2_2_rprelu1_prelu_weight_fix[ch_t],
+				threshold_tile_buffer,
+				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+				relu_weight_tile_buffer,
 
-				stride, ch_t, H_fmap_out, out_channels
+				stride, c_out, H_fmap_out, out_channels
 		);
 	}
 
 	////////////////////////////////////////////////
 	//////////// layer2_2 PG2 /////////////////////
-	quant_and_pack(out_buf_0, msb_fmap, H_fmap_in, in_channels);
+	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
 	LOOP_layer2_2_PGConv2:
-	for (int ch_t = 0; ch_t < out_channels/OUT_CHANNEL_PARALLELISM; ch_t ++) {
+	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
+		int c_in = 0;
+		load_weights_tile(
+				layer2_2_conv2_threshold_fix,
+				layer2_2_bn2_weight_fix, layer2_2_bn4_weight_fix,
+				layer2_2_bn2_bias_fix, layer2_2_bn4_bias_fix,
+				layer2_2_rprelu2_shift_x_bias_fix, layer2_2_rprelu2_shift_y_bias_fix,
+				layer2_2_rprelu2_prelu_weight_fix,
+
+				threshold_tile_buffer,
+				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+				relu_weight_tile_buffer,
+				c_out
+		);
+		load_conv_weights_tile(
+				layer2_2_conv2_weight_fix[c_out], weight_tile_buffer
+		);
 		pg_conv3x3_tile(
-				msb_fmap[0], msb_fmap[1], layer2_2_conv2_weight_fix[ch_t],
+				msb_fmap, lsb_fmap, weight_tile_buffer,
 				out_buf_t0, out_buf_t1,
-				0, in_channels, H_fmap_out
+				c_in, in_channels, H_fmap_out
 		);
 		bn_relu_shortcut(
 				out_buf_0, out_buf_t0, out_buf_t1,
 
-				layer2_2_conv2_threshold_fix[ch_t],
-				layer2_2_bn2_weight_fix[ch_t], layer2_2_bn4_weight_fix[ch_t],
-				layer2_2_bn2_bias_fix[ch_t], layer2_2_bn4_bias_fix[ch_t],
-				layer2_2_rprelu2_shift_x_bias_fix[ch_t], layer2_2_rprelu2_shift_y_bias_fix[ch_t],
-				layer2_2_rprelu2_prelu_weight_fix[ch_t],
+				threshold_tile_buffer,
+				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+				relu_weight_tile_buffer,
 
-				stride, ch_t, H_fmap_out, out_channels
+				stride, c_out, H_fmap_out, out_channels
 		);
 	}
-
 
 	////////////////////////////////////////////////
 	//////////// LAYER 3 SPECIAL ///////////////////
@@ -456,25 +656,43 @@ void FracNet_T(
 
 	////////////////////////////////////////////////
 	//////////// layer3_0 PG1 /////////////////////
-	quant_and_pack(out_buf_0, msb_fmap, H_fmap_in, in_channels);
+	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
 	avgpool_concat(out_buf_0, H_fmap_out, in_channels);
 	LOOP_layer3_0_PGConv1:
-	for (int ch_t = 0; ch_t < out_channels/OUT_CHANNEL_PARALLELISM; ch_t ++) {
+	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
+		int c_in = 0;
+		load_weights_tile(
+				layer3_0_conv1_threshold_fix,
+				layer3_0_bn1_weight_fix, layer3_0_bn3_weight_fix,
+				layer3_0_bn1_bias_fix, layer3_0_bn3_bias_fix,
+				layer3_0_rprelu1_shift_x_bias_fix, layer3_0_rprelu1_shift_y_bias_fix,
+				layer3_0_rprelu1_prelu_weight_fix,
+
+				threshold_tile_buffer,
+				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+				relu_weight_tile_buffer,
+				c_out
+		);
+		load_conv_weights_tile(
+				layer3_0_conv1_weight_fix[c_out], weight_tile_buffer
+		);
 		pg_conv3x3_tile(
-				msb_fmap[0], msb_fmap[1], layer3_0_conv1_weight_fix[ch_t],
+				msb_fmap, lsb_fmap, weight_tile_buffer,
 				out_buf_t0, out_buf_t1,
-				0, in_channels, H_fmap_in
-		); // NOTE: You need H_fmap_in here for stride 2
+				c_in, in_channels, H_fmap_in
+		);
 		bn_relu_shortcut(
 				out_buf_0, out_buf_t0, out_buf_t1,
 
-				layer3_0_conv1_threshold_fix[ch_t],
-				layer3_0_bn1_weight_fix[ch_t], layer3_0_bn3_weight_fix[ch_t],
-				layer3_0_bn1_bias_fix[ch_t], layer3_0_bn3_bias_fix[ch_t],
-				layer3_0_rprelu1_shift_x_bias_fix[ch_t], layer3_0_rprelu1_shift_y_bias_fix[ch_t],
-				layer3_0_rprelu1_prelu_weight_fix[ch_t],
+				threshold_tile_buffer,
+				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+				relu_weight_tile_buffer,
 
-				stride, ch_t, H_fmap_out, out_channels
+				stride, c_out, H_fmap_out, out_channels
 		);
 	}
 
@@ -491,116 +709,206 @@ void FracNet_T(
 
 	////////////////////////////////////////////////
 	//////////// layer3_0 PG2 /////////////////////
-	quant_and_pack(out_buf_0, msb_fmap, H_fmap_in, in_channels);
+	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
 	LOOP_layer3_0_PGConv2:
-	for (int ch_t = 0; ch_t < out_channels/OUT_CHANNEL_PARALLELISM; ch_t ++) {
+	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
+		int c_in = 0;
+		load_weights_tile(
+				layer3_0_conv2_threshold_fix,
+				layer3_0_bn2_weight_fix, layer3_0_bn4_weight_fix,
+				layer3_0_bn2_bias_fix, layer3_0_bn4_bias_fix,
+				layer3_0_rprelu2_shift_x_bias_fix, layer3_0_rprelu2_shift_y_bias_fix,
+				layer3_0_rprelu2_prelu_weight_fix,
+
+				threshold_tile_buffer,
+				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+				relu_weight_tile_buffer,
+				c_out
+		);
+		load_conv_weights_tile(
+				layer3_0_conv2_weight_fix[c_out], weight_tile_buffer
+		);
 		pg_conv3x3_tile(
-				msb_fmap[0], msb_fmap[1], layer3_0_conv2_weight_fix[ch_t],
+				msb_fmap, lsb_fmap, weight_tile_buffer,
 				out_buf_t0, out_buf_t1,
-				0, in_channels, H_fmap_out
+				c_in, in_channels, H_fmap_out
 		);
 		bn_relu_shortcut(
 				out_buf_0, out_buf_t0, out_buf_t1,
 
-				layer3_0_conv2_threshold_fix[ch_t],
-				layer3_0_bn2_weight_fix[ch_t], layer3_0_bn4_weight_fix[ch_t],
-				layer3_0_bn2_bias_fix[ch_t], layer3_0_bn4_bias_fix[ch_t],
-				layer3_0_rprelu2_shift_x_bias_fix[ch_t], layer3_0_rprelu2_shift_y_bias_fix[ch_t],
-				layer3_0_rprelu2_prelu_weight_fix[ch_t],
+				threshold_tile_buffer,
+				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+				relu_weight_tile_buffer,
 
-				stride, ch_t, H_fmap_out, out_channels
+				stride, c_out, H_fmap_out, out_channels
 		);
 	}
 
 	////////////////////////////////////////////////
 	//////////// layer3_1 PG1 /////////////////////
-	quant_and_pack(out_buf_0, msb_fmap, H_fmap_in, in_channels);
+	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
 	LOOP_layer3_1_PGConv1:
-	for (int ch_t = 0; ch_t < out_channels/OUT_CHANNEL_PARALLELISM; ch_t ++) {
+	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
+		int c_in = 0;
+		load_weights_tile(
+				layer3_1_conv1_threshold_fix,
+				layer3_1_bn1_weight_fix, layer3_1_bn3_weight_fix,
+				layer3_1_bn1_bias_fix, layer3_1_bn3_bias_fix,
+				layer3_1_rprelu1_shift_x_bias_fix, layer3_1_rprelu1_shift_y_bias_fix,
+				layer3_1_rprelu1_prelu_weight_fix,
+
+				threshold_tile_buffer,
+				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+				relu_weight_tile_buffer,
+				c_out
+		);
+		load_conv_weights_tile(
+				layer3_1_conv1_weight_fix[c_out], weight_tile_buffer
+		);
 		pg_conv3x3_tile(
-				msb_fmap[0], msb_fmap[1], layer3_1_conv1_weight_fix[ch_t],
+				msb_fmap, lsb_fmap, weight_tile_buffer,
 				out_buf_t0, out_buf_t1,
-				0, in_channels, H_fmap_out
+				c_in, in_channels, H_fmap_out
 		);
 		bn_relu_shortcut(
 				out_buf_0, out_buf_t0, out_buf_t1,
 
-				layer3_1_conv1_threshold_fix[ch_t],
-				layer3_1_bn1_weight_fix[ch_t], layer3_1_bn3_weight_fix[ch_t],
-				layer3_1_bn1_bias_fix[ch_t], layer3_1_bn3_bias_fix[ch_t],
-				layer3_1_rprelu1_shift_x_bias_fix[ch_t], layer3_1_rprelu1_shift_y_bias_fix[ch_t],
-				layer3_1_rprelu1_prelu_weight_fix[ch_t],
+				threshold_tile_buffer,
+				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+				relu_weight_tile_buffer,
 
-				stride, ch_t, H_fmap_out, out_channels
+				stride, c_out, H_fmap_out, out_channels
 		);
 	}
 
 	////////////////////////////////////////////////
 	//////////// layer3_1 PG2 /////////////////////
-	quant_and_pack(out_buf_0, msb_fmap, H_fmap_in, in_channels);
+	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
 	LOOP_layer3_1_PGConv2:
-	for (int ch_t = 0; ch_t < out_channels/OUT_CHANNEL_PARALLELISM; ch_t ++) {
+	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
+		int c_in = 0;
+		load_weights_tile(
+				layer3_1_conv2_threshold_fix,
+				layer3_1_bn2_weight_fix, layer3_1_bn4_weight_fix,
+				layer3_1_bn2_bias_fix, layer3_1_bn4_bias_fix,
+				layer3_1_rprelu2_shift_x_bias_fix, layer3_1_rprelu2_shift_y_bias_fix,
+				layer3_1_rprelu2_prelu_weight_fix,
+
+				threshold_tile_buffer,
+				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+				relu_weight_tile_buffer,
+				c_out
+		);
+		load_conv_weights_tile(
+				layer3_1_conv2_weight_fix[c_out], weight_tile_buffer
+		);
 		pg_conv3x3_tile(
-				msb_fmap[0], msb_fmap[1], layer3_1_conv2_weight_fix[ch_t],
+				msb_fmap, lsb_fmap, weight_tile_buffer,
 				out_buf_t0, out_buf_t1,
-				0, in_channels, H_fmap_out
+				c_in, in_channels, H_fmap_out
 		);
 		bn_relu_shortcut(
 				out_buf_0, out_buf_t0, out_buf_t1,
 
-				layer3_1_conv2_threshold_fix[ch_t],
-				layer3_1_bn2_weight_fix[ch_t], layer3_1_bn4_weight_fix[ch_t],
-				layer3_1_bn2_bias_fix[ch_t], layer3_1_bn4_bias_fix[ch_t],
-				layer3_1_rprelu2_shift_x_bias_fix[ch_t], layer3_1_rprelu2_shift_y_bias_fix[ch_t],
-				layer3_1_rprelu2_prelu_weight_fix[ch_t],
+				threshold_tile_buffer,
+				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+				relu_weight_tile_buffer,
 
-				stride, ch_t, H_fmap_out, out_channels
+				stride, c_out, H_fmap_out, out_channels
 		);
 	}
 
 	////////////////////////////////////////////////
 	//////////// layer3_2 PG1 /////////////////////
-	quant_and_pack(out_buf_0, msb_fmap, H_fmap_in, in_channels);
+	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
 	LOOP_layer3_2_PGConv1:
-	for (int ch_t = 0; ch_t < out_channels/OUT_CHANNEL_PARALLELISM; ch_t ++) {
+	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
+		int c_in = 0;
+		load_weights_tile(
+				layer3_2_conv1_threshold_fix,
+				layer3_2_bn1_weight_fix, layer3_2_bn3_weight_fix,
+				layer3_2_bn1_bias_fix, layer3_2_bn3_bias_fix,
+				layer3_2_rprelu1_shift_x_bias_fix, layer3_2_rprelu1_shift_y_bias_fix,
+				layer3_2_rprelu1_prelu_weight_fix,
+
+				threshold_tile_buffer,
+				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+				relu_weight_tile_buffer,
+				c_out
+		);
+		load_conv_weights_tile(
+				layer3_2_conv1_weight_fix[c_out], weight_tile_buffer
+		);
 		pg_conv3x3_tile(
-				msb_fmap[0], msb_fmap[1], layer3_2_conv1_weight_fix[ch_t],
+				msb_fmap, lsb_fmap, weight_tile_buffer,
 				out_buf_t0, out_buf_t1,
-				0, in_channels, H_fmap_out
+				c_in, in_channels, H_fmap_out
 		);
 		bn_relu_shortcut(
 				out_buf_0, out_buf_t0, out_buf_t1,
 
-				layer3_2_conv1_threshold_fix[ch_t],
-				layer3_2_bn1_weight_fix[ch_t], layer3_2_bn3_weight_fix[ch_t],
-				layer3_2_bn1_bias_fix[ch_t], layer3_2_bn3_bias_fix[ch_t],
-				layer3_2_rprelu1_shift_x_bias_fix[ch_t], layer3_2_rprelu1_shift_y_bias_fix[ch_t],
-				layer3_2_rprelu1_prelu_weight_fix[ch_t],
+				threshold_tile_buffer,
+				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+				relu_weight_tile_buffer,
 
-				stride, ch_t, H_fmap_out, out_channels
+				stride, c_out, H_fmap_out, out_channels
 		);
 	}
 
 	////////////////////////////////////////////////
 	//////////// layer3_2 PG2 /////////////////////
-	quant_and_pack(out_buf_0, msb_fmap, H_fmap_in, in_channels);
+	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
 	LOOP_layer3_2_PGConv2:
-	for (int ch_t = 0; ch_t < out_channels/OUT_CHANNEL_PARALLELISM; ch_t ++) {
+	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
+		int c_in = 0;
+		load_weights_tile(
+				layer3_2_conv2_threshold_fix,
+				layer3_2_bn2_weight_fix, layer3_2_bn4_weight_fix,
+				layer3_2_bn2_bias_fix, layer3_2_bn4_bias_fix,
+				layer3_2_rprelu2_shift_x_bias_fix, layer3_2_rprelu2_shift_y_bias_fix,
+				layer3_2_rprelu2_prelu_weight_fix,
+
+				threshold_tile_buffer,
+				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+				relu_weight_tile_buffer,
+				c_out
+		);
+		load_conv_weights_tile(
+				layer3_2_conv2_weight_fix[c_out], weight_tile_buffer
+		);
 		pg_conv3x3_tile(
-				msb_fmap[0], msb_fmap[1], layer3_2_conv2_weight_fix[ch_t],
+				msb_fmap, lsb_fmap, weight_tile_buffer,
 				out_buf_t0, out_buf_t1,
-				0, in_channels, H_fmap_out
+				c_in, in_channels, H_fmap_out
 		);
 		bn_relu_shortcut(
 				out_buf_0, out_buf_t0, out_buf_t1,
 
-				layer3_2_conv2_threshold_fix[ch_t],
-				layer3_2_bn2_weight_fix[ch_t], layer3_2_bn4_weight_fix[ch_t],
-				layer3_2_bn2_bias_fix[ch_t], layer3_2_bn4_bias_fix[ch_t],
-				layer3_2_rprelu2_shift_x_bias_fix[ch_t], layer3_2_rprelu2_shift_y_bias_fix[ch_t],
-				layer3_2_rprelu2_prelu_weight_fix[ch_t],
+				threshold_tile_buffer,
+				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+				relu_weight_tile_buffer,
 
-				stride, ch_t, H_fmap_out, out_channels
+				stride, c_out, H_fmap_out, out_channels
 		);
 	}
 

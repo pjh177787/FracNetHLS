@@ -1,0 +1,29 @@
+INFO: [HLS 200-10] Running 'C:/Xilinx/Vivado/2019.2/bin/unwrapped/win64.o/vivado_hls.exe'
+INFO: [HLS 200-10] For user 'Aperture' on host 'desktop-apertur' (Windows NT_amd64 version 6.2) on Mon Nov 23 02:43:01 -0600 2020
+INFO: [HLS 200-10] In directory 'C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt-64'
+Sourcing Tcl script 'C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt-64/model/solution1/csynth.tcl'
+INFO: [HLS 200-10] Opening project 'C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt-64/model'.
+INFO: [HLS 200-10] Adding design file 'weights_fracnet_64.h' to the project
+INFO: [HLS 200-10] Adding design file 'typedefs.h' to the project
+INFO: [HLS 200-10] Adding design file 'pgconv.h' to the project
+INFO: [HLS 200-10] Adding design file 'layer.h' to the project
+INFO: [HLS 200-10] Adding design file 'dimension_def.h' to the project
+INFO: [HLS 200-10] Adding design file 'bnn_tiled.cc' to the project
+INFO: [HLS 200-10] Adding design file 'bnn.h' to the project
+INFO: [HLS 200-10] Adding test bench file 'weights_tb.h' to the project
+INFO: [HLS 200-10] Adding test bench file 'tb.cc' to the project
+INFO: [HLS 200-10] Adding test bench file 'bin/labels.bin' to the project
+INFO: [HLS 200-10] Adding test bench file 'bin/conv1_input.bin' to the project
+INFO: [HLS 200-10] Opening solution 'C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt-64/model/solution1'.
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 4ns.
+INFO: [SYN 201-201] Setting up clock 'default' with an uncertainty of 0.5ns.
+INFO: [HLS 200-10] Setting target device to 'xczu3eg-sbva484-1-e'
+INFO: [HLS 200-435] Setting 'config_sdx -target' configuration: config_export -vivado_optimization_level=2
+INFO: [HLS 200-435] Setting 'config_sdx -target' configuration: set_clock_uncertainty default
+INFO: [HLS 200-435] Setting 'config_sdx -target' configuration: config_export -vivado_optimization_level=2
+INFO: [HLS 200-435] Setting 'config_sdx -target' configuration: set_clock_uncertainty default
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'bnn_tiled.cc' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:02 ; elapsed = 00:00:36 . Memory (MB): peak = 209.594 ; gain = 117.398
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:02 ; elapsed = 00:00:36 . Memory (MB): peak = 209.594 ; gain = 117.398
+INFO: [HLS 200-10] Starting code transformations ...
