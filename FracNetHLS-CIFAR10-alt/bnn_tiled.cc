@@ -31,31 +31,31 @@ void FracNet_T(
 #pragma HLS ARRAY_PARTITION variable=out_buf_t1 complete dim=1
 
 	uint64 weight_tile_buffer[OUT_CHANNEL_PARALLELISM][3][3];
-	//#pragma HLS ARRAY_PARTITION variable=weight_tile_buffer complete dim=1
+#pragma HLS ARRAY_PARTITION variable=weight_tile_buffer complete dim=1
 #pragma HLS ARRAY_PARTITION variable=weight_tile_buffer complete dim=2
 #pragma HLS ARRAY_PARTITION variable=weight_tile_buffer complete dim=3
 
-	FIX_WT threshold_tile_buffer[OUT_CHANNEL_PARALLELISM];
-#pragma HLS ARRAY_PARTITION variable=threshold_tile_buffer complete dim=1
-
-	FIX_WT bn_weight_0_tile_buffer[OUT_CHANNEL_PARALLELISM];
-	FIX_WT bn_weight_1_tile_buffer[OUT_CHANNEL_PARALLELISM];
-#pragma HLS ARRAY_PARTITION variable=bn_weight_0_tile_buffer complete dim=1
-#pragma HLS ARRAY_PARTITION variable=bn_weight_1_tile_buffer complete dim=1
-
-	FIX_WT bn_bias_0_tile_buffer[OUT_CHANNEL_PARALLELISM];
-	FIX_WT bn_bias_1_tile_buffer[OUT_CHANNEL_PARALLELISM];
-#pragma HLS ARRAY_PARTITION variable=bn_bias_0_tile_buffer complete dim=1
-#pragma HLS ARRAY_PARTITION variable=bn_bias_1_tile_buffer complete dim=1
-
-	FIX_WT relu_x_bias_tile_buffer[OUT_CHANNEL_PARALLELISM];
-#pragma HLS ARRAY_PARTITION variable=relu_x_bias_tile_buffer complete dim=1
-
-	FIX_WT relu_y_bias_tile_buffer[OUT_CHANNEL_PARALLELISM];
-#pragma HLS ARRAY_PARTITION variable=relu_y_bias_tile_buffer complete dim=1
-
-	FIX_WT relu_weight_tile_buffer[OUT_CHANNEL_PARALLELISM];
-#pragma HLS ARRAY_PARTITION variable=relu_weight_tile_buffer complete dim=1
+	// 	FIX_WT threshold_tile_buffer[OUT_CHANNEL_PARALLELISM];
+	// #pragma HLS ARRAY_PARTITION variable=threshold_tile_buffer complete dim=1
+	//
+	// 	FIX_WT bn_weight_0_tile_buffer[OUT_CHANNEL_PARALLELISM];
+	// 	FIX_WT bn_weight_1_tile_buffer[OUT_CHANNEL_PARALLELISM];
+	// #pragma HLS ARRAY_PARTITION variable=bn_weight_0_tile_buffer complete dim=1
+	// #pragma HLS ARRAY_PARTITION variable=bn_weight_1_tile_buffer complete dim=1
+	//
+	// 	FIX_WT bn_bias_0_tile_buffer[OUT_CHANNEL_PARALLELISM];
+	// 	FIX_WT bn_bias_1_tile_buffer[OUT_CHANNEL_PARALLELISM];
+	// #pragma HLS ARRAY_PARTITION variable=bn_bias_0_tile_buffer complete dim=1
+	// #pragma HLS ARRAY_PARTITION variable=bn_bias_1_tile_buffer complete dim=1
+	//
+	// 	FIX_WT relu_x_bias_tile_buffer[OUT_CHANNEL_PARALLELISM];
+	// #pragma HLS ARRAY_PARTITION variable=relu_x_bias_tile_buffer complete dim=1
+	//
+	// 	FIX_WT relu_y_bias_tile_buffer[OUT_CHANNEL_PARALLELISM];
+	// #pragma HLS ARRAY_PARTITION variable=relu_y_bias_tile_buffer complete dim=1
+	//
+	// 	FIX_WT relu_weight_tile_buffer[OUT_CHANNEL_PARALLELISM];
+	// #pragma HLS ARRAY_PARTITION variable=relu_weight_tile_buffer complete dim=1
 
 	int H_fmap_in, H_fmap_out, in_channels, in_channels_after_pack, out_channels, out_channel_start, stride;
 
@@ -86,25 +86,25 @@ void FracNet_T(
 
 	LOOP_Conv1:
 	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++){
-		load_weights_tile(
-				layer1_0_conv1_threshold_fix,
-				bn1_weight_fix, bn1_bias_fix,
-				layer1_0_bn1_bias_fix, layer1_0_bn3_bias_fix,
-				layer1_0_rprelu1_shift_x_bias_fix, layer1_0_rprelu1_shift_y_bias_fix,
-				layer1_0_rprelu1_prelu_weight_fix,
+		// load_weights_tile(
+		// 		layer1_0_conv1_threshold_fix,
+		// 		bn1_weight_fix, bn1_bias_fix,
+		// 		layer1_0_bn1_bias_fix, layer1_0_bn3_bias_fix,
+		// 		layer1_0_rprelu1_shift_x_bias_fix, layer1_0_rprelu1_shift_y_bias_fix,
+		// 		layer1_0_rprelu1_prelu_weight_fix,
 
-				threshold_tile_buffer,
-				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
-				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
-				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
-				relu_weight_tile_buffer,
-				c_out
-		);
+		// 		threshold_tile_buffer,
+		// 		bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+		// 		bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+		// 		relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+		// 		relu_weight_tile_buffer,
+		// 		c_out
+		// );
 		for(int c_in = 0; c_in < in_channels_after_pack; c_in ++){
 			for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
 				for(int k_row=0; k_row<3; k_row++){
 					for(int k_col=0; k_col<3; k_col++){
-						 weight_tile_buffer[ch][k_row][k_col] = conv1_weight_fix[c_out][c_in][ch][k_row][k_col];
+						weight_tile_buffer[ch][k_row][k_col] = conv1_weight_fix[c_out][c_in][ch][k_row][k_col];
 					}
 				}
 			}
@@ -116,7 +116,7 @@ void FracNet_T(
 		}
 		bn1(
 				out_buf_0, out_buf_t0,
-				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+				bn1_weight_fix[c_out], bn1_bias_fix[c_out],
 				stride, c_out, H_fmap_out
 		);
 	}
@@ -141,24 +141,24 @@ void FracNet_T(
 		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
 			for(int k_row=0; k_row<3; k_row++){
 				for(int k_col=0; k_col<3; k_col++){
-					 weight_tile_buffer[ch][k_row][k_col] = layer1_0_conv1_weight_fix[c_out][ch][k_row][k_col];
+					weight_tile_buffer[ch][k_row][k_col] = layer1_0_conv1_weight_fix[c_out][ch][k_row][k_col];
 				}
 			}
 		}
-		load_weights_tile(
-				layer1_0_conv1_threshold_fix,
-				layer1_0_bn1_weight_fix, layer1_0_bn3_weight_fix,
-				layer1_0_bn1_bias_fix, layer1_0_bn3_bias_fix,
-				layer1_0_rprelu1_shift_x_bias_fix, layer1_0_rprelu1_shift_y_bias_fix,
-				layer1_0_rprelu1_prelu_weight_fix,
-
-				threshold_tile_buffer,
-				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
-				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
-				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
-				relu_weight_tile_buffer,
-				c_out
-		);
+		//		load_weights_tile(
+		//				layer1_0_conv1_threshold_fix,
+		//				layer1_0_bn1_weight_fix, layer1_0_bn3_weight_fix,
+		//				layer1_0_bn1_bias_fix, layer1_0_bn3_bias_fix,
+		//				layer1_0_rprelu1_shift_x_bias_fix, layer1_0_rprelu1_shift_y_bias_fix,
+		//				layer1_0_rprelu1_prelu_weight_fix,
+		//
+		//				threshold_tile_buffer,
+		//				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+		//				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+		//				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+		//				relu_weight_tile_buffer,
+		//				c_out
+		//		);
 		pg_conv3x3_tile(
 				msb_fmap, lsb_fmap, weight_tile_buffer,
 				out_buf_t0, out_buf_t1,
@@ -167,11 +167,14 @@ void FracNet_T(
 		bn_relu_shortcut(
 				out_buf_0, out_buf_t0, out_buf_t1,
 
-				threshold_tile_buffer,
-				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
-				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
-				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
-				relu_weight_tile_buffer,
+				layer1_0_conv1_threshold_fix[c_out],
+				layer1_0_bn1_weight_fix[c_out],
+				layer1_0_bn3_weight_fix[c_out],
+				layer1_0_bn1_bias_fix[c_out],
+				layer1_0_bn3_bias_fix[c_out],
+				layer1_0_rprelu1_shift_x_bias_fix[c_out],
+				layer1_0_rprelu1_shift_y_bias_fix[c_out],
+				layer1_0_rprelu1_prelu_weight_fix[c_out],
 
 				stride, c_out, H_fmap_out, out_channels
 		);
@@ -186,24 +189,24 @@ void FracNet_T(
 		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
 			for(int k_row=0; k_row<3; k_row++){
 				for(int k_col=0; k_col<3; k_col++){
-					 weight_tile_buffer[ch][k_row][k_col] = layer1_0_conv2_weight_fix[c_out][ch][k_row][k_col];
+					weight_tile_buffer[ch][k_row][k_col] = layer1_0_conv2_weight_fix[c_out][ch][k_row][k_col];
 				}
 			}
 		}
-		load_weights_tile(
-				layer1_0_conv2_threshold_fix,
-				layer1_0_bn2_weight_fix, layer1_0_bn4_weight_fix,
-				layer1_0_bn2_bias_fix, layer1_0_bn4_bias_fix,
-				layer1_0_rprelu2_shift_x_bias_fix, layer1_0_rprelu2_shift_y_bias_fix,
-				layer1_0_rprelu2_prelu_weight_fix,
+		// load_weights_tile(
+		// 		layer1_0_conv2_threshold_fix,
+		// 		layer1_0_bn2_weight_fix, layer1_0_bn4_weight_fix,
+		// 		layer1_0_bn2_bias_fix, layer1_0_bn4_bias_fix,
+		// 		layer1_0_rprelu2_shift_x_bias_fix, layer1_0_rprelu2_shift_y_bias_fix,
+		// 		layer1_0_rprelu2_prelu_weight_fix,
 
-				threshold_tile_buffer,
-				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
-				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
-				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
-				relu_weight_tile_buffer,
-				c_out
-		);
+		// 		threshold_tile_buffer,
+		// 		bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+		// 		bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+		// 		relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+		// 		relu_weight_tile_buffer,
+		// 		c_out
+		// );
 		pg_conv3x3_tile(
 				msb_fmap, lsb_fmap, weight_tile_buffer,
 				out_buf_t0, out_buf_t1,
@@ -212,787 +215,842 @@ void FracNet_T(
 		bn_relu_shortcut(
 				out_buf_0, out_buf_t0, out_buf_t1,
 
-				threshold_tile_buffer,
-				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
-				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
-				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
-				relu_weight_tile_buffer,
+				layer1_0_conv2_threshold_fix[c_out],
+				layer1_0_bn2_weight_fix[c_out],
+				layer1_0_bn4_weight_fix[c_out],
+				layer1_0_bn2_bias_fix[c_out],
+				layer1_0_bn4_bias_fix[c_out],
+				layer1_0_rprelu2_shift_x_bias_fix[c_out],
+				layer1_0_rprelu2_shift_y_bias_fix[c_out],
+				layer1_0_rprelu2_prelu_weight_fix[c_out],
 
 				stride, c_out, H_fmap_out, out_channels
 		);
 	}
 
-	////////////////////////////////////////////////
-	//////////// layer1_1 PG1 /////////////////////
-	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
-	LOOP_layer1_1_PGConv1:
-	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
-		int c_in = 0;
-		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
-			for(int k_row=0; k_row<3; k_row++){
-				for(int k_col=0; k_col<3; k_col++){
-					 weight_tile_buffer[ch][k_row][k_col] = layer1_1_conv1_weight_fix[c_out][ch][k_row][k_col];
-				}
-			}
-		}
-		load_weights_tile(
-				layer1_1_conv1_threshold_fix,
-				layer1_1_bn1_weight_fix, layer1_1_bn3_weight_fix,
-				layer1_1_bn1_bias_fix, layer1_1_bn3_bias_fix,
-				layer1_1_rprelu1_shift_x_bias_fix, layer1_1_rprelu1_shift_y_bias_fix,
-				layer1_1_rprelu1_prelu_weight_fix,
-
-				threshold_tile_buffer,
-				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
-				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
-				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
-				relu_weight_tile_buffer,
-				c_out
-		);
-		pg_conv3x3_tile(
-				msb_fmap, lsb_fmap, weight_tile_buffer,
-				out_buf_t0, out_buf_t1,
-				c_in, in_channels, H_fmap_out
-		);
-		bn_relu_shortcut(
-				out_buf_0, out_buf_t0, out_buf_t1,
-
-				threshold_tile_buffer,
-				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
-				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
-				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
-				relu_weight_tile_buffer,
-
-				stride, c_out, H_fmap_out, out_channels
-		);
-	}
-
-	////////////////////////////////////////////////
-	//////////// layer1_1 PG2 /////////////////////
-	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
-	LOOP_layer1_1_PGConv2:
-	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
-		int c_in = 0;
-		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
-			for(int k_row=0; k_row<3; k_row++){
-				for(int k_col=0; k_col<3; k_col++){
-					 weight_tile_buffer[ch][k_row][k_col] = layer1_1_conv2_weight_fix[c_out][ch][k_row][k_col];
-				}
-			}
-		}
-		load_weights_tile(
-				layer1_1_conv2_threshold_fix,
-				layer1_1_bn2_weight_fix, layer1_1_bn4_weight_fix,
-				layer1_1_bn2_bias_fix, layer1_1_bn4_bias_fix,
-				layer1_1_rprelu2_shift_x_bias_fix, layer1_1_rprelu2_shift_y_bias_fix,
-				layer1_1_rprelu2_prelu_weight_fix,
-
-				threshold_tile_buffer,
-				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
-				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
-				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
-				relu_weight_tile_buffer,
-				c_out
-		);
-		pg_conv3x3_tile(
-				msb_fmap, lsb_fmap, weight_tile_buffer,
-				out_buf_t0, out_buf_t1,
-				c_in, in_channels, H_fmap_out
-		);
-		bn_relu_shortcut(
-				out_buf_0, out_buf_t0, out_buf_t1,
-
-				threshold_tile_buffer,
-				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
-				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
-				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
-				relu_weight_tile_buffer,
-
-				stride, c_out, H_fmap_out, out_channels
-		);
-	}
-
-	////////////////////////////////////////////////
-	//////////// layer1_2 PG1 /////////////////////
-	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
-	LOOP_layer1_2_PGConv1:
-	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
-		int c_in = 0;
-		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
-			for(int k_row=0; k_row<3; k_row++){
-				for(int k_col=0; k_col<3; k_col++){
-					 weight_tile_buffer[ch][k_row][k_col] = layer1_2_conv1_weight_fix[c_out][ch][k_row][k_col];
-				}
-			}
-		}
-		load_weights_tile(
-				layer1_2_conv1_threshold_fix,
-				layer1_2_bn1_weight_fix, layer1_2_bn3_weight_fix,
-				layer1_2_bn1_bias_fix, layer1_2_bn3_bias_fix,
-				layer1_2_rprelu1_shift_x_bias_fix, layer1_2_rprelu1_shift_y_bias_fix,
-				layer1_2_rprelu1_prelu_weight_fix,
-
-				threshold_tile_buffer,
-				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
-				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
-				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
-				relu_weight_tile_buffer,
-				c_out
-		);
-		pg_conv3x3_tile(
-				msb_fmap, lsb_fmap, weight_tile_buffer,
-				out_buf_t0, out_buf_t1,
-				c_in, in_channels, H_fmap_out
-		);
-		bn_relu_shortcut(
-				out_buf_0, out_buf_t0, out_buf_t1,
-
-				threshold_tile_buffer,
-				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
-				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
-				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
-				relu_weight_tile_buffer,
-
-				stride, c_out, H_fmap_out, out_channels
-		);
-	}
-
-	////////////////////////////////////////////////
-	//////////// layer1_2 PG2 /////////////////////
-	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
-	LOOP_layer1_2_PGConv2:
-	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
-		int c_in = 0;
-		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
-			for(int k_row=0; k_row<3; k_row++){
-				for(int k_col=0; k_col<3; k_col++){
-					 weight_tile_buffer[ch][k_row][k_col] = layer1_2_conv2_weight_fix[c_out][ch][k_row][k_col];
-				}
-			}
-		}
-		load_weights_tile(
-				layer1_2_conv2_threshold_fix,
-				layer1_2_bn2_weight_fix, layer1_2_bn4_weight_fix,
-				layer1_2_bn2_bias_fix, layer1_2_bn4_bias_fix,
-				layer1_2_rprelu2_shift_x_bias_fix, layer1_2_rprelu2_shift_y_bias_fix,
-				layer1_2_rprelu2_prelu_weight_fix,
-
-				threshold_tile_buffer,
-				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
-				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
-				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
-				relu_weight_tile_buffer,
-				c_out
-		);
-		pg_conv3x3_tile(
-				msb_fmap, lsb_fmap, weight_tile_buffer,
-				out_buf_t0, out_buf_t1,
-				c_in, in_channels, H_fmap_out
-		);
-		bn_relu_shortcut(
-				out_buf_0, out_buf_t0, out_buf_t1,
-
-				threshold_tile_buffer,
-				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
-				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
-				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
-				relu_weight_tile_buffer,
-
-				stride, c_out, H_fmap_out, out_channels
-		);
-	}
-
-	////////////////////////////////////////////////
-	//////////// LAYER 2 SPECIAL ///////////////////
-	////////////////////////////////////////////////
-
-	H_fmap_in = 32;
-	H_fmap_out = 16;
-	in_channels = 16;
-	in_channels_after_pack = 1;
-	out_channels = 32;
-	stride = 2;
-
-	////////////////////////////////////////////////
-	//////////// layer2_0 PG1 /////////////////////
-	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
-	avgpool_concat(out_buf_0, H_fmap_out, in_channels);
-	LOOP_layer2_0_PGConv1:
-	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
-		int c_in = 0;
-		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
-			for(int k_row=0; k_row<3; k_row++){
-				for(int k_col=0; k_col<3; k_col++){
-					 weight_tile_buffer[ch][k_row][k_col] = layer2_0_conv1_weight_fix[c_out][ch][k_row][k_col];
-				}
-			}
-		}
-		load_weights_tile(
-				layer2_0_conv1_threshold_fix,
-				layer2_0_bn1_weight_fix, layer2_0_bn3_weight_fix,
-				layer2_0_bn1_bias_fix, layer2_0_bn3_bias_fix,
-				layer2_0_rprelu1_shift_x_bias_fix, layer2_0_rprelu1_shift_y_bias_fix,
-				layer2_0_rprelu1_prelu_weight_fix,
-
-				threshold_tile_buffer,
-				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
-				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
-				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
-				relu_weight_tile_buffer,
-				c_out
-		);
-		pg_conv3x3_tile(
-				msb_fmap, lsb_fmap, weight_tile_buffer,
-				out_buf_t0, out_buf_t1,
-				c_in, in_channels, H_fmap_in
-		);
-		bn_relu_shortcut(
-				out_buf_0, out_buf_t0, out_buf_t1,
-
-				threshold_tile_buffer,
-				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
-				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
-				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
-				relu_weight_tile_buffer,
-
-				stride, c_out, H_fmap_out, out_channels
-		);
-	}
-
-	////////////////////////////////////////////////
-	//////////// LAYER 2 ///////////////////////////
-	////////////////////////////////////////////////
-
-	H_fmap_in = 16;
-	H_fmap_out = 16;
-	in_channels = 32;
-	in_channels_after_pack = 1;
-	out_channels = 32;
-	stride = 1;
-
-	////////////////////////////////////////////////
-	//////////// layer2_0 PG2 /////////////////////
-	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
-	LOOP_layer2_0_PGConv2:
-	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
-		int c_in = 0;
-		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
-			for(int k_row=0; k_row<3; k_row++){
-				for(int k_col=0; k_col<3; k_col++){
-					 weight_tile_buffer[ch][k_row][k_col] = layer2_0_conv2_weight_fix[c_out][ch][k_row][k_col];
-				}
-			}
-		}
-		load_weights_tile(
-				layer2_0_conv2_threshold_fix,
-				layer2_0_bn2_weight_fix, layer2_0_bn4_weight_fix,
-				layer2_0_bn2_bias_fix, layer2_0_bn4_bias_fix,
-				layer2_0_rprelu2_shift_x_bias_fix, layer2_0_rprelu2_shift_y_bias_fix,
-				layer2_0_rprelu2_prelu_weight_fix,
-
-				threshold_tile_buffer,
-				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
-				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
-				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
-				relu_weight_tile_buffer,
-				c_out
-		);
-		pg_conv3x3_tile(
-				msb_fmap, lsb_fmap, weight_tile_buffer,
-				out_buf_t0, out_buf_t1,
-				c_in, in_channels, H_fmap_out
-		);
-		bn_relu_shortcut(
-				out_buf_0, out_buf_t0, out_buf_t1,
-
-				threshold_tile_buffer,
-				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
-				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
-				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
-				relu_weight_tile_buffer,
-
-				stride, c_out, H_fmap_out, out_channels
-		);
-	}
-
-	////////////////////////////////////////////////
-	//////////// layer2_1 PG1 /////////////////////
-	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
-	LOOP_layer2_1_PGConv1:
-	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
-		int c_in = 0;
-		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
-			for(int k_row=0; k_row<3; k_row++){
-				for(int k_col=0; k_col<3; k_col++){
-					 weight_tile_buffer[ch][k_row][k_col] = layer2_1_conv1_weight_fix[c_out][ch][k_row][k_col];
-				}
-			}
-		}
-		load_weights_tile(
-				layer2_1_conv1_threshold_fix,
-				layer2_1_bn1_weight_fix, layer2_1_bn3_weight_fix,
-				layer2_1_bn1_bias_fix, layer2_1_bn3_bias_fix,
-				layer2_1_rprelu1_shift_x_bias_fix, layer2_1_rprelu1_shift_y_bias_fix,
-				layer2_1_rprelu1_prelu_weight_fix,
-
-				threshold_tile_buffer,
-				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
-				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
-				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
-				relu_weight_tile_buffer,
-				c_out
-		);
-		pg_conv3x3_tile(
-				msb_fmap, lsb_fmap, weight_tile_buffer,
-				out_buf_t0, out_buf_t1,
-				c_in, in_channels, H_fmap_out
-		);
-		bn_relu_shortcut(
-				out_buf_0, out_buf_t0, out_buf_t1,
-
-				threshold_tile_buffer,
-				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
-				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
-				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
-				relu_weight_tile_buffer,
-
-				stride, c_out, H_fmap_out, out_channels
-		);
-	}
-
-	////////////////////////////////////////////////
-	//////////// layer2_1 PG2 /////////////////////
-	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
-	LOOP_layer2_1_PGConv2:
-	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
-		int c_in = 0;
-		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
-			for(int k_row=0; k_row<3; k_row++){
-				for(int k_col=0; k_col<3; k_col++){
-					 weight_tile_buffer[ch][k_row][k_col] = layer2_1_conv2_weight_fix[c_out][ch][k_row][k_col];
-				}
-			}
-		}
-		load_weights_tile(
-				layer2_1_conv2_threshold_fix,
-				layer2_1_bn2_weight_fix, layer2_1_bn4_weight_fix,
-				layer2_1_bn2_bias_fix, layer2_1_bn4_bias_fix,
-				layer2_1_rprelu2_shift_x_bias_fix, layer2_1_rprelu2_shift_y_bias_fix,
-				layer2_1_rprelu2_prelu_weight_fix,
-
-				threshold_tile_buffer,
-				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
-				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
-				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
-				relu_weight_tile_buffer,
-				c_out
-		);
-		pg_conv3x3_tile(
-				msb_fmap, lsb_fmap, weight_tile_buffer,
-				out_buf_t0, out_buf_t1,
-				c_in, in_channels, H_fmap_out
-		);
-		bn_relu_shortcut(
-				out_buf_0, out_buf_t0, out_buf_t1,
-
-				threshold_tile_buffer,
-				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
-				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
-				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
-				relu_weight_tile_buffer,
-
-				stride, c_out, H_fmap_out, out_channels
-		);
-	}
-
-	////////////////////////////////////////////////
-	//////////// layer2_2 PG1 /////////////////////
-	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
-	LOOP_layer2_2_PGConv1:
-	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
-		int c_in = 0;
-		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
-			for(int k_row=0; k_row<3; k_row++){
-				for(int k_col=0; k_col<3; k_col++){
-					 weight_tile_buffer[ch][k_row][k_col] = layer2_2_conv1_weight_fix[c_out][ch][k_row][k_col];
-				}
-			}
-		}
-		load_weights_tile(
-				layer2_2_conv1_threshold_fix,
-				layer2_2_bn1_weight_fix, layer2_2_bn3_weight_fix,
-				layer2_2_bn1_bias_fix, layer2_2_bn3_bias_fix,
-				layer2_2_rprelu1_shift_x_bias_fix, layer2_2_rprelu1_shift_y_bias_fix,
-				layer2_2_rprelu1_prelu_weight_fix,
-
-				threshold_tile_buffer,
-				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
-				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
-				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
-				relu_weight_tile_buffer,
-				c_out
-		);
-		pg_conv3x3_tile(
-				msb_fmap, lsb_fmap, weight_tile_buffer,
-				out_buf_t0, out_buf_t1,
-				c_in, in_channels, H_fmap_out
-		);
-		bn_relu_shortcut(
-				out_buf_0, out_buf_t0, out_buf_t1,
-
-				threshold_tile_buffer,
-				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
-				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
-				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
-				relu_weight_tile_buffer,
-
-				stride, c_out, H_fmap_out, out_channels
-		);
-	}
-
-	////////////////////////////////////////////////
-	//////////// layer2_2 PG2 /////////////////////
-	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
-	LOOP_layer2_2_PGConv2:
-	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
-		int c_in = 0;
-		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
-			for(int k_row=0; k_row<3; k_row++){
-				for(int k_col=0; k_col<3; k_col++){
-					 weight_tile_buffer[ch][k_row][k_col] = layer2_2_conv2_weight_fix[c_out][ch][k_row][k_col];
-				}
-			}
-		}
-		load_weights_tile(
-				layer2_2_conv2_threshold_fix,
-				layer2_2_bn2_weight_fix, layer2_2_bn4_weight_fix,
-				layer2_2_bn2_bias_fix, layer2_2_bn4_bias_fix,
-				layer2_2_rprelu2_shift_x_bias_fix, layer2_2_rprelu2_shift_y_bias_fix,
-				layer2_2_rprelu2_prelu_weight_fix,
-
-				threshold_tile_buffer,
-				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
-				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
-				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
-				relu_weight_tile_buffer,
-				c_out
-		);
-		pg_conv3x3_tile(
-				msb_fmap, lsb_fmap, weight_tile_buffer,
-				out_buf_t0, out_buf_t1,
-				c_in, in_channels, H_fmap_out
-		);
-		bn_relu_shortcut(
-				out_buf_0, out_buf_t0, out_buf_t1,
-
-				threshold_tile_buffer,
-				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
-				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
-				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
-				relu_weight_tile_buffer,
-
-				stride, c_out, H_fmap_out, out_channels
-		);
-	}
-
-	////////////////////////////////////////////////
-	//////////// LAYER 3 SPECIAL ///////////////////
-	////////////////////////////////////////////////
-
-	H_fmap_in = 16;
-	H_fmap_out = 8;
-	in_channels = 32;
-	in_channels_after_pack = 1;
-	out_channels = 64;
-	stride = 2;
-
-	////////////////////////////////////////////////
-	//////////// layer3_0 PG1 /////////////////////
-	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
-	avgpool_concat(out_buf_0, H_fmap_out, in_channels);
-	LOOP_layer3_0_PGConv1:
-	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
-		int c_in = 0;
-		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
-			for(int k_row=0; k_row<3; k_row++){
-				for(int k_col=0; k_col<3; k_col++){
-					 weight_tile_buffer[ch][k_row][k_col] = layer3_0_conv1_weight_fix[c_out][ch][k_row][k_col];
-				}
-			}
-		}
-		load_weights_tile(
-				layer3_0_conv1_threshold_fix,
-				layer3_0_bn1_weight_fix, layer3_0_bn3_weight_fix,
-				layer3_0_bn1_bias_fix, layer3_0_bn3_bias_fix,
-				layer3_0_rprelu1_shift_x_bias_fix, layer3_0_rprelu1_shift_y_bias_fix,
-				layer3_0_rprelu1_prelu_weight_fix,
-
-				threshold_tile_buffer,
-				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
-				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
-				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
-				relu_weight_tile_buffer,
-				c_out
-		);
-		pg_conv3x3_tile(
-				msb_fmap, lsb_fmap, weight_tile_buffer,
-				out_buf_t0, out_buf_t1,
-				c_in, in_channels, H_fmap_in
-		);
-		bn_relu_shortcut(
-				out_buf_0, out_buf_t0, out_buf_t1,
-
-				threshold_tile_buffer,
-				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
-				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
-				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
-				relu_weight_tile_buffer,
-
-				stride, c_out, H_fmap_out, out_channels
-		);
-	}
-
-	////////////////////////////////////////////////
-	//////////// LAYER 3 ///////////////////////////
-	////////////////////////////////////////////////
-
-	H_fmap_in = 8;
-	H_fmap_out = 8;
-	in_channels = 64;
-	in_channels_after_pack = 1;
-	out_channels = 64;
-	stride = 1;
-
-	////////////////////////////////////////////////
-	//////////// layer3_0 PG2 /////////////////////
-	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
-	LOOP_layer3_0_PGConv2:
-	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
-		int c_in = 0;
-		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
-			for(int k_row=0; k_row<3; k_row++){
-				for(int k_col=0; k_col<3; k_col++){
-					 weight_tile_buffer[ch][k_row][k_col] = layer3_0_conv2_weight_fix[c_out][ch][k_row][k_col];
-				}
-			}
-		}
-		load_weights_tile(
-				layer3_0_conv2_threshold_fix,
-				layer3_0_bn2_weight_fix, layer3_0_bn4_weight_fix,
-				layer3_0_bn2_bias_fix, layer3_0_bn4_bias_fix,
-				layer3_0_rprelu2_shift_x_bias_fix, layer3_0_rprelu2_shift_y_bias_fix,
-				layer3_0_rprelu2_prelu_weight_fix,
-
-				threshold_tile_buffer,
-				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
-				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
-				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
-				relu_weight_tile_buffer,
-				c_out
-		);
-		pg_conv3x3_tile(
-				msb_fmap, lsb_fmap, weight_tile_buffer,
-				out_buf_t0, out_buf_t1,
-				c_in, in_channels, H_fmap_out
-		);
-		bn_relu_shortcut(
-				out_buf_0, out_buf_t0, out_buf_t1,
-
-				threshold_tile_buffer,
-				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
-				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
-				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
-				relu_weight_tile_buffer,
-
-				stride, c_out, H_fmap_out, out_channels
-		);
-	}
-
-	////////////////////////////////////////////////
-	//////////// layer3_1 PG1 /////////////////////
-	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
-	LOOP_layer3_1_PGConv1:
-	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
-		int c_in = 0;
-		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
-			for(int k_row=0; k_row<3; k_row++){
-				for(int k_col=0; k_col<3; k_col++){
-					 weight_tile_buffer[ch][k_row][k_col] = layer3_1_conv1_weight_fix[c_out][ch][k_row][k_col];
-				}
-			}
-		}
-		load_weights_tile(
-				layer3_1_conv1_threshold_fix,
-				layer3_1_bn1_weight_fix, layer3_1_bn3_weight_fix,
-				layer3_1_bn1_bias_fix, layer3_1_bn3_bias_fix,
-				layer3_1_rprelu1_shift_x_bias_fix, layer3_1_rprelu1_shift_y_bias_fix,
-				layer3_1_rprelu1_prelu_weight_fix,
-
-				threshold_tile_buffer,
-				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
-				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
-				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
-				relu_weight_tile_buffer,
-				c_out
-		);
-		pg_conv3x3_tile(
-				msb_fmap, lsb_fmap, weight_tile_buffer,
-				out_buf_t0, out_buf_t1,
-				c_in, in_channels, H_fmap_out
-		);
-		bn_relu_shortcut(
-				out_buf_0, out_buf_t0, out_buf_t1,
-
-				threshold_tile_buffer,
-				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
-				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
-				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
-				relu_weight_tile_buffer,
-
-				stride, c_out, H_fmap_out, out_channels
-		);
-	}
-
-	////////////////////////////////////////////////
-	//////////// layer3_1 PG2 /////////////////////
-	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
-	LOOP_layer3_1_PGConv2:
-	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
-		int c_in = 0;
-		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
-			for(int k_row=0; k_row<3; k_row++){
-				for(int k_col=0; k_col<3; k_col++){
-					 weight_tile_buffer[ch][k_row][k_col] = layer3_1_conv2_weight_fix[c_out][ch][k_row][k_col];
-				}
-			}
-		}
-		load_weights_tile(
-				layer3_1_conv2_threshold_fix,
-				layer3_1_bn2_weight_fix, layer3_1_bn4_weight_fix,
-				layer3_1_bn2_bias_fix, layer3_1_bn4_bias_fix,
-				layer3_1_rprelu2_shift_x_bias_fix, layer3_1_rprelu2_shift_y_bias_fix,
-				layer3_1_rprelu2_prelu_weight_fix,
-
-				threshold_tile_buffer,
-				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
-				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
-				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
-				relu_weight_tile_buffer,
-				c_out
-		);
-		pg_conv3x3_tile(
-				msb_fmap, lsb_fmap, weight_tile_buffer,
-				out_buf_t0, out_buf_t1,
-				c_in, in_channels, H_fmap_out
-		);
-		bn_relu_shortcut(
-				out_buf_0, out_buf_t0, out_buf_t1,
-
-				threshold_tile_buffer,
-				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
-				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
-				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
-				relu_weight_tile_buffer,
-
-				stride, c_out, H_fmap_out, out_channels
-		);
-	}
-
-	////////////////////////////////////////////////
-	//////////// layer3_2 PG1 /////////////////////
-	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
-	LOOP_layer3_2_PGConv1:
-	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
-		int c_in = 0;
-		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
-			for(int k_row=0; k_row<3; k_row++){
-				for(int k_col=0; k_col<3; k_col++){
-					 weight_tile_buffer[ch][k_row][k_col] = layer3_2_conv1_weight_fix[c_out][ch][k_row][k_col];
-				}
-			}
-		}
-		load_weights_tile(
-				layer3_2_conv1_threshold_fix,
-				layer3_2_bn1_weight_fix, layer3_2_bn3_weight_fix,
-				layer3_2_bn1_bias_fix, layer3_2_bn3_bias_fix,
-				layer3_2_rprelu1_shift_x_bias_fix, layer3_2_rprelu1_shift_y_bias_fix,
-				layer3_2_rprelu1_prelu_weight_fix,
-
-				threshold_tile_buffer,
-				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
-				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
-				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
-				relu_weight_tile_buffer,
-				c_out
-		);
-		pg_conv3x3_tile(
-				msb_fmap, lsb_fmap, weight_tile_buffer,
-				out_buf_t0, out_buf_t1,
-				c_in, in_channels, H_fmap_out
-		);
-		bn_relu_shortcut(
-				out_buf_0, out_buf_t0, out_buf_t1,
-
-				threshold_tile_buffer,
-				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
-				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
-				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
-				relu_weight_tile_buffer,
-
-				stride, c_out, H_fmap_out, out_channels
-		);
-	}
-
-	////////////////////////////////////////////////
-	//////////// layer3_2 PG2 /////////////////////
-	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
-	LOOP_layer3_2_PGConv2:
-	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
-		int c_in = 0;
-		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
-			for(int k_row=0; k_row<3; k_row++){
-				for(int k_col=0; k_col<3; k_col++){
-					 weight_tile_buffer[ch][k_row][k_col] = layer3_2_conv2_weight_fix[c_out][ch][k_row][k_col];
-				}
-			}
-		}
-		load_weights_tile(
-				layer3_2_conv2_threshold_fix,
-				layer3_2_bn2_weight_fix, layer3_2_bn4_weight_fix,
-				layer3_2_bn2_bias_fix, layer3_2_bn4_bias_fix,
-				layer3_2_rprelu2_shift_x_bias_fix, layer3_2_rprelu2_shift_y_bias_fix,
-				layer3_2_rprelu2_prelu_weight_fix,
-
-				threshold_tile_buffer,
-				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
-				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
-				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
-				relu_weight_tile_buffer,
-				c_out
-		);
-		pg_conv3x3_tile(
-				msb_fmap, lsb_fmap, weight_tile_buffer,
-				out_buf_t0, out_buf_t1,
-				c_in, in_channels, H_fmap_out
-		);
-		bn_relu_shortcut(
-				out_buf_0, out_buf_t0, out_buf_t1,
-
-				threshold_tile_buffer,
-				bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
-				bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
-				relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
-				relu_weight_tile_buffer,
-
-				stride, c_out, H_fmap_out, out_channels
-		);
-	}
+//	////////////////////////////////////////////////
+//	//////////// layer1_1 PG1 /////////////////////
+//	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
+//	LOOP_layer1_1_PGConv1:
+//	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
+//		int c_in = 0;
+//		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
+//			for(int k_row=0; k_row<3; k_row++){
+//				for(int k_col=0; k_col<3; k_col++){
+//					weight_tile_buffer[ch][k_row][k_col] = layer1_1_conv1_weight_fix[c_out][ch][k_row][k_col];
+//				}
+//			}
+//		}
+//		// load_weights_tile(
+//		// 		layer1_1_conv1_threshold_fix,
+//		// 		layer1_1_bn1_weight_fix, layer1_1_bn3_weight_fix,
+//		// 		layer1_1_bn1_bias_fix, layer1_1_bn3_bias_fix,
+//		// 		layer1_1_rprelu1_shift_x_bias_fix, layer1_1_rprelu1_shift_y_bias_fix,
+//		// 		layer1_1_rprelu1_prelu_weight_fix,
+//
+//		// 		threshold_tile_buffer,
+//		// 		bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+//		// 		bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+//		// 		relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+//		// 		relu_weight_tile_buffer,
+//		// 		c_out
+//		// );
+//		pg_conv3x3_tile(
+//				msb_fmap, lsb_fmap, weight_tile_buffer,
+//				out_buf_t0, out_buf_t1,
+//				c_in, in_channels, H_fmap_out
+//		);
+//		bn_relu_shortcut(
+//				out_buf_0, out_buf_t0, out_buf_t1,
+//
+//				layer1_1_conv1_threshold_fix[c_out],
+//				layer1_1_bn1_weight_fix[c_out],
+//				layer1_1_bn3_weight_fix[c_out],
+//				layer1_1_bn1_bias_fix[c_out],
+//				layer1_1_bn3_bias_fix[c_out],
+//				layer1_1_rprelu1_shift_x_bias_fix[c_out],
+//				layer1_1_rprelu1_shift_y_bias_fix[c_out],
+//				layer1_1_rprelu1_prelu_weight_fix[c_out],
+//
+//				stride, c_out, H_fmap_out, out_channels
+//		);
+//	}
+//
+//	////////////////////////////////////////////////
+//	//////////// layer1_1 PG2 /////////////////////
+//	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
+//	LOOP_layer1_1_PGConv2:
+//	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
+//		int c_in = 0;
+//		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
+//			for(int k_row=0; k_row<3; k_row++){
+//				for(int k_col=0; k_col<3; k_col++){
+//					weight_tile_buffer[ch][k_row][k_col] = layer1_1_conv2_weight_fix[c_out][ch][k_row][k_col];
+//				}
+//			}
+//		}
+//		// load_weights_tile(
+//		// 		layer1_1_conv2_threshold_fix,
+//		// 		layer1_1_bn2_weight_fix, layer1_1_bn4_weight_fix,
+//		// 		layer1_1_bn2_bias_fix, layer1_1_bn4_bias_fix,
+//		// 		layer1_1_rprelu2_shift_x_bias_fix, layer1_1_rprelu2_shift_y_bias_fix,
+//		// 		layer1_1_rprelu2_prelu_weight_fix,
+//
+//		// 		threshold_tile_buffer,
+//		// 		bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+//		// 		bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+//		// 		relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+//		// 		relu_weight_tile_buffer,
+//		// 		c_out
+//		// );
+//		pg_conv3x3_tile(
+//				msb_fmap, lsb_fmap, weight_tile_buffer,
+//				out_buf_t0, out_buf_t1,
+//				c_in, in_channels, H_fmap_out
+//		);
+//		bn_relu_shortcut(
+//				out_buf_0, out_buf_t0, out_buf_t1,
+//
+//				layer1_1_conv2_threshold_fix[c_out],
+//				layer1_1_bn2_weight_fix[c_out],
+//				layer1_1_bn4_weight_fix[c_out],
+//				layer1_1_bn2_bias_fix[c_out],
+//				layer1_1_bn4_bias_fix[c_out],
+//				layer1_1_rprelu2_shift_x_bias_fix[c_out],
+//				layer1_1_rprelu2_shift_y_bias_fix[c_out],
+//				layer1_1_rprelu2_prelu_weight_fix[c_out],
+//
+//				stride, c_out, H_fmap_out, out_channels
+//		);
+//	}
+//
+//	////////////////////////////////////////////////
+//	//////////// layer1_2 PG1 /////////////////////
+//	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
+//	LOOP_layer1_2_PGConv1:
+//	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
+//		int c_in = 0;
+//		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
+//			for(int k_row=0; k_row<3; k_row++){
+//				for(int k_col=0; k_col<3; k_col++){
+//					weight_tile_buffer[ch][k_row][k_col] = layer1_2_conv1_weight_fix[c_out][ch][k_row][k_col];
+//				}
+//			}
+//		}
+//		// load_weights_tile(
+//		// 		layer1_2_conv1_threshold_fix,
+//		// 		layer1_2_bn1_weight_fix, layer1_2_bn3_weight_fix,
+//		// 		layer1_2_bn1_bias_fix, layer1_2_bn3_bias_fix,
+//		// 		layer1_2_rprelu1_shift_x_bias_fix, layer1_2_rprelu1_shift_y_bias_fix,
+//		// 		layer1_2_rprelu1_prelu_weight_fix,
+//
+//		// 		threshold_tile_buffer,
+//		// 		bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+//		// 		bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+//		// 		relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+//		// 		relu_weight_tile_buffer,
+//		// 		c_out
+//		// );
+//		pg_conv3x3_tile(
+//				msb_fmap, lsb_fmap, weight_tile_buffer,
+//				out_buf_t0, out_buf_t1,
+//				c_in, in_channels, H_fmap_out
+//		);
+//		bn_relu_shortcut(
+//				out_buf_0, out_buf_t0, out_buf_t1,
+//
+//				layer1_2_conv1_threshold_fix[c_out],
+//				layer1_2_bn1_weight_fix[c_out],
+//				layer1_2_bn3_weight_fix[c_out],
+//				layer1_2_bn1_bias_fix[c_out],
+//				layer1_2_bn3_bias_fix[c_out],
+//				layer1_2_rprelu1_shift_x_bias_fix[c_out],
+//				layer1_2_rprelu1_shift_y_bias_fix[c_out],
+//				layer1_2_rprelu1_prelu_weight_fix[c_out],
+//
+//				stride, c_out, H_fmap_out, out_channels
+//		);
+//	}
+//
+//	////////////////////////////////////////////////
+//	//////////// layer1_2 PG2 /////////////////////
+//	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
+//	LOOP_layer1_2_PGConv2:
+//	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
+//		int c_in = 0;
+//		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
+//			for(int k_row=0; k_row<3; k_row++){
+//				for(int k_col=0; k_col<3; k_col++){
+//					weight_tile_buffer[ch][k_row][k_col] = layer1_2_conv2_weight_fix[c_out][ch][k_row][k_col];
+//				}
+//			}
+//		}
+//		// load_weights_tile(
+//		// 		layer1_2_conv2_threshold_fix,
+//		// 		layer1_2_bn2_weight_fix, layer1_2_bn4_weight_fix,
+//		// 		layer1_2_bn2_bias_fix, layer1_2_bn4_bias_fix,
+//		// 		layer1_2_rprelu2_shift_x_bias_fix, layer1_2_rprelu2_shift_y_bias_fix,
+//		// 		layer1_2_rprelu2_prelu_weight_fix,
+//
+//		// 		threshold_tile_buffer,
+//		// 		bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+//		// 		bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+//		// 		relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+//		// 		relu_weight_tile_buffer,
+//		// 		c_out
+//		// );
+//		pg_conv3x3_tile(
+//				msb_fmap, lsb_fmap, weight_tile_buffer,
+//				out_buf_t0, out_buf_t1,
+//				c_in, in_channels, H_fmap_out
+//		);
+//		bn_relu_shortcut(
+//				out_buf_0, out_buf_t0, out_buf_t1,
+//
+//				layer1_2_conv2_threshold_fix[c_out],
+//				layer1_2_bn2_weight_fix[c_out],
+//				layer1_2_bn4_weight_fix[c_out],
+//				layer1_2_bn2_bias_fix[c_out],
+//				layer1_2_bn4_bias_fix[c_out],
+//				layer1_2_rprelu2_shift_x_bias_fix[c_out],
+//				layer1_2_rprelu2_shift_y_bias_fix[c_out],
+//				layer1_2_rprelu2_prelu_weight_fix[c_out],
+//
+//				stride, c_out, H_fmap_out, out_channels
+//		);
+//	}
+//
+//	////////////////////////////////////////////////
+//	//////////// LAYER 2 SPECIAL ///////////////////
+//	////////////////////////////////////////////////
+//
+//	H_fmap_in = 32;
+//	H_fmap_out = 16;
+//	in_channels = 16;
+//	in_channels_after_pack = 1;
+//	out_channels = 32;
+//	stride = 2;
+//
+//	////////////////////////////////////////////////
+//	//////////// layer2_0 PG1 /////////////////////
+//	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
+//	avgpool_concat(out_buf_0, H_fmap_out, in_channels);
+//	LOOP_layer2_0_PGConv1:
+//	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
+//		int c_in = 0;
+//		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
+//			for(int k_row=0; k_row<3; k_row++){
+//				for(int k_col=0; k_col<3; k_col++){
+//					weight_tile_buffer[ch][k_row][k_col] = layer2_0_conv1_weight_fix[c_out][ch][k_row][k_col];
+//				}
+//			}
+//		}
+//		// load_weights_tile(
+//		// 		layer2_0_conv1_threshold_fix,
+//		// 		layer2_0_bn1_weight_fix, layer2_0_bn3_weight_fix,
+//		// 		layer2_0_bn1_bias_fix, layer2_0_bn3_bias_fix,
+//		// 		layer2_0_rprelu1_shift_x_bias_fix, layer2_0_rprelu1_shift_y_bias_fix,
+//		// 		layer2_0_rprelu1_prelu_weight_fix,
+//
+//		// 		threshold_tile_buffer,
+//		// 		bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+//		// 		bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+//		// 		relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+//		// 		relu_weight_tile_buffer,
+//		// 		c_out
+//		// );
+//		pg_conv3x3_tile(
+//				msb_fmap, lsb_fmap, weight_tile_buffer,
+//				out_buf_t0, out_buf_t1,
+//				c_in, in_channels, H_fmap_in
+//		);
+//		bn_relu_shortcut(
+//				out_buf_0, out_buf_t0, out_buf_t1,
+//
+//				layer2_0_conv1_threshold_fix[c_out],
+//				layer2_0_bn1_weight_fix[c_out],
+//				layer2_0_bn3_weight_fix[c_out],
+//				layer2_0_bn1_bias_fix[c_out],
+//				layer2_0_bn3_bias_fix[c_out],
+//				layer2_0_rprelu1_shift_x_bias_fix[c_out],
+//				layer2_0_rprelu1_shift_y_bias_fix[c_out],
+//				layer2_0_rprelu1_prelu_weight_fix[c_out],
+//
+//				stride, c_out, H_fmap_out, out_channels
+//		);
+//	}
+//
+//	////////////////////////////////////////////////
+//	//////////// LAYER 2 ///////////////////////////
+//	////////////////////////////////////////////////
+//
+//	H_fmap_in = 16;
+//	H_fmap_out = 16;
+//	in_channels = 32;
+//	in_channels_after_pack = 1;
+//	out_channels = 32;
+//	stride = 1;
+//
+//	////////////////////////////////////////////////
+//	//////////// layer2_0 PG2 /////////////////////
+//	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
+//	LOOP_layer2_0_PGConv2:
+//	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
+//		int c_in = 0;
+//		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
+//			for(int k_row=0; k_row<3; k_row++){
+//				for(int k_col=0; k_col<3; k_col++){
+//					weight_tile_buffer[ch][k_row][k_col] = layer2_0_conv2_weight_fix[c_out][ch][k_row][k_col];
+//				}
+//			}
+//		}
+//		// load_weights_tile(
+//		// 		layer2_0_conv2_threshold_fix,
+//		// 		layer2_0_bn2_weight_fix, layer2_0_bn4_weight_fix,
+//		// 		layer2_0_bn2_bias_fix, layer2_0_bn4_bias_fix,
+//		// 		layer2_0_rprelu2_shift_x_bias_fix, layer2_0_rprelu2_shift_y_bias_fix,
+//		// 		layer2_0_rprelu2_prelu_weight_fix,
+//
+//		// 		threshold_tile_buffer,
+//		// 		bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+//		// 		bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+//		// 		relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+//		// 		relu_weight_tile_buffer,
+//		// 		c_out
+//		// );
+//		pg_conv3x3_tile(
+//				msb_fmap, lsb_fmap, weight_tile_buffer,
+//				out_buf_t0, out_buf_t1,
+//				c_in, in_channels, H_fmap_out
+//		);
+//		bn_relu_shortcut(
+//				out_buf_0, out_buf_t0, out_buf_t1,
+//
+//				layer2_0_conv2_threshold_fix[c_out],
+//				layer2_0_bn2_weight_fix[c_out],
+//				layer2_0_bn4_weight_fix[c_out],
+//				layer2_0_bn2_bias_fix[c_out],
+//				layer2_0_bn4_bias_fix[c_out],
+//				layer2_0_rprelu2_shift_x_bias_fix[c_out],
+//				layer2_0_rprelu2_shift_y_bias_fix[c_out],
+//				layer2_0_rprelu2_prelu_weight_fix[c_out],
+//
+//				stride, c_out, H_fmap_out, out_channels
+//		);
+//	}
+//
+//	////////////////////////////////////////////////
+//	//////////// layer2_1 PG1 /////////////////////
+//	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
+//	LOOP_layer2_1_PGConv1:
+//	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
+//		int c_in = 0;
+//		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
+//			for(int k_row=0; k_row<3; k_row++){
+//				for(int k_col=0; k_col<3; k_col++){
+//					weight_tile_buffer[ch][k_row][k_col] = layer2_1_conv1_weight_fix[c_out][ch][k_row][k_col];
+//				}
+//			}
+//		}
+//		// load_weights_tile(
+//		// 		layer2_1_conv1_threshold_fix,
+//		// 		layer2_1_bn1_weight_fix, layer2_1_bn3_weight_fix,
+//		// 		layer2_1_bn1_bias_fix, layer2_1_bn3_bias_fix,
+//		// 		layer2_1_rprelu1_shift_x_bias_fix, layer2_1_rprelu1_shift_y_bias_fix,
+//		// 		layer2_1_rprelu1_prelu_weight_fix,
+//
+//		// 		threshold_tile_buffer,
+//		// 		bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+//		// 		bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+//		// 		relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+//		// 		relu_weight_tile_buffer,
+//		// 		c_out
+//		// );
+//		pg_conv3x3_tile(
+//				msb_fmap, lsb_fmap, weight_tile_buffer,
+//				out_buf_t0, out_buf_t1,
+//				c_in, in_channels, H_fmap_out
+//		);
+//		bn_relu_shortcut(
+//				out_buf_0, out_buf_t0, out_buf_t1,
+//
+//				layer2_1_conv1_threshold_fix[c_out],
+//				layer2_1_bn1_weight_fix[c_out],
+//				layer2_1_bn3_weight_fix[c_out],
+//				layer2_1_bn1_bias_fix[c_out],
+//				layer2_1_bn3_bias_fix[c_out],
+//				layer2_1_rprelu1_shift_x_bias_fix[c_out],
+//				layer2_1_rprelu1_shift_y_bias_fix[c_out],
+//				layer2_1_rprelu1_prelu_weight_fix[c_out],
+//
+//
+//				stride, c_out, H_fmap_out, out_channels
+//		);
+//	}
+//
+//	////////////////////////////////////////////////
+//	//////////// layer2_1 PG2 /////////////////////
+//	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
+//	LOOP_layer2_1_PGConv2:
+//	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
+//		int c_in = 0;
+//		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
+//			for(int k_row=0; k_row<3; k_row++){
+//				for(int k_col=0; k_col<3; k_col++){
+//					weight_tile_buffer[ch][k_row][k_col] = layer2_1_conv2_weight_fix[c_out][ch][k_row][k_col];
+//				}
+//			}
+//		}
+//		// load_weights_tile(
+//		// 		layer2_1_conv2_threshold_fix,
+//		// 		layer2_1_bn2_weight_fix, layer2_1_bn4_weight_fix,
+//		// 		layer2_1_bn2_bias_fix, layer2_1_bn4_bias_fix,
+//		// 		layer2_1_rprelu2_shift_x_bias_fix, layer2_1_rprelu2_shift_y_bias_fix,
+//		// 		layer2_1_rprelu2_prelu_weight_fix,
+//
+//		// 		threshold_tile_buffer,
+//		// 		bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+//		// 		bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+//		// 		relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+//		// 		relu_weight_tile_buffer,
+//		// 		c_out
+//		// );
+//		pg_conv3x3_tile(
+//				msb_fmap, lsb_fmap, weight_tile_buffer,
+//				out_buf_t0, out_buf_t1,
+//				c_in, in_channels, H_fmap_out
+//		);
+//		bn_relu_shortcut(
+//				out_buf_0, out_buf_t0, out_buf_t1,
+//
+//				layer2_1_conv2_threshold_fix[c_out],
+//				layer2_1_bn2_weight_fix[c_out],
+//				layer2_1_bn4_weight_fix[c_out],
+//				layer2_1_bn2_bias_fix[c_out],
+//				layer2_1_bn4_bias_fix[c_out],
+//				layer2_1_rprelu2_shift_x_bias_fix[c_out],
+//				layer2_1_rprelu2_shift_y_bias_fix[c_out],
+//				layer2_1_rprelu2_prelu_weight_fix[c_out],
+//
+//				stride, c_out, H_fmap_out, out_channels
+//		);
+//	}
+//
+//	////////////////////////////////////////////////
+//	//////////// layer2_2 PG1 /////////////////////
+//	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
+//	LOOP_layer2_2_PGConv1:
+//	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
+//		int c_in = 0;
+//		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
+//			for(int k_row=0; k_row<3; k_row++){
+//				for(int k_col=0; k_col<3; k_col++){
+//					weight_tile_buffer[ch][k_row][k_col] = layer2_2_conv1_weight_fix[c_out][ch][k_row][k_col];
+//				}
+//			}
+//		}
+//		// load_weights_tile(
+//		// 		layer2_2_conv1_threshold_fix,
+//		// 		layer2_2_bn1_weight_fix, layer2_2_bn3_weight_fix,
+//		// 		layer2_2_bn1_bias_fix, layer2_2_bn3_bias_fix,
+//		// 		layer2_2_rprelu1_shift_x_bias_fix, layer2_2_rprelu1_shift_y_bias_fix,
+//		// 		layer2_2_rprelu1_prelu_weight_fix,
+//
+//		// 		threshold_tile_buffer,
+//		// 		bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+//		// 		bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+//		// 		relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+//		// 		relu_weight_tile_buffer,
+//		// 		c_out
+//		// );
+//		pg_conv3x3_tile(
+//				msb_fmap, lsb_fmap, weight_tile_buffer,
+//				out_buf_t0, out_buf_t1,
+//				c_in, in_channels, H_fmap_out
+//		);
+//		bn_relu_shortcut(
+//				out_buf_0, out_buf_t0, out_buf_t1,
+//
+//				layer2_2_conv1_threshold_fix[c_out],
+//				layer2_2_bn1_weight_fix[c_out],
+//				layer2_2_bn3_weight_fix[c_out],
+//				layer2_2_bn1_bias_fix[c_out],
+//				layer2_2_bn3_bias_fix[c_out],
+//				layer2_2_rprelu1_shift_x_bias_fix[c_out],
+//				layer2_2_rprelu1_shift_y_bias_fix[c_out],
+//				layer2_2_rprelu1_prelu_weight_fix[c_out],
+//
+//
+//				stride, c_out, H_fmap_out, out_channels
+//		);
+//	}
+//
+//	////////////////////////////////////////////////
+//	//////////// layer2_2 PG2 /////////////////////
+//	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
+//	LOOP_layer2_2_PGConv2:
+//	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
+//		int c_in = 0;
+//		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
+//			for(int k_row=0; k_row<3; k_row++){
+//				for(int k_col=0; k_col<3; k_col++){
+//					weight_tile_buffer[ch][k_row][k_col] = layer2_2_conv2_weight_fix[c_out][ch][k_row][k_col];
+//				}
+//			}
+//		}
+//		// load_weights_tile(
+//		// 		layer2_2_conv2_threshold_fix,
+//		// 		layer2_2_bn2_weight_fix, layer2_2_bn4_weight_fix,
+//		// 		layer2_2_bn2_bias_fix, layer2_2_bn4_bias_fix,
+//		// 		layer2_2_rprelu2_shift_x_bias_fix, layer2_2_rprelu2_shift_y_bias_fix,
+//		// 		layer2_2_rprelu2_prelu_weight_fix,
+//
+//		// 		threshold_tile_buffer,
+//		// 		bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+//		// 		bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+//		// 		relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+//		// 		relu_weight_tile_buffer,
+//		// 		c_out
+//		// );
+//		pg_conv3x3_tile(
+//				msb_fmap, lsb_fmap, weight_tile_buffer,
+//				out_buf_t0, out_buf_t1,
+//				c_in, in_channels, H_fmap_out
+//		);
+//		bn_relu_shortcut(
+//				out_buf_0, out_buf_t0, out_buf_t1,
+//
+//				layer2_2_conv2_threshold_fix[c_out],
+//				layer2_2_bn2_weight_fix[c_out],
+//				layer2_2_bn4_weight_fix[c_out],
+//				layer2_2_bn2_bias_fix[c_out],
+//				layer2_2_bn4_bias_fix[c_out],
+//				layer2_2_rprelu2_shift_x_bias_fix[c_out],
+//				layer2_2_rprelu2_shift_y_bias_fix[c_out],
+//				layer2_2_rprelu2_prelu_weight_fix[c_out],
+//
+//				stride, c_out, H_fmap_out, out_channels
+//		);
+//	}
+//
+//	////////////////////////////////////////////////
+//	//////////// LAYER 3 SPECIAL ///////////////////
+//	////////////////////////////////////////////////
+//
+//	H_fmap_in = 16;
+//	H_fmap_out = 8;
+//	in_channels = 32;
+//	in_channels_after_pack = 1;
+//	out_channels = 64;
+//	stride = 2;
+//
+//	////////////////////////////////////////////////
+//	//////////// layer3_0 PG1 /////////////////////
+//	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
+//	avgpool_concat(out_buf_0, H_fmap_out, in_channels);
+//	LOOP_layer3_0_PGConv1:
+//	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
+//		int c_in = 0;
+//		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
+//			for(int k_row=0; k_row<3; k_row++){
+//				for(int k_col=0; k_col<3; k_col++){
+//					weight_tile_buffer[ch][k_row][k_col] = layer3_0_conv1_weight_fix[c_out][ch][k_row][k_col];
+//				}
+//			}
+//		}
+//		// load_weights_tile(
+//		// 		layer3_0_conv1_threshold_fix,
+//		// 		layer3_0_bn1_weight_fix, layer3_0_bn3_weight_fix,
+//		// 		layer3_0_bn1_bias_fix, layer3_0_bn3_bias_fix,
+//		// 		layer3_0_rprelu1_shift_x_bias_fix, layer3_0_rprelu1_shift_y_bias_fix,
+//		// 		layer3_0_rprelu1_prelu_weight_fix,
+//
+//		// 		threshold_tile_buffer,
+//		// 		bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+//		// 		bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+//		// 		relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+//		// 		relu_weight_tile_buffer,
+//		// 		c_out
+//		// );
+//		pg_conv3x3_tile(
+//				msb_fmap, lsb_fmap, weight_tile_buffer,
+//				out_buf_t0, out_buf_t1,
+//				c_in, in_channels, H_fmap_in
+//		);
+//		bn_relu_shortcut(
+//				out_buf_0, out_buf_t0, out_buf_t1,
+//
+//				layer3_0_conv1_threshold_fix[c_out],
+//				layer3_0_bn1_weight_fix[c_out],
+//				layer3_0_bn3_weight_fix[c_out],
+//				layer3_0_bn1_bias_fix[c_out],
+//				layer3_0_bn3_bias_fix[c_out],
+//				layer3_0_rprelu1_shift_x_bias_fix[c_out],
+//				layer3_0_rprelu1_shift_y_bias_fix[c_out],
+//				layer3_0_rprelu1_prelu_weight_fix[c_out],
+//
+//				stride, c_out, H_fmap_out, out_channels
+//		);
+//	}
+//
+//	////////////////////////////////////////////////
+//	//////////// LAYER 3 ///////////////////////////
+//	////////////////////////////////////////////////
+//
+//	H_fmap_in = 8;
+//	H_fmap_out = 8;
+//	in_channels = 64;
+//	in_channels_after_pack = 1;
+//	out_channels = 64;
+//	stride = 1;
+//
+//	////////////////////////////////////////////////
+//	//////////// layer3_0 PG2 /////////////////////
+//	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
+//	LOOP_layer3_0_PGConv2:
+//	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
+//		int c_in = 0;
+//		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
+//			for(int k_row=0; k_row<3; k_row++){
+//				for(int k_col=0; k_col<3; k_col++){
+//					weight_tile_buffer[ch][k_row][k_col] = layer3_0_conv2_weight_fix[c_out][ch][k_row][k_col];
+//				}
+//			}
+//		}
+//		// load_weights_tile(
+//		//      layer3_0_conv2_threshold_fix,
+//		//      layer3_0_bn2_weight_fix, layer3_0_bn4_weight_fix,
+//		//      layer3_0_bn2_bias_fix, layer3_0_bn4_bias_fix,
+//		//      layer3_0_rprelu2_shift_x_bias_fix, layer3_0_rprelu2_shift_y_bias_fix,
+//		//      layer3_0_rprelu2_prelu_weight_fix,
+//
+//		//      threshold_tile_buffer,
+//		//      bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+//		//      bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+//		//      relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+//		//      relu_weight_tile_buffer,
+//		//      c_out
+//		// );
+//		pg_conv3x3_tile(
+//				msb_fmap, lsb_fmap, weight_tile_buffer,
+//				out_buf_t0, out_buf_t1,
+//				c_in, in_channels, H_fmap_out
+//		);
+//		bn_relu_shortcut(
+//				out_buf_0, out_buf_t0, out_buf_t1,
+//
+//				layer3_0_conv2_threshold_fix[c_out],
+//				layer3_0_bn2_weight_fix[c_out],
+//				layer3_0_bn4_weight_fix[c_out],
+//				layer3_0_bn2_bias_fix[c_out],
+//				layer3_0_bn4_bias_fix[c_out],
+//				layer3_0_rprelu2_shift_x_bias_fix[c_out],
+//				layer3_0_rprelu2_shift_y_bias_fix[c_out],
+//				layer3_0_rprelu2_prelu_weight_fix[c_out],
+//
+//				stride, c_out, H_fmap_out, out_channels
+//		);
+//	}
+//
+//	////////////////////////////////////////////////
+//	//////////// layer3_1 PG1 /////////////////////
+//	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
+//	LOOP_layer3_1_PGConv1:
+//	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
+//		int c_in = 0;
+//		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
+//			for(int k_row=0; k_row<3; k_row++){
+//				for(int k_col=0; k_col<3; k_col++){
+//					weight_tile_buffer[ch][k_row][k_col] = layer3_1_conv1_weight_fix[c_out][ch][k_row][k_col];
+//				}
+//			}
+//		}
+//		// load_weights_tile(
+//		//      layer3_1_conv1_threshold_fix,
+//		//      layer3_1_bn1_weight_fix, layer3_1_bn3_weight_fix,
+//		//      layer3_1_bn1_bias_fix, layer3_1_bn3_bias_fix,
+//		//      layer3_1_rprelu1_shift_x_bias_fix, layer3_1_rprelu1_shift_y_bias_fix,
+//		//      layer3_1_rprelu1_prelu_weight_fix,
+//
+//		//      threshold_tile_buffer,
+//		//      bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+//		//      bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+//		//      relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+//		//      relu_weight_tile_buffer,
+//		//      c_out
+//		// );
+//		pg_conv3x3_tile(
+//				msb_fmap, lsb_fmap, weight_tile_buffer,
+//				out_buf_t0, out_buf_t1,
+//				c_in, in_channels, H_fmap_out
+//		);
+//		bn_relu_shortcut(
+//				out_buf_0, out_buf_t0, out_buf_t1,
+//
+//				layer3_1_conv1_threshold_fix[c_out],
+//				layer3_1_bn1_weight_fix[c_out],
+//				layer3_1_bn3_weight_fix[c_out],
+//				layer3_1_bn1_bias_fix[c_out],
+//				layer3_1_bn3_bias_fix[c_out],
+//				layer3_1_rprelu1_shift_x_bias_fix[c_out],
+//				layer3_1_rprelu1_shift_y_bias_fix[c_out],
+//				layer3_1_rprelu1_prelu_weight_fix[c_out],
+//
+//
+//				stride, c_out, H_fmap_out, out_channels
+//		);
+//	}
+//
+//	////////////////////////////////////////////////
+//	//////////// layer3_1 PG2 /////////////////////
+//	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
+//	LOOP_layer3_1_PGConv2:
+//	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
+//		int c_in = 0;
+//		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
+//			for(int k_row=0; k_row<3; k_row++){
+//				for(int k_col=0; k_col<3; k_col++){
+//					weight_tile_buffer[ch][k_row][k_col] = layer3_1_conv2_weight_fix[c_out][ch][k_row][k_col];
+//				}
+//			}
+//		}
+//		// load_weights_tile(
+//		//      layer3_1_conv2_threshold_fix,
+//		//      layer3_1_bn2_weight_fix, layer3_1_bn4_weight_fix,
+//		//      layer3_1_bn2_bias_fix, layer3_1_bn4_bias_fix,
+//		//      layer3_1_rprelu2_shift_x_bias_fix, layer3_1_rprelu2_shift_y_bias_fix,
+//		//      layer3_1_rprelu2_prelu_weight_fix,
+//
+//		//      threshold_tile_buffer,
+//		//      bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+//		//      bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+//		//      relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+//		//      relu_weight_tile_buffer,
+//		//      c_out
+//		// );
+//		pg_conv3x3_tile(
+//				msb_fmap, lsb_fmap, weight_tile_buffer,
+//				out_buf_t0, out_buf_t1,
+//				c_in, in_channels, H_fmap_out
+//		);
+//		bn_relu_shortcut(
+//				out_buf_0, out_buf_t0, out_buf_t1,
+//
+//				layer3_1_conv2_threshold_fix[c_out],
+//				layer3_1_bn2_weight_fix[c_out],
+//				layer3_1_bn4_weight_fix[c_out],
+//				layer3_1_bn2_bias_fix[c_out],
+//				layer3_1_bn4_bias_fix[c_out],
+//				layer3_1_rprelu2_shift_x_bias_fix[c_out],
+//				layer3_1_rprelu2_shift_y_bias_fix[c_out],
+//				layer3_1_rprelu2_prelu_weight_fix[c_out],
+//
+//				stride, c_out, H_fmap_out, out_channels
+//		);
+//	}
+//
+//	////////////////////////////////////////////////
+//	//////////// layer3_2 PG1 /////////////////////
+//	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
+//	LOOP_layer3_2_PGConv1:
+//	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
+//		int c_in = 0;
+//		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
+//			for(int k_row=0; k_row<3; k_row++){
+//				for(int k_col=0; k_col<3; k_col++){
+//					weight_tile_buffer[ch][k_row][k_col] = layer3_2_conv1_weight_fix[c_out][ch][k_row][k_col];
+//				}
+//			}
+//		}
+//		// load_weights_tile(
+//		//      layer3_2_conv1_threshold_fix,
+//		//      layer3_2_bn1_weight_fix, layer3_2_bn3_weight_fix,
+//		//      layer3_2_bn1_bias_fix, layer3_2_bn3_bias_fix,
+//		//      layer3_2_rprelu1_shift_x_bias_fix, layer3_2_rprelu1_shift_y_bias_fix,
+//		//      layer3_2_rprelu1_prelu_weight_fix,
+//
+//		//      threshold_tile_buffer,
+//		//      bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+//		//      bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+//		//      relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+//		//      relu_weight_tile_buffer,
+//		//      c_out
+//		// );
+//		pg_conv3x3_tile(
+//				msb_fmap, lsb_fmap, weight_tile_buffer,
+//				out_buf_t0, out_buf_t1,
+//				c_in, in_channels, H_fmap_out
+//		);
+//		bn_relu_shortcut(
+//				out_buf_0, out_buf_t0, out_buf_t1,
+//
+//				layer3_2_conv1_threshold_fix[c_out],
+//				layer3_2_bn1_weight_fix[c_out],
+//				layer3_2_bn3_weight_fix[c_out],
+//				layer3_2_bn1_bias_fix[c_out],
+//				layer3_2_bn3_bias_fix[c_out],
+//				layer3_2_rprelu1_shift_x_bias_fix[c_out],
+//				layer3_2_rprelu1_shift_y_bias_fix[c_out],
+//				layer3_2_rprelu1_prelu_weight_fix[c_out],
+//
+//
+//				stride, c_out, H_fmap_out, out_channels
+//		);
+//	}
+//
+//	////////////////////////////////////////////////
+//	//////////// layer3_2 PG2 /////////////////////
+//	quant_and_pack(out_buf_0, msb_fmap, lsb_fmap, H_fmap_in, in_channels);
+//	LOOP_layer3_2_PGConv2:
+//	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++) {
+//		int c_in = 0;
+//		for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
+//			for(int k_row=0; k_row<3; k_row++){
+//				for(int k_col=0; k_col<3; k_col++){
+//					weight_tile_buffer[ch][k_row][k_col] = layer3_2_conv2_weight_fix[c_out][ch][k_row][k_col];
+//				}
+//			}
+//		}
+//		// load_weights_tile(
+//		//      layer3_2_conv2_threshold_fix,
+//		//      layer3_2_bn2_weight_fix, layer3_2_bn4_weight_fix,
+//		//      layer3_2_bn2_bias_fix, layer3_2_bn4_bias_fix,
+//		//      layer3_2_rprelu2_shift_x_bias_fix, layer3_2_rprelu2_shift_y_bias_fix,
+//		//      layer3_2_rprelu2_prelu_weight_fix,
+//
+//		//      threshold_tile_buffer,
+//		//      bn_weight_0_tile_buffer, bn_bias_0_tile_buffer,
+//		//      bn_weight_1_tile_buffer, bn_bias_1_tile_buffer,
+//		//      relu_x_bias_tile_buffer, relu_y_bias_tile_buffer,
+//		//      relu_weight_tile_buffer,
+//		//      c_out
+//		// );
+//		pg_conv3x3_tile(
+//				msb_fmap, lsb_fmap, weight_tile_buffer,
+//				out_buf_t0, out_buf_t1,
+//				c_in, in_channels, H_fmap_out
+//		);
+//		bn_relu_shortcut(
+//				out_buf_0, out_buf_t0, out_buf_t1,
+//
+//				layer3_2_conv2_threshold_fix[c_out],
+//				layer3_2_bn2_weight_fix[c_out],
+//				layer3_2_bn4_weight_fix[c_out],
+//				layer3_2_bn2_bias_fix[c_out],
+//				layer3_2_bn4_bias_fix[c_out],
+//				layer3_2_rprelu2_shift_x_bias_fix[c_out],
+//				layer3_2_rprelu2_shift_y_bias_fix[c_out],
+//				layer3_2_rprelu2_prelu_weight_fix[c_out],
+//
+//				stride, c_out, H_fmap_out, out_channels
+//		);
+//	}
 
 
 	FIX_FM_acc pool_out_buf[64];
-#pragma HLS ARRAY_PARTITION variable=pool_out_buf complete dim=1
+//#pragma HLS ARRAY_PARTITION variable=pool_out_buf complete dim=1
 	FIX_FM_acc linear_out_buf[10];
-#pragma HLS ARRAY_PARTITION variable=linear_out_buf complete dim=1
+//#pragma HLS ARRAY_PARTITION variable=linear_out_buf complete dim=1
 
 	avgpool_8x8(out_buf_0, pool_out_buf);
 	matmul(pool_out_buf, linear_weight_fix, linear_bias_fix, linear_out_buf);

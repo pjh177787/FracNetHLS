@@ -633,28 +633,30 @@ int main(int argc, char **argv)
 		cout << "Processed " << k + 1 << " pictures. " << endl;
 		cout << "Software has "<< correct_sw << "/" << k + 1 << " correct." << endl;
 
+#ifdef LAYER_TEST
+		int print_row = 16;
+		int print_col = 32;
 
-//		int print_row = 16;
-//		int print_col = 32;
-//
-//		cout << "tb output layer3_2_bn4_out" << endl;
-//		for (int row = 0; row < print_row; row ++) {
-//			for (int col = 0; col < print_col; col ++) {
-//				cout << layer3_2_bn4_out[0][row][col] << "  ";
-//			}
-//			cout << endl;
-//		}
-//		cout << "-------------------- above is tb.cc output ---------------------------" << endl;
-
+		cout << "tb output layer3_2_bn4_out" << endl;
+		for (int row = 0; row < print_row; row ++) {
+			for (int col = 0; col < print_col; col ++) {
+				cout << layer3_2_bn4_out[0][row][col] << "  ";
+			}
+			cout << endl;
+		}
+		cout << "-------------------- above is tb.cc output ---------------------------" << endl;
+#endif
 
 
 
 		////////////////////////////////
 		//////// HARDWARE //////////////
 		////////////////////////////////
-
-//		float accelerator_output[64*32*32];
+#ifdef LAYER_TEST
+		float accelerator_output[64*32*32];
+#else
 		float accelerator_output[10];
+#endif
 
 		uint64 image_hw[3][32][32] = {0};
 
@@ -674,39 +676,39 @@ int main(int argc, char **argv)
 
 		FracNet_T(image_hw, accelerator_output);
 
+#ifdef LAYER_TEST
+		cout << endl << "accelerator output: "<< endl;
+		for (int row = 0; row < print_row; row ++) {
+			for(int col = 0; col < print_col; col ++) {
+				cout << accelerator_output[row*32 + col] << "  ";
+			}
+			cout << endl;
+		}
 
-//		cout << endl << "accelerator output: "<< endl;
-//		for (int row = 0; row < print_row; row ++) {
-//			for(int col = 0; col < print_col; col ++) {
-//				cout << accelerator_output[row*32 + col] << "  ";
-//			}
-//			cout << endl;
-//		}
-//
-//		FIX_FM_acc err = 0;
-//		FIX_FM_acc total_err = 0;
-//		FIX_FM_acc max_err = 0;
-//		int err_cnt = 0;
-//		int total = 0;
-//		for(int i=0; i<64; i++){
-//			for(int j=0; j<8; j++){
-//				for(int k=0; k<8; k++){
-//					err = hls::absf(accelerator_output[i*32*32+j*32+k] - FIX_FM_acc(layer3_2_bn4_out[i][j][k]));
-//					if (err > max_err) max_err = err;
-//					if (err > 0.1) {
-//						err_cnt += 1;
-//						cout << "(" << i << ", " << j << ", " << k << ") " << endl;
-//					}
-//					//if (err != 0) cout << "(" << i << ", " << j << ", " << k << ") ";
-//					total_err += err;
-//					total += 1;
-//				}
-//			}
-//		}
-//		cout << endl << "Total absolute error: " << total_err << endl;
-//		cout << "Total number of errors: " << err_cnt << "/" << total << endl;
-//		cout << "Maximum absolute pixel error: " << max_err << endl;
-
+		FIX_FM_acc err = 0;
+		FIX_FM_acc total_err = 0;
+		FIX_FM_acc max_err = 0;
+		int err_cnt = 0;
+		int total = 0;
+		for(int i=0; i<64; i++){
+			for(int j=0; j<8; j++){
+				for(int k=0; k<8; k++){
+					err = hls::absf(accelerator_output[i*32*32+j*32+k] - FIX_FM_acc(layer3_2_bn4_out[i][j][k]));
+					if (err > max_err) max_err = err;
+					if (err > 0.1) {
+						err_cnt += 1;
+						cout << "(" << i << ", " << j << ", " << k << ") " << endl;
+					}
+					//if (err != 0) cout << "(" << i << ", " << j << ", " << k << ") ";
+					total_err += err;
+					total += 1;
+				}
+			}
+		}
+		cout << endl << "Total absolute error: " << total_err << endl;
+		cout << "Total number of errors: " << err_cnt << "/" << total << endl;
+		cout << "Maximum absolute pixel error: " << max_err << endl;
+#else
 
 		int predict_hw = 0;
 		p = -1000;
@@ -725,7 +727,7 @@ int main(int argc, char **argv)
 
 		cout << "Hardware has "<< correct_hw << "/" << k + 1 << " correct." << endl;
 		cout << "\n" << endl;
-
+#endif
 	}
 
 	return 0;

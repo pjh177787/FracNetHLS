@@ -7,6 +7,7 @@
 #include <ap_fixed.h>
 
 //#define SW_TEST
+//#define LAYER_TEST
 
 #ifdef SW_TEST
 	typedef float FIX_32_4;	//fix point
