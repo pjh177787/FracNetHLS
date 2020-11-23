@@ -636,16 +636,16 @@ int main(int argc, char **argv)
 
 //		int print_row = 16;
 //		int print_col = 32;
-
-//		cout << "tb output bn1_out" << endl;
+//
+//		cout << "tb output layer3_2_bn4_out" << endl;
 //		for (int row = 0; row < print_row; row ++) {
 //			for (int col = 0; col < print_col; col ++) {
-//				cout << bn1_out[0][row][col] << "  ";
+//				cout << layer3_2_bn4_out[0][row][col] << "  ";
 //			}
 //			cout << endl;
 //		}
 
-		cout << "-------------------- above is tb.cc output ---------------------------" << endl;
+//		cout << "-------------------- above is tb.cc output ---------------------------" << endl;
 
 
 
@@ -683,18 +683,21 @@ int main(int argc, char **argv)
 //			}
 //			cout << endl;
 //		}
-//
+
 //		FIX_FM_acc err = 0;
 //		FIX_FM_acc total_err = 0;
 //		FIX_FM_acc max_err = 0;
 //		int err_cnt = 0;
 //		int total = 0;
-//		for(int i=0; i<16; i++){
-//			for(int j=0; j<32; j++){
-//				for(int k=0; k<32; k++){
-//					err = hls::absf(accelerator_output[i*32*32+j*32+k] - FIX_FM_acc(bn1_out[i][j][k]));
+//		for(int i=0; i<64; i++){
+//			for(int j=0; j<8; j++){
+//				for(int k=0; k<8; k++){
+//					err = hls::absf(accelerator_output[i*32*32+j*32+k] - FIX_FM_acc(layer3_2_bn4_out[i][j][k]));
 //					if (err > max_err) max_err = err;
-//					if (err > 0.1) err_cnt += 1;
+//					if (err > 0.1) {
+//						err_cnt += 1;
+//						cout << "(" << i << ", " << j << ", " << k << ") " << endl;
+//					}
 //					//if (err != 0) cout << "(" << i << ", " << j << ", " << k << ") ";
 //					total_err += err;
 //					total += 1;

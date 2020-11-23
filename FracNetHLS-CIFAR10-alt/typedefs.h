@@ -25,8 +25,8 @@
 
 #else
 //	typedef ap_fixed<14, 9, AP_RND, AP_SAT> FIX_FM;	//fix point for feature map
-	typedef ap_fixed<14, 9, AP_RND, AP_SAT> FIX_FM_acc;	//fix point for accumulation (14, 6) (16, 10)
-	typedef ap_fixed<12, 4, AP_RND, AP_SAT> FIX_WT;	//fix point for weights (11, 4) (16, 4)
+	typedef ap_fixed<16, 10, AP_RND, AP_SAT> FIX_FM_acc;	//fix point for accumulation (14, 6) (16, 10)
+	typedef ap_fixed<16, 4, AP_RND, AP_SAT> FIX_WT;	//fix point for weights (11, 4) (16, 4)
 //	typedef ap_fixed<8, 8, AP_RND, AP_SAT> FIX_INT; //signed int
 //	typedef ap_fixed<16, 3, AP_RND, AP_SAT> FIX_OUT;
 //
