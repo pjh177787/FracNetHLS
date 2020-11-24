@@ -9,7 +9,7 @@
 
 using namespace std;
 
-#define NUM_TESTS 1
+#define NUM_TESTS 10
 
 unsigned char images[NUM_TESTS*96*32*32];
 unsigned char labels[NUM_TESTS];

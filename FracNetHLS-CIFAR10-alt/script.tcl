@@ -5,6 +5,7 @@
 ############################################################
 open_project model -reset
 set_top FracNet_T
+add_files biconv.h
 add_files bnn.h
 add_files bnn_tiled.cc
 add_files dimension_def.h

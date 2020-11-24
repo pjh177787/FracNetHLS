@@ -50,8 +50,8 @@ void pg_conv3x3_tile(
 		uint64 msb_inputs[CHANNEL_IN][WIDTH][WIDTH], // [6][32+1][32+1] padded inputs, padding len = 1
 		uint64 lsb_inputs[CHANNEL_IN][WIDTH][WIDTH],
 		const uint64 weights[OUT_CHANNEL_PARALLELISM][3][3],
-		FIX_FM_acc msb_outputs[CHANNEL_OUT_T][WIDTH][WIDTH], // [8][32+1][32+1]
-		FIX_FM_acc lsb_outputs[CHANNEL_OUT_T][WIDTH][WIDTH],
+		int16 msb_outputs[CHANNEL_OUT_T][WIDTH][WIDTH], // [8][32+1][32+1]
+		int16 lsb_outputs[CHANNEL_OUT_T][WIDTH][WIDTH],
 
 		int c_in,
 		int in_channels,

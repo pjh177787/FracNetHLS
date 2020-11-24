@@ -6,6 +6,7 @@
 //#include "biconv.h"
 #include "pgconv.h"
 #include "weights_fracnet_64.h"
+#include "conv_weights.h"
 #include <iostream>
 
 
@@ -15,7 +16,7 @@
 
 inline uint2 to2bit(FIX_FM_acc x)
 {
-	const FIX_FM_acc scale = 1.5;
+	const FIX_WT scale = 1.5;
 	ap_ufixed<2, 2, AP_RND, AP_SAT> temp = (ap_ufixed<2, 2, AP_RND, AP_SAT>)((x+1)*scale);
 	return (uint2)temp;
 }
@@ -108,7 +109,7 @@ inline void load_bn1_weights_tile(
 
 inline void bn1(
 		FIX_FM_acc out_buf[CHANNEL_OUT/CHANNEL_OUT_T][CHANNEL_OUT_T][WIDTH][WIDTH],
-		FIX_FM_acc block_t0[CHANNEL_OUT_T][WIDTH][WIDTH],
+		int16 block_t0[CHANNEL_OUT_T][WIDTH][WIDTH],
 
 		const FIX_WT *bn_weight,
 		const FIX_WT *bn_bias,
@@ -187,8 +188,8 @@ inline void load_weights_tile(
 
 void bn_relu_shortcut(
 		FIX_FM_acc residual[CHANNEL_OUT/CHANNEL_OUT_T][CHANNEL_OUT_T][WIDTH][WIDTH],
-		FIX_FM_acc block_t0[CHANNEL_OUT_T][WIDTH][WIDTH],
-		FIX_FM_acc block_t1[CHANNEL_OUT_T][WIDTH][WIDTH],
+		int16 block_t0[CHANNEL_OUT_T][WIDTH][WIDTH],
+		int16 block_t1[CHANNEL_OUT_T][WIDTH][WIDTH],
 
 		const FIX_WT *threshold,
 		const FIX_WT *bn_weight_0,
@@ -284,7 +285,7 @@ void avgpool_concat(
 					for (int ii = 0; ii < 2; ii ++)
 						for (int jj = 0; jj < 2; jj ++)
 							m += outputs[tile][channel_pt][i*2 + ii][j*2 + jj];
-					out_feature[channel_pt] = m/(FIX_WT)4.0;
+					out_feature[channel_pt] = m/(FIX_FM_acc)4.0;
 				}
 				for (int channel_pt=0; channel_pt<BN_CHANNEL_PARALLELISM; channel_pt++) {
 #pragma HLS UNROLL
@@ -329,7 +330,7 @@ void avgpool_8x8(
 	}
 	for (int c = 0; c < CHANNEL_OUT; c++) {
 #pragma HLS PIPELINE
-		outputs[c] = tmp[c/8][c%8]/(FIX_WT)64.0;
+		outputs[c] = tmp[c/8][c%8]/(FIX_FM_acc)64.0;
 	}
 }
 
