@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2019.2.1 (64-bit)
+# SW Build 2729669 on Thu Dec  5 04:49:17 MST 2019
+# IP Build 2729494 on Thu Dec  5 07:38:25 MST 2019
+# Start of session at: Tue Nov 24 03:22:06 2020
+# Process ID: 48140
+# Current directory: C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt-64/model/solution1/impl/ip
+# Command line: vivado.exe -notrace -mode batch -source run_ippack.tcl
+# Log file: C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt-64/model/solution1/impl/ip/vivado.log
+# Journal file: C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt-64/model/solution1/impl/ip\vivado.jou
+#-----------------------------------------------------------
+source run_ippack.tcl -notrace

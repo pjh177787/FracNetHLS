@@ -30,3 +30,10 @@ BRAM is no longer a problem. LUTs is still quite a lot. Too many muxes on the me
 More simulations say <14, 9> for FM and <10, 3> for WT should be good enough. We can look further into that.
 I'll update more after I get some sleep. 
 And it takes about 200k cycles as we expected before. 
+
+## Update 11/25:
+
+cd FracNetVivado
+source FracNet-CIFAR10.tcl
+
+Let me know if questions.
