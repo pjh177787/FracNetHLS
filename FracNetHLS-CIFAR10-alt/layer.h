@@ -24,7 +24,7 @@ inline uint2 to2bit(FIX_FM_acc x)
 void quant_and_pack(
 		FIX_FM_acc prior_outputs[CHANNEL_OUT/CHANNEL_OUT_T][CHANNEL_OUT_T][WIDTH][WIDTH],
 		uint64 msb_buffer[3][WIDTH][WIDTH],
-		uint64 lsb_buffer[0][WIDTH][WIDTH],
+		uint64 lsb_buffer[1][WIDTH][WIDTH],
 		int H_fmap,
 		int in_channels
 )
@@ -52,61 +52,6 @@ void quant_and_pack(
 	}
 }
 
-inline void load_conv1_weights_tile(
-		const uint64 weight_src[OUT_CHANNEL_PARALLELISM][3][3],
-		uint64 weight_dest[OUT_CHANNEL_PARALLELISM][3][3]
-)
-{
-	//#pragma HLS ARRAY_PARTITION variable=weight_src complete dim=1
-//#pragma HLS ARRAY_PARTITION variable=weight_src complete dim=2
-//#pragma HLS ARRAY_PARTITION variable=weight_src complete dim=3
-	//#pragma HLS ARRAY_PARTITION variable=threshold_src complete dim=1
-	//#pragma HLS ARRAY_PARTITION variable=bn_weight_0_src complete dim=1
-	//#pragma HLS ARRAY_PARTITION variable=bn_weight_1_src complete dim=1
-	//#pragma HLS ARRAY_PARTITION variable=bn_bias_0_src complete dim=1
-	//#pragma HLS ARRAY_PARTITION variable=bn_bias_1_src complete dim=1
-	//#pragma HLS ARRAY_PARTITION variable=relu_x_bias_src complete dim=1
-	//#pragma HLS ARRAY_PARTITION variable=relu_y_bias_src complete dim=1
-	//#pragma HLS ARRAY_PARTITION variable=relu_weight_src complete dim=1
-
-	for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
-		//#pragma HLS PIPELINE
-		for(int k_row=0; k_row<3; k_row++){
-			for(int k_col=0; k_col<3; k_col++){
-				weight_dest[ch][k_row][k_col] = weight_src[ch][k_row][k_col];
-			}
-		}
-	}
-}
-
-inline void load_bn1_weights_tile(
-		const FIX_WT bn_weight_0_src[OUT_CHANNEL_PARALLELISM][OUT_CHANNEL_PARALLELISM],
-		const FIX_WT bn_bias_0_src[OUT_CHANNEL_PARALLELISM][OUT_CHANNEL_PARALLELISM],
-
-		FIX_WT bn_weight_0_dest[OUT_CHANNEL_PARALLELISM],
-		FIX_WT bn_bias_0_dest[OUT_CHANNEL_PARALLELISM],
-		int c_out
-)
-{
-	//#pragma HLS ARRAY_PARTITION variable=weight_src complete dim=1
-	//#pragma HLS ARRAY_PARTITION variable=weight_src complete dim=2
-	//#pragma HLS ARRAY_PARTITION variable=weight_src complete dim=3
-	//#pragma HLS ARRAY_PARTITION variable=threshold_src complete dim=1
-	//#pragma HLS ARRAY_PARTITION variable=bn_weight_0_src complete dim=1
-	//#pragma HLS ARRAY_PARTITION variable=bn_weight_1_src complete dim=1
-	//#pragma HLS ARRAY_PARTITION variable=bn_bias_0_src complete dim=1
-	//#pragma HLS ARRAY_PARTITION variable=bn_bias_1_src complete dim=1
-	//#pragma HLS ARRAY_PARTITION variable=relu_x_bias_src complete dim=1
-	//#pragma HLS ARRAY_PARTITION variable=relu_y_bias_src complete dim=1
-	//#pragma HLS ARRAY_PARTITION variable=relu_weight_src complete dim=1
-
-	for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
-#pragma HLS PIPELINE
-		bn_weight_0_dest[ch] = bn_weight_0_src[c_out][ch];
-		bn_bias_0_dest[ch] = bn_bias_0_src[c_out][ch];
-	}
-}
-
 inline void bn1(
 		FIX_FM_acc out_buf[CHANNEL_OUT/CHANNEL_OUT_T][CHANNEL_OUT_T][WIDTH][WIDTH],
 		int16 block_t0[CHANNEL_OUT_T][WIDTH][WIDTH],
@@ -127,62 +72,6 @@ inline void bn1(
 				out_buf[channel_tile][ch][row][col] = bn_weight[ch]*block_t0[ch][row+1][col+1] + bn_bias[ch];
 			}
 		}
-	}
-}
-
-inline void load_conv_weights_tile(
-		const uint64 weight_src[OUT_CHANNEL_PARALLELISM][3][3],
-		uint64 weight_dest[OUT_CHANNEL_PARALLELISM][3][3]
-)
-{
-//#pragma HLS ARRAY_PARTITION variable=weight_src complete dim=2
-//#pragma HLS ARRAY_PARTITION variable=weight_src complete dim=3
-
-	LOOP_Load_Weights_Tile:
-	for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
-		//#pragma HLS PIPELINE
-		for(int k_row=0; k_row<3; k_row++){
-			for(int k_col=0; k_col<3; k_col++){
-				weight_dest[ch][k_row][k_col] = weight_src[ch][k_row][k_col];
-			}
-		}
-	}
-}
-
-inline void load_weights_tile(
-		const FIX_WT threshold_src[OUT_CHANNEL_PARALLELISM][OUT_CHANNEL_PARALLELISM],
-		const FIX_WT bn_weight_0_src[OUT_CHANNEL_PARALLELISM][OUT_CHANNEL_PARALLELISM],
-		const FIX_WT bn_weight_1_src[OUT_CHANNEL_PARALLELISM][OUT_CHANNEL_PARALLELISM],
-		const FIX_WT bn_bias_0_src[OUT_CHANNEL_PARALLELISM][OUT_CHANNEL_PARALLELISM],
-		const FIX_WT bn_bias_1_src[OUT_CHANNEL_PARALLELISM][OUT_CHANNEL_PARALLELISM],
-		const FIX_WT relu_x_bias_src[OUT_CHANNEL_PARALLELISM][OUT_CHANNEL_PARALLELISM],
-		const FIX_WT relu_y_bias_src[OUT_CHANNEL_PARALLELISM][OUT_CHANNEL_PARALLELISM],
-		const FIX_WT relu_weight_src[OUT_CHANNEL_PARALLELISM][OUT_CHANNEL_PARALLELISM],
-
-		FIX_WT threshold_dest[OUT_CHANNEL_PARALLELISM],
-		FIX_WT bn_weight_0_dest[OUT_CHANNEL_PARALLELISM],
-		FIX_WT bn_weight_1_dest[OUT_CHANNEL_PARALLELISM],
-		FIX_WT bn_bias_0_dest[OUT_CHANNEL_PARALLELISM],
-		FIX_WT bn_bias_1_dest[OUT_CHANNEL_PARALLELISM],
-		FIX_WT relu_x_bias_dest[OUT_CHANNEL_PARALLELISM],
-		FIX_WT relu_y_bias_dest[OUT_CHANNEL_PARALLELISM],
-		FIX_WT relu_weight_dest[OUT_CHANNEL_PARALLELISM],
-
-		int c_out
-)
-{
-
-	LOOP_Load_Weights_Tile:
-	for(int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++){
-		#pragma HLS PIPELINE
-		threshold_dest[ch] = threshold_src[c_out][ch];
-		bn_weight_0_dest[ch] = bn_weight_0_src[c_out][ch];
-		bn_weight_1_dest[ch] = bn_weight_1_src[c_out][ch];
-		bn_bias_0_dest[ch] = bn_bias_0_src[c_out][ch];
-		bn_bias_1_dest[ch] = bn_bias_1_src[c_out][ch];
-		relu_x_bias_dest[ch] = relu_x_bias_src[c_out][ch];
-		relu_y_bias_dest[ch] = relu_y_bias_src[c_out][ch];
-		relu_weight_dest[ch] = relu_weight_src[c_out][ch];
 	}
 }
 
@@ -299,50 +188,44 @@ void avgpool_concat(
 
 void avgpool_8x8(
 		FIX_FM_acc inputs[CHANNEL_OUT/CHANNEL_OUT_T][CHANNEL_OUT_T][WIDTH][WIDTH],
-		FIX_FM_acc outputs[CHANNEL_OUT]
+		FIX_32_10 outputs[CHANNEL_OUT]
 )
 {
 
 #pragma HLS ARRAY_PARTITION variable=inputs complete dim=2
 
-	FIX_FM_acc tmp[CHANNEL_OUT/CHANNEL_OUT_T][CHANNEL_OUT_T] = {0};
-	//#pragma HLS ARRAY_PARTITION variable=tmp complete dim=1
-#pragma HLS ARRAY_PARTITION variable=tmp complete dim=2
+	FIX_32_10 tmp[CHANNEL_OUT_T];
+#pragma HLS ARRAY_PARTITION variable=tmp complete dim=1
 
 	LOOP_avgpool_8x8:
-	for (int c0 = 0; c0 < 8; c0 ++) {
+	for (int tile = 0; tile < 8; tile ++) {
+		for (int k = 0; k < 8; k ++) {
+#pragma HLS PIPELINE
+			tmp[k] = 0;
+		}
 		for (int i = 0; i < 8; i ++) {
 			for (int j = 0; j < 8; j ++) {
-#pragma HLS PIPELINE II=2
-				FIX_FM_acc tmp_0[CHANNEL_OUT_T];
-#pragma HLS ARRAY_PARTITION variable=tmp_0 complete dim=1
-				for (int c1 = 0; c1 < 8; c1 ++) {
-					tmp_0[c1] = tmp[c0][c1];
-				}
-				for (int c1 = 0; c1 < 8; c1 ++) {
-					tmp_0[c1] += inputs[c0][c1][i][j];
-				}
-				for (int c1 = 0; c1 < 8; c1 ++) {
-					tmp[c0][c1] = tmp_0[c1];
+	#pragma HLS PIPELINE
+				for (int ch = 0; ch < 8; ch ++) {
+					tmp[ch] += inputs[tile][ch][i][j];
 				}
 			}
 		}
-	}
-	for (int c = 0; c < CHANNEL_OUT; c++) {
-#pragma HLS PIPELINE
-		outputs[c] = tmp[c/8][c%8]/(FIX_FM_acc)64.0;
+		for (int k = 0; k < CHANNEL_OUT; k++) {
+	#pragma HLS PIPELINE
+			outputs[tile*8 + k] = tmp[k]/(FIX_32_10)64.0;
+		}
 	}
 }
 
 void matmul(
-		FIX_FM_acc inputs[64],
+		FIX_32_10 inputs[64],
 		const FIX_WT linear_weight[10][64],
 		const FIX_WT linear_bias[10],
-		FIX_FM_acc outputs[10]
+		FIX_32_10 outputs[10]
 )
 {
 #pragma HLS ARRAY_PARTITION variable=linear_weight complete dim=1
-//#pragma HLS ARRAY_PARTITION variable=linear_weight complete dim=2
 #pragma HLS ARRAY_PARTITION variable=linear_bias complete dim=1
 
 	FIX_FM_acc buf[10];

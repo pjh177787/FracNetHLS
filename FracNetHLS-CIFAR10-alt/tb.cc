@@ -634,16 +634,20 @@ int main(int argc, char **argv)
 		cout << "Software has "<< correct_sw << "/" << k + 1 << " correct." << endl;
 
 #ifdef LAYER_TEST
-		int print_row = 16;
-		int print_col = 32;
+		int print_row = 8;
+		int print_col = 8;
 
-		cout << "tb output layer3_2_bn4_out" << endl;
-		for (int row = 0; row < print_row; row ++) {
-			for (int col = 0; col < print_col; col ++) {
-				cout << layer3_2_bn4_out[0][row][col] << "  ";
-			}
-			cout << endl;
+		cout << "tb output avg_pool_out" << endl;
+//		for (int row = 0; row < print_row; row ++) {
+//			for (int col = 0; col < print_col; col ++) {
+//				cout << layer3_2_bn4_out[0][row][col] << "  ";
+//			}
+//			cout << endl;
+//		}
+		for (int i = 0; i < 64; i ++){
+			cout << avg_pool_out[i];
 		}
+		cout << endl;
 		cout << "-------------------- above is tb.cc output ---------------------------" << endl;
 #endif
 
@@ -678,28 +682,32 @@ int main(int argc, char **argv)
 
 #ifdef LAYER_TEST
 		cout << endl << "accelerator output: "<< endl;
-		for (int row = 0; row < print_row; row ++) {
-			for(int col = 0; col < print_col; col ++) {
-				cout << accelerator_output[row*32 + col] << "  ";
-			}
-			cout << endl;
+//		for (int row = 0; row < print_row; row ++) {
+//			for(int col = 0; col < print_col; col ++) {
+//				cout << accelerator_output[row*32 + col] << "  ";
+//			}
+//			cout << endl;
+//		}
+		for (int i = 0; i < 64; i ++){
+			cout << accelerator_output[i];
 		}
+		cout << endl;
 
 		FIX_FM_acc err = 0;
 		FIX_FM_acc total_err = 0;
 		FIX_FM_acc max_err = 0;
 		int err_cnt = 0;
 		int total = 0;
-		for(int i=0; i<64; i++){
-			for(int j=0; j<8; j++){
-				for(int k=0; k<8; k++){
-					err = hls::absf(accelerator_output[i*32*32+j*32+k] - FIX_FM_acc(layer3_2_bn4_out[i][j][k]));
+		for(int i=0; i<1; i++){
+			for(int j=0; j<1; j++){
+				for(int k=0; k<64; k++){
+					err = hls::absf(accelerator_output[i*32*32+j*32+k] - avg_pool_out[k]);
 					if (err > max_err) max_err = err;
 					if (err > 0.1) {
 						err_cnt += 1;
 						cout << "(" << i << ", " << j << ", " << k << ") " << endl;
 					}
-					//if (err != 0) cout << "(" << i << ", " << j << ", " << k << ") ";
+//					if (err != 0) cout << "(" << i << ", " << j << ", " << k << ") ";
 					total_err += err;
 					total += 1;
 				}

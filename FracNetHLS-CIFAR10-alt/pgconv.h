@@ -64,17 +64,17 @@ void pg_conv3x3_tile(
 #pragma HLS ARRAY_PARTITION variable=msb_outputs complete dim=1
 #pragma HLS ARRAY_PARTITION variable=lsb_outputs complete dim=1
 
-	uint64 msb_line_buffer[2][WIDTH];
-	uint64 msb_window_buffer[3][3];
-	uint64 lsb_line_buffer[2][WIDTH];
-	uint64 lsb_window_buffer[3][3];
+	uint64 msb_line_buffer[2][WIDTH] = {0};
+	uint64 msb_window_buffer[3][3] = {0};
+	uint64 lsb_line_buffer[2][WIDTH] = {0};
+	uint64 lsb_window_buffer[3][3] = {0};
 #pragma HLS ARRAY_PARTITION variable=msb_line_buffer complete dim=0
 #pragma HLS ARRAY_PARTITION variable=msb_window_buffer complete dim=0
 #pragma HLS ARRAY_PARTITION variable=lsb_line_buffer complete dim=0
 #pragma HLS ARRAY_PARTITION variable=lsb_window_buffer complete dim=0
 
-	int16 msb_partial_out_feature[OUT_CHANNEL_PARALLELISM];
-	int16 lsb_partial_out_feature[OUT_CHANNEL_PARALLELISM];
+	int16 msb_partial_out_feature[OUT_CHANNEL_PARALLELISM] = {0};
+	int16 lsb_partial_out_feature[OUT_CHANNEL_PARALLELISM] = {0};
 #pragma HLS ARRAY_PARTITION variable=msb_partial_out_feature complete dim=1
 #pragma HLS ARRAY_PARTITION variable=lsb_partial_out_feature complete dim=1
 

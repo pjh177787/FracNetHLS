@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2019.2.1 (64-bit)
+# SW Build 2729669 on Thu Dec  5 04:49:17 MST 2019
+# IP Build 2729494 on Thu Dec  5 07:38:25 MST 2019
+# Start of session at: Wed Nov 25 14:43:38 2020
+# Process ID: 29948
+# Current directory: C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt-64
+# Command line: vivado.exe -mode batch -source vivado_script.tcl -tclargs FracNet-CIFAR10 ./ ./
+# Log file: C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt-64/vivado.log
+# Journal file: C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt-64\vivado.jou
+#-----------------------------------------------------------
+source vivado_script.tcl

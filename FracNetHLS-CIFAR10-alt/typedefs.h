@@ -7,7 +7,7 @@
 #include <ap_fixed.h>
 
 //#define SW_TEST
-//#define LAYER_TEST
+#define LAYER_TEST
 
 #ifdef SW_TEST
 	typedef float FIX_32_4;	//fix point
@@ -26,8 +26,8 @@
 
 #else
 //	typedef ap_fixed<14, 9, AP_RND, AP_SAT> FIX_FM;	//fix point for feature map
-	typedef ap_fixed<24, 8, AP_RND, AP_SAT> FIX_FM_acc;	//fix point for accumulation (16, 8)
-	typedef ap_fixed<24, 4, AP_RND, AP_SAT> FIX_WT;	//fix point for weights (16, 4)
+	typedef ap_fixed<28, 9, AP_RND, AP_SAT> FIX_FM_acc;	//fix point for accumulation (16, 8)
+	typedef ap_fixed<28, 4, AP_RND, AP_SAT> FIX_WT;	//fix point for weights (16, 4)
 //	typedef ap_fixed<8, 8, AP_RND, AP_SAT> FIX_INT; //signed int
 //	typedef ap_fixed<16, 3, AP_RND, AP_SAT> FIX_OUT;
 //
@@ -38,8 +38,8 @@
 //	typedef ap_fixed<16, 3, AP_RND, AP_SAT> FIX_16_3;
 //	typedef ap_fixed<16, 10, AP_RND, AP_SAT> FIX_16_10;
 //	typedef ap_fixed<32,16, AP_RND, AP_SAT> FIX_32_16;
-//	typedef ap_fixed<32,12, AP_RND, AP_SAT> FIX_32_12;
-//	typedef ap_fixed<32,10, AP_RND, AP_SAT> FIX_32_10;
+	typedef ap_fixed<32,12, AP_RND, AP_SAT> FIX_32_12;
+	typedef ap_fixed<32,10, AP_RND, AP_SAT> FIX_32_10;
 //	typedef ap_fixed<32, 4, AP_RND, AP_SAT> FIX_32_4;
 //	typedef ap_fixed<32, 7, AP_RND, AP_SAT> FIX_32_7;
 //	typedef ap_fixed<32,25, AP_RND, AP_SAT> FIX_32_25;
