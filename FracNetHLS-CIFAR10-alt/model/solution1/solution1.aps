@@ -6,12 +6,12 @@
         <DownStreamTool name=""/>
     </downStreamTool>
     <config>
-        <config_sdx target="none"/>
-        <config_export format="ip_catalog" rtl="verilog" vivado_optimization_level="2" vivado_phys_opt="place" vivado_report_level="0"/>
         <schedule model="FracNet_T"/>
+        <config_sdx target="none"/>
+        <config_export format="ip_catalog" rtl="verilog" use_netlist="" vivado_optimization_level="2" vivado_phys_opt="place" vivado_report_level="0"/>
     </config>
     <UIConfigurations>
-        <UIAutosynConf hideTrivialOp="true" isBasedOnBoard="false" isSolutionDirty="true" isStopAskAgain="false" showDetailDesignViewer="false">
+        <UIAutosynConf hideTrivialOp="true" isBasedOnBoard="false" isSolutionDirty="false" isStopAskAgain="false" showDetailDesignViewer="false">
             <Platform>xilinx/zynquplus/zynquplus</Platform>
             <Platform>xilinx/zynquplus/zynquplus_fpv7</Platform>
             <customLibs/>
@@ -43,14 +43,14 @@
         </UIAutoSimConf>
     </UIConfigurations>
     <ExportDesign askAgain="true" evaluate="false" flow="false" flowChoice="syn" formatName="ip_catalog" rtl="verilog" rtlButton="true" rtlCombo="verilog">
-        <Format formatName="ip_catalog"/>
+        <Format formatName="ip_catalog" description="" vendor="" library="" ipname="" version="" driver_input_dir="" display_name="" taxonomy=""/>
         <Format formatName="sysgen"/>
         <Format formatName="sysgen_ise"/>
         <Format formatName="syn_dcp"/>
         <Format formatName="pcore" use_netlist="none"/>
     </ExportDesign>
-    <Simulation>
-        <SimFlow askAgain="true" clangSanitizer="false" compile="false" compileChoice="gcc" disableDeadlockDetect="false" dumpTrace="none" name="cosim" optimizeCompile="false" reduce_diskspace="false" setup="false" toolName="Auto" waveDebug="false">
+    <Simulation argv="">
+        <SimFlow askAgain="false" clangSanitizer="false" compile="false" compileChoice="gcc" disableDeadlockDetect="false" dumpTrace="all" name="cosim" optimizeCompile="true" reduce_diskspace="false" setup="false" toolName="auto" waveDebug="false" ldflags="" mflags="" compiledLibrary="">
             <Rtl active="false" name="systemc"/>
             <Rtl active="true" name="verilog"/>
             <Rtl active="false" name="vhdl"/>
@@ -70,7 +70,7 @@
         <library name="DefaultPlatform" value="xilinx/zynquplus/zynquplus_fpv7"/>
     </libraryList>
     <clockList>
-        <clock name="default" default="false" uncertainty="12.5%" period="8"/>
+        <clock default="false" name="default" uncertainty="12.5%" period="4"/>
     </clockList>
 </solution>
 

@@ -196,6 +196,10 @@ void avgpool_8x8(
 
 	FIX_32_10 tmp[CHANNEL_OUT_T];
 #pragma HLS ARRAY_PARTITION variable=tmp complete dim=1
+//	for (int k = 0; k < 8; k ++) {
+//#pragma HLS PIPELINE
+//		tmp[k] = 0;
+//	}
 
 	LOOP_avgpool_8x8:
 	for (int tile = 0; tile < 8; tile ++) {
@@ -211,7 +215,7 @@ void avgpool_8x8(
 				}
 			}
 		}
-		for (int k = 0; k < CHANNEL_OUT; k++) {
+		for (int k = 0; k < 8; k++) {
 	#pragma HLS PIPELINE
 			outputs[tile*8 + k] = tmp[k]/(FIX_32_10)64.0;
 		}

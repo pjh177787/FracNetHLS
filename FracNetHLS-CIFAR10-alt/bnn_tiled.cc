@@ -5,8 +5,8 @@ using namespace std;
 
 void FracNet_T(
 		uint64 image[3][32][32],
-//		float output[64*32*32]
-		float output[64]
+		//		float output[64*32*32]
+		float output[10]
 )
 {
 #pragma HLS INTERFACE m_axi depth=3072 port=image offset=slave bundle=IMG
@@ -16,7 +16,6 @@ void FracNet_T(
 #pragma HLS ALLOCATION instances=pg_conv3x3_tile limit=1 function
 #pragma HLS ALLOCATION instances=bn_relu_shortcut limit=1 function
 #pragma HLS ALLOCATION instances=quant_and_pack limit=1 function
-	//#pragma HLS ALLOCATION instances=load_weights_tile limit=1 function
 
 	uint64 msb_fmap[3][WIDTH][WIDTH];
 	uint64 lsb_fmap[1][WIDTH][WIDTH];
@@ -30,20 +29,28 @@ void FracNet_T(
 #pragma HLS ARRAY_PARTITION variable=out_buf_t0 complete dim=1
 #pragma HLS ARRAY_PARTITION variable=out_buf_t1 complete dim=1
 
-	global_buffer_init:
+	global_buffer_init_0:
 	for (int i = 0; i < WIDTH; i ++){
 		for (int j = 0; j < WIDTH; j ++){
-			#pragma HLS PIPELINE
+#pragma HLS PIPELINE
 			for (int k = 0; k < 3; k ++) {
 				msb_fmap[k][i][j] = 0;
 			}
 			lsb_fmap[0][i][j] = 0;
 			for (int k = 0; k < CHANNEL_OUT_T; k ++) {
-				for (int l = 0; l < CHANNEL_OUT/CHANNEL_OUT_T; l ++) {
-					out_buf_0[l][k][i][j] = 0;
-				}
 				out_buf_t0[k][i][j] = 0;
 				out_buf_t1[k][i][j] = 0;
+			}
+		}
+	}
+	global_buffer_init_1:
+	for (int c = 0; c < CHANNEL_OUT/CHANNEL_OUT_T; c ++){
+		for (int i = 0; i < WIDTH; i ++){
+			for (int j = 0; j < WIDTH; j ++) {
+#pragma HLS PIPELINE
+				for (int k = 0; k < CHANNEL_OUT_T; k ++) {
+					out_buf_0[c][k][i][j] = 0;
+				}
 			}
 		}
 	}
@@ -87,7 +94,7 @@ void FracNet_T(
 	for (int c = 0; c < 3; c ++) {
 		for (int row = 0; row < 32; row ++) {
 			for (int col = 0; col < 32; col ++) {
-//#pragma HLS PIPELINE
+				//#pragma HLS PIPELINE
 				msb_fmap[c][row][col] = image[c][row][col];
 			}
 		}
@@ -703,18 +710,18 @@ void FracNet_T(
 	matmul(pool_out_buf, linear_weight_fix, linear_bias_fix, linear_out_buf);
 
 	write_output:
-	for(int i=0; i<64; i++){
-		output[i] = pool_out_buf[i];
+	for(int i=0; i<10; i++){
+		output[i] = linear_out_buf[i];
 	}
 
-//			for (int i = 0; i < 8; i ++){
-//				for (int j = 0; j < 8; j ++){
-//					for (int k = 0; k < 32; k ++){
-//						for (int l = 0; l < 32; l ++){
-//							output[i*8*32*32 + j*32*32 + k*32 + l] = out_buf_0[i][j][k][l];
-//						}
-//					}
-//				}
-//			}
+	//			for (int i = 0; i < 8; i ++){
+	//				for (int j = 0; j < 8; j ++){
+	//					for (int k = 0; k < 32; k ++){
+	//						for (int l = 0; l < 32; l ++){
+	//							output[i*8*32*32 + j*32*32 + k*32 + l] = out_buf_0[i][j][k][l];
+	//						}
+	//					}
+	//				}
+	//			}
 
 }

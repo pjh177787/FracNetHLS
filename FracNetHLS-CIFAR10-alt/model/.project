@@ -29,92 +29,92 @@
 		<link>
 			<name>source</name>
 			<type>2</type>
-			<location>C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt/model/.apc/.src</location>
+			<location>C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt-64/model/.apc/.src</location>
 		</link>
 		<link>
 			<name>testbench</name>
 			<type>2</type>
-			<location>C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt/model/.apc/.tb</location>
+			<location>C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt-64/model/.apc/.tb</location>
 		</link>
 		<link>
 			<name>solution1/constraints</name>
 			<type>2</type>
-			<location>C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt/model/solution1/.tcls</location>
-		</link>
-		<link>
-			<name>source/biconv.h</name>
-			<type>1</type>
-			<location>C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt/biconv.h</location>
+			<location>C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt-64/model/solution1/.tcls</location>
 		</link>
 		<link>
 			<name>source/bnn.h</name>
 			<type>1</type>
-			<location>C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt/bnn.h</location>
+			<location>C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt-64/bnn.h</location>
 		</link>
 		<link>
 			<name>source/bnn_tiled.cc</name>
 			<type>1</type>
-			<location>C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt/bnn_tiled.cc</location>
+			<location>C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt-64/bnn_tiled.cc</location>
+		</link>
+		<link>
+			<name>source/conv_weights.h</name>
+			<type>1</type>
+			<location>C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt-64/conv_weights.h</location>
 		</link>
 		<link>
 			<name>source/dimension_def.h</name>
 			<type>1</type>
-			<location>C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt/dimension_def.h</location>
+			<location>C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt-64/dimension_def.h</location>
 		</link>
 		<link>
 			<name>source/layer.h</name>
 			<type>1</type>
-			<location>C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt/layer.h</location>
+			<location>C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt-64/layer.h</location>
 		</link>
 		<link>
 			<name>source/pgconv.h</name>
 			<type>1</type>
-			<location>C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt/pgconv.h</location>
+			<location>C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt-64/pgconv.h</location>
 		</link>
 		<link>
 			<name>source/typedefs.h</name>
 			<type>1</type>
-			<location>C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt/typedefs.h</location>
+			<location>C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt-64/typedefs.h</location>
 		</link>
 		<link>
-			<name>source/weights_fracnet.h</name>
+			<name>source/weights_fracnet_64.h</name>
 			<type>1</type>
-			<location>C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt/weights_fracnet.h</location>
+			<location>C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt-64/weights_fracnet_64.h</location>
 		</link>
 		<link>
 			<name>testbench/conv1_input.bin</name>
 			<type>1</type>
-			<location>C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt/bin/conv1_input.bin</location>
+			<location>C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt-64/bin/conv1_input.bin</location>
 		</link>
 		<link>
 			<name>testbench/labels.bin</name>
 			<type>1</type>
-			<location>C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt/bin/labels.bin</location>
+			<location>C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt-64/bin/labels.bin</location>
 		</link>
 		<link>
 			<name>testbench/tb.cc</name>
 			<type>1</type>
-			<location>C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt/tb.cc</location>
+			<location>C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt-64/tb.cc</location>
 		</link>
 		<link>
 			<name>testbench/weights_tb.h</name>
 			<type>1</type>
-			<location>C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt/weights_tb.h</location>
+			<location>C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt-64/weights_tb.h</location>
 		</link>
 		<link>
 			<name>solution1/constraints/.xml.directive</name>
 			<type>1</type>
-			<location>C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt/model/solution1/solution1.directive</location>
+			<location>C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt-64/model/solution1/solution1.directive</location>
 		</link>
 		<link>
 			<name>solution1/constraints/directives.tcl</name>
 			<type>1</type>
-			<location>C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt/model/solution1/directives.tcl</location>
+			<location>C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt-64/model/solution1/directives.tcl</location>
 		</link>
 		<link>
 			<name>solution1/constraints/script.tcl</name>
 			<type>1</type>
-			<location>C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt/model/solution1/script.tcl</location>
+			<location>C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt-64/model/solution1/script.tcl</location>
 		</link>
 	</linkedResources>
 </projectDescription>

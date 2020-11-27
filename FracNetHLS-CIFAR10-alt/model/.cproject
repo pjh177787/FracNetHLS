@@ -51,17 +51,19 @@
                                 								
                                 <option id="gnu.cpp.compiler.option.include.paths.575732717" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
                                     									
+                                    <listOptionValue builtIn="false" value="C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt-64"/>
+                                    									
                                     <listOptionValue builtIn="false" value="C:/Xilinx/Vivado/2019.2/include"/>
                                     									
                                     <listOptionValue builtIn="false" value="C:/Xilinx/Vivado/2019.2/include/etc"/>
                                     									
                                     <listOptionValue builtIn="false" value="C:/Xilinx/Vivado/2019.2/win64/tools/systemc/include"/>
                                     									
-                                    <listOptionValue builtIn="false" value="C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt"/>
-                                    									
                                     <listOptionValue builtIn="false" value="C:/Xilinx/Vivado/2019.2/include/ap_sysc"/>
                                     									
                                     <listOptionValue builtIn="false" value="C:/Xilinx/Vivado/2019.2/win64/tools/auto_cc/include"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt"/>
                                     								
                                 </option>
                                 								
@@ -87,17 +89,19 @@
                                 								
                                 <option id="gnu.c.compiler.option.include.paths.562735026" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
                                     									
+                                    <listOptionValue builtIn="false" value="C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt-64"/>
+                                    									
                                     <listOptionValue builtIn="false" value="C:/Xilinx/Vivado/2019.2/include"/>
                                     									
                                     <listOptionValue builtIn="false" value="C:/Xilinx/Vivado/2019.2/include/etc"/>
                                     									
                                     <listOptionValue builtIn="false" value="C:/Xilinx/Vivado/2019.2/win64/tools/systemc/include"/>
                                     									
-                                    <listOptionValue builtIn="false" value="C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt"/>
-                                    									
                                     <listOptionValue builtIn="false" value="C:/Xilinx/Vivado/2019.2/include/ap_sysc"/>
                                     									
                                     <listOptionValue builtIn="false" value="C:/Xilinx/Vivado/2019.2/win64/tools/auto_cc/include"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt"/>
                                     								
                                 </option>
                                 								
@@ -161,6 +165,10 @@
                         					
                     </folderInfo>
                     					
+                    <fileInfo id="cdt.managedbuild.config.gnu.exe.debug.1455437100.1661148719" name="labels.bin" rcbsApplicability="disable" resourcePath="testbench/labels.bin" toolsToInvoke=""/>
+                    					
+                    <fileInfo id="cdt.managedbuild.config.gnu.exe.debug.1455437100.1113954547" name="conv1_input.bin" rcbsApplicability="disable" resourcePath="testbench/conv1_input.bin" toolsToInvoke=""/>
+                    					
                     <fileInfo id="cdt.managedbuild.config.gnu.exe.debug.1455437100.1884697843" name="weights_tb.h" rcbsApplicability="disable" resourcePath="testbench/weights_tb.h" toolsToInvoke=""/>
                     					
                     <fileInfo id="cdt.managedbuild.config.gnu.exe.debug.1455437100.948398178" name="tb.cc" rcbsApplicability="disable" resourcePath="testbench/tb.cc" toolsToInvoke="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.974476343.1471219742">
@@ -171,13 +179,13 @@
                             							
                             <option id="gnu.cpp.compiler.option.include.paths.1363170390" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
                                 								
+                                <listOptionValue builtIn="false" value="C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt-64"/>
+                                								
                                 <listOptionValue builtIn="false" value="C:/Xilinx/Vivado/2019.2/include"/>
                                 								
                                 <listOptionValue builtIn="false" value="C:/Xilinx/Vivado/2019.2/include/etc"/>
                                 								
                                 <listOptionValue builtIn="false" value="C:/Xilinx/Vivado/2019.2/win64/tools/systemc/include"/>
-                                								
-                                <listOptionValue builtIn="false" value="C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt"/>
                                 								
                                 <listOptionValue builtIn="false" value="C:/Xilinx/Vivado/2019.2/include/ap_sysc"/>
                                 								
@@ -255,17 +263,19 @@
                                 								
                                 <option id="gnu.cpp.compiler.option.include.paths.1539589466" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
                                     									
+                                    <listOptionValue builtIn="false" value="C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt-64"/>
+                                    									
                                     <listOptionValue builtIn="false" value="C:/Xilinx/Vivado/2019.2/include"/>
                                     									
                                     <listOptionValue builtIn="false" value="C:/Xilinx/Vivado/2019.2/include/etc"/>
                                     									
                                     <listOptionValue builtIn="false" value="C:/Xilinx/Vivado/2019.2/win64/tools/systemc/include"/>
                                     									
-                                    <listOptionValue builtIn="false" value="C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt"/>
-                                    									
                                     <listOptionValue builtIn="false" value="C:/Xilinx/Vivado/2019.2/include/ap_sysc"/>
                                     									
                                     <listOptionValue builtIn="false" value="C:/Xilinx/Vivado/2019.2/win64/tools/auto_cc/include"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt"/>
                                     								
                                 </option>
                                 								
@@ -281,17 +291,19 @@
                                 								
                                 <option id="gnu.c.compiler.option.include.paths.692153443" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
                                     									
+                                    <listOptionValue builtIn="false" value="C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt-64"/>
+                                    									
                                     <listOptionValue builtIn="false" value="C:/Xilinx/Vivado/2019.2/include"/>
                                     									
                                     <listOptionValue builtIn="false" value="C:/Xilinx/Vivado/2019.2/include/etc"/>
                                     									
                                     <listOptionValue builtIn="false" value="C:/Xilinx/Vivado/2019.2/win64/tools/systemc/include"/>
                                     									
-                                    <listOptionValue builtIn="false" value="C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt"/>
-                                    									
                                     <listOptionValue builtIn="false" value="C:/Xilinx/Vivado/2019.2/include/ap_sysc"/>
                                     									
                                     <listOptionValue builtIn="false" value="C:/Xilinx/Vivado/2019.2/win64/tools/auto_cc/include"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt"/>
                                     								
                                 </option>
                                 								
@@ -345,6 +357,10 @@
                         					
                     </folderInfo>
                     					
+                    <fileInfo id="cdt.managedbuild.config.gnu.exe.release.346162810.153195813" name="labels.bin" rcbsApplicability="disable" resourcePath="testbench/labels.bin" toolsToInvoke=""/>
+                    					
+                    <fileInfo id="cdt.managedbuild.config.gnu.exe.release.346162810.1053947713" name="conv1_input.bin" rcbsApplicability="disable" resourcePath="testbench/conv1_input.bin" toolsToInvoke=""/>
+                    					
                     <fileInfo id="cdt.managedbuild.config.gnu.exe.release.346162810.904323166" name="weights_tb.h" rcbsApplicability="disable" resourcePath="testbench/weights_tb.h" toolsToInvoke=""/>
                     					
                     <fileInfo id="cdt.managedbuild.config.gnu.exe.release.346162810.2101167085" name="tb.cc" rcbsApplicability="disable" resourcePath="testbench/tb.cc" toolsToInvoke="cdt.managedbuild.tool.gnu.cpp.compiler.exe.release.2140508238.174365576">
@@ -355,13 +371,13 @@
                             							
                             <option id="gnu.cpp.compiler.option.include.paths.93645592" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
                                 								
+                                <listOptionValue builtIn="false" value="C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt-64"/>
+                                								
                                 <listOptionValue builtIn="false" value="C:/Xilinx/Vivado/2019.2/include"/>
                                 								
                                 <listOptionValue builtIn="false" value="C:/Xilinx/Vivado/2019.2/include/etc"/>
                                 								
                                 <listOptionValue builtIn="false" value="C:/Xilinx/Vivado/2019.2/win64/tools/systemc/include"/>
-                                								
-                                <listOptionValue builtIn="false" value="C:/Users/Aperture/Git/FracNetHLS-CIFAR10-alt"/>
                                 								
                                 <listOptionValue builtIn="false" value="C:/Xilinx/Vivado/2019.2/include/ap_sysc"/>
                                 								

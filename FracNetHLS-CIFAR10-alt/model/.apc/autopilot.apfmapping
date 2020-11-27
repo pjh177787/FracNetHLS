@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
   <source>
-    <originFiles name="weights_fracnet.h" path="C:\Users\Aperture\Git\FracNetHLS-CIFAR10-alt\weights_fracnet.h"/>
-    <originFiles name="typedefs.h" path="C:\Users\Aperture\Git\FracNetHLS-CIFAR10-alt\typedefs.h"/>
-    <originFiles name="pgconv.h" path="C:\Users\Aperture\Git\FracNetHLS-CIFAR10-alt\pgconv.h"/>
-    <originFiles name="layer.h" path="C:\Users\Aperture\Git\FracNetHLS-CIFAR10-alt\layer.h"/>
-    <originFiles name="dimension_def.h" path="C:\Users\Aperture\Git\FracNetHLS-CIFAR10-alt\dimension_def.h"/>
-    <originFiles name="biconv.h" path="C:\Users\Aperture\Git\FracNetHLS-CIFAR10-alt\biconv.h"/>
-    <originFiles name="bnn_tiled.cc" path="C:\Users\Aperture\Git\FracNetHLS-CIFAR10-alt\bnn_tiled.cc"/>
-    <originFiles name="bnn.h" path="C:\Users\Aperture\Git\FracNetHLS-CIFAR10-alt\bnn.h"/>
+    <originFiles name="weights_fracnet_64.h" path="C:\Users\Aperture\Git\FracNetHLS-CIFAR10-alt-64\weights_fracnet_64.h"/>
+    <originFiles name="typedefs.h" path="C:\Users\Aperture\Git\FracNetHLS-CIFAR10-alt-64\typedefs.h"/>
+    <originFiles name="pgconv.h" path="C:\Users\Aperture\Git\FracNetHLS-CIFAR10-alt-64\pgconv.h"/>
+    <originFiles name="layer.h" path="C:\Users\Aperture\Git\FracNetHLS-CIFAR10-alt-64\layer.h"/>
+    <originFiles name="dimension_def.h" path="C:\Users\Aperture\Git\FracNetHLS-CIFAR10-alt-64\dimension_def.h"/>
+    <originFiles name="conv_weights.h" path="C:\Users\Aperture\Git\FracNetHLS-CIFAR10-alt-64\conv_weights.h"/>
+    <originFiles name="bnn_tiled.cc" path="C:\Users\Aperture\Git\FracNetHLS-CIFAR10-alt-64\bnn_tiled.cc"/>
+    <originFiles name="bnn.h" path="C:\Users\Aperture\Git\FracNetHLS-CIFAR10-alt-64\bnn.h"/>
   </source>
   <testbench>
-    <originFiles name="conv1_input.bin" path="C:\Users\Aperture\Git\FracNetHLS-CIFAR10-alt\bin\conv1_input.bin"/>
-    <originFiles name="labels.bin" path="C:\Users\Aperture\Git\FracNetHLS-CIFAR10-alt\bin\labels.bin"/>
-    <originFiles name="tb.cc" path="C:\Users\Aperture\Git\FracNetHLS-CIFAR10-alt\tb.cc"/>
-    <originFiles name="weights_tb.h" path="C:\Users\Aperture\Git\FracNetHLS-CIFAR10-alt\weights_tb.h"/>
+    <originFiles name="weights_tb.h" path="C:\Users\Aperture\Git\FracNetHLS-CIFAR10-alt-64\weights_tb.h"/>
+    <originFiles name="tb.cc" path="C:\Users\Aperture\Git\FracNetHLS-CIFAR10-alt-64\tb.cc"/>
+    <originFiles name="labels.bin" path="C:\Users\Aperture\Git\FracNetHLS-CIFAR10-alt-64\bin\labels.bin"/>
+    <originFiles name="conv1_input.bin" path="C:\Users\Aperture\Git\FracNetHLS-CIFAR10-alt-64\bin\conv1_input.bin"/>
   </testbench>
 </autopilotfilemapping:AutoPilotFileMapping>
