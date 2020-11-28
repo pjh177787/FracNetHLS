@@ -157,33 +157,80 @@ void avgpool_concat(
 		int in_channels
 )
 {
-
+#pragma HLS ARRAY_PARTITION variable=outputs complete dim=1
 #pragma HLS ARRAY_PARTITION variable=outputs complete dim=2
 
 	int in_channel_blocks = in_channels/BN_CHANNEL_PARALLELISM;
-	LOOP_avgpool_concat:
-	for (int tile=0; tile<in_channel_blocks; tile++) {
-		int channel_start = tile * BN_CHANNEL_PARALLELISM;
-		for (int i=0; i<H_fmap; i++) {
-			for (int j=0; j<H_fmap; j++) {
-				FIX_FM_acc out_feature[BN_CHANNEL_PARALLELISM];
+
+	FIX_FM_acc out_feature[BN_CHANNEL_PARALLELISM];
 #pragma HLS ARRAY_PARTITION variable=out_feature complete dim=1
-				for (int channel_pt=0; channel_pt<BN_CHANNEL_PARALLELISM; channel_pt++) {
-#pragma HLS UNROLL
-					FIX_FM_acc m = 0;
-					for (int ii = 0; ii < 2; ii ++)
-						for (int jj = 0; jj < 2; jj ++)
-							m += outputs[tile][channel_pt][i*2 + ii][j*2 + jj];
-					out_feature[channel_pt] = m/(FIX_FM_acc)4.0;
+	FIX_FM_acc out_tmp[BN_CHANNEL_PARALLELISM][WIDTH/2][WIDTH/2];
+#pragma HLS ARRAY_PARTITION variable=out_tmp complete dim=1
+
+	LOOP_init:
+	for (int i = 0; i < WIDTH/2; i ++){
+		for (int j = 0; j < WIDTH/2; j ++){
+#pragma HLS PIPELINE
+			for (int channel_pt = 0; channel_pt < BN_CHANNEL_PARALLELISM; channel_pt ++){
+				out_tmp[channel_pt][i][j] = 0;
+			}
+		}
+	}
+	LOOP_avgpool:
+	for (int tile=0; tile < in_channel_blocks; tile ++) {
+		for (int i = 0; i < H_fmap; i ++){
+			for (int j = 0; j < H_fmap; j ++){
+				for (int ii = 0; ii < 2; ii ++){
+					for (int jj = 0; jj < 2; jj ++){
+#pragma HLS PIPELINE
+						for (int channel_pt = 0; channel_pt < BN_CHANNEL_PARALLELISM; channel_pt ++){
+							if (ii + jj == 0) {
+								out_feature[channel_pt] = outputs[tile][channel_pt][i*2 + ii][j*2 + jj];;
+							} else{
+								out_feature[channel_pt] += outputs[tile][channel_pt][i*2 + ii][j*2 + jj];;
+							}
+						}
+						for (int channel_pt = 0; channel_pt < BN_CHANNEL_PARALLELISM; channel_pt ++){
+							out_tmp[channel_pt][i][j] = out_feature[channel_pt]/(FIX_FM_acc)4.0;
+						}
+					}
 				}
-				for (int channel_pt=0; channel_pt<BN_CHANNEL_PARALLELISM; channel_pt++) {
-#pragma HLS UNROLL
-					outputs[tile][channel_pt][i][j] = out_feature[channel_pt];
-					outputs[tile+in_channel_blocks][channel_pt][i][j] = out_feature[channel_pt];
+			}
+		}
+		for (int i = 0; i < H_fmap; i ++){
+			for (int j = 0; j < H_fmap; j ++){
+#pragma HLS PIPELINE
+				for (int channel_pt = 0; channel_pt < BN_CHANNEL_PARALLELISM; channel_pt ++){
+					outputs[tile][channel_pt][i][j] = out_tmp[channel_pt][i][j];
+					outputs[tile+in_channel_blocks][channel_pt][i][j] = out_tmp[channel_pt][i][j];
 				}
 			}
 		}
 	}
+
+	//	for (int tile=0; tile<in_channel_blocks; tile++) {
+	//		int channel_start = tile * BN_CHANNEL_PARALLELISM;
+	//		for (int i=0; i<H_fmap; i++) {
+	//			for (int j=0; j<H_fmap; j++) {
+	//#pragma HLS PIPELINE
+	//				FIX_FM_acc out_feature[BN_CHANNEL_PARALLELISM];
+	//#pragma HLS ARRAY_PARTITION variable=out_feature complete dim=1
+	//				for (int channel_pt=0; channel_pt<BN_CHANNEL_PARALLELISM; channel_pt++) {
+	//#pragma HLS UNROLL
+	//					FIX_FM_acc m = 0;
+	//					for (int ii = 0; ii < 2; ii ++)
+	//						for (int jj = 0; jj < 2; jj ++)
+	//							m += outputs[tile][channel_pt][i*2 + ii][j*2 + jj];
+	//					out_feature[channel_pt] = m/(FIX_FM_acc)4.0;
+	//				}
+	//				for (int channel_pt=0; channel_pt<BN_CHANNEL_PARALLELISM; channel_pt++) {
+	//#pragma HLS UNROLL
+	//					outputs[tile][channel_pt][i][j] = out_feature[channel_pt];
+	//					outputs[tile+in_channel_blocks][channel_pt][i][j] = out_feature[channel_pt];
+	//				}
+	//			}
+	//		}
+	//	}
 }
 
 void avgpool_8x8(
@@ -196,10 +243,10 @@ void avgpool_8x8(
 
 	FIX_32_10 tmp[CHANNEL_OUT_T];
 #pragma HLS ARRAY_PARTITION variable=tmp complete dim=1
-//	for (int k = 0; k < 8; k ++) {
-//#pragma HLS PIPELINE
-//		tmp[k] = 0;
-//	}
+	//	for (int k = 0; k < 8; k ++) {
+	//#pragma HLS PIPELINE
+	//		tmp[k] = 0;
+	//	}
 
 	LOOP_avgpool_8x8:
 	for (int tile = 0; tile < 8; tile ++) {
@@ -209,14 +256,14 @@ void avgpool_8x8(
 		}
 		for (int i = 0; i < 8; i ++) {
 			for (int j = 0; j < 8; j ++) {
-	#pragma HLS PIPELINE
+#pragma HLS PIPELINE
 				for (int ch = 0; ch < 8; ch ++) {
 					tmp[ch] += inputs[tile][ch][i][j];
 				}
 			}
 		}
 		for (int k = 0; k < 8; k++) {
-	#pragma HLS PIPELINE
+#pragma HLS PIPELINE
 			outputs[tile*8 + k] = tmp[k]/(FIX_32_10)64.0;
 		}
 	}

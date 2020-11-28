@@ -25,6 +25,7 @@ void FracNet_T(
 	FIX_FM_acc out_buf_0[CHANNEL_OUT/CHANNEL_OUT_T][CHANNEL_OUT_T][WIDTH][WIDTH];
 	int16 out_buf_t0[CHANNEL_OUT_T][WIDTH][WIDTH];
 	int16 out_buf_t1[CHANNEL_OUT_T][WIDTH][WIDTH];
+#pragma HLS ARRAY_PARTITION variable=out_buf_0 complete dim=1
 #pragma HLS ARRAY_PARTITION variable=out_buf_0 complete dim=2
 #pragma HLS ARRAY_PARTITION variable=out_buf_t0 complete dim=1
 #pragma HLS ARRAY_PARTITION variable=out_buf_t1 complete dim=1
@@ -37,20 +38,14 @@ void FracNet_T(
 				msb_fmap[k][i][j] = 0;
 			}
 			lsb_fmap[0][i][j] = 0;
-			for (int k = 0; k < CHANNEL_OUT_T; k ++) {
-				out_buf_t0[k][i][j] = 0;
-				out_buf_t1[k][i][j] = 0;
-			}
-		}
-	}
-	global_buffer_init_1:
-	for (int c = 0; c < CHANNEL_OUT/CHANNEL_OUT_T; c ++){
-		for (int i = 0; i < WIDTH; i ++){
-			for (int j = 0; j < WIDTH; j ++) {
-#pragma HLS PIPELINE
+			for (int c = 0; c < CHANNEL_OUT/CHANNEL_OUT_T; c ++){
 				for (int k = 0; k < CHANNEL_OUT_T; k ++) {
 					out_buf_0[c][k][i][j] = 0;
 				}
+			}
+			for (int k = 0; k < CHANNEL_OUT_T; k ++) {
+				out_buf_t0[k][i][j] = 0;
+				out_buf_t1[k][i][j] = 0;
 			}
 		}
 	}

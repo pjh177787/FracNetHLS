@@ -37,3 +37,8 @@ cd FracNetVivado
 source FracNet-CIFAR10.tcl
 
 Let me know if questions.
+
+## Update 11/28:
+
+Host code is in FracNetHLS-CIFAR10-alt/deploy
+upload that to ultra96 and run
