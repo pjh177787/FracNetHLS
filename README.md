@@ -42,3 +42,7 @@ Let me know if questions.
 
 Host code is in FracNetHLS-CIFAR10-alt/deploy
 upload that to ultra96 and run
+
+## Update 11/30:
+
+Updated ImageNet, in *-alt folder.

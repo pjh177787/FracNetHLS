@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vivadoHLSLog:LogRoot xmlns:vivadoHLSLog="www.xilinx.com/vivadoHLSLog">
+  <errorLogs>
+    <logs>
+      <csimLog>
+        <logs message="ERROR: [SIM 211-100] CSim file generation failed: compilation error(s)." projectName="FracNetHLS-ImageNet-pg-alt" solutionName="solution1" date="2020-11-30T22:23:18.051-0600"/>
+      </csimLog>
+    </logs>
+  </errorLogs>
+  <warningLogs>
+    <logs>
+      <csimLog>
+        <logs message="WARNING: [HLS 200-40] Cannot find library 'xilinx/Virtex-7/Virtex-7'." projectName="FracNetHLS-ImageNet-pg-alt" solutionName="solution1" date="2020-11-30T22:52:27.776-0600" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find library 'C:/Xilinx/Vivado/2019.2/common/technology/xilinx/Virtex-7/Virtex-7.lib'." projectName="FracNetHLS-ImageNet-pg-alt" solutionName="solution1" date="2020-11-30T22:52:25.742-0600" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find library 'xilinx/Virtex-7/Virtex-7'." projectName="FracNetHLS-ImageNet-pg-alt" solutionName="solution1" date="2020-11-30T22:52:05.926-0600" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find library 'C:/Xilinx/Vivado/2019.2/common/technology/xilinx/Virtex-7/Virtex-7.lib'." projectName="FracNetHLS-ImageNet-pg-alt" solutionName="solution1" date="2020-11-30T22:52:03.752-0600" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find library 'xilinx/Virtex-7/Virtex-7'." projectName="FracNetHLS-ImageNet-pg-alt" solutionName="solution1" date="2020-11-30T22:47:32.871-0600" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find library 'C:/Xilinx/Vivado/2019.2/common/technology/xilinx/Virtex-7/Virtex-7.lib'." projectName="FracNetHLS-ImageNet-pg-alt" solutionName="solution1" date="2020-11-30T22:47:30.719-0600" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find library 'xilinx/Virtex-7/Virtex-7'." projectName="FracNetHLS-ImageNet-pg-alt" solutionName="solution1" date="2020-11-30T22:45:54.003-0600" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find library 'C:/Xilinx/Vivado/2019.2/common/technology/xilinx/Virtex-7/Virtex-7.lib'." projectName="FracNetHLS-ImageNet-pg-alt" solutionName="solution1" date="2020-11-30T22:45:51.887-0600" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find library 'xilinx/Virtex-7/Virtex-7'." projectName="FracNetHLS-ImageNet-pg-alt" solutionName="solution1" date="2020-11-30T22:38:49.942-0600" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find library 'C:/Xilinx/Vivado/2019.2/common/technology/xilinx/Virtex-7/Virtex-7.lib'." projectName="FracNetHLS-ImageNet-pg-alt" solutionName="solution1" date="2020-11-30T22:38:47.727-0600" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find library 'xilinx/Virtex-7/Virtex-7'." projectName="FracNetHLS-ImageNet-pg-alt" solutionName="solution1" date="2020-11-30T22:26:27.872-0600" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find library 'C:/Xilinx/Vivado/2019.2/common/technology/xilinx/Virtex-7/Virtex-7.lib'." projectName="FracNetHLS-ImageNet-pg-alt" solutionName="solution1" date="2020-11-30T22:26:25.722-0600" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find library 'xilinx/Virtex-7/Virtex-7'." projectName="FracNetHLS-ImageNet-pg-alt" solutionName="solution1" date="2020-11-30T22:23:15.453-0600" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find library 'C:/Xilinx/Vivado/2019.2/common/technology/xilinx/Virtex-7/Virtex-7.lib'." projectName="FracNetHLS-ImageNet-pg-alt" solutionName="solution1" date="2020-11-30T22:23:13.063-0600" type="Warning"/>
+      </csimLog>
+    </logs>
+  </warningLogs>
+</vivadoHLSLog:LogRoot>
