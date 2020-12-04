@@ -1,0 +1,13 @@
+
+#define CHANNEL_IN 3
+#define CHANNEL_OUT 64
+#define CHANNEL_OUT_T 8
+#define BUF_HEIGHT_1 226
+#define BUF_HEIGHT_0 114
+#define BUF_WIDTH_1 225
+#define BUF_WIDTH_0 113
+#define OUT_CHANNEL_PARALLELISM 8
+#define BN_CHANNEL_PARALLELISM 8
+#define ROW_TILE_SIZE 4
+#define WIDTH_T 11
+#define TILE_SIZE 8
