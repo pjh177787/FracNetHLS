@@ -73,6 +73,7 @@ void FracNet(
 
 	uint64 conv_buf_all_1[BUF_HEIGHT_1][BUF_WIDTH_1] = {}; // 226*225
 	uint64 conv_buf_all_0[BUF_HEIGHT_0][BUF_WIDTH_0] = {}; // 114*113
+	uint32 feat_buf_all[152550]; // 3*226*225
 
 	FIX_FM_acc out_buf_1[CHANNEL_OUT_T][ROW_TILE_SIZE+2][BUF_WIDTH_1] = {};
 	FIX_FM_acc out_buf_0[CHANNEL_OUT_T][ROW_TILE_SIZE+2][BUF_WIDTH_0] = {};
@@ -83,7 +84,7 @@ void FracNet(
 #pragma HLS ARRAY_PARTITION variable=out_buf_t1 complete dim=1
 #pragma HLS ARRAY_PARTITION variable=out_buf_t0 complete dim=1
 
-	uint64 weight_tile_buffer[128][8][3][3] = {}; // output parallelism 8 is ideal because 8*64=512 which is the bus width.
+	uint32 weight_tile_buffer[128][8][3][3] = {}; // output parallelism 8 is ideal because 8*64=512 which is the bus width.
 #pragma HLS ARRAY_PARTITION variable=weight_tile_buffer complete dim=1
 
 	FIX_32_8 bn_weight_buffer[128][8] = {};
@@ -134,26 +135,40 @@ void FracNet(
 			}
 		}
 	}
-	LOOP_GetImg_Conv1:
+	LOOP_GetImg:
+	for (int c_in = 0; c_in < 3; c_in ++){
+		for (int row = 0; row < 226; row ++){
+			for (int col = 0; col < 225; col ++){
+				int index_thermo = c_in*224*224 + (row-1)*224 + col;
+				int index_feature = c_in*226*225 + row*225 + col;
+				if (row >= 1 && row <= 224 && col <= 223){
+					feat_buf_all[index_feature] = image_thermo[index_thermo];
+				} else {
+					feat_buf_all[index_feature] = 0;
+				}
+			}
+		}
+	}
+	LOOP_Conv1:
 	for (int c_out = 0; c_out < out_channels/OUT_CHANNEL_PARALLELISM; c_out ++){
 		for (int row_t = 0; row_t < H_fmap_out/ROW_TILE_SIZE; row_t++){
 			for (int c_in = 0; c_in < 3; c_in ++) {
 				out_channel_start = c_out*OUT_CHANNEL_PARALLELISM;
 				row_tile_start = row_t*ROW_TILE_SIZE;
 
-				LOOP_GetImg:
-				for (int row = 0; row < ROW_TILE_SIZE+2; row ++){
-					for (int col = 0; col < 225; col ++){
-#pragma HLS PIPELINE
-						int index_thermo = c_in*224*224 + (row_tile_start+row-1)*224 + col;
-						if ((row_tile_start+row >= 1) && (row_tile_start+row <= 224) && (col <= 223)) {
-							conv_buf_all_1[row_tile_start+row][col].range(63,32) = 0;
-							conv_buf_all_1[row_tile_start+row][col].range(31,0) = image_thermo[index_thermo];
-						} else {
-							conv_buf_all_1[row_tile_start+row][col] = 0;
-						}
-					}
-				}
+//				LOOP_GetImg:
+//				for (int row = 0; row < ROW_TILE_SIZE+2; row ++){
+//					for (int col = 0; col < 225; col ++){
+//#pragma HLS PIPELINE
+//						int index_thermo = c_in*224*224 + (row_tile_start+row-1)*224 + col;
+//						if ((row_tile_start+row >= 1) && (row_tile_start+row <= 224) && (col <= 223)) {
+//							conv_buf_all_1[row_tile_start+row][col].range(63,32) = 0;
+//							conv_buf_all_1[row_tile_start+row][col].range(31,0) = image_thermo[index_thermo];
+//						} else {
+//							conv_buf_all_1[row_tile_start+row][col] = 0;
+//						}
+//					}
+//				}
 				// After this conv_buf_all_1 should be full
 				// the first row is padded with zero
 				// the last row is padded with zero
@@ -167,7 +182,7 @@ void FracNet(
 #pragma HLS PIPELINE
 						for (int ch = 0; ch < 8; ch ++){
 #pragma HLS ARRAY_PARTITION variable=l_0_0_weight complete dim=3
-							weight_tile_buffer[c_in][ch][row][col] = l_0_0_weight[c_out][c_in][ch][row][col];
+							weight_tile_buffer[c_in][ch][row][col] = l_0_0_weight[c_out][c_in][ch][row][col].range(31, 0);
 						}
 					}
 				}
@@ -181,8 +196,9 @@ void FracNet(
 							}
 							for (int krow = 0; krow < 3; krow ++){
 								for (int kcol = 0; kcol < 3; kcol ++){
+									int buf_index = c_in*226*225 + (row_tile_start+row+krow)*225 + col+kcol-1;
 									if (col+kcol-1 >= 0 && col+kcol-1 < 225 && row_tile_start+row+krow > 0 && row_tile_start+row+krow < 226) {
-										uint64 a = conv_buf_all_1[row_tile_start+row+krow][col+kcol-1];
+										uint64 a = feat_buf_all[buf_index];
 										uint64 b = weight_tile_buffer[c_in][ch][krow][kcol];
 										out_buf_t1[ch][row][col] += popcnt(a, b) - out_channels;
 									}
