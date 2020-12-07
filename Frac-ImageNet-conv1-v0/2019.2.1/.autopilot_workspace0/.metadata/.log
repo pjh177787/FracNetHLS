@@ -5551,3 +5551,21 @@ java.lang.Exception
 	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.archiveDesignFiles(ArchiveProjectAction.java:246)
 	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.run(ArchiveProjectAction.java:88)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-06 17:46:23.415
+!MESSAGE Indexed 'model' (3 sources, 227 headers) in 7.54 sec: 61,018 declarations; 103,599 references; 0 unresolved inclusions; 0 syntax errors; 84 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-06 20:20:04.972
+!MESSAGE Indexed 'model' (2 sources, 226 headers) in 6.97 sec: 60,889 declarations; 103,112 references; 0 unresolved inclusions; 0 syntax errors; 84 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-06 20:21:20.961
+!MESSAGE Indexed 'model' (3 sources, 226 headers) in 7.25 sec: 60,962 declarations; 103,332 references; 0 unresolved inclusions; 0 syntax errors; 84 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-06 20:21:30.648
+!MESSAGE Indexed 'model' (3 sources, 226 headers) in 7.32 sec: 60,962 declarations; 103,332 references; 0 unresolved inclusions; 0 syntax errors; 84 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-06 20:55:12.119
+!MESSAGE Indexed 'model' (3 sources, 226 headers) in 7.3 sec: 60,956 declarations; 103,300 references; 0 unresolved inclusions; 0 syntax errors; 84 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-06 21:18:30.240
+!MESSAGE Indexed 'model' (3 sources, 226 headers) in 7.42 sec: 60,956 declarations; 103,302 references; 0 unresolved inclusions; 0 syntax errors; 84 unresolved names (0.051%)

@@ -78,12 +78,12 @@ inline uint8 compute_engine_32_3(uint32 b, uint32 w)
  */
 
 void pg_conv3x3_tile( 
-		uint32 msb_inputs[3*BUF_HEIGHT_1*BUF_WIDTH_1],
+		uint32 msb_inputs[BUF_HEIGHT_1*BUF_WIDTH_1],
 		uint32 weights[OUT_CHANNEL_PARALLELISM][3][3],
 		FIX_FM_acc msb_outputs[OUT_CHANNEL_PARALLELISM][ROW_TILE_SIZE+2][BUF_WIDTH_1],
 
 		int c_in,
-				int in_channels_after_pack,
+//				int in_channels_after_pack,
 		int H_fmap_out,
 		int row_offset
 )
@@ -112,7 +112,7 @@ void pg_conv3x3_tile(
 				msb_window_buffer[i][1] = msb_window_buffer[i][2];
 			}
 
-			int read_index = (row+row_offset)*(H_fmap_out+1)*in_channels_after_pack + c_in*(H_fmap_out+1) + col;
+			int read_index = (row+row_offset)*(H_fmap_out+1) + col;
 			msb_window_buffer[0][2] = (msb_line_buffer[0][col]);
 			msb_window_buffer[1][2] = (msb_line_buffer[0][col] = msb_line_buffer[1][col]);
 			msb_window_buffer[2][2] = (msb_line_buffer[1][col] = msb_inputs[read_index]);
