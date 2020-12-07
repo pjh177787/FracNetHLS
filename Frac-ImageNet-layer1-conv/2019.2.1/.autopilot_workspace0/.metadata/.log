@@ -5569,3 +5569,85 @@ java.lang.Exception
 
 !ENTRY org.eclipse.cdt.core 1 0 2020-12-06 21:18:30.240
 !MESSAGE Indexed 'model' (3 sources, 226 headers) in 7.42 sec: 60,956 declarations; 103,302 references; 0 unresolved inclusions; 0 syntax errors; 84 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-06 21:31:09.753
+!MESSAGE Indexed 'model' (2 sources, 226 headers) in 7.02 sec: 60,901 declarations; 103,329 references; 0 unresolved inclusions; 0 syntax errors; 84 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-06 21:34:25.363
+!MESSAGE Indexed 'model' (2 sources, 226 headers) in 6.96 sec: 60,901 declarations; 103,329 references; 0 unresolved inclusions; 0 syntax errors; 84 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-06 21:35:25.466
+!MESSAGE Indexed 'model' (3 sources, 226 headers) in 6.99 sec: 60,986 declarations; 103,770 references; 0 unresolved inclusions; 0 syntax errors; 84 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-06 21:45:17.592
+!MESSAGE Indexed 'model' (3 sources, 226 headers) in 7.4 sec: 60,992 declarations; 103,831 references; 0 unresolved inclusions; 0 syntax errors; 84 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-06 21:48:59.332
+!MESSAGE Indexed 'model' (3 sources, 227 headers) in 7.02 sec: 61,037 declarations; 103,837 references; 0 unresolved inclusions; 0 syntax errors; 84 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-06 21:53:51.319
+!MESSAGE Indexed 'model' (3 sources, 226 headers) in 6.76 sec: 61,001 declarations; 103,779 references; 0 unresolved inclusions; 0 syntax errors; 84 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-06 22:02:59.850
+!MESSAGE Indexed 'model' (3 sources, 226 headers) in 6.76 sec: 61,011 declarations; 103,823 references; 0 unresolved inclusions; 0 syntax errors; 84 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-06 22:07:37.154
+!MESSAGE Indexed 'model' (3 sources, 226 headers) in 7.25 sec: 61,005 declarations; 103,793 references; 0 unresolved inclusions; 0 syntax errors; 84 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-06 22:11:16.706
+!MESSAGE Indexed 'model' (2 sources, 226 headers) in 7.23 sec: 60,915 declarations; 103,336 references; 0 unresolved inclusions; 0 syntax errors; 84 unresolved names (0.051%)
+
+!ENTRY org.eclipse.ui 4 0 2020-12-06 22:15:02.494
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.IllegalArgumentException: Argument cannot be null
+	at org.eclipse.swt.SWT.error(SWT.java:4514)
+	at org.eclipse.swt.SWT.error(SWT.java:4448)
+	at org.eclipse.swt.SWT.error(SWT.java:4419)
+	at org.eclipse.swt.custom.StyledText.setText(StyledText.java:10109)
+	at org.eclipse.cdt.internal.ui.text.c.hover.AbstractAnnotationHover$AnnotationInformationControl.createAnnotationInformation(AbstractAnnotationHover.java:320)
+	at org.eclipse.cdt.internal.ui.text.c.hover.AbstractAnnotationHover$AnnotationInformationControl.deferredCreateContent(AbstractAnnotationHover.java:272)
+	at org.eclipse.cdt.internal.ui.text.c.hover.AbstractAnnotationHover$AnnotationInformationControl.setInput(AbstractAnnotationHover.java:176)
+	at org.eclipse.jface.text.AbstractInformationControlManager.internalShowInformationControl(AbstractInformationControlManager.java:1192)
+	at org.eclipse.jface.text.AbstractInformationControlManager.presentInformation(AbstractInformationControlManager.java:1161)
+	at org.eclipse.jface.text.AbstractHoverInformationControlManager.presentInformation(AbstractHoverInformationControlManager.java:894)
+	at org.eclipse.jface.text.TextViewerHoverManager.doPresentInformation(TextViewerHoverManager.java:247)
+	at org.eclipse.jface.text.TextViewerHoverManager$5.run(TextViewerHoverManager.java:237)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:37)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:182)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4213)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3820)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1150)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1039)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:680)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:594)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:148)
+	at com.autoesl.autopilot.ui.platform.Application.start(Application.java:92)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:388)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:243)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:653)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:590)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1499)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1472)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-06 22:15:16.535
+!MESSAGE Indexed 'model' (3 sources, 226 headers) in 7.16 sec: 61,011 declarations; 103,831 references; 0 unresolved inclusions; 0 syntax errors; 84 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-06 22:18:38.293
+!MESSAGE Indexed 'model' (3 sources, 226 headers) in 7.08 sec: 61,011 declarations; 103,843 references; 0 unresolved inclusions; 0 syntax errors; 84 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-06 22:25:18.158
+!MESSAGE Indexed 'model' (3 sources, 226 headers) in 7.04 sec: 61,013 declarations; 103,866 references; 0 unresolved inclusions; 0 syntax errors; 84 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-06 22:49:18.834
+!MESSAGE Indexed 'model' (3 sources, 228 headers) in 7.76 sec: 61,047 declarations; 103,910 references; 0 unresolved inclusions; 0 syntax errors; 84 unresolved names (0.051%)

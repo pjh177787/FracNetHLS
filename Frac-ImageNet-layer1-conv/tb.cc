@@ -354,24 +354,23 @@ void avgpool2x2(float input[CHANNEL_OUT][HEIGHT_IN][WIDTH_IN],
 
 void net_sw(unsigned char image[96][224][224])
 {
-	cout << "Conv1" << endl;
+
 	conv1(image, layer_0_0_weight, layer_0_0_output);
 	bn<32, 112, 112>(layer_0_0_output, layer_0_1_weight, layer_0_1_bias, layer_0_1_output); // [32][112][112]
 
-	cout << "layer 1 dw" << endl;
 	quant_sign<32, 112, 112>(layer_0_1_output, layer_0_1_output_quant);
 	pgconv3x3<32, 32, 112, 112, 112, 112>(
 			layer_0_1_output_quant, layer_1_conv3x3_0_weight,
 			layer_1_conv3x3_0_threshold, layer_1_conv3x3_0_output
 	);
-	//	bn<32, 112, 112>(layer_1_conv3x3_0_output, layer_1_conv3x3_1_weight, layer_1_conv3x3_1_bias, layer_1_conv3x3_0_output);
-	//	rprelu<32, 112, 112>(
-	//			layer_1_conv3x3_0_output, layer_1_rprelu1_shift_x_bias,
-	//			layer_1_rprelu1_shift_y_bias, layer_1_rprelu1_prelu_weight,
-	//			layer_1_conv3x3_0_output
-	//	);
-	//	shortcut<32, 112, 112>(layer_1_conv3x3_0_output, layer_0_1_output, layer_1_conv3x3_0_output);
-	//	bn<32, 112, 112>(layer_1_conv3x3_0_output, layer_1_shiftbn1_weight, layer_1_shiftbn1_bias, layer_1_conv3x3_0_output);
+	bn<32, 112, 112>(layer_1_conv3x3_0_output, layer_1_conv3x3_1_weight, layer_1_conv3x3_1_bias, layer_1_conv3x3_0_output);
+	rprelu<32, 112, 112>(
+			layer_1_conv3x3_0_output, layer_1_rprelu1_shift_x_bias,
+			layer_1_rprelu1_shift_y_bias, layer_1_rprelu1_prelu_weight,
+			layer_1_conv3x3_0_output
+	);
+	shortcut<32, 112, 112>(layer_1_conv3x3_0_output, layer_0_1_output, layer_1_conv3x3_0_output);
+	bn<32, 112, 112>(layer_1_conv3x3_0_output, layer_1_shiftbn1_weight, layer_1_shiftbn1_bias, layer_1_conv3x3_0_output);
 	//
 	//	cout << "layer 1 pw" << endl;
 	//	quant_sign<32, 112, 112>(layer_1_conv3x3_0_output, layer_1_conv3x3_0_output_quant);
@@ -420,7 +419,7 @@ int main()
 		int ch = 0;
 		for (int row = 0; row < 32; row ++) {
 			for (int col = 0; col < 32; col ++) {
-				cout << layer_0_1_output[ch][row][col] << "  ";
+				cout << layer_1_conv3x3_0_output[ch][row][col] << "  ";
 			}
 			cout << endl;
 		}
@@ -502,7 +501,7 @@ int main()
 		for(int i=0; i<32; i++){
 			for(int j=0; j<112; j++){
 				for(int k=0; k<112; k++){
-					err = abs(DDR_ptr[i][j][k] - layer_0_1_output[i][j][k]);
+					err = abs(DDR_ptr[i][j][k] - layer_1_conv3x3_0_output[i][j][k]);
 					if (err > max_err) max_err = err;
 					if (err > 0.01){
 						err_cnt += 1;

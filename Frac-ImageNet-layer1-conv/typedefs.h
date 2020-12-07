@@ -6,7 +6,7 @@
 #include <ap_int.h>
 #include <ap_fixed.h>
 
-//#define SW_TEST
+#define SW_TEST
 #define LAYER_TEST
 
 #ifdef SW_TEST
