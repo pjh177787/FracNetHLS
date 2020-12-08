@@ -89,6 +89,9 @@ void load_conv3x3_weights(
 		int in_channels_after_pack
 )
 {
+	// [c_out][c_in][2][512][3][3]
+	// tile:uint32 [32][3][3] = [2][512][3][3]
+//	int ptr_start = conv3x3_weight_ptr + c_in*out_channels_after_tile*NUM_BUS_READS + c_out*NUM_BUS_READS;
 	int ptr_start = conv3x3_weight_ptr + c_out*in_channels_after_pack*NUM_BUS_READS + c_in*NUM_BUS_READS;
 	for (int i = 0; i < NUM_BUS_READS; i ++) {
 		for (int row = 0; row < 3; row ++) {

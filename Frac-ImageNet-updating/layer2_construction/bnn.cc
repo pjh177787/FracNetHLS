@@ -22,6 +22,7 @@ void FracNet(
 		uint32 image_thermo[3*224*224],
 
 		uint512 conv_weight_3x3_all[174592][3][3],
+		uint512 layer_2_conv3x3_0_weight_hw[8][3][3],
 		uint512 conv_weight_1x1_all[196224],
 		uint512 weights_all[8313],
 
@@ -381,8 +382,8 @@ void FracNet(
 
 				load_conv3x3_weights(
 						weight3x3_tile_buffer,
-						conv_weight_3x3_all,
-						conv3x3_weight_ptr,
+						layer_2_conv3x3_0_weight_hw,
+						0,
 						c_out, c_in,
 						in_channels_after_pack
 				);
