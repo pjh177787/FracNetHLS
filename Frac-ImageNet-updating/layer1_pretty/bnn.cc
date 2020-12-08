@@ -259,54 +259,18 @@ void FracNet(
 					H_fmap_out, conv_in_channels,
 					out_channel_start, row_tile_start, switch_bank
 			);
-			//			bn_relu_sc_relu(
-			//					conv3x3_0_threshold, conv3x3_1_weight, conv3x3_1_bias,
-			//					relu1_shift_x, relu1_shift_y, relu1_weight,
-			//					bn1_weight, bn1_bias,
-			//
-			//					DDR_buf,
-			//					out_buf_all, out_buf_sc, feat_buf_all,
-			//
-			//					H_fmap_out, c_out,
-			//					out_channel_start, row_tile_start,
-			//					stride, switch_bank
-			//			);
-			for (int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++) {
-				for (int row = 0; row < ROW_TILE_SIZE/stride; row ++) {
-					for (int col = 0; col < H_fmap_out/stride; col ++) {
-#pragma HLS PIPELINE
-						out_buf_col_start = 0;
-						FIX_FM_acc msb = out_buf_all[ch][(row*stride+2)*(H_fmap_out+1)+col*stride+1+out_buf_col_start]*(FIX_WT)(2.0/3);
-						out_buf_col_start = (ROW_TILE_SIZE+2)*(H_fmap_out+1);
-						FIX_FM_acc lsb = out_buf_all[ch][(row*stride+2)*(H_fmap_out+1)+col*stride+1+out_buf_col_start]*(FIX_WT)(1.0/3);
-						FIX_FM_acc output = msb;
-						if (msb > (float)conv3x3_0_threshold[c_out][ch]) output = msb + lsb;
-#ifdef SW_TEST
-						float result_bn = (float)conv3x3_1_weight[c_out][ch]*output + (float)conv3x3_1_bias[c_out][ch];
-						float t = result_bn + (float)relu1_shift_x[c_out][ch];
-						if (t < 0) {
-							t = (float)relu1_weight[c_out][ch]*t;
-						}
-						float result_relu = t + (float)relu1_shift_y[c_out][ch];
-						float result_sc = (float)result_relu + out_buf_sc[ch][row][col];
-						result_bn = (float)bn1_weight[c_out][ch]*result_sc + (float)bn1_bias[c_out][ch];
-#else
-						FIX_FM_acc result_bn = conv3x3_1_weight[c_out][ch]*output + conv3x3_1_bias[c_out][ch];
-						FIX_FM_acc t = result_bn + relu1_shift_x[c_out][ch];
-						if (t < 0) {
-							t = relu1_weight[c_out][ch]*t;
-						}
-						FIX_FM_acc result_relu = t + relu1_shift_y[c_out][ch];
-						FIX_FM_acc result_sc = result_relu + out_buf_sc[ch][row][col];
-						result_bn = bn1_weight[c_out][ch]*result_sc + bn1_bias[c_out][ch];
-#endif
-						DDR_buf[out_channel_start + ch + DDR_CH_OFFSET][row_tile_start/stride + row][col] = result_bn;
-						uint2 result_t = to2bit(result_bn);
-						feat_buf_all[1][(row_tile_start/stride+row)*(H_fmap_out/stride) + col + FEAT_BUF_OFFSET][ch] = result_t[1]; // MSB
-						feat_buf_all[0][(row_tile_start/stride+row)*(H_fmap_out/stride) + col + FEAT_BUF_OFFSET][ch] = result_t[0]; // LSB
-					}
-				}
-			}
+			bn_relu_sc_relu(
+					conv3x3_0_threshold, conv3x3_1_weight, conv3x3_1_bias,
+					relu1_shift_x, relu1_shift_y, relu1_weight,
+					bn1_weight, bn1_bias,
+
+					DDR_buf,
+					out_buf_all, out_buf_sc, feat_buf_all,
+
+					H_fmap_out, c_out,
+					out_channel_start, row_tile_start,
+					stride, switch_bank
+			);
 		}
 	}
 
@@ -355,44 +319,18 @@ void FracNet(
 					H_fmap_out, pw_in_channels,
 					out_channel_start, row_tile_start, switch_bank
 			);
-			for (int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++) {
-				for (int row = 0; row < ROW_TILE_SIZE; row ++) {
-					for (int col = 0; col < H_fmap_out; col ++) {
-#pragma HLS PIPELINE
-						out_buf_col_start = 0;
-						FIX_FM_acc msb = out_buf_all[ch][(row+2)*(H_fmap_out+1) + (col+1) + out_buf_col_start]*(FIX_WT)(2.0/3);
-						out_buf_col_start = (ROW_TILE_SIZE+2)*(H_fmap_out+1);
-						FIX_FM_acc lsb = out_buf_all[ch][(row+2)*(H_fmap_out+1) + (col+1) + out_buf_col_start]*(FIX_WT)(1.0/3);
-						FIX_FM_acc output = msb;
-						if (msb > (float)pw_0_threshold[c_out][ch]) output = msb + lsb;
-#ifdef SW_TEST
-						float result_bn = (float)pw_1_weight[c_out][ch]*(float)output + (float)pw_1_bias[c_out][ch];
-						float t = result_bn + (float)relu2_shift_x[c_out][ch];
-						if (t < 0) {
-							t = (float)relu2_weight[c_out][ch]*t;
-						}
-						float result_relu = t + (float)relu2_shift_y[c_out][ch];
-						float result_sc = (float)result_relu + out_buf_sc[ch][row][col];
-						result_bn = (float)bn2_weight[c_out][ch]*result_sc + (float)bn2_bias[c_out][ch];
-#else
-						FIX_FM_acc result_bn = pw_1_weight[c_out][ch]*output + pw_1_bias[c_out][ch];
-						FIX_FM_acc t = result_bn + relu2_shift_x[c_out][ch];
-						if (t < 0) {
-							t = relu2_weight[c_out][ch]*t;
-						}
-						FIX_FM_acc result_relu = t + relu2_shift_y[c_out][ch];
-						FIX_FM_acc result_sc = result_relu + out_buf_sc[ch][row][col];
-						result_bn = bn2_weight[c_out][ch]*result_sc + bn2_bias[c_out][ch];
-#endif
-						DDR_buf[out_channel_start + ch][row_tile_start + row][col] = result_bn;
-						uint2 result_t = to2bit(result_bn);
-						feat_buf_all[1][(row_tile_start/stride+row+1)*(H_fmap_out/stride+1) + col][ch] = result_t[1]; // MSB
-						feat_buf_all[0][(row_tile_start/stride+row+1)*(H_fmap_out/stride+1) + col][ch] = result_t[0]; // LSB
+			bn_relu_sc_relu(
+					pw_0_threshold, pw_1_weight, pw_1_bias,
+					relu2_shift_x, relu2_shift_y, relu2_weight,
+					bn2_weight, bn2_bias,
 
-						// feat_buf_all need another index so that the input is not overwritten
-					}
-				}
-			}
+					DDR_buf,
+					out_buf_all, out_buf_sc, feat_buf_all,
+
+					H_fmap_out, c_out,
+					out_channel_start, row_tile_start,
+					stride, switch_bank
+			);
 		}
 	}
 

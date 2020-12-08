@@ -185,27 +185,24 @@ void bn_relu_sc_relu(
 				float result_bn = (float)conv_bn_weight[c_out][ch]*output + (float)conv_bn_bias[c_out][ch];
 				float t = result_bn + (float)relu_shift_x[c_out][ch];
 				if (t < 0) {
-					t = (float)relu_shift_y[c_out][ch]*t;
+					t = (float)relu_weight[c_out][ch]*t;
 				}
-				float result_relu = t + (float)relu_weight[c_out][ch];
+				float result_relu = t + (float)relu_shift_y[c_out][ch];
 				float result_sc = (float)result_relu + out_buf_sc[ch][row][col];
 				result_bn = (float)bn_weight[c_out][ch]*result_sc + (float)bn_bias[c_out][ch];
 #else
-				FIX_FM_acc result_bn = conv3x3_1_weight[c_out][ch]*output + conv3x3_1_bias[c_out][ch];
-				FIX_FM_acc t = result_bn + relu1_shift_x[c_out][ch];
+				FIX_FM_acc result_bn = conv_bn_weight[c_out][ch]*output + conv_bn_bias[c_out][ch];
+				FIX_FM_acc t = result_bn + relu_shift_x[c_out][ch];
 				if (t < 0) {
 					t = relu1_weight[c_out][ch]*t;
 				}
 				FIX_FM_acc result_relu = t + relu1_shift_y[c_out][ch];
 				FIX_FM_acc result_sc = result_relu + out_buf_sc[ch][row][col];
-				result_bn = bn1_weight[c_out][ch]*result_sc + bn1_bias[c_out][ch];
+				result_bn = bn_weight[c_out][ch]*result_sc + bn_bias[c_out][ch];
 #endif
-				int ddr_ptr = 0;
-				int fmap_ptr = 0;
-				if (switch_bank == 0) {
-					ddr_ptr =  out_channel_start + ch + DDR_CH_OFFSET;
-					fmap_ptr = (row_tile_start/stride+row)*(H_fmap_out/stride) + col + FEAT_BUF_OFFSET;
-				} else {
+				int ddr_ptr = out_channel_start + ch + DDR_CH_OFFSET;
+				int fmap_ptr = (row_tile_start/stride+row)*(H_fmap_out/stride) + col + FEAT_BUF_OFFSET;
+				if (switch_bank == 1) {
 					ddr_ptr = out_channel_start + ch;
 					fmap_ptr = (row_tile_start/stride+row+1)*(H_fmap_out/stride+1) + col;
 				}
