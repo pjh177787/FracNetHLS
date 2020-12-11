@@ -358,7 +358,8 @@ int ptr[3] = {0, 0, 6}; // {weight_3x3_ptr, weight_1x1_ptr, weight_other_ptr (fi
 uint512 conv3x3_all_hw[5456][3][3];
 uint512 conv1x1_all_hw[6132];
 uint512 weights_all_hw[69525];
-uint512 conv3x3_all_hw_new[5456][3][3];
+uint512 conv3x3_all_hw_new_3d[5456][3][3];
+uint512 conv3x3_all_hw_new[49104];
 uint512 conv1x1_all_hw_new[6132];
 
 void read_all_images()
@@ -468,9 +469,9 @@ int reorder_weights3x3(int conv3x3_ptr)
 					int index = i*512 + ch;
 					float w = weight3x3_flip[index][row][col];
 					if (w > 0) {
-						conv3x3_all_hw_new[conv3x3_ptr/9/512+i][row][col][ch] = 1;
+						conv3x3_all_hw_new_3d[conv3x3_ptr/9/512+i][row][col][ch] = 1;
 					} else {
-						conv3x3_all_hw_new[conv3x3_ptr/9/512+i][row][col][ch] = 0;
+						conv3x3_all_hw_new_3d[conv3x3_ptr/9/512+i][row][col][ch] = 0;
 					}
 				}
 			}
@@ -830,7 +831,18 @@ void load_individual_weight()
 	weight3x3_ptr = reorder_weights3x3<512, 512>(weight3x3_ptr); //layer12
 //	cout << weight3x3_ptr << endl;
 	weight3x3_ptr = reorder_weights3x3<1024, 1024>(weight3x3_ptr); //layer13
-//	cout << weight3x3_ptr << endl;
+	cout << weight3x3_ptr << endl;
+
+
+	for (int ch = 0; ch < 5456; ch ++) {
+		for (int row = 0; row < 3; row ++) {
+			for (int col = 0; col < 3; col ++){
+				int index = ch*3*3 + row*3 + col;
+				conv3x3_all_hw_new[index] = conv3x3_all_hw_new_3d[ch][row][col];
+			}
+		}
+	}
+
 
 	int weight1x1_ptr = 0;
 //	cout << weight1x1_ptr << endl;
@@ -859,7 +871,7 @@ void load_individual_weight()
 	weight1x1_ptr = reorder_weights1x1<1024, 512>(weight1x1_ptr); //layer12
 //	cout << weight1x1_ptr << endl;
 	weight1x1_ptr = reorder_weights1x1<1024, 1024>(weight1x1_ptr); //layer13
-//	cout << weight1x1_ptr << endl;
+	cout << weight1x1_ptr << endl;
 }
 
 void load_layer_output(std::string file_name, float* arr)

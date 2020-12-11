@@ -12,10 +12,10 @@
 
 using namespace std;
 
-int image_hw_test[3][224][224];
+int image_hw_test[3][224][224] = {};
 
 //float DDR_ptr[2048][226][225];
-uint512 DDR_ptr_pack[64][226][225];
+uint512 DDR_ptr_pack[64][226][225] = {};
 
 //void read_all_images()
 //{
@@ -436,375 +436,375 @@ void net_sw(unsigned char image[96][224][224])
 	bn<128, 56, 56>(layer_2_pointwise_0_output, layer_2_shiftbn2_weight, layer_2_shiftbn2_bias, layer_2_pointwise_0_output);
 	cout << "Done layer 2" << endl;
 
-//	// layer 3
-//	quant_sign<128, 56, 56>(layer_2_pointwise_0_output, layer_2_pointwise_0_output_quant);
-//	pgconv3x3<128, 128, 56, 56, 56, 56>(
-//			layer_2_pointwise_0_output_quant, layer_3_conv3x3_0_weight,
-//			layer_3_conv3x3_0_threshold, layer_3_conv3x3_0_output
-//	);
-//	bn<128, 56, 56>(layer_3_conv3x3_0_output, layer_3_conv3x3_1_weight, layer_3_conv3x3_1_bias, layer_3_conv3x3_0_output);
-//	rprelu<128, 56, 56>(
-//			layer_3_conv3x3_0_output, layer_3_rprelu1_shift_x_bias,
-//			layer_3_rprelu1_shift_y_bias, layer_3_rprelu1_prelu_weight,
-//			layer_3_conv3x3_0_output
-//	);
-//	shortcut<128, 56, 56>(layer_3_conv3x3_0_output, layer_2_pointwise_0_output, layer_3_conv3x3_0_output);
-//	bn<128, 56, 56>(layer_3_conv3x3_0_output, layer_3_shiftbn1_weight, layer_3_shiftbn1_bias, layer_3_conv3x3_0_output);
-//
-//	quant_sign<128, 56, 56>(layer_3_conv3x3_0_output, layer_3_conv3x3_0_output_quant);
-//	pgconv1x1<128, 128, 56, 56>(
-//			layer_3_conv3x3_0_output_quant, layer_3_pointwise_0_weight,
-//			layer_3_pointwise_0_threshold, layer_3_pointwise_0_output
-//	);
-//	bn<128, 56, 56>(
-//			layer_3_pointwise_0_output, layer_3_pointwise_1_weight,
-//			layer_3_pointwise_1_bias, layer_3_pointwise_0_output
-//	);
-//	rprelu<128, 56, 56>(
-//			layer_3_pointwise_0_output, layer_3_rprelu2_shift_x_bias,
-//			layer_3_rprelu2_shift_y_bias, layer_3_rprelu2_prelu_weight,
-//			layer_3_pointwise_0_output
-//	);
-//	shortcut<128, 56, 56>(layer_3_pointwise_0_output, layer_3_conv3x3_0_output, layer_3_pointwise_0_output);
-//	bn<128, 56, 56>(layer_3_pointwise_0_output, layer_3_shiftbn2_weight, layer_3_shiftbn2_bias, layer_3_pointwise_0_output);
-//	cout << "Done layer 3" << endl;
-//
-//	// layer 4
-//	quant_sign<128, 56, 56>(layer_3_pointwise_0_output, layer_3_pointwise_0_output_quant);
-//	pgconv3x3<128, 128, 56, 56, 28, 28>(
-//			layer_3_pointwise_0_output_quant, layer_4_conv3x3_0_weight,
-//			layer_4_conv3x3_0_threshold, layer_4_conv3x3_0_output
-//	);
-//	bn<128, 28, 28>(layer_4_conv3x3_0_output, layer_4_conv3x3_1_weight, layer_4_conv3x3_1_bias, layer_4_conv3x3_0_output);
-//	rprelu<128, 28, 28>(
-//			layer_4_conv3x3_0_output, layer_4_rprelu1_shift_x_bias,
-//			layer_4_rprelu1_shift_y_bias, layer_4_rprelu1_prelu_weight,
-//			layer_4_conv3x3_0_output
-//	);
-//	avgpool2x2<128, 56, 56, 28, 28>(layer_3_pointwise_0_output, layer_3_pointwise_0_output_avgpool);
-//	shortcut<128, 28, 28>(layer_4_conv3x3_0_output, layer_3_pointwise_0_output_avgpool, layer_4_conv3x3_0_output);
-//	bn<128, 28, 28>(layer_4_conv3x3_0_output, layer_4_shiftbn1_weight, layer_4_shiftbn1_bias, layer_4_conv3x3_0_output);
-//
-//	quant_sign<128, 28, 28>(layer_4_conv3x3_0_output, layer_4_conv3x3_0_output_quant);
-//	pgconv1x1<128, 256, 28, 28>(
-//			layer_4_conv3x3_0_output_quant, layer_4_pointwise_0_weight,
-//			layer_4_pointwise_0_threshold, layer_4_pointwise_0_output
-//	);
-//	bn<256, 28, 28>(
-//			layer_4_pointwise_0_output, layer_4_pointwise_1_weight,
-//			layer_4_pointwise_1_bias, layer_4_pointwise_0_output
-//	);
-//	rprelu<256, 28, 28>(
-//			layer_4_pointwise_0_output, layer_4_rprelu2_shift_x_bias,
-//			layer_4_rprelu2_shift_y_bias, layer_4_rprelu2_prelu_weight,
-//			layer_4_pointwise_0_output
-//	);
-//	concat<128, 256, 28, 28>(layer_4_conv3x3_0_output, layer_4_conv3x3_0_output_concat);
-//	shortcut<256, 28, 28>(layer_4_pointwise_0_output, layer_4_conv3x3_0_output_concat, layer_4_pointwise_0_output);
-//	bn<256, 28, 28>(layer_4_pointwise_0_output, layer_4_shiftbn2_weight, layer_4_shiftbn2_bias, layer_4_pointwise_0_output);
-//	cout << "Done layer 4" << endl;
-//
-//	// layer 5
-//	quant_sign<256, 28, 28>(layer_4_pointwise_0_output, layer_4_pointwise_0_output_quant);
-//	pgconv3x3<256, 256, 28, 28, 28, 28>(
-//			layer_4_pointwise_0_output_quant, layer_5_conv3x3_0_weight,
-//			layer_5_conv3x3_0_threshold, layer_5_conv3x3_0_output
-//	);
-//	bn<256, 28, 28>(layer_5_conv3x3_0_output, layer_5_conv3x3_1_weight, layer_5_conv3x3_1_bias, layer_5_conv3x3_0_output);
-//	rprelu<256, 28, 28>(
-//			layer_5_conv3x3_0_output, layer_5_rprelu1_shift_x_bias,
-//			layer_5_rprelu1_shift_y_bias, layer_5_rprelu1_prelu_weight,
-//			layer_5_conv3x3_0_output
-//	);
-//	shortcut<256, 28, 28>(layer_5_conv3x3_0_output, layer_4_pointwise_0_output, layer_5_conv3x3_0_output);
-//	bn<256, 28, 28>(layer_5_conv3x3_0_output, layer_5_shiftbn1_weight, layer_5_shiftbn1_bias, layer_5_conv3x3_0_output);
-//
-//	quant_sign<256, 28, 28>(layer_5_conv3x3_0_output, layer_5_conv3x3_0_output_quant);
-//	pgconv1x1<256, 256, 28, 28>(
-//			layer_5_conv3x3_0_output_quant, layer_5_pointwise_0_weight,
-//			layer_5_pointwise_0_threshold, layer_5_pointwise_0_output
-//	);
-//	bn<256, 28, 28>(
-//			layer_5_pointwise_0_output, layer_5_pointwise_1_weight,
-//			layer_5_pointwise_1_bias, layer_5_pointwise_0_output
-//	);
-//	rprelu<256, 28, 28>(
-//			layer_5_pointwise_0_output, layer_5_rprelu2_shift_x_bias,
-//			layer_5_rprelu2_shift_y_bias, layer_5_rprelu2_prelu_weight,
-//			layer_5_pointwise_0_output
-//	);
-//	shortcut<256, 28, 28>(layer_5_pointwise_0_output, layer_5_conv3x3_0_output, layer_5_pointwise_0_output);
-//	bn<256, 28, 28>(layer_5_pointwise_0_output, layer_5_shiftbn2_weight, layer_5_shiftbn2_bias, layer_5_pointwise_0_output);
-//	cout << "Done layer 5" << endl;
-//
-//	// layer 6
-//	quant_sign<256, 28, 28>(layer_5_pointwise_0_output, layer_5_pointwise_0_output_quant);
-//	pgconv3x3<256, 256, 28, 28, 14, 14>(
-//			layer_5_pointwise_0_output_quant, layer_6_conv3x3_0_weight,
-//			layer_6_conv3x3_0_threshold, layer_6_conv3x3_0_output
-//	);
-//	bn<256, 14, 14>(layer_6_conv3x3_0_output, layer_6_conv3x3_1_weight, layer_6_conv3x3_1_bias, layer_6_conv3x3_0_output);
-//	rprelu<256, 14, 14>(
-//			layer_6_conv3x3_0_output, layer_6_rprelu1_shift_x_bias,
-//			layer_6_rprelu1_shift_y_bias, layer_6_rprelu1_prelu_weight,
-//			layer_6_conv3x3_0_output
-//	);
-//	avgpool2x2<256, 28, 28, 14, 14>(layer_5_pointwise_0_output, layer_5_pointwise_0_output_avgpool);
-//	shortcut<256, 14, 14>(layer_6_conv3x3_0_output, layer_5_pointwise_0_output_avgpool, layer_6_conv3x3_0_output);
-//	bn<256, 14, 14>(layer_6_conv3x3_0_output, layer_6_shiftbn1_weight, layer_6_shiftbn1_bias, layer_6_conv3x3_0_output);
-//
-//	quant_sign<256, 14, 14>(layer_6_conv3x3_0_output, layer_6_conv3x3_0_output_quant);
-//	pgconv1x1<256, 512, 14, 14>(
-//			layer_6_conv3x3_0_output_quant, layer_6_pointwise_0_weight,
-//			layer_6_pointwise_0_threshold, layer_6_pointwise_0_output
-//	);
-//	bn<512, 14, 14>(
-//			layer_6_pointwise_0_output, layer_6_pointwise_1_weight,
-//			layer_6_pointwise_1_bias, layer_6_pointwise_0_output
-//	);
-//	rprelu<512, 14, 14>(
-//			layer_6_pointwise_0_output, layer_6_rprelu2_shift_x_bias,
-//			layer_6_rprelu2_shift_y_bias, layer_6_rprelu2_prelu_weight,
-//			layer_6_pointwise_0_output
-//	);
-//	concat<256, 512, 14, 14>(layer_6_conv3x3_0_output, layer_6_conv3x3_0_output_concat);
-//	shortcut<512, 14, 14>(layer_6_pointwise_0_output, layer_6_conv3x3_0_output_concat, layer_6_pointwise_0_output);
-//	bn<512, 14, 14>(layer_6_pointwise_0_output, layer_6_shiftbn2_weight, layer_6_shiftbn2_bias, layer_6_pointwise_0_output);
-//	cout << "Done layer 6" << endl;
-//
-//	// layer 7
-//	quant_sign<512, 14, 14>(layer_6_pointwise_0_output, layer_6_pointwise_0_output_quant);
-//	pgconv3x3<512, 512, 14, 14, 14, 14>(
-//			layer_6_pointwise_0_output_quant, layer_7_conv3x3_0_weight,
-//			layer_7_conv3x3_0_threshold, layer_7_conv3x3_0_output
-//	);
-//	bn<512, 14, 14>(layer_7_conv3x3_0_output, layer_7_conv3x3_1_weight, layer_7_conv3x3_1_bias, layer_7_conv3x3_0_output);
-//	rprelu<512, 14, 14>(
-//			layer_7_conv3x3_0_output, layer_7_rprelu1_shift_x_bias,
-//			layer_7_rprelu1_shift_y_bias, layer_7_rprelu1_prelu_weight,
-//			layer_7_conv3x3_0_output
-//	);
-//	shortcut<512, 14, 14>(layer_7_conv3x3_0_output, layer_6_pointwise_0_output, layer_7_conv3x3_0_output);
-//	bn<512, 14, 14>(layer_7_conv3x3_0_output, layer_7_shiftbn1_weight, layer_7_shiftbn1_bias, layer_7_conv3x3_0_output);
-//
-//	quant_sign<512, 14, 14>(layer_7_conv3x3_0_output, layer_7_conv3x3_0_output_quant);
-//	pgconv1x1<512, 512, 14, 14>(
-//			layer_7_conv3x3_0_output_quant, layer_7_pointwise_0_weight,
-//			layer_7_pointwise_0_threshold, layer_7_pointwise_0_output
-//	);
-//	bn<512, 14, 14>(
-//			layer_7_pointwise_0_output, layer_7_pointwise_1_weight,
-//			layer_7_pointwise_1_bias, layer_7_pointwise_0_output
-//	);
-//	rprelu<512, 14, 14>(
-//			layer_7_pointwise_0_output, layer_7_rprelu2_shift_x_bias,
-//			layer_7_rprelu2_shift_y_bias, layer_7_rprelu2_prelu_weight,
-//			layer_7_pointwise_0_output
-//	);
-//	shortcut<512, 14, 14>(layer_7_pointwise_0_output, layer_7_conv3x3_0_output, layer_7_pointwise_0_output);
-//	bn<512, 14, 14>(layer_7_pointwise_0_output, layer_7_shiftbn2_weight, layer_7_shiftbn2_bias, layer_7_pointwise_0_output);
-//	cout << "Done layer 7" << endl;
-//
-//	// layer 8
-//	quant_sign<512, 14, 14>(layer_7_pointwise_0_output, layer_7_pointwise_0_output_quant);
-//	pgconv3x3<512, 512, 14, 14, 14, 14>(
-//			layer_7_pointwise_0_output_quant, layer_8_conv3x3_0_weight,
-//			layer_8_conv3x3_0_threshold, layer_8_conv3x3_0_output
-//	);
-//	bn<512, 14, 14>(layer_8_conv3x3_0_output, layer_8_conv3x3_1_weight, layer_8_conv3x3_1_bias, layer_8_conv3x3_0_output);
-//	rprelu<512, 14, 14>(
-//			layer_8_conv3x3_0_output, layer_8_rprelu1_shift_x_bias,
-//			layer_8_rprelu1_shift_y_bias, layer_8_rprelu1_prelu_weight,
-//			layer_8_conv3x3_0_output
-//	);
-//	shortcut<512, 14, 14>(layer_8_conv3x3_0_output, layer_7_pointwise_0_output, layer_8_conv3x3_0_output);
-//	bn<512, 14, 14>(layer_8_conv3x3_0_output, layer_8_shiftbn1_weight, layer_8_shiftbn1_bias, layer_8_conv3x3_0_output);
-//
-//	quant_sign<512, 14, 14>(layer_8_conv3x3_0_output, layer_8_conv3x3_0_output_quant);
-//	pgconv1x1<512, 512, 14, 14>(
-//			layer_8_conv3x3_0_output_quant, layer_8_pointwise_0_weight,
-//			layer_8_pointwise_0_threshold, layer_8_pointwise_0_output
-//	);
-//	bn<512, 14, 14>(
-//			layer_8_pointwise_0_output, layer_8_pointwise_1_weight,
-//			layer_8_pointwise_1_bias, layer_8_pointwise_0_output
-//	);
-//	rprelu<512, 14, 14>(
-//			layer_8_pointwise_0_output, layer_8_rprelu2_shift_x_bias,
-//			layer_8_rprelu2_shift_y_bias, layer_8_rprelu2_prelu_weight,
-//			layer_8_pointwise_0_output
-//	);
-//	shortcut<512, 14, 14>(layer_8_pointwise_0_output, layer_8_conv3x3_0_output, layer_8_pointwise_0_output);
-//	bn<512, 14, 14>(layer_8_pointwise_0_output, layer_8_shiftbn2_weight, layer_8_shiftbn2_bias, layer_8_pointwise_0_output);
-//	cout << "Done layer 8" << endl;
-//
-//	// layer 9
-//	quant_sign<512, 14, 14>(layer_8_pointwise_0_output, layer_8_pointwise_0_output_quant);
-//	pgconv3x3<512, 512, 14, 14, 14, 14>(
-//			layer_8_pointwise_0_output_quant, layer_9_conv3x3_0_weight,
-//			layer_9_conv3x3_0_threshold, layer_9_conv3x3_0_output
-//	);
-//	bn<512, 14, 14>(layer_9_conv3x3_0_output, layer_9_conv3x3_1_weight, layer_9_conv3x3_1_bias, layer_9_conv3x3_0_output);
-//	rprelu<512, 14, 14>(
-//			layer_9_conv3x3_0_output, layer_9_rprelu1_shift_x_bias,
-//			layer_9_rprelu1_shift_y_bias, layer_9_rprelu1_prelu_weight,
-//			layer_9_conv3x3_0_output
-//	);
-//	shortcut<512, 14, 14>(layer_9_conv3x3_0_output, layer_8_pointwise_0_output, layer_9_conv3x3_0_output);
-//	bn<512, 14, 14>(layer_9_conv3x3_0_output, layer_9_shiftbn1_weight, layer_9_shiftbn1_bias, layer_9_conv3x3_0_output);
-//
-//	quant_sign<512, 14, 14>(layer_9_conv3x3_0_output, layer_9_conv3x3_0_output_quant);
-//	pgconv1x1<512, 512, 14, 14>(
-//			layer_9_conv3x3_0_output_quant, layer_9_pointwise_0_weight,
-//			layer_9_pointwise_0_threshold, layer_9_pointwise_0_output
-//	);
-//	bn<512, 14, 14>(
-//			layer_9_pointwise_0_output, layer_9_pointwise_1_weight,
-//			layer_9_pointwise_1_bias, layer_9_pointwise_0_output
-//	);
-//	rprelu<512, 14, 14>(
-//			layer_9_pointwise_0_output, layer_9_rprelu2_shift_x_bias,
-//			layer_9_rprelu2_shift_y_bias, layer_9_rprelu2_prelu_weight,
-//			layer_9_pointwise_0_output
-//	);
-//	shortcut<512, 14, 14>(layer_9_pointwise_0_output, layer_9_conv3x3_0_output, layer_9_pointwise_0_output);
-//	bn<512, 14, 14>(layer_9_pointwise_0_output, layer_9_shiftbn2_weight, layer_9_shiftbn2_bias, layer_9_pointwise_0_output);
-//	cout << "Done layer 9" << endl;
-//
-//	// layer 10
-//	quant_sign<512, 14, 14>(layer_9_pointwise_0_output, layer_9_pointwise_0_output_quant);
-//	pgconv3x3<512, 512, 14, 14, 14, 14>(
-//			layer_9_pointwise_0_output_quant, layer_10_conv3x3_0_weight,
-//			layer_10_conv3x3_0_threshold, layer_10_conv3x3_0_output
-//	);
-//	bn<512, 14, 14>(layer_10_conv3x3_0_output, layer_10_conv3x3_1_weight, layer_10_conv3x3_1_bias, layer_10_conv3x3_0_output);
-//	rprelu<512, 14, 14>(
-//			layer_10_conv3x3_0_output, layer_10_rprelu1_shift_x_bias,
-//			layer_10_rprelu1_shift_y_bias, layer_10_rprelu1_prelu_weight,
-//			layer_10_conv3x3_0_output
-//	);
-//	shortcut<512, 14, 14>(layer_10_conv3x3_0_output, layer_9_pointwise_0_output, layer_10_conv3x3_0_output);
-//	bn<512, 14, 14>(layer_10_conv3x3_0_output, layer_10_shiftbn1_weight, layer_10_shiftbn1_bias, layer_10_conv3x3_0_output);
-//
-//	quant_sign<512, 14, 14>(layer_10_conv3x3_0_output, layer_10_conv3x3_0_output_quant);
-//	pgconv1x1<512, 512, 14, 14>(
-//			layer_10_conv3x3_0_output_quant, layer_10_pointwise_0_weight,
-//			layer_10_pointwise_0_threshold, layer_10_pointwise_0_output
-//	);
-//	bn<512, 14, 14>(
-//			layer_10_pointwise_0_output, layer_10_pointwise_1_weight,
-//			layer_10_pointwise_1_bias, layer_10_pointwise_0_output
-//	);
-//	rprelu<512, 14, 14>(
-//			layer_10_pointwise_0_output, layer_10_rprelu2_shift_x_bias,
-//			layer_10_rprelu2_shift_y_bias, layer_10_rprelu2_prelu_weight,
-//			layer_10_pointwise_0_output
-//	);
-//	shortcut<512, 14, 14>(layer_10_pointwise_0_output, layer_10_conv3x3_0_output, layer_10_pointwise_0_output);
-//	bn<512, 14, 14>(layer_10_pointwise_0_output, layer_10_shiftbn2_weight, layer_10_shiftbn2_bias, layer_10_pointwise_0_output);
-//	cout << "Done layer 10" << endl;
-//
-//	// layer 11
-//	quant_sign<512, 14, 14>(layer_10_pointwise_0_output, layer_10_pointwise_0_output_quant);
-//	pgconv3x3<512, 512, 14, 14, 14, 14>(
-//			layer_10_pointwise_0_output_quant, layer_11_conv3x3_0_weight,
-//			layer_11_conv3x3_0_threshold, layer_11_conv3x3_0_output
-//	);
-//	bn<512, 14, 14>(layer_11_conv3x3_0_output, layer_11_conv3x3_1_weight, layer_11_conv3x3_1_bias, layer_11_conv3x3_0_output);
-//	rprelu<512, 14, 14>(
-//			layer_11_conv3x3_0_output, layer_11_rprelu1_shift_x_bias,
-//			layer_11_rprelu1_shift_y_bias, layer_11_rprelu1_prelu_weight,
-//			layer_11_conv3x3_0_output
-//	);
-//	shortcut<512, 14, 14>(layer_11_conv3x3_0_output, layer_10_pointwise_0_output, layer_11_conv3x3_0_output);
-//	bn<512, 14, 14>(layer_11_conv3x3_0_output, layer_11_shiftbn1_weight, layer_11_shiftbn1_bias, layer_11_conv3x3_0_output);
-//
-//	quant_sign<512, 14, 14>(layer_11_conv3x3_0_output, layer_11_conv3x3_0_output_quant);
-//	pgconv1x1<512, 512, 14, 14>(
-//			layer_11_conv3x3_0_output_quant, layer_11_pointwise_0_weight,
-//			layer_11_pointwise_0_threshold, layer_11_pointwise_0_output
-//	);
-//	bn<512, 14, 14>(
-//			layer_11_pointwise_0_output, layer_11_pointwise_1_weight,
-//			layer_11_pointwise_1_bias, layer_11_pointwise_0_output
-//	);
-//	rprelu<512, 14, 14>(
-//			layer_11_pointwise_0_output, layer_11_rprelu2_shift_x_bias,
-//			layer_11_rprelu2_shift_y_bias, layer_11_rprelu2_prelu_weight,
-//			layer_11_pointwise_0_output
-//	);
-//	shortcut<512, 14, 14>(layer_11_pointwise_0_output, layer_11_conv3x3_0_output, layer_11_pointwise_0_output);
-//	bn<512, 14, 14>(layer_11_pointwise_0_output, layer_11_shiftbn2_weight, layer_11_shiftbn2_bias, layer_11_pointwise_0_output);
-//	cout << "Done layer 11" << endl;
-//
-//	// layer 12
-//	quant_sign<512, 14, 14>(layer_11_pointwise_0_output, layer_11_pointwise_0_output_quant);
-//	pgconv3x3<512, 512, 14, 14, 7, 7>(
-//			layer_11_pointwise_0_output_quant, layer_12_conv3x3_0_weight,
-//			layer_12_conv3x3_0_threshold, layer_12_conv3x3_0_output
-//	);
-//	bn<512, 7, 7>(layer_12_conv3x3_0_output, layer_12_conv3x3_1_weight, layer_12_conv3x3_1_bias, layer_12_conv3x3_0_output);
-//	rprelu<512, 7, 7>(
-//			layer_12_conv3x3_0_output, layer_12_rprelu1_shift_x_bias,
-//			layer_12_rprelu1_shift_y_bias, layer_12_rprelu1_prelu_weight,
-//			layer_12_conv3x3_0_output
-//	);
-//	avgpool2x2<512, 14, 14, 7, 7>(layer_11_pointwise_0_output, layer_11_pointwise_0_output_avgpool);
-//	shortcut<512, 7, 7>(layer_12_conv3x3_0_output, layer_11_pointwise_0_output_avgpool, layer_12_conv3x3_0_output);
-//	bn<512, 7, 7>(layer_12_conv3x3_0_output, layer_12_shiftbn1_weight, layer_12_shiftbn1_bias, layer_12_conv3x3_0_output);
-//
-//	quant_sign<512, 7, 7>(layer_12_conv3x3_0_output, layer_12_conv3x3_0_output_quant);
-//	pgconv1x1<512, 1024, 7, 7>(
-//			layer_12_conv3x3_0_output_quant, layer_12_pointwise_0_weight,
-//			layer_12_pointwise_0_threshold, layer_12_pointwise_0_output
-//	);
-//	bn<1024, 7, 7>(
-//			layer_12_pointwise_0_output, layer_12_pointwise_1_weight,
-//			layer_12_pointwise_1_bias, layer_12_pointwise_0_output
-//	);
-//	rprelu<1024, 7, 7>(
-//			layer_12_pointwise_0_output, layer_12_rprelu2_shift_x_bias,
-//			layer_12_rprelu2_shift_y_bias, layer_12_rprelu2_prelu_weight,
-//			layer_12_pointwise_0_output
-//	);
-//	concat<512, 1024, 7, 7>(layer_12_conv3x3_0_output, layer_12_conv3x3_0_output_concat);
-//	shortcut<1024, 7, 7>(layer_12_pointwise_0_output, layer_12_conv3x3_0_output_concat, layer_12_pointwise_0_output);
-//	bn<1024, 7, 7>(layer_12_pointwise_0_output, layer_12_shiftbn2_weight, layer_12_shiftbn2_bias, layer_12_pointwise_0_output);
-//	cout << "Done layer 12" << endl;
-//
-//	// layer 13
-//	quant_sign<1024, 7, 7>(layer_12_pointwise_0_output, layer_12_pointwise_0_output_quant);
-//	pgconv3x3<1024, 1024, 7, 7, 7, 7>(
-//			layer_12_pointwise_0_output_quant, layer_13_conv3x3_0_weight,
-//			layer_13_conv3x3_0_threshold, layer_13_conv3x3_0_output
-//	);
-//	bn<1024, 7, 7>(layer_13_conv3x3_0_output, layer_13_conv3x3_1_weight, layer_13_conv3x3_1_bias, layer_13_conv3x3_0_output);
-//	rprelu<1024, 7, 7>(
-//			layer_13_conv3x3_0_output, layer_13_rprelu1_shift_x_bias,
-//			layer_13_rprelu1_shift_y_bias, layer_13_rprelu1_prelu_weight,
-//			layer_13_conv3x3_0_output
-//	);
-//	shortcut<1024, 7, 7>(layer_13_conv3x3_0_output, layer_12_pointwise_0_output, layer_13_conv3x3_0_output);
-//	bn<1024, 7, 7>(layer_13_conv3x3_0_output, layer_13_shiftbn1_weight, layer_13_shiftbn1_bias, layer_13_conv3x3_0_output);
-//
-//	quant_sign<1024, 7, 7>(layer_13_conv3x3_0_output, layer_13_conv3x3_0_output_quant);
-//	pgconv1x1<1024, 1024, 7, 7>(
-//			layer_13_conv3x3_0_output_quant, layer_13_pointwise_0_weight,
-//			layer_13_pointwise_0_threshold, layer_13_pointwise_0_output
-//	);
-//	bn<1024, 7, 7>(
-//			layer_13_pointwise_0_output, layer_13_pointwise_1_weight,
-//			layer_13_pointwise_1_bias, layer_13_pointwise_0_output
-//	);
-//	rprelu<1024, 7, 7>(
-//			layer_13_pointwise_0_output, layer_13_rprelu2_shift_x_bias,
-//			layer_13_rprelu2_shift_y_bias, layer_13_rprelu2_prelu_weight,
-//			layer_13_pointwise_0_output
-//	);
-//	shortcut<1024, 7, 7>(layer_13_pointwise_0_output, layer_13_conv3x3_0_output, layer_13_pointwise_0_output);
-//	bn<1024, 7, 7>(layer_13_pointwise_0_output, layer_13_shiftbn2_weight, layer_13_shiftbn2_bias, layer_13_pointwise_0_output);
-//	cout << "Done layer 13" << endl;
-//
+	// layer 3
+	quant_sign<128, 56, 56>(layer_2_pointwise_0_output, layer_2_pointwise_0_output_quant);
+	pgconv3x3<128, 128, 56, 56, 56, 56>(
+			layer_2_pointwise_0_output_quant, layer_3_conv3x3_0_weight,
+			layer_3_conv3x3_0_threshold, layer_3_conv3x3_0_output
+	);
+	bn<128, 56, 56>(layer_3_conv3x3_0_output, layer_3_conv3x3_1_weight, layer_3_conv3x3_1_bias, layer_3_conv3x3_0_output);
+	rprelu<128, 56, 56>(
+			layer_3_conv3x3_0_output, layer_3_rprelu1_shift_x_bias,
+			layer_3_rprelu1_shift_y_bias, layer_3_rprelu1_prelu_weight,
+			layer_3_conv3x3_0_output
+	);
+	shortcut<128, 56, 56>(layer_3_conv3x3_0_output, layer_2_pointwise_0_output, layer_3_conv3x3_0_output);
+	bn<128, 56, 56>(layer_3_conv3x3_0_output, layer_3_shiftbn1_weight, layer_3_shiftbn1_bias, layer_3_conv3x3_0_output);
+
+	quant_sign<128, 56, 56>(layer_3_conv3x3_0_output, layer_3_conv3x3_0_output_quant);
+	pgconv1x1<128, 128, 56, 56>(
+			layer_3_conv3x3_0_output_quant, layer_3_pointwise_0_weight,
+			layer_3_pointwise_0_threshold, layer_3_pointwise_0_output
+	);
+	bn<128, 56, 56>(
+			layer_3_pointwise_0_output, layer_3_pointwise_1_weight,
+			layer_3_pointwise_1_bias, layer_3_pointwise_0_output
+	);
+	rprelu<128, 56, 56>(
+			layer_3_pointwise_0_output, layer_3_rprelu2_shift_x_bias,
+			layer_3_rprelu2_shift_y_bias, layer_3_rprelu2_prelu_weight,
+			layer_3_pointwise_0_output
+	);
+	shortcut<128, 56, 56>(layer_3_pointwise_0_output, layer_3_conv3x3_0_output, layer_3_pointwise_0_output);
+	bn<128, 56, 56>(layer_3_pointwise_0_output, layer_3_shiftbn2_weight, layer_3_shiftbn2_bias, layer_3_pointwise_0_output);
+	cout << "Done layer 3" << endl;
+
+	// layer 4
+	quant_sign<128, 56, 56>(layer_3_pointwise_0_output, layer_3_pointwise_0_output_quant);
+	pgconv3x3<128, 128, 56, 56, 28, 28>(
+			layer_3_pointwise_0_output_quant, layer_4_conv3x3_0_weight,
+			layer_4_conv3x3_0_threshold, layer_4_conv3x3_0_output
+	);
+	bn<128, 28, 28>(layer_4_conv3x3_0_output, layer_4_conv3x3_1_weight, layer_4_conv3x3_1_bias, layer_4_conv3x3_0_output);
+	rprelu<128, 28, 28>(
+			layer_4_conv3x3_0_output, layer_4_rprelu1_shift_x_bias,
+			layer_4_rprelu1_shift_y_bias, layer_4_rprelu1_prelu_weight,
+			layer_4_conv3x3_0_output
+	);
+	avgpool2x2<128, 56, 56, 28, 28>(layer_3_pointwise_0_output, layer_3_pointwise_0_output_avgpool);
+	shortcut<128, 28, 28>(layer_4_conv3x3_0_output, layer_3_pointwise_0_output_avgpool, layer_4_conv3x3_0_output);
+	bn<128, 28, 28>(layer_4_conv3x3_0_output, layer_4_shiftbn1_weight, layer_4_shiftbn1_bias, layer_4_conv3x3_0_output);
+
+	quant_sign<128, 28, 28>(layer_4_conv3x3_0_output, layer_4_conv3x3_0_output_quant);
+	pgconv1x1<128, 256, 28, 28>(
+			layer_4_conv3x3_0_output_quant, layer_4_pointwise_0_weight,
+			layer_4_pointwise_0_threshold, layer_4_pointwise_0_output
+	);
+	bn<256, 28, 28>(
+			layer_4_pointwise_0_output, layer_4_pointwise_1_weight,
+			layer_4_pointwise_1_bias, layer_4_pointwise_0_output
+	);
+	rprelu<256, 28, 28>(
+			layer_4_pointwise_0_output, layer_4_rprelu2_shift_x_bias,
+			layer_4_rprelu2_shift_y_bias, layer_4_rprelu2_prelu_weight,
+			layer_4_pointwise_0_output
+	);
+	concat<128, 256, 28, 28>(layer_4_conv3x3_0_output, layer_4_conv3x3_0_output_concat);
+	shortcut<256, 28, 28>(layer_4_pointwise_0_output, layer_4_conv3x3_0_output_concat, layer_4_pointwise_0_output);
+	bn<256, 28, 28>(layer_4_pointwise_0_output, layer_4_shiftbn2_weight, layer_4_shiftbn2_bias, layer_4_pointwise_0_output);
+	cout << "Done layer 4" << endl;
+
+	// layer 5
+	quant_sign<256, 28, 28>(layer_4_pointwise_0_output, layer_4_pointwise_0_output_quant);
+	pgconv3x3<256, 256, 28, 28, 28, 28>(
+			layer_4_pointwise_0_output_quant, layer_5_conv3x3_0_weight,
+			layer_5_conv3x3_0_threshold, layer_5_conv3x3_0_output
+	);
+	bn<256, 28, 28>(layer_5_conv3x3_0_output, layer_5_conv3x3_1_weight, layer_5_conv3x3_1_bias, layer_5_conv3x3_0_output);
+	rprelu<256, 28, 28>(
+			layer_5_conv3x3_0_output, layer_5_rprelu1_shift_x_bias,
+			layer_5_rprelu1_shift_y_bias, layer_5_rprelu1_prelu_weight,
+			layer_5_conv3x3_0_output
+	);
+	shortcut<256, 28, 28>(layer_5_conv3x3_0_output, layer_4_pointwise_0_output, layer_5_conv3x3_0_output);
+	bn<256, 28, 28>(layer_5_conv3x3_0_output, layer_5_shiftbn1_weight, layer_5_shiftbn1_bias, layer_5_conv3x3_0_output);
+
+	quant_sign<256, 28, 28>(layer_5_conv3x3_0_output, layer_5_conv3x3_0_output_quant);
+	pgconv1x1<256, 256, 28, 28>(
+			layer_5_conv3x3_0_output_quant, layer_5_pointwise_0_weight,
+			layer_5_pointwise_0_threshold, layer_5_pointwise_0_output
+	);
+	bn<256, 28, 28>(
+			layer_5_pointwise_0_output, layer_5_pointwise_1_weight,
+			layer_5_pointwise_1_bias, layer_5_pointwise_0_output
+	);
+	rprelu<256, 28, 28>(
+			layer_5_pointwise_0_output, layer_5_rprelu2_shift_x_bias,
+			layer_5_rprelu2_shift_y_bias, layer_5_rprelu2_prelu_weight,
+			layer_5_pointwise_0_output
+	);
+	shortcut<256, 28, 28>(layer_5_pointwise_0_output, layer_5_conv3x3_0_output, layer_5_pointwise_0_output);
+	bn<256, 28, 28>(layer_5_pointwise_0_output, layer_5_shiftbn2_weight, layer_5_shiftbn2_bias, layer_5_pointwise_0_output);
+	cout << "Done layer 5" << endl;
+
+	// layer 6
+	quant_sign<256, 28, 28>(layer_5_pointwise_0_output, layer_5_pointwise_0_output_quant);
+	pgconv3x3<256, 256, 28, 28, 14, 14>(
+			layer_5_pointwise_0_output_quant, layer_6_conv3x3_0_weight,
+			layer_6_conv3x3_0_threshold, layer_6_conv3x3_0_output
+	);
+	bn<256, 14, 14>(layer_6_conv3x3_0_output, layer_6_conv3x3_1_weight, layer_6_conv3x3_1_bias, layer_6_conv3x3_0_output);
+	rprelu<256, 14, 14>(
+			layer_6_conv3x3_0_output, layer_6_rprelu1_shift_x_bias,
+			layer_6_rprelu1_shift_y_bias, layer_6_rprelu1_prelu_weight,
+			layer_6_conv3x3_0_output
+	);
+	avgpool2x2<256, 28, 28, 14, 14>(layer_5_pointwise_0_output, layer_5_pointwise_0_output_avgpool);
+	shortcut<256, 14, 14>(layer_6_conv3x3_0_output, layer_5_pointwise_0_output_avgpool, layer_6_conv3x3_0_output);
+	bn<256, 14, 14>(layer_6_conv3x3_0_output, layer_6_shiftbn1_weight, layer_6_shiftbn1_bias, layer_6_conv3x3_0_output);
+
+	quant_sign<256, 14, 14>(layer_6_conv3x3_0_output, layer_6_conv3x3_0_output_quant);
+	pgconv1x1<256, 512, 14, 14>(
+			layer_6_conv3x3_0_output_quant, layer_6_pointwise_0_weight,
+			layer_6_pointwise_0_threshold, layer_6_pointwise_0_output
+	);
+	bn<512, 14, 14>(
+			layer_6_pointwise_0_output, layer_6_pointwise_1_weight,
+			layer_6_pointwise_1_bias, layer_6_pointwise_0_output
+	);
+	rprelu<512, 14, 14>(
+			layer_6_pointwise_0_output, layer_6_rprelu2_shift_x_bias,
+			layer_6_rprelu2_shift_y_bias, layer_6_rprelu2_prelu_weight,
+			layer_6_pointwise_0_output
+	);
+	concat<256, 512, 14, 14>(layer_6_conv3x3_0_output, layer_6_conv3x3_0_output_concat);
+	shortcut<512, 14, 14>(layer_6_pointwise_0_output, layer_6_conv3x3_0_output_concat, layer_6_pointwise_0_output);
+	bn<512, 14, 14>(layer_6_pointwise_0_output, layer_6_shiftbn2_weight, layer_6_shiftbn2_bias, layer_6_pointwise_0_output);
+	cout << "Done layer 6" << endl;
+
+	// layer 7
+	quant_sign<512, 14, 14>(layer_6_pointwise_0_output, layer_6_pointwise_0_output_quant);
+	pgconv3x3<512, 512, 14, 14, 14, 14>(
+			layer_6_pointwise_0_output_quant, layer_7_conv3x3_0_weight,
+			layer_7_conv3x3_0_threshold, layer_7_conv3x3_0_output
+	);
+	bn<512, 14, 14>(layer_7_conv3x3_0_output, layer_7_conv3x3_1_weight, layer_7_conv3x3_1_bias, layer_7_conv3x3_0_output);
+	rprelu<512, 14, 14>(
+			layer_7_conv3x3_0_output, layer_7_rprelu1_shift_x_bias,
+			layer_7_rprelu1_shift_y_bias, layer_7_rprelu1_prelu_weight,
+			layer_7_conv3x3_0_output
+	);
+	shortcut<512, 14, 14>(layer_7_conv3x3_0_output, layer_6_pointwise_0_output, layer_7_conv3x3_0_output);
+	bn<512, 14, 14>(layer_7_conv3x3_0_output, layer_7_shiftbn1_weight, layer_7_shiftbn1_bias, layer_7_conv3x3_0_output);
+
+	quant_sign<512, 14, 14>(layer_7_conv3x3_0_output, layer_7_conv3x3_0_output_quant);
+	pgconv1x1<512, 512, 14, 14>(
+			layer_7_conv3x3_0_output_quant, layer_7_pointwise_0_weight,
+			layer_7_pointwise_0_threshold, layer_7_pointwise_0_output
+	);
+	bn<512, 14, 14>(
+			layer_7_pointwise_0_output, layer_7_pointwise_1_weight,
+			layer_7_pointwise_1_bias, layer_7_pointwise_0_output
+	);
+	rprelu<512, 14, 14>(
+			layer_7_pointwise_0_output, layer_7_rprelu2_shift_x_bias,
+			layer_7_rprelu2_shift_y_bias, layer_7_rprelu2_prelu_weight,
+			layer_7_pointwise_0_output
+	);
+	shortcut<512, 14, 14>(layer_7_pointwise_0_output, layer_7_conv3x3_0_output, layer_7_pointwise_0_output);
+	bn<512, 14, 14>(layer_7_pointwise_0_output, layer_7_shiftbn2_weight, layer_7_shiftbn2_bias, layer_7_pointwise_0_output);
+	cout << "Done layer 7" << endl;
+
+	// layer 8
+	quant_sign<512, 14, 14>(layer_7_pointwise_0_output, layer_7_pointwise_0_output_quant);
+	pgconv3x3<512, 512, 14, 14, 14, 14>(
+			layer_7_pointwise_0_output_quant, layer_8_conv3x3_0_weight,
+			layer_8_conv3x3_0_threshold, layer_8_conv3x3_0_output
+	);
+	bn<512, 14, 14>(layer_8_conv3x3_0_output, layer_8_conv3x3_1_weight, layer_8_conv3x3_1_bias, layer_8_conv3x3_0_output);
+	rprelu<512, 14, 14>(
+			layer_8_conv3x3_0_output, layer_8_rprelu1_shift_x_bias,
+			layer_8_rprelu1_shift_y_bias, layer_8_rprelu1_prelu_weight,
+			layer_8_conv3x3_0_output
+	);
+	shortcut<512, 14, 14>(layer_8_conv3x3_0_output, layer_7_pointwise_0_output, layer_8_conv3x3_0_output);
+	bn<512, 14, 14>(layer_8_conv3x3_0_output, layer_8_shiftbn1_weight, layer_8_shiftbn1_bias, layer_8_conv3x3_0_output);
+
+	quant_sign<512, 14, 14>(layer_8_conv3x3_0_output, layer_8_conv3x3_0_output_quant);
+	pgconv1x1<512, 512, 14, 14>(
+			layer_8_conv3x3_0_output_quant, layer_8_pointwise_0_weight,
+			layer_8_pointwise_0_threshold, layer_8_pointwise_0_output
+	);
+	bn<512, 14, 14>(
+			layer_8_pointwise_0_output, layer_8_pointwise_1_weight,
+			layer_8_pointwise_1_bias, layer_8_pointwise_0_output
+	);
+	rprelu<512, 14, 14>(
+			layer_8_pointwise_0_output, layer_8_rprelu2_shift_x_bias,
+			layer_8_rprelu2_shift_y_bias, layer_8_rprelu2_prelu_weight,
+			layer_8_pointwise_0_output
+	);
+	shortcut<512, 14, 14>(layer_8_pointwise_0_output, layer_8_conv3x3_0_output, layer_8_pointwise_0_output);
+	bn<512, 14, 14>(layer_8_pointwise_0_output, layer_8_shiftbn2_weight, layer_8_shiftbn2_bias, layer_8_pointwise_0_output);
+	cout << "Done layer 8" << endl;
+
+	// layer 9
+	quant_sign<512, 14, 14>(layer_8_pointwise_0_output, layer_8_pointwise_0_output_quant);
+	pgconv3x3<512, 512, 14, 14, 14, 14>(
+			layer_8_pointwise_0_output_quant, layer_9_conv3x3_0_weight,
+			layer_9_conv3x3_0_threshold, layer_9_conv3x3_0_output
+	);
+	bn<512, 14, 14>(layer_9_conv3x3_0_output, layer_9_conv3x3_1_weight, layer_9_conv3x3_1_bias, layer_9_conv3x3_0_output);
+	rprelu<512, 14, 14>(
+			layer_9_conv3x3_0_output, layer_9_rprelu1_shift_x_bias,
+			layer_9_rprelu1_shift_y_bias, layer_9_rprelu1_prelu_weight,
+			layer_9_conv3x3_0_output
+	);
+	shortcut<512, 14, 14>(layer_9_conv3x3_0_output, layer_8_pointwise_0_output, layer_9_conv3x3_0_output);
+	bn<512, 14, 14>(layer_9_conv3x3_0_output, layer_9_shiftbn1_weight, layer_9_shiftbn1_bias, layer_9_conv3x3_0_output);
+
+	quant_sign<512, 14, 14>(layer_9_conv3x3_0_output, layer_9_conv3x3_0_output_quant);
+	pgconv1x1<512, 512, 14, 14>(
+			layer_9_conv3x3_0_output_quant, layer_9_pointwise_0_weight,
+			layer_9_pointwise_0_threshold, layer_9_pointwise_0_output
+	);
+	bn<512, 14, 14>(
+			layer_9_pointwise_0_output, layer_9_pointwise_1_weight,
+			layer_9_pointwise_1_bias, layer_9_pointwise_0_output
+	);
+	rprelu<512, 14, 14>(
+			layer_9_pointwise_0_output, layer_9_rprelu2_shift_x_bias,
+			layer_9_rprelu2_shift_y_bias, layer_9_rprelu2_prelu_weight,
+			layer_9_pointwise_0_output
+	);
+	shortcut<512, 14, 14>(layer_9_pointwise_0_output, layer_9_conv3x3_0_output, layer_9_pointwise_0_output);
+	bn<512, 14, 14>(layer_9_pointwise_0_output, layer_9_shiftbn2_weight, layer_9_shiftbn2_bias, layer_9_pointwise_0_output);
+	cout << "Done layer 9" << endl;
+
+	// layer 10
+	quant_sign<512, 14, 14>(layer_9_pointwise_0_output, layer_9_pointwise_0_output_quant);
+	pgconv3x3<512, 512, 14, 14, 14, 14>(
+			layer_9_pointwise_0_output_quant, layer_10_conv3x3_0_weight,
+			layer_10_conv3x3_0_threshold, layer_10_conv3x3_0_output
+	);
+	bn<512, 14, 14>(layer_10_conv3x3_0_output, layer_10_conv3x3_1_weight, layer_10_conv3x3_1_bias, layer_10_conv3x3_0_output);
+	rprelu<512, 14, 14>(
+			layer_10_conv3x3_0_output, layer_10_rprelu1_shift_x_bias,
+			layer_10_rprelu1_shift_y_bias, layer_10_rprelu1_prelu_weight,
+			layer_10_conv3x3_0_output
+	);
+	shortcut<512, 14, 14>(layer_10_conv3x3_0_output, layer_9_pointwise_0_output, layer_10_conv3x3_0_output);
+	bn<512, 14, 14>(layer_10_conv3x3_0_output, layer_10_shiftbn1_weight, layer_10_shiftbn1_bias, layer_10_conv3x3_0_output);
+
+	quant_sign<512, 14, 14>(layer_10_conv3x3_0_output, layer_10_conv3x3_0_output_quant);
+	pgconv1x1<512, 512, 14, 14>(
+			layer_10_conv3x3_0_output_quant, layer_10_pointwise_0_weight,
+			layer_10_pointwise_0_threshold, layer_10_pointwise_0_output
+	);
+	bn<512, 14, 14>(
+			layer_10_pointwise_0_output, layer_10_pointwise_1_weight,
+			layer_10_pointwise_1_bias, layer_10_pointwise_0_output
+	);
+	rprelu<512, 14, 14>(
+			layer_10_pointwise_0_output, layer_10_rprelu2_shift_x_bias,
+			layer_10_rprelu2_shift_y_bias, layer_10_rprelu2_prelu_weight,
+			layer_10_pointwise_0_output
+	);
+	shortcut<512, 14, 14>(layer_10_pointwise_0_output, layer_10_conv3x3_0_output, layer_10_pointwise_0_output);
+	bn<512, 14, 14>(layer_10_pointwise_0_output, layer_10_shiftbn2_weight, layer_10_shiftbn2_bias, layer_10_pointwise_0_output);
+	cout << "Done layer 10" << endl;
+
+	// layer 11
+	quant_sign<512, 14, 14>(layer_10_pointwise_0_output, layer_10_pointwise_0_output_quant);
+	pgconv3x3<512, 512, 14, 14, 14, 14>(
+			layer_10_pointwise_0_output_quant, layer_11_conv3x3_0_weight,
+			layer_11_conv3x3_0_threshold, layer_11_conv3x3_0_output
+	);
+	bn<512, 14, 14>(layer_11_conv3x3_0_output, layer_11_conv3x3_1_weight, layer_11_conv3x3_1_bias, layer_11_conv3x3_0_output);
+	rprelu<512, 14, 14>(
+			layer_11_conv3x3_0_output, layer_11_rprelu1_shift_x_bias,
+			layer_11_rprelu1_shift_y_bias, layer_11_rprelu1_prelu_weight,
+			layer_11_conv3x3_0_output
+	);
+	shortcut<512, 14, 14>(layer_11_conv3x3_0_output, layer_10_pointwise_0_output, layer_11_conv3x3_0_output);
+	bn<512, 14, 14>(layer_11_conv3x3_0_output, layer_11_shiftbn1_weight, layer_11_shiftbn1_bias, layer_11_conv3x3_0_output);
+
+	quant_sign<512, 14, 14>(layer_11_conv3x3_0_output, layer_11_conv3x3_0_output_quant);
+	pgconv1x1<512, 512, 14, 14>(
+			layer_11_conv3x3_0_output_quant, layer_11_pointwise_0_weight,
+			layer_11_pointwise_0_threshold, layer_11_pointwise_0_output
+	);
+	bn<512, 14, 14>(
+			layer_11_pointwise_0_output, layer_11_pointwise_1_weight,
+			layer_11_pointwise_1_bias, layer_11_pointwise_0_output
+	);
+	rprelu<512, 14, 14>(
+			layer_11_pointwise_0_output, layer_11_rprelu2_shift_x_bias,
+			layer_11_rprelu2_shift_y_bias, layer_11_rprelu2_prelu_weight,
+			layer_11_pointwise_0_output
+	);
+	shortcut<512, 14, 14>(layer_11_pointwise_0_output, layer_11_conv3x3_0_output, layer_11_pointwise_0_output);
+	bn<512, 14, 14>(layer_11_pointwise_0_output, layer_11_shiftbn2_weight, layer_11_shiftbn2_bias, layer_11_pointwise_0_output);
+	cout << "Done layer 11" << endl;
+
+	// layer 12
+	quant_sign<512, 14, 14>(layer_11_pointwise_0_output, layer_11_pointwise_0_output_quant);
+	pgconv3x3<512, 512, 14, 14, 7, 7>(
+			layer_11_pointwise_0_output_quant, layer_12_conv3x3_0_weight,
+			layer_12_conv3x3_0_threshold, layer_12_conv3x3_0_output
+	);
+	bn<512, 7, 7>(layer_12_conv3x3_0_output, layer_12_conv3x3_1_weight, layer_12_conv3x3_1_bias, layer_12_conv3x3_0_output);
+	rprelu<512, 7, 7>(
+			layer_12_conv3x3_0_output, layer_12_rprelu1_shift_x_bias,
+			layer_12_rprelu1_shift_y_bias, layer_12_rprelu1_prelu_weight,
+			layer_12_conv3x3_0_output
+	);
+	avgpool2x2<512, 14, 14, 7, 7>(layer_11_pointwise_0_output, layer_11_pointwise_0_output_avgpool);
+	shortcut<512, 7, 7>(layer_12_conv3x3_0_output, layer_11_pointwise_0_output_avgpool, layer_12_conv3x3_0_output);
+	bn<512, 7, 7>(layer_12_conv3x3_0_output, layer_12_shiftbn1_weight, layer_12_shiftbn1_bias, layer_12_conv3x3_0_output);
+
+	quant_sign<512, 7, 7>(layer_12_conv3x3_0_output, layer_12_conv3x3_0_output_quant);
+	pgconv1x1<512, 1024, 7, 7>(
+			layer_12_conv3x3_0_output_quant, layer_12_pointwise_0_weight,
+			layer_12_pointwise_0_threshold, layer_12_pointwise_0_output
+	);
+	bn<1024, 7, 7>(
+			layer_12_pointwise_0_output, layer_12_pointwise_1_weight,
+			layer_12_pointwise_1_bias, layer_12_pointwise_0_output
+	);
+	rprelu<1024, 7, 7>(
+			layer_12_pointwise_0_output, layer_12_rprelu2_shift_x_bias,
+			layer_12_rprelu2_shift_y_bias, layer_12_rprelu2_prelu_weight,
+			layer_12_pointwise_0_output
+	);
+	concat<512, 1024, 7, 7>(layer_12_conv3x3_0_output, layer_12_conv3x3_0_output_concat);
+	shortcut<1024, 7, 7>(layer_12_pointwise_0_output, layer_12_conv3x3_0_output_concat, layer_12_pointwise_0_output);
+	bn<1024, 7, 7>(layer_12_pointwise_0_output, layer_12_shiftbn2_weight, layer_12_shiftbn2_bias, layer_12_pointwise_0_output);
+	cout << "Done layer 12" << endl;
+
+	// layer 13
+	quant_sign<1024, 7, 7>(layer_12_pointwise_0_output, layer_12_pointwise_0_output_quant);
+	pgconv3x3<1024, 1024, 7, 7, 7, 7>(
+			layer_12_pointwise_0_output_quant, layer_13_conv3x3_0_weight,
+			layer_13_conv3x3_0_threshold, layer_13_conv3x3_0_output
+	);
+	bn<1024, 7, 7>(layer_13_conv3x3_0_output, layer_13_conv3x3_1_weight, layer_13_conv3x3_1_bias, layer_13_conv3x3_0_output);
+	rprelu<1024, 7, 7>(
+			layer_13_conv3x3_0_output, layer_13_rprelu1_shift_x_bias,
+			layer_13_rprelu1_shift_y_bias, layer_13_rprelu1_prelu_weight,
+			layer_13_conv3x3_0_output
+	);
+	shortcut<1024, 7, 7>(layer_13_conv3x3_0_output, layer_12_pointwise_0_output, layer_13_conv3x3_0_output);
+	bn<1024, 7, 7>(layer_13_conv3x3_0_output, layer_13_shiftbn1_weight, layer_13_shiftbn1_bias, layer_13_conv3x3_0_output);
+
+	quant_sign<1024, 7, 7>(layer_13_conv3x3_0_output, layer_13_conv3x3_0_output_quant);
+	pgconv1x1<1024, 1024, 7, 7>(
+			layer_13_conv3x3_0_output_quant, layer_13_pointwise_0_weight,
+			layer_13_pointwise_0_threshold, layer_13_pointwise_0_output
+	);
+	bn<1024, 7, 7>(
+			layer_13_pointwise_0_output, layer_13_pointwise_1_weight,
+			layer_13_pointwise_1_bias, layer_13_pointwise_0_output
+	);
+	rprelu<1024, 7, 7>(
+			layer_13_pointwise_0_output, layer_13_rprelu2_shift_x_bias,
+			layer_13_rprelu2_shift_y_bias, layer_13_rprelu2_prelu_weight,
+			layer_13_pointwise_0_output
+	);
+	shortcut<1024, 7, 7>(layer_13_pointwise_0_output, layer_13_conv3x3_0_output, layer_13_pointwise_0_output);
+	bn<1024, 7, 7>(layer_13_pointwise_0_output, layer_13_shiftbn2_weight, layer_13_shiftbn2_bias, layer_13_pointwise_0_output);
+	cout << "Done layer 13" << endl;
+
 //	for (int i = 0; i < 1024; i ++){
 //		float tmp = 0;
 //		for (int j = 0; j < 7; j ++){
@@ -845,25 +845,25 @@ int main()
 		cout << "Weights loading success " << endl;
 
 		net_sw(image);
-		int img_ch = 128;
-		int img_height = 56;
-		int img_width = 56;
-		int print_dim = 14;
+		int img_ch = 1024;
+		int img_height = 7;
+		int img_width = 7;
+		int print_dim = 7;
 		int ch = 0;
 
 		float arr_layer_output[img_ch*img_height*img_width]; // 1D array for loading layer output from txt file
-		load_layer_output("layer_outputs/layer2_shiftbn2_output", arr_layer_output);
-		cout << "--------- layer2_shiftbn2_output ---------" << endl;
+//		load_layer_output("layer_outputs/layer2_shiftbn2_output", arr_layer_output);
+//		cout << "--------- layer2_shiftbn2_output ---------" << endl;
+//		for (int row = 0; row < print_dim; row ++) {
+//			for (int col = 0; col < print_dim; col ++) {
+//				cout << fixed << setprecision(6) << arr_layer_output[ch*img_height*img_width + row*img_width + col] << "  ";
+//			}
+//			cout << endl;
+//		}
+//		cout << "---------- Torch above --------------------" << endl << endl;
 		for (int row = 0; row < print_dim; row ++) {
 			for (int col = 0; col < print_dim; col ++) {
-				cout << fixed << setprecision(6) << arr_layer_output[ch*img_height*img_width + row*img_width + col] << "  ";
-			}
-			cout << endl;
-		}
-		cout << "---------- Torch above --------------------" << endl << endl;
-		for (int row = 0; row < print_dim; row ++) {
-			for (int col = 0; col < print_dim; col ++) {
-				cout << fixed << setprecision(6) << layer_2_pointwise_0_output[ch][row][col] << "  ";
+				cout << fixed << setprecision(6) << layer_13_pointwise_0_output[ch][row][col] << "  ";
 			}
 			cout << endl;
 		}
@@ -873,21 +873,21 @@ int main()
 		float max_err = 0;
 		int err_cnt = 0;
 		int total = 0;
-		for(int i=0; i<img_ch; i++){
-			for(int j=0; j<img_height; j++){
-				for(int k=0; k<img_width; k++){
-					err = abs(layer_2_pointwise_0_output[i][j][k] - arr_layer_output[i*img_height*img_width + j*img_width + k]);
-					if (err > max_err) max_err = err;
-					if (err > 0.1){
-						err_cnt += 1;}
-					total_err += err;
-					total += 1;
-				}
-			}
-		}
-		cout << "Total absolute error C vs py: " << total_err << endl;
-		cout << "Total number of errors C vs py: " << err_cnt << "/" << total << endl;
-		cout << "Maximum absolute pixel error C vs py: " << max_err << endl << endl;
+//		for(int i=0; i<img_ch; i++){
+//			for(int j=0; j<img_height; j++){
+//				for(int k=0; k<img_width; k++){
+//					err = abs(layer_2_pointwise_0_output[i][j][k] - arr_layer_output[i*img_height*img_width + j*img_width + k]);
+//					if (err > max_err) max_err = err;
+//					if (err > 0.1){
+//						err_cnt += 1;}
+//					total_err += err;
+//					total += 1;
+//				}
+//			}
+//		}
+//		cout << "Total absolute error C vs py: " << total_err << endl;
+//		cout << "Total number of errors C vs py: " << err_cnt << "/" << total << endl;
+//		cout << "Maximum absolute pixel error C vs py: " << max_err << endl << endl;
 
 
 		//		float avgpool7x7_py[1024];
@@ -990,38 +990,39 @@ int main()
 							image_hw[index][b] = 0;
 						}
 					}
-					image_hw_test[j][row][col] = image_hw[index];
+//					image_hw_test[j][row][col] = image_hw[index];
 				}
 			}
 		}
+		cout << "WRITE IMAGE OK" << endl;
 
-		for (int i = 0; i < 5456; i ++){
-			for (int ch = 0; ch < 512; ch ++) {
-				for (int row = 0; row < 3; row ++){
-					for (int col = 0; col < 3; col ++){
-						int index = i*512*3*3 + ch*3*3 + row*3 + col;
-						float w = conv3x3_all[index];
-						if (w > 0) {
-							conv3x3_all_hw[i][row][col][ch] = 1;
-						} else {
-							conv3x3_all_hw[i][row][col][ch] = 0;
-						}
-					}
-				}
-			}
-		}
-
-		for (int i = 0; i < 6132; i ++){
-			for (int ch = 0; ch < 512; ch ++) {
-				int index = i*512 + ch;
-				float w = conv1x1_all[index];
-				if (w > 0) {
-					conv1x1_all_hw[i][ch] = 1;
-				} else {
-					conv1x1_all_hw[i][ch] = 0;
-				}
-			}
-		}
+//		for (int i = 0; i < 5456; i ++){
+//			for (int ch = 0; ch < 512; ch ++) {
+//				for (int row = 0; row < 3; row ++){
+//					for (int col = 0; col < 3; col ++){
+//						int index = i*512*3*3 + ch*3*3 + row*3 + col;
+//						float w = conv3x3_all[index];
+//						if (w > 0) {
+//							conv3x3_all_hw[i][row][col][ch] = 1;
+//						} else {
+//							conv3x3_all_hw[i][row][col][ch] = 0;
+//						}
+//					}
+//				}
+//			}
+//		}
+//
+//		for (int i = 0; i < 6132; i ++){
+//			for (int ch = 0; ch < 512; ch ++) {
+//				int index = i*512 + ch;
+//				float w = conv1x1_all[index];
+//				if (w > 0) {
+//					conv1x1_all_hw[i][ch] = 1;
+//				} else {
+//					conv1x1_all_hw[i][ch] = 0;
+//				}
+//			}
+//		}
 		/////////////////////////////////////////////////////////////////////////////
 		////////////// THIS IS FOR 16 BIT WEIGHTS !!! DONT DELETE //////////////////
 		///////////////////////////////////////////////////////////////////////////
@@ -1042,6 +1043,7 @@ int main()
 //				weights_all_hw[i].range(j*32 + 31, j*32) = weight.range(31, 0);
 //			}
 //		}
+				cout << "WRITE ALL WEIGHT OK" << endl;
 
 		FIX_32_12 avgpool_out_buf[1024] = {};
 
@@ -1058,6 +1060,7 @@ int main()
 				linear_weight_hw[i][j] = word;
 			}
 		}
+		cout << "WRITE LINEAR WEIGHT OK" << endl;
 		for (int i = 0; i < 32; i ++){
 			uint512 word = 0;
 			for (int j = 0; j < 32; j ++){
@@ -1068,6 +1071,7 @@ int main()
 			}
 			linear_bias_hw[i] = word;
 		}
+		cout << "WRITE LINEAR BIAS OK" << endl;
 
 
 		float accelerator_output[1000];
@@ -1107,7 +1111,7 @@ int main()
 				for(int k=0; k<img_width; k++){
 					FIX_DDR tmp = 0;
 					tmp.range(15, 0) = DDR_ptr_pack[ch_ptr][j][k].range(ch_off*16+15, ch_off*16);
-					err = abs((float)tmp - layer_2_pointwise_0_output[i][j][k]);
+					err = abs((float)tmp - layer_13_pointwise_0_output[i][j][k]);
 					if (err > max_err) max_err = err;
 					if (err > 0.1){
 						err_cnt += 1;

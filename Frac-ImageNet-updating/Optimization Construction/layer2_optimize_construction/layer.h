@@ -8,8 +8,11 @@
 //#include "conv_weights.h"
 #include <iostream>
 
+using namespace std;
+
 inline uint2 to2bit(FIX_FM_acc x)
 {
+#pragma HLS INLINE
 	const FIX_WT scale = 1.5;
 	ap_ufixed<2, 2, AP_RND, AP_SAT> temp = (ap_ufixed<2, 2, AP_RND, AP_SAT>)((x+1)*scale);
 	return (uint2)temp;
@@ -86,7 +89,7 @@ int load_layer_1D_weights(
 
 void load_conv3x3_weights(
 		uint32 weight3x3_tile_buffer[OUT_CHANNEL_PARALLELISM][3][3],
-		uint512 conv_weight_3x3_all[5456][3][3],
+		uint512 conv_weight_3x3_all[49104],
 		int conv3x3_weight_ptr,
 		int c_out,
 		int c_in,
@@ -94,38 +97,45 @@ void load_conv3x3_weights(
 )
 {
 
-#pragma HLS ARRAY_PARTITION variable=weight3x3_tile_buffer complete dim=1
+#pragma HLS ARRAY_PARTITION variable=weight3x3_tile_buffer complete dim=0
 
 	// [c_out][c_in][2][512][3][3]
 	// tile:uint32 [32][3][3] = [2][512][3][3]
 	//	int ptr_start = conv3x3_weight_ptr + c_in*out_channels_after_tile*NUM_BUS_READS + c_out*NUM_BUS_READS;
-	int ptr_start = conv3x3_weight_ptr + c_out*in_channels_after_pack*NUM_BUS_READS + c_in*NUM_BUS_READS;
-	//	for (int i = 0; i < NUM_BUS_READS; i ++) {
-	//		for (int row = 0; row < 3; row ++) {
-	//			for (int col = 0; col < 3; col ++) {
-	//#pragma HLS PIPELINE
-	//				uint512 data_pack = conv_weight_3x3_all[ptr_start+i][row][col];
-	//				for (int j = 0; j < NUM_WT_PACKS; j ++) {
-	//					weight3x3_tile_buffer[i*NUM_WT_PACKS + j][row][col].range(WEIGHT_BITS-1, 0) = data_pack.range(WEIGHT_BITS-1+j*WEIGHT_BITS, j*WEIGHT_BITS);
+	int ptr_start = conv3x3_weight_ptr + (c_out*in_channels_after_pack*NUM_BUS_READS + c_in*NUM_BUS_READS)*9;
+	//		for (int i = 0; i < NUM_BUS_READS; i ++) {
+	//			for (int row = 0; row < 3; row ++) {
+	//				for (int col = 0; col < 3; col ++) {
+	//	#pragma HLS PIPELINE
+	//					int index = i*9 + row*3 + col + ptr_start;
+	//					uint512 data_pack = conv_weight_3x3_all[index];
+	//					for (int j = 0; j < NUM_WT_PACKS; j ++) {
+	//						weight3x3_tile_buffer[i*NUM_WT_PACKS + j][row][col].range(WEIGHT_BITS-1, 0) = data_pack.range(WEIGHT_BITS-1+j*WEIGHT_BITS, j*WEIGHT_BITS);
+	//					}
 	//				}
 	//			}
 	//		}
-	//	}
-	for (int row = 0; row < 3; row ++) {
-		for (int col = 0; col < 3; col ++) {
+
+	uint512 data_pack_buf[18];
+
+	for (int i = 0; i < 18; i ++){
 #pragma HLS PIPELINE
-			uint512 data_pack = conv_weight_3x3_all[ptr_start][row][col];
-			for (int j = 0; j < NUM_WT_PACKS; j ++) {
-				weight3x3_tile_buffer[j][row][col].range(WEIGHT_BITS-1, 0) = data_pack.range(WEIGHT_BITS-1+j*WEIGHT_BITS, j*WEIGHT_BITS);
-			}
-		}
+		uint512 data_pack = conv_weight_3x3_all[ptr_start+i];
+		data_pack_buf[i] = data_pack;
 	}
-	for (int row = 0; row < 3; row ++) {
-		for (int col = 0; col < 3; col ++) {
+	for (int i = 0; i < NUM_BUS_READS; i ++){
+		for (int row = 0; row < 3; row ++) {
+			for (int col = 0; col < 3; col ++) {
 #pragma HLS PIPELINE
-			uint512 data_pack = conv_weight_3x3_all[ptr_start+1][row][col];
-			for (int j = 0; j < NUM_WT_PACKS; j ++) {
-				weight3x3_tile_buffer[NUM_WT_PACKS + j][row][col].range(WEIGHT_BITS-1, 0) = data_pack.range(WEIGHT_BITS-1+j*WEIGHT_BITS, j*WEIGHT_BITS);
+				int index = i*9 + row*3 +col;
+				uint512 data_pack = data_pack_buf[index];
+				uint32 tmp[16];
+				for (int j = 0; j < NUM_WT_PACKS; j ++) {
+					tmp[j].range(WEIGHT_BITS-1, 0) = data_pack.range(WEIGHT_BITS-1+j*WEIGHT_BITS, j*WEIGHT_BITS);
+				}
+				for (int j = 0; j < NUM_WT_PACKS; j ++) {
+					weight3x3_tile_buffer[i*NUM_WT_PACKS + j][row][col] = tmp[j];
+				}
 			}
 		}
 	}
@@ -165,18 +175,19 @@ void load_shortcut(
 {
 #pragma HLS ARRAY_PARTITION variable=out_buf_sc complete dim=1
 
-	for (int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++) {
-		for (int row = 0; row < ROW_TILE_SIZE; row ++) {
-			for (int col = 0; col < H_fmap_out; col ++) {
+	int ddr_channel_ptr = out_channel_start/OUT_CHANNEL_PARALLELISM;
+	if (switch_bank) {
+		if (ddr_channel_ptr >= in_channels/OUT_CHANNEL_PARALLELISM) ddr_channel_ptr -= in_channels/OUT_CHANNEL_PARALLELISM;
+		ddr_channel_ptr += DDR_CH_OFFSET;
+	}
+	for (int row = 0; row < ROW_TILE_SIZE; row ++) {
+		for (int col = 0; col < H_fmap_out; col ++) {
 #pragma HLS PIPELINE
-				int ddr_channel_ptr = out_channel_start/OUT_CHANNEL_PARALLELISM;
-				if (switch_bank) {
-					if (ddr_channel_ptr >= in_channels/OUT_CHANNEL_PARALLELISM) ddr_channel_ptr -= in_channels/OUT_CHANNEL_PARALLELISM;
-					ddr_channel_ptr += DDR_CH_OFFSET;
-				}
+			uint512 data = DDR_buf[ddr_channel_ptr][row_tile_start + row][col];
+			for (int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++) {
 				FIX_DDR tmp = 0;
-				tmp.range(15, 0) = DDR_buf[ddr_channel_ptr][row_tile_start + row][col].range(ch*16+15, ch*16);
-				out_buf_sc[ch][row][col] = tmp;
+				tmp.range(15, 0) = data.range(ch*16+15, ch*16);
+				out_buf_sc[ch][row][col] = (FIX_FM_acc)tmp;
 			}
 		}
 	}
@@ -197,6 +208,7 @@ void bn_relu_sc_relu(
 		FIX_FM_acc out_buf_sc[OUT_CHANNEL_PARALLELISM][ROW_TILE_SIZE][BUF_WIDTH_0],
 		uint32 feat_buf_all[3][BUF_HEIGHT_1*BUF_WIDTH_1],
 
+		int H_fmap_in,
 		int H_fmap_out,
 		int c_out,
 		int row_tile_start,
@@ -224,20 +236,23 @@ void bn_relu_sc_relu(
 
 	const FIX_WT msb_scale = 2.0/3.0;
 	const FIX_WT lsb_scale = 1.0/3.0;
-	const int out_buf_offset = (ROW_TILE_SIZE+2)*(H_fmap_out+1);
+	const int out_buf_offset = (ROW_TILE_SIZE+2)*(H_fmap_in+1);
+	const int row_tile_offset = row_tile_start/stride;
+	const int fmap_ptr_offset_0 = c_out*(H_fmap_out)*(H_fmap_out);
+	const int fmap_ptr_offset_1 = c_out*(H_fmap_out+1)*(H_fmap_out+1);
+	int ddr_ptr = c_out + DDR_CH_OFFSET;
+	if (switch_bank == 1) ddr_ptr = c_out;
 
 	for (int row = 0; row < ROW_TILE_SIZE/stride; row ++) {
-		for (int col = 0; col < H_fmap_out/stride; col ++) {
+		for (int col = 0; col < H_fmap_out; col ++) {
 #pragma HLS PIPELINE
-			int ddr_ptr = c_out + DDR_CH_OFFSET;
-			int fmap_ptr = c_out*(H_fmap_out/stride)*(H_fmap_out/stride) + (row_tile_start/stride+row)*(H_fmap_out/stride) + col + FEAT_BUF_OFFSET;
+			int fmap_ptr = fmap_ptr_offset_0 + (row_tile_offset+row)*(H_fmap_out) + col + FEAT_BUF_OFFSET;
 			if (switch_bank == 1) {
 				// switch_bank = 0: prepare for 1x1 conv
 				// switch_bank = 1: prepare for 3x3 conv
-				ddr_ptr = c_out;
-				fmap_ptr = c_out*(H_fmap_out/stride+1)*(H_fmap_out/stride+1) + (row_tile_start/stride+row+1)*(H_fmap_out/stride+1) + col;
+				fmap_ptr = fmap_ptr_offset_1 + (row_tile_offset+row+1)*(H_fmap_out+1) + col;
 			}
-			int out_buf_index = (row*stride+2)*(H_fmap_out+1)+col*stride+1;
+			int out_buf_index = (row*stride+2)*(H_fmap_in+1)+col*stride+1;
 
 			// merge_tile
 			for (int ch = 0; ch < OUT_CHANNEL_PARALLELISM; ch ++) {
