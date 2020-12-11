@@ -1,0 +1,375 @@
+
+
+================================================================
+== Vivado HLS Report for 'load_1D_weights'
+================================================================
+* Date:           Fri Dec 11 06:09:19 2020
+
+* Version:        2019.2.1 (Build 2724168 on Thu Dec 05 05:19:09 MST 2019)
+* Project:        model
+* Solution:       solution1
+* Product family: zynquplus
+* Target device:  xczu3eg-sbva484-1-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  | 4.00 ns | 3.500 ns |   0.50 ns  |
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+------+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval  | Pipeline|
+    |   min   |   max   |    min   |    max   | min |  max |   Type  |
+    +---------+---------+----------+----------+-----+------+---------+
+    |       75|     2369| 0.300 us | 9.476 us |   75|  2369|   none  |
+    +---------+---------+----------+----------+-----+------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-------------+---------+---------+----------+-----------+-----------+--------+----------+
+        |             |  Latency (cycles) | Iteration|  Initiation Interval  |  Trip  |          |
+        |  Loop Name  |   min   |   max   |  Latency |  achieved |   target  |  Count | Pipelined|
+        +-------------+---------+---------+----------+-----------+-----------+--------+----------+
+        |- Loop 1     |       74|     2368|        74|          -|          -| 1 ~ 32 |    no    |
+        | + Loop 1.1  |       64|       64|         2|          -|          -|      32|    no    |
+        +-------------+---------+---------+----------+-----------+-----------+--------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+-------+-----+
+|       Name      | BRAM_18K| DSP48E|   FF   |  LUT  | URAM|
++-----------------+---------+-------+--------+-------+-----+
+|DSP              |        -|      -|       -|      -|    -|
+|Expression       |        -|      -|       0|   5651|    -|
+|FIFO             |        -|      -|       -|      -|    -|
+|Instance         |        -|      -|       -|      -|    -|
+|Memory           |        -|      -|       -|      -|    -|
+|Multiplexer      |        -|      -|       -|    101|    -|
+|Register         |        -|      -|    1395|      -|    -|
++-----------------+---------+-------+--------+-------+-----+
+|Total            |        0|      0|    1395|   5752|    0|
++-----------------+---------+-------+--------+-------+-----+
+|Available        |      432|    360|  141120|  70560|    0|
++-----------------+---------+-------+--------+-------+-----+
+|Utilization (%)  |        0|      0|   ~0   |      8|    0|
++-----------------+---------+-------+--------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP48E: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +---------------------------+----------+-------+---+------+------------+------------+
+    |       Variable Name       | Operation| DSP48E| FF|  LUT | Bitwidth P0| Bitwidth P1|
+    +---------------------------+----------+-------+---+------+------------+------------+
+    |add_ln30_fu_672_p2         |     +    |      0|  0|    15|           6|           6|
+    |add_ln33_fu_707_p2         |     +    |      0|  0|    40|          33|          33|
+    |add_ln34_fu_697_p2         |     +    |      0|  0|    39|          32|           1|
+    |add_ln35_fu_764_p2         |     +    |      0|  0|    15|           6|           1|
+    |c_out_fu_691_p2            |     +    |      0|  0|    15|           1|           6|
+    |incremented_ptr_fu_662_p2  |     +    |      0|  0|    39|          32|          32|
+    |sub_ln647_1_fu_823_p2      |     -    |      0|  0|    17|          10|          10|
+    |sub_ln647_2_fu_852_p2      |     -    |      0|  0|    17|           9|          10|
+    |sub_ln647_fu_811_p2        |     -    |      0|  0|    17|          10|          10|
+    |and_ln647_fu_877_p2        |    and   |      0|  0|   512|         512|         512|
+    |icmp_ln30_fu_686_p2        |   icmp   |      0|  0|    11|           6|           6|
+    |icmp_ln35_fu_758_p2        |   icmp   |      0|  0|    11|           6|           7|
+    |icmp_ln647_fu_788_p2       |   icmp   |      0|  0|    13|           9|           9|
+    |lshr_ln647_1_fu_871_p2     |   lshr   |      0|  0|  2171|           2|         512|
+    |lshr_ln647_fu_862_p2       |   lshr   |      0|  0|  2171|         512|         512|
+    |or_ln37_fu_782_p2          |    or    |      0|  0|     9|           9|           4|
+    |select_ln647_1_fu_837_p3   |  select  |      0|  0|   511|           1|         512|
+    |select_ln647_2_fu_844_p3   |  select  |      0|  0|     9|           1|          10|
+    |select_ln647_fu_829_p3     |  select  |      0|  0|     9|           1|          10|
+    |xor_ln647_fu_817_p2        |    xor   |      0|  0|    10|          10|           9|
+    +---------------------------+----------+-------+---+------+------------+------------+
+    |Total                      |          |      0|  0|  5651|        1208|        2212|
+    +---------------------------+----------+-------+---+------+------------+------------+
+
+    * Multiplexer: 
+    +---------------------------+----+-----------+-----+-----------+
+    |            Name           | LUT| Input Size| Bits| Total Bits|
+    +---------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                  |  56|         13|    1|         13|
+    |c_out_0_reg_625            |   9|          2|    6|         12|
+    |incremented_ptr_0_reg_616  |   9|          2|   32|         64|
+    |j_0_0_reg_637              |   9|          2|    6|         12|
+    |weights_all_V_blk_n_AR     |   9|          2|    1|          2|
+    |weights_all_V_blk_n_R      |   9|          2|    1|          2|
+    +---------------------------+----+-----------+-----+-----------+
+    |Total                      | 101|         23|   47|        105|
+    +---------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-------------------------------+-----+----+-----+-----------+
+    |              Name             |  FF | LUT| Bits| Const Bits|
+    +-------------------------------+-----+----+-----+-----------+
+    |add_ln30_reg_927               |    6|   0|    6|          0|
+    |add_ln33_reg_950               |   33|   0|   33|          0|
+    |add_ln34_reg_945               |   32|   0|   32|          0|
+    |add_ln35_reg_1130              |    6|   0|    6|          0|
+    |ap_CS_fsm                      |   12|   0|   12|          0|
+    |c_out_0_reg_625                |    6|   0|    6|          0|
+    |c_out_reg_940                  |    6|   0|    6|          0|
+    |incremented_ptr_0_reg_616      |   32|   0|   32|          0|
+    |incremented_ptr_reg_923        |   32|   0|   32|          0|
+    |j_0_0_reg_637                  |    6|   0|    6|          0|
+    |lshr_ln647_reg_1144            |  512|   0|  512|          0|
+    |sub_ln647_2_reg_1139           |    9|   0|   10|          1|
+    |trunc_ln37_reg_1135            |    5|   0|    5|          0|
+    |weight_buffer_0_V_a_reg_967    |    5|   0|    5|          0|
+    |weight_buffer_10_V_s_reg_1017  |    5|   0|    5|          0|
+    |weight_buffer_11_V_s_reg_1022  |    5|   0|    5|          0|
+    |weight_buffer_12_V_s_reg_1027  |    5|   0|    5|          0|
+    |weight_buffer_13_V_s_reg_1032  |    5|   0|    5|          0|
+    |weight_buffer_14_V_s_reg_1037  |    5|   0|    5|          0|
+    |weight_buffer_15_V_s_reg_1042  |    5|   0|    5|          0|
+    |weight_buffer_16_V_s_reg_1047  |    5|   0|    5|          0|
+    |weight_buffer_17_V_s_reg_1052  |    5|   0|    5|          0|
+    |weight_buffer_18_V_s_reg_1057  |    5|   0|    5|          0|
+    |weight_buffer_19_V_s_reg_1062  |    5|   0|    5|          0|
+    |weight_buffer_1_V_a_reg_972    |    5|   0|    5|          0|
+    |weight_buffer_20_V_s_reg_1067  |    5|   0|    5|          0|
+    |weight_buffer_21_V_s_reg_1072  |    5|   0|    5|          0|
+    |weight_buffer_22_V_s_reg_1077  |    5|   0|    5|          0|
+    |weight_buffer_23_V_s_reg_1082  |    5|   0|    5|          0|
+    |weight_buffer_24_V_s_reg_1087  |    5|   0|    5|          0|
+    |weight_buffer_25_V_s_reg_1092  |    5|   0|    5|          0|
+    |weight_buffer_26_V_s_reg_1097  |    5|   0|    5|          0|
+    |weight_buffer_27_V_s_reg_1102  |    5|   0|    5|          0|
+    |weight_buffer_28_V_s_reg_1107  |    5|   0|    5|          0|
+    |weight_buffer_29_V_s_reg_1112  |    5|   0|    5|          0|
+    |weight_buffer_2_V_a_reg_977    |    5|   0|    5|          0|
+    |weight_buffer_30_V_s_reg_1117  |    5|   0|    5|          0|
+    |weight_buffer_31_V_s_reg_1122  |    5|   0|    5|          0|
+    |weight_buffer_3_V_a_reg_982    |    5|   0|    5|          0|
+    |weight_buffer_4_V_a_reg_987    |    5|   0|    5|          0|
+    |weight_buffer_5_V_a_reg_992    |    5|   0|    5|          0|
+    |weight_buffer_6_V_a_reg_997    |    5|   0|    5|          0|
+    |weight_buffer_7_V_a_reg_1002   |    5|   0|    5|          0|
+    |weight_buffer_8_V_a_reg_1007   |    5|   0|    5|          0|
+    |weight_buffer_9_V_a_reg_1012   |    5|   0|    5|          0|
+    |weights_all_V_addr_r_reg_961   |  512|   0|  512|          0|
+    |zext_ln30_1_reg_932            |   26|   0|   33|          7|
+    +-------------------------------+-----+----+-----+-----------+
+    |Total                          | 1395|   0| 1403|          8|
+    +-------------------------------+-----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++------------------------------+-----+-----+------------+----------------------+--------------+
+|           RTL Ports          | Dir | Bits|  Protocol  |     Source Object    |    C Type    |
++------------------------------+-----+-----+------------+----------------------+--------------+
+|ap_clk                        |  in |    1| ap_ctrl_hs |    load_1D_weights   | return value |
+|ap_rst                        |  in |    1| ap_ctrl_hs |    load_1D_weights   | return value |
+|ap_start                      |  in |    1| ap_ctrl_hs |    load_1D_weights   | return value |
+|ap_done                       | out |    1| ap_ctrl_hs |    load_1D_weights   | return value |
+|ap_idle                       | out |    1| ap_ctrl_hs |    load_1D_weights   | return value |
+|ap_ready                      | out |    1| ap_ctrl_hs |    load_1D_weights   | return value |
+|ap_return                     | out |   32| ap_ctrl_hs |    load_1D_weights   | return value |
+|m_axi_weights_all_V_AWVALID   | out |    1|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_AWREADY   |  in |    1|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_AWADDR    | out |   32|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_AWID      | out |    1|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_AWLEN     | out |   32|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_AWSIZE    | out |    3|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_AWBURST   | out |    2|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_AWLOCK    | out |    2|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_AWCACHE   | out |    4|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_AWPROT    | out |    3|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_AWQOS     | out |    4|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_AWREGION  | out |    4|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_AWUSER    | out |    1|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_WVALID    | out |    1|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_WREADY    |  in |    1|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_WDATA     | out |  512|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_WSTRB     | out |   64|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_WLAST     | out |    1|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_WID       | out |    1|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_WUSER     | out |    1|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_ARVALID   | out |    1|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_ARREADY   |  in |    1|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_ARADDR    | out |   32|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_ARID      | out |    1|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_ARLEN     | out |   32|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_ARSIZE    | out |    3|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_ARBURST   | out |    2|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_ARLOCK    | out |    2|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_ARCACHE   | out |    4|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_ARPROT    | out |    3|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_ARQOS     | out |    4|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_ARREGION  | out |    4|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_ARUSER    | out |    1|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_RVALID    |  in |    1|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_RREADY    | out |    1|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_RDATA     |  in |  512|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_RLAST     |  in |    1|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_RID       |  in |    1|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_RUSER     |  in |    1|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_RRESP     |  in |    2|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_BVALID    |  in |    1|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_BREADY    | out |    1|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_BRESP     |  in |    2|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_BID       |  in |    1|    m_axi   |     weights_all_V    |    pointer   |
+|m_axi_weights_all_V_BUSER     |  in |    1|    m_axi   |     weights_all_V    |    pointer   |
+|weights_all_V_offset          |  in |   26|   ap_none  | weights_all_V_offset |    scalar    |
+|weight_buffer_0_V_address0    | out |    5|  ap_memory |   weight_buffer_0_V  |     array    |
+|weight_buffer_0_V_ce0         | out |    1|  ap_memory |   weight_buffer_0_V  |     array    |
+|weight_buffer_0_V_we0         | out |    1|  ap_memory |   weight_buffer_0_V  |     array    |
+|weight_buffer_0_V_d0          | out |   16|  ap_memory |   weight_buffer_0_V  |     array    |
+|weight_buffer_1_V_address0    | out |    5|  ap_memory |   weight_buffer_1_V  |     array    |
+|weight_buffer_1_V_ce0         | out |    1|  ap_memory |   weight_buffer_1_V  |     array    |
+|weight_buffer_1_V_we0         | out |    1|  ap_memory |   weight_buffer_1_V  |     array    |
+|weight_buffer_1_V_d0          | out |   16|  ap_memory |   weight_buffer_1_V  |     array    |
+|weight_buffer_2_V_address0    | out |    5|  ap_memory |   weight_buffer_2_V  |     array    |
+|weight_buffer_2_V_ce0         | out |    1|  ap_memory |   weight_buffer_2_V  |     array    |
+|weight_buffer_2_V_we0         | out |    1|  ap_memory |   weight_buffer_2_V  |     array    |
+|weight_buffer_2_V_d0          | out |   16|  ap_memory |   weight_buffer_2_V  |     array    |
+|weight_buffer_3_V_address0    | out |    5|  ap_memory |   weight_buffer_3_V  |     array    |
+|weight_buffer_3_V_ce0         | out |    1|  ap_memory |   weight_buffer_3_V  |     array    |
+|weight_buffer_3_V_we0         | out |    1|  ap_memory |   weight_buffer_3_V  |     array    |
+|weight_buffer_3_V_d0          | out |   16|  ap_memory |   weight_buffer_3_V  |     array    |
+|weight_buffer_4_V_address0    | out |    5|  ap_memory |   weight_buffer_4_V  |     array    |
+|weight_buffer_4_V_ce0         | out |    1|  ap_memory |   weight_buffer_4_V  |     array    |
+|weight_buffer_4_V_we0         | out |    1|  ap_memory |   weight_buffer_4_V  |     array    |
+|weight_buffer_4_V_d0          | out |   16|  ap_memory |   weight_buffer_4_V  |     array    |
+|weight_buffer_5_V_address0    | out |    5|  ap_memory |   weight_buffer_5_V  |     array    |
+|weight_buffer_5_V_ce0         | out |    1|  ap_memory |   weight_buffer_5_V  |     array    |
+|weight_buffer_5_V_we0         | out |    1|  ap_memory |   weight_buffer_5_V  |     array    |
+|weight_buffer_5_V_d0          | out |   16|  ap_memory |   weight_buffer_5_V  |     array    |
+|weight_buffer_6_V_address0    | out |    5|  ap_memory |   weight_buffer_6_V  |     array    |
+|weight_buffer_6_V_ce0         | out |    1|  ap_memory |   weight_buffer_6_V  |     array    |
+|weight_buffer_6_V_we0         | out |    1|  ap_memory |   weight_buffer_6_V  |     array    |
+|weight_buffer_6_V_d0          | out |   16|  ap_memory |   weight_buffer_6_V  |     array    |
+|weight_buffer_7_V_address0    | out |    5|  ap_memory |   weight_buffer_7_V  |     array    |
+|weight_buffer_7_V_ce0         | out |    1|  ap_memory |   weight_buffer_7_V  |     array    |
+|weight_buffer_7_V_we0         | out |    1|  ap_memory |   weight_buffer_7_V  |     array    |
+|weight_buffer_7_V_d0          | out |   16|  ap_memory |   weight_buffer_7_V  |     array    |
+|weight_buffer_8_V_address0    | out |    5|  ap_memory |   weight_buffer_8_V  |     array    |
+|weight_buffer_8_V_ce0         | out |    1|  ap_memory |   weight_buffer_8_V  |     array    |
+|weight_buffer_8_V_we0         | out |    1|  ap_memory |   weight_buffer_8_V  |     array    |
+|weight_buffer_8_V_d0          | out |   16|  ap_memory |   weight_buffer_8_V  |     array    |
+|weight_buffer_9_V_address0    | out |    5|  ap_memory |   weight_buffer_9_V  |     array    |
+|weight_buffer_9_V_ce0         | out |    1|  ap_memory |   weight_buffer_9_V  |     array    |
+|weight_buffer_9_V_we0         | out |    1|  ap_memory |   weight_buffer_9_V  |     array    |
+|weight_buffer_9_V_d0          | out |   16|  ap_memory |   weight_buffer_9_V  |     array    |
+|weight_buffer_10_V_address0   | out |    5|  ap_memory |  weight_buffer_10_V  |     array    |
+|weight_buffer_10_V_ce0        | out |    1|  ap_memory |  weight_buffer_10_V  |     array    |
+|weight_buffer_10_V_we0        | out |    1|  ap_memory |  weight_buffer_10_V  |     array    |
+|weight_buffer_10_V_d0         | out |   16|  ap_memory |  weight_buffer_10_V  |     array    |
+|weight_buffer_11_V_address0   | out |    5|  ap_memory |  weight_buffer_11_V  |     array    |
+|weight_buffer_11_V_ce0        | out |    1|  ap_memory |  weight_buffer_11_V  |     array    |
+|weight_buffer_11_V_we0        | out |    1|  ap_memory |  weight_buffer_11_V  |     array    |
+|weight_buffer_11_V_d0         | out |   16|  ap_memory |  weight_buffer_11_V  |     array    |
+|weight_buffer_12_V_address0   | out |    5|  ap_memory |  weight_buffer_12_V  |     array    |
+|weight_buffer_12_V_ce0        | out |    1|  ap_memory |  weight_buffer_12_V  |     array    |
+|weight_buffer_12_V_we0        | out |    1|  ap_memory |  weight_buffer_12_V  |     array    |
+|weight_buffer_12_V_d0         | out |   16|  ap_memory |  weight_buffer_12_V  |     array    |
+|weight_buffer_13_V_address0   | out |    5|  ap_memory |  weight_buffer_13_V  |     array    |
+|weight_buffer_13_V_ce0        | out |    1|  ap_memory |  weight_buffer_13_V  |     array    |
+|weight_buffer_13_V_we0        | out |    1|  ap_memory |  weight_buffer_13_V  |     array    |
+|weight_buffer_13_V_d0         | out |   16|  ap_memory |  weight_buffer_13_V  |     array    |
+|weight_buffer_14_V_address0   | out |    5|  ap_memory |  weight_buffer_14_V  |     array    |
+|weight_buffer_14_V_ce0        | out |    1|  ap_memory |  weight_buffer_14_V  |     array    |
+|weight_buffer_14_V_we0        | out |    1|  ap_memory |  weight_buffer_14_V  |     array    |
+|weight_buffer_14_V_d0         | out |   16|  ap_memory |  weight_buffer_14_V  |     array    |
+|weight_buffer_15_V_address0   | out |    5|  ap_memory |  weight_buffer_15_V  |     array    |
+|weight_buffer_15_V_ce0        | out |    1|  ap_memory |  weight_buffer_15_V  |     array    |
+|weight_buffer_15_V_we0        | out |    1|  ap_memory |  weight_buffer_15_V  |     array    |
+|weight_buffer_15_V_d0         | out |   16|  ap_memory |  weight_buffer_15_V  |     array    |
+|weight_buffer_16_V_address0   | out |    5|  ap_memory |  weight_buffer_16_V  |     array    |
+|weight_buffer_16_V_ce0        | out |    1|  ap_memory |  weight_buffer_16_V  |     array    |
+|weight_buffer_16_V_we0        | out |    1|  ap_memory |  weight_buffer_16_V  |     array    |
+|weight_buffer_16_V_d0         | out |   16|  ap_memory |  weight_buffer_16_V  |     array    |
+|weight_buffer_17_V_address0   | out |    5|  ap_memory |  weight_buffer_17_V  |     array    |
+|weight_buffer_17_V_ce0        | out |    1|  ap_memory |  weight_buffer_17_V  |     array    |
+|weight_buffer_17_V_we0        | out |    1|  ap_memory |  weight_buffer_17_V  |     array    |
+|weight_buffer_17_V_d0         | out |   16|  ap_memory |  weight_buffer_17_V  |     array    |
+|weight_buffer_18_V_address0   | out |    5|  ap_memory |  weight_buffer_18_V  |     array    |
+|weight_buffer_18_V_ce0        | out |    1|  ap_memory |  weight_buffer_18_V  |     array    |
+|weight_buffer_18_V_we0        | out |    1|  ap_memory |  weight_buffer_18_V  |     array    |
+|weight_buffer_18_V_d0         | out |   16|  ap_memory |  weight_buffer_18_V  |     array    |
+|weight_buffer_19_V_address0   | out |    5|  ap_memory |  weight_buffer_19_V  |     array    |
+|weight_buffer_19_V_ce0        | out |    1|  ap_memory |  weight_buffer_19_V  |     array    |
+|weight_buffer_19_V_we0        | out |    1|  ap_memory |  weight_buffer_19_V  |     array    |
+|weight_buffer_19_V_d0         | out |   16|  ap_memory |  weight_buffer_19_V  |     array    |
+|weight_buffer_20_V_address0   | out |    5|  ap_memory |  weight_buffer_20_V  |     array    |
+|weight_buffer_20_V_ce0        | out |    1|  ap_memory |  weight_buffer_20_V  |     array    |
+|weight_buffer_20_V_we0        | out |    1|  ap_memory |  weight_buffer_20_V  |     array    |
+|weight_buffer_20_V_d0         | out |   16|  ap_memory |  weight_buffer_20_V  |     array    |
+|weight_buffer_21_V_address0   | out |    5|  ap_memory |  weight_buffer_21_V  |     array    |
+|weight_buffer_21_V_ce0        | out |    1|  ap_memory |  weight_buffer_21_V  |     array    |
+|weight_buffer_21_V_we0        | out |    1|  ap_memory |  weight_buffer_21_V  |     array    |
+|weight_buffer_21_V_d0         | out |   16|  ap_memory |  weight_buffer_21_V  |     array    |
+|weight_buffer_22_V_address0   | out |    5|  ap_memory |  weight_buffer_22_V  |     array    |
+|weight_buffer_22_V_ce0        | out |    1|  ap_memory |  weight_buffer_22_V  |     array    |
+|weight_buffer_22_V_we0        | out |    1|  ap_memory |  weight_buffer_22_V  |     array    |
+|weight_buffer_22_V_d0         | out |   16|  ap_memory |  weight_buffer_22_V  |     array    |
+|weight_buffer_23_V_address0   | out |    5|  ap_memory |  weight_buffer_23_V  |     array    |
+|weight_buffer_23_V_ce0        | out |    1|  ap_memory |  weight_buffer_23_V  |     array    |
+|weight_buffer_23_V_we0        | out |    1|  ap_memory |  weight_buffer_23_V  |     array    |
+|weight_buffer_23_V_d0         | out |   16|  ap_memory |  weight_buffer_23_V  |     array    |
+|weight_buffer_24_V_address0   | out |    5|  ap_memory |  weight_buffer_24_V  |     array    |
+|weight_buffer_24_V_ce0        | out |    1|  ap_memory |  weight_buffer_24_V  |     array    |
+|weight_buffer_24_V_we0        | out |    1|  ap_memory |  weight_buffer_24_V  |     array    |
+|weight_buffer_24_V_d0         | out |   16|  ap_memory |  weight_buffer_24_V  |     array    |
+|weight_buffer_25_V_address0   | out |    5|  ap_memory |  weight_buffer_25_V  |     array    |
+|weight_buffer_25_V_ce0        | out |    1|  ap_memory |  weight_buffer_25_V  |     array    |
+|weight_buffer_25_V_we0        | out |    1|  ap_memory |  weight_buffer_25_V  |     array    |
+|weight_buffer_25_V_d0         | out |   16|  ap_memory |  weight_buffer_25_V  |     array    |
+|weight_buffer_26_V_address0   | out |    5|  ap_memory |  weight_buffer_26_V  |     array    |
+|weight_buffer_26_V_ce0        | out |    1|  ap_memory |  weight_buffer_26_V  |     array    |
+|weight_buffer_26_V_we0        | out |    1|  ap_memory |  weight_buffer_26_V  |     array    |
+|weight_buffer_26_V_d0         | out |   16|  ap_memory |  weight_buffer_26_V  |     array    |
+|weight_buffer_27_V_address0   | out |    5|  ap_memory |  weight_buffer_27_V  |     array    |
+|weight_buffer_27_V_ce0        | out |    1|  ap_memory |  weight_buffer_27_V  |     array    |
+|weight_buffer_27_V_we0        | out |    1|  ap_memory |  weight_buffer_27_V  |     array    |
+|weight_buffer_27_V_d0         | out |   16|  ap_memory |  weight_buffer_27_V  |     array    |
+|weight_buffer_28_V_address0   | out |    5|  ap_memory |  weight_buffer_28_V  |     array    |
+|weight_buffer_28_V_ce0        | out |    1|  ap_memory |  weight_buffer_28_V  |     array    |
+|weight_buffer_28_V_we0        | out |    1|  ap_memory |  weight_buffer_28_V  |     array    |
+|weight_buffer_28_V_d0         | out |   16|  ap_memory |  weight_buffer_28_V  |     array    |
+|weight_buffer_29_V_address0   | out |    5|  ap_memory |  weight_buffer_29_V  |     array    |
+|weight_buffer_29_V_ce0        | out |    1|  ap_memory |  weight_buffer_29_V  |     array    |
+|weight_buffer_29_V_we0        | out |    1|  ap_memory |  weight_buffer_29_V  |     array    |
+|weight_buffer_29_V_d0         | out |   16|  ap_memory |  weight_buffer_29_V  |     array    |
+|weight_buffer_30_V_address0   | out |    5|  ap_memory |  weight_buffer_30_V  |     array    |
+|weight_buffer_30_V_ce0        | out |    1|  ap_memory |  weight_buffer_30_V  |     array    |
+|weight_buffer_30_V_we0        | out |    1|  ap_memory |  weight_buffer_30_V  |     array    |
+|weight_buffer_30_V_d0         | out |   16|  ap_memory |  weight_buffer_30_V  |     array    |
+|weight_buffer_31_V_address0   | out |    5|  ap_memory |  weight_buffer_31_V  |     array    |
+|weight_buffer_31_V_ce0        | out |    1|  ap_memory |  weight_buffer_31_V  |     array    |
+|weight_buffer_31_V_we0        | out |    1|  ap_memory |  weight_buffer_31_V  |     array    |
+|weight_buffer_31_V_d0         | out |   16|  ap_memory |  weight_buffer_31_V  |     array    |
+|out_channels                  |  in |   12|   ap_none  |     out_channels     |    scalar    |
+|weights_all_ptr               |  in |   32|   ap_none  |    weights_all_ptr   |    scalar    |
++------------------------------+-----+-----+------------+----------------------+--------------+
+
