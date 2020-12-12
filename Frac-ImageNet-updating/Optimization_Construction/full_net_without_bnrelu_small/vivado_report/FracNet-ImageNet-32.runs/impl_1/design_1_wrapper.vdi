@@ -1,0 +1,280 @@
+#-----------------------------------------------------------
+# Vivado v2019.2.1 (64-bit)
+# SW Build 2729669 on Thu Dec  5 04:49:17 MST 2019
+# IP Build 2729494 on Thu Dec  5 07:38:25 MST 2019
+# Start of session at: Sat Dec 12 05:49:17 2020
+# Process ID: 11056
+# Current directory: C:/Users/Aperture/Git/FracNetVivado/FracNet-ImageNet-32/FracNet-ImageNet-32.runs/impl_1
+# Command line: vivado.exe -log design_1_wrapper.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source design_1_wrapper.tcl -notrace
+# Log file: C:/Users/Aperture/Git/FracNetVivado/FracNet-ImageNet-32/FracNet-ImageNet-32.runs/impl_1/design_1_wrapper.vdi
+# Journal file: C:/Users/Aperture/Git/FracNetVivado/FracNet-ImageNet-32/FracNet-ImageNet-32.runs/impl_1\vivado.jou
+#-----------------------------------------------------------
+source design_1_wrapper.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/Aperture/Git/FracNetHLS-ImageNet-pg-alt-ddr-3/ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2019.2/data/ip'.
+WARNING: [IP_Flow 19-4995] The host OS only allows 260 characters in a normal path. The IP cache path is more than 80 characters. If you experience issues with IP caching, please consider changing the IP cache to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter. 
+Current IP cache path is C:/Users/Aperture/Git/FracNetVivado/FracNet-ImageNet-32/FracNet-ImageNet-32.cache/ip 
+Command: link_design -top design_1_wrapper -part xczu3eg-sbva484-1-i
+Design is defaulting to srcset: sources_1
+Design is defaulting to constrset: constrs_1
+INFO: [Device 21-403] Loading part xczu3eg-sbva484-1-i
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/Aperture/Git/FracNetVivado/FracNet-ImageNet-32/FracNet-ImageNet-32.srcs/sources_1/bd/design_1/ip/design_1_FracNet_0_4/design_1_FracNet_0_4.dcp' for cell 'design_1_i/FracNet_0'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/Aperture/Git/FracNetVivado/FracNet-ImageNet-32/FracNet-ImageNet-32.srcs/sources_1/bd/design_1/ip/design_1_axi_smc_0/design_1_axi_smc_0.dcp' for cell 'design_1_i/axi_smc'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/Aperture/Git/FracNetVivado/FracNet-ImageNet-32/FracNet-ImageNet-32.srcs/sources_1/bd/design_1/ip/design_1_axi_smc_1_0/design_1_axi_smc_1_0.dcp' for cell 'design_1_i/axi_smc_1'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/Aperture/Git/FracNetVivado/FracNet-ImageNet-32/FracNet-ImageNet-32.srcs/sources_1/bd/design_1/ip/design_1_axi_smc_2_0/design_1_axi_smc_2_0.dcp' for cell 'design_1_i/axi_smc_2'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/Aperture/Git/FracNetVivado/FracNet-ImageNet-32/FracNet-ImageNet-32.srcs/sources_1/bd/design_1/ip/design_1_rst_ps8_0_250M_0/design_1_rst_ps8_0_250M_0.dcp' for cell 'design_1_i/rst_ps8_0_250M'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/Aperture/Git/FracNetVivado/FracNet-ImageNet-32/FracNet-ImageNet-32.srcs/sources_1/bd/design_1/ip/design_1_zynq_ultra_ps_e_0_0/design_1_zynq_ultra_ps_e_0_0.dcp' for cell 'design_1_i/zynq_ultra_ps_e_0'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/Aperture/Git/FracNetVivado/FracNet-ImageNet-32/FracNet-ImageNet-32.srcs/sources_1/bd/design_1/ip/design_1_auto_ds_0/design_1_auto_ds_0.dcp' for cell 'design_1_i/ps8_0_axi_periph/s00_couplers/auto_ds'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/Aperture/Git/FracNetVivado/FracNet-ImageNet-32/FracNet-ImageNet-32.srcs/sources_1/bd/design_1/ip/design_1_auto_pc_0/design_1_auto_pc_0.dcp' for cell 'design_1_i/ps8_0_axi_periph/s00_couplers/auto_pc'
+Netlist sorting complete. Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1681.262 ; gain = 3.855
+INFO: [Netlist 29-17] Analyzing 7495 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 5 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2019.2.1
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [c:/Users/Aperture/Git/FracNetVivado/FracNet-ImageNet-32/FracNet-ImageNet-32.srcs/sources_1/bd/design_1/ip/design_1_zynq_ultra_ps_e_0_0/design_1_zynq_ultra_ps_e_0_0.xdc] for cell 'design_1_i/zynq_ultra_ps_e_0/inst'
+Finished Parsing XDC File [c:/Users/Aperture/Git/FracNetVivado/FracNet-ImageNet-32/FracNet-ImageNet-32.srcs/sources_1/bd/design_1/ip/design_1_zynq_ultra_ps_e_0_0/design_1_zynq_ultra_ps_e_0_0.xdc] for cell 'design_1_i/zynq_ultra_ps_e_0/inst'
+Parsing XDC File [c:/Users/Aperture/Git/FracNetVivado/FracNet-ImageNet-32/FracNet-ImageNet-32.srcs/sources_1/bd/design_1/ip/design_1_rst_ps8_0_250M_0/design_1_rst_ps8_0_250M_0_board.xdc] for cell 'design_1_i/rst_ps8_0_250M/U0'
+Finished Parsing XDC File [c:/Users/Aperture/Git/FracNetVivado/FracNet-ImageNet-32/FracNet-ImageNet-32.srcs/sources_1/bd/design_1/ip/design_1_rst_ps8_0_250M_0/design_1_rst_ps8_0_250M_0_board.xdc] for cell 'design_1_i/rst_ps8_0_250M/U0'
+Parsing XDC File [c:/Users/Aperture/Git/FracNetVivado/FracNet-ImageNet-32/FracNet-ImageNet-32.srcs/sources_1/bd/design_1/ip/design_1_rst_ps8_0_250M_0/design_1_rst_ps8_0_250M_0.xdc] for cell 'design_1_i/rst_ps8_0_250M/U0'
+Finished Parsing XDC File [c:/Users/Aperture/Git/FracNetVivado/FracNet-ImageNet-32/FracNet-ImageNet-32.srcs/sources_1/bd/design_1/ip/design_1_rst_ps8_0_250M_0/design_1_rst_ps8_0_250M_0.xdc] for cell 'design_1_i/rst_ps8_0_250M/U0'
+Parsing XDC File [c:/Users/Aperture/Git/FracNetVivado/FracNet-ImageNet-32/FracNet-ImageNet-32.srcs/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_1/bd_afc3_psr_aclk_0_board.xdc] for cell 'design_1_i/axi_smc/inst/clk_map/psr_aclk/U0'
+Finished Parsing XDC File [c:/Users/Aperture/Git/FracNetVivado/FracNet-ImageNet-32/FracNet-ImageNet-32.srcs/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_1/bd_afc3_psr_aclk_0_board.xdc] for cell 'design_1_i/axi_smc/inst/clk_map/psr_aclk/U0'
+Parsing XDC File [c:/Users/Aperture/Git/FracNetVivado/FracNet-ImageNet-32/FracNet-ImageNet-32.srcs/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_1/bd_afc3_psr_aclk_0.xdc] for cell 'design_1_i/axi_smc/inst/clk_map/psr_aclk/U0'
+Finished Parsing XDC File [c:/Users/Aperture/Git/FracNetVivado/FracNet-ImageNet-32/FracNet-ImageNet-32.srcs/sources_1/bd/design_1/ip/design_1_axi_smc_0/bd_0/ip/ip_1/bd_afc3_psr_aclk_0.xdc] for cell 'design_1_i/axi_smc/inst/clk_map/psr_aclk/U0'
+Parsing XDC File [c:/Users/Aperture/Git/FracNetVivado/FracNet-ImageNet-32/FracNet-ImageNet-32.srcs/sources_1/bd/design_1/ip/design_1_axi_smc_1_0/bd_0/ip/ip_1/bd_a878_psr_aclk_0_board.xdc] for cell 'design_1_i/axi_smc_1/inst/clk_map/psr_aclk/U0'
+Finished Parsing XDC File [c:/Users/Aperture/Git/FracNetVivado/FracNet-ImageNet-32/FracNet-ImageNet-32.srcs/sources_1/bd/design_1/ip/design_1_axi_smc_1_0/bd_0/ip/ip_1/bd_a878_psr_aclk_0_board.xdc] for cell 'design_1_i/axi_smc_1/inst/clk_map/psr_aclk/U0'
+Parsing XDC File [c:/Users/Aperture/Git/FracNetVivado/FracNet-ImageNet-32/FracNet-ImageNet-32.srcs/sources_1/bd/design_1/ip/design_1_axi_smc_1_0/bd_0/ip/ip_1/bd_a878_psr_aclk_0.xdc] for cell 'design_1_i/axi_smc_1/inst/clk_map/psr_aclk/U0'
+Finished Parsing XDC File [c:/Users/Aperture/Git/FracNetVivado/FracNet-ImageNet-32/FracNet-ImageNet-32.srcs/sources_1/bd/design_1/ip/design_1_axi_smc_1_0/bd_0/ip/ip_1/bd_a878_psr_aclk_0.xdc] for cell 'design_1_i/axi_smc_1/inst/clk_map/psr_aclk/U0'
+Parsing XDC File [c:/Users/Aperture/Git/FracNetVivado/FracNet-ImageNet-32/FracNet-ImageNet-32.srcs/sources_1/bd/design_1/ip/design_1_axi_smc_2_0/bd_0/ip/ip_1/bd_a888_psr_aclk_0_board.xdc] for cell 'design_1_i/axi_smc_2/inst/clk_map/psr_aclk/U0'
+Finished Parsing XDC File [c:/Users/Aperture/Git/FracNetVivado/FracNet-ImageNet-32/FracNet-ImageNet-32.srcs/sources_1/bd/design_1/ip/design_1_axi_smc_2_0/bd_0/ip/ip_1/bd_a888_psr_aclk_0_board.xdc] for cell 'design_1_i/axi_smc_2/inst/clk_map/psr_aclk/U0'
+Parsing XDC File [c:/Users/Aperture/Git/FracNetVivado/FracNet-ImageNet-32/FracNet-ImageNet-32.srcs/sources_1/bd/design_1/ip/design_1_axi_smc_2_0/bd_0/ip/ip_1/bd_a888_psr_aclk_0.xdc] for cell 'design_1_i/axi_smc_2/inst/clk_map/psr_aclk/U0'
+Finished Parsing XDC File [c:/Users/Aperture/Git/FracNetVivado/FracNet-ImageNet-32/FracNet-ImageNet-32.srcs/sources_1/bd/design_1/ip/design_1_axi_smc_2_0/bd_0/ip/ip_1/bd_a888_psr_aclk_0.xdc] for cell 'design_1_i/axi_smc_2/inst/clk_map/psr_aclk/U0'
+Parsing XDC File [c:/Users/Aperture/Git/FracNetVivado/FracNet-ImageNet-32/FracNet-ImageNet-32.srcs/sources_1/bd/design_1/ip/design_1_auto_ds_0/design_1_auto_ds_0_clocks.xdc] for cell 'design_1_i/ps8_0_axi_periph/s00_couplers/auto_ds/inst'
+Finished Parsing XDC File [c:/Users/Aperture/Git/FracNetVivado/FracNet-ImageNet-32/FracNet-ImageNet-32.srcs/sources_1/bd/design_1/ip/design_1_auto_ds_0/design_1_auto_ds_0_clocks.xdc] for cell 'design_1_i/ps8_0_axi_periph/s00_couplers/auto_ds/inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'design_1_i/ps8_0_axi_periph/s00_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'design_1_i/ps8_0_axi_periph/s00_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'design_1_i/ps8_0_axi_periph/s00_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'design_1_i/ps8_0_axi_periph/s00_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'design_1_i/ps8_0_axi_periph/s00_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'design_1_i/ps8_0_axi_periph/s00_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc/inst/s00_nodes/s00_aw_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc/inst/s00_nodes/s00_aw_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc/inst/s00_nodes/s00_ar_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc/inst/s00_nodes/s00_ar_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc/inst/s00_nodes/s00_b_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc/inst/s00_nodes/s00_b_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc/inst/s00_nodes/s00_w_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc/inst/s00_nodes/s00_w_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc_1/inst/s00_nodes/s00_aw_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc_1/inst/s00_nodes/s00_aw_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc_1/inst/s00_nodes/s00_ar_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc_1/inst/s00_nodes/s00_ar_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc_1/inst/s00_nodes/s00_b_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc_1/inst/s00_nodes/s00_b_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc_1/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[1].inst_xpm_memory'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc_1/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[1].inst_xpm_memory'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc_1/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc_1/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc_1/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[2].inst_xpm_memory'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc_1/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[2].inst_xpm_memory'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc_1/inst/s00_nodes/s00_w_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[2].inst_xpm_memory'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc_1/inst/s00_nodes/s00_w_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[2].inst_xpm_memory'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc_1/inst/s00_nodes/s00_w_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc_1/inst/s00_nodes/s00_w_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc_1/inst/s00_nodes/s00_w_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[1].inst_xpm_memory'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc_1/inst/s00_nodes/s00_w_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[1].inst_xpm_memory'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc_1/inst/s00_nodes/s00_w_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[3].inst_xpm_memory'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc_1/inst/s00_nodes/s00_w_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[3].inst_xpm_memory'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc_2/inst/s00_nodes/s00_aw_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc_2/inst/s00_nodes/s00_aw_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc_2/inst/s00_nodes/s00_ar_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc_2/inst/s00_nodes/s00_ar_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc_2/inst/s00_nodes/s00_b_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc_2/inst/s00_nodes/s00_b_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc_2/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[1].inst_xpm_memory'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc_2/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[1].inst_xpm_memory'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc_2/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc_2/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc_2/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[2].inst_xpm_memory'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc_2/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[2].inst_xpm_memory'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc_2/inst/s00_nodes/s00_w_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[2].inst_xpm_memory'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc_2/inst/s00_nodes/s00_w_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[2].inst_xpm_memory'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc_2/inst/s00_nodes/s00_w_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc_2/inst/s00_nodes/s00_w_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc_2/inst/s00_nodes/s00_w_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[1].inst_xpm_memory'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc_2/inst/s00_nodes/s00_w_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[1].inst_xpm_memory'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc_2/inst/s00_nodes/s00_w_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[3].inst_xpm_memory'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'design_1_i/axi_smc_2/inst/s00_nodes/s00_w_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[3].inst_xpm_memory'
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.075 . Memory (MB): peak = 2078.875 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 1756 instances were transformed.
+  DSP48E2 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 292 instances
+  RAM32M16 => RAM32M16 (RAMD32(x14), RAMS32(x2)): 280 instances
+  RAM32X1S => RAM32X1S (RAMS32): 1184 instances
+
+18 Infos, 1 Warnings, 0 Critical Warnings and 0 Errors encountered.
+link_design completed successfully
+link_design: Time (s): cpu = 00:01:12 ; elapsed = 00:01:16 . Memory (MB): peak = 2078.875 ; gain = 1544.496
+Command: opt_design
+Attempting to get a license for feature 'Implementation' and/or device 'xczu3eg'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xczu3eg'
+Running DRC as a precondition to command opt_design
+
+Starting DRC Task
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Project 1-461] DRC finished with 0 Errors
+INFO: [Project 1-462] Please refer to the DRC report (report_drc) for more information.
+
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:02 . Memory (MB): peak = 2121.758 ; gain = 42.883
+
+Starting Cache Timing Information Task
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Ending Cache Timing Information Task | Checksum: 161f4b741
+
+Time (s): cpu = 00:00:39 ; elapsed = 00:00:25 . Memory (MB): peak = 2898.098 ; gain = 776.340
+
+Starting Logic Optimization Task
+
+Phase 1 Retarget
+INFO: [Opt 31-138] Pushed 39 inverter(s) to 6189 load pin(s).
+INFO: [Opt 31-49] Retargeted 0 cell(s).
+Phase 1 Retarget | Checksum: 12a521cb6
+
+Time (s): cpu = 00:00:23 ; elapsed = 00:00:17 . Memory (MB): peak = 3093.324 ; gain = 1.164
+INFO: [Opt 31-389] Phase Retarget created 316 cells and removed 707 cells
+INFO: [Opt 31-1021] In phase Retarget, 70 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
+
+Phase 2 Constant propagation
+INFO: [Opt 31-138] Pushed 3 inverter(s) to 6 load pin(s).
+Phase 2 Constant propagation | Checksum: f8d89f46
+
+Time (s): cpu = 00:00:25 ; elapsed = 00:00:20 . Memory (MB): peak = 3093.324 ; gain = 1.164
+INFO: [Opt 31-389] Phase Constant propagation created 61 cells and removed 1049 cells
+INFO: [Opt 31-1021] In phase Constant propagation, 85 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
+
+Phase 3 Sweep
+Phase 3 Sweep | Checksum: cea3992d
+
+Time (s): cpu = 00:00:33 ; elapsed = 00:00:27 . Memory (MB): peak = 3093.324 ; gain = 1.164
+INFO: [Opt 31-389] Phase Sweep created 0 cells and removed 1949 cells
+INFO: [Opt 31-1021] In phase Sweep, 172 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
+
+Phase 4 BUFG optimization
+INFO: [Opt 31-1077] Phase BUFG optimization inserted 0 global clock buffer(s) for CLOCK_LOW_FANOUT.
+INFO: [Opt 31-1112] Starts optimizing BUFG(s) with a common MMCM/DPLL/XPLL driver.
+INFO: [Opt 31-1112] Starts optimizing BUFG(s) with a common driver.
+INFO: [Opt 31-1092] Phase BUFG optimization transformed 0 BUFG(s) to MBUFG(s).
+Phase 4 BUFG optimization | Checksum: cea3992d
+
+Time (s): cpu = 00:00:41 ; elapsed = 00:00:35 . Memory (MB): peak = 3093.324 ; gain = 1.164
+INFO: [Opt 31-662] Phase BUFG optimization created 0 cells of which 0 are BUFGs and removed 0 cells.
+
+Phase 5 Shift Register Optimization
+INFO: [Opt 31-1064] SRL Remap converted 0 SRLs to 0 registers and converted 0 registers of register chains to 0 SRLs
+Phase 5 Shift Register Optimization | Checksum: cea3992d
+
+Time (s): cpu = 00:00:44 ; elapsed = 00:00:38 . Memory (MB): peak = 3093.324 ; gain = 1.164
+INFO: [Opt 31-389] Phase Shift Register Optimization created 0 cells and removed 0 cells
+
+Phase 6 Post Processing Netlist
+Phase 6 Post Processing Netlist | Checksum: cea3992d
+
+Time (s): cpu = 00:00:45 ; elapsed = 00:00:40 . Memory (MB): peak = 3093.324 ; gain = 1.164
+INFO: [Opt 31-389] Phase Post Processing Netlist created 0 cells and removed 0 cells
+INFO: [Opt 31-1021] In phase Post Processing Netlist, 79 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
+Opt_design Change Summary
+=========================
+
+
+-------------------------------------------------------------------------------------------------------------------------
+|  Phase                        |  #Cells created  |  #Cells Removed  |  #Constrained objects preventing optimizations  |
+-------------------------------------------------------------------------------------------------------------------------
+|  Retarget                     |             316  |             707  |                                             70  |
+|  Constant propagation         |              61  |            1049  |                                             85  |
+|  Sweep                        |               0  |            1949  |                                            172  |
+|  BUFG optimization            |               0  |               0  |                                              0  |
+|  Shift Register Optimization  |               0  |               0  |                                              0  |
+|  Post Processing Netlist      |               0  |               0  |                                             79  |
+-------------------------------------------------------------------------------------------------------------------------
+
+
+
+Starting Connectivity Check Task
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.486 . Memory (MB): peak = 3093.324 ; gain = 0.000
+Ending Logic Optimization Task | Checksum: 125617ccb
+
+Time (s): cpu = 00:00:53 ; elapsed = 00:00:47 . Memory (MB): peak = 3093.324 ; gain = 1.164
+
+Starting Power Optimization Task
+INFO: [Pwropt 34-132] Skipping clock gating for clocks with a period < 2.00 ns.
+INFO: [Pwropt 34-9] Applying IDT optimizations ...
+INFO: [Pwropt 34-10] Applying ODC optimizations ...
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-0.104 | TNS=-13.262 |
+Running Vector-less Activity Propagation...
+
+Finished Running Vector-less Activity Propagation
+
+
+Starting PowerOpt Patch Enables Task
+INFO: [Pwropt 34-162] WRITE_MODE attribute of 0 BRAM(s) out of a total of 268 has been updated to save power. Run report_power_opt to get a complete listing of the BRAMs updated.
+INFO: [Pwropt 34-201] Structural ODC has moved 1 WE to EN ports
+Number of BRAM Ports augmented: 128 newly gated: 2 Total Ports: 536
+Ending PowerOpt Patch Enables Task | Checksum: e391402d
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 6392.363 ; gain = 0.000
+Ending Power Optimization Task | Checksum: e391402d
+
+Time (s): cpu = 00:03:07 ; elapsed = 00:01:52 . Memory (MB): peak = 6392.363 ; gain = 3299.039
+
+Starting Final Cleanup Task
+Ending Final Cleanup Task | Checksum: e391402d
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 6392.363 ; gain = 0.000
+
+Starting Netlist Obfuscation Task
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.515 . Memory (MB): peak = 6392.363 ; gain = 0.000
+Ending Netlist Obfuscation Task | Checksum: a42a5f9b
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.515 . Memory (MB): peak = 6392.363 ; gain = 0.000
+INFO: [Common 17-83] Releasing license: Implementation
+49 Infos, 1 Warnings, 0 Critical Warnings and 0 Errors encountered.
+opt_design completed successfully
+opt_design: Time (s): cpu = 00:04:49 ; elapsed = 00:03:13 . Memory (MB): peak = 6392.363 ; gain = 4313.488
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.070 . Memory (MB): peak = 6392.363 ; gain = 0.000
+INFO: [Timing 38-480] Writing timing data to binary archive.
+INFO: [Common 17-1381] The checkpoint 'C:/Users/Aperture/Git/FracNetVivado/FracNet-ImageNet-32/FracNet-ImageNet-32.runs/impl_1/design_1_wrapper_opt.dcp' has been generated.
+write_checkpoint: Time (s): cpu = 00:00:42 ; elapsed = 00:00:31 . Memory (MB): peak = 6392.363 ; gain = 0.000
+INFO: [runtcl-4] Executing : report_drc -file design_1_wrapper_drc_opted.rpt -pb design_1_wrapper_drc_opted.pb -rpx design_1_wrapper_drc_opted.rpx
+Command: report_drc -file design_1_wrapper_drc_opted.rpt -pb design_1_wrapper_drc_opted.pb -rpx design_1_wrapper_drc_opted.rpx
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Coretcl 2-168] The results of DRC are in file C:/Users/Aperture/Git/FracNetVivado/FracNet-ImageNet-32/FracNet-ImageNet-32.runs/impl_1/design_1_wrapper_drc_opted.rpt.
+report_drc completed successfully
+report_drc: Time (s): cpu = 00:00:15 ; elapsed = 00:00:08 . Memory (MB): peak = 6392.363 ; gain = 0.000
+Command: place_design
+Attempting to get a license for feature 'Implementation' and/or device 'xczu3eg'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xczu3eg'
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+Running DRC as a precondition to command place_design
+INFO: [DRC 23-27] Running DRC with 2 threads
+ERROR: [DRC UTLZ-1] Resource utilization: LUT as Logic over-utilized in Top Level Design (This design requires more LUT as Logic cells than are available in the target device. This design requires 82490 of such cell types but only 70560 compatible sites are available in the target device. Please analyze your synthesis results and constraints to ensure the design is mapped to Xilinx primitives as expected. If so, please consider targeting a larger device. Please set tcl parameter "drc.disableLUTOverUtilError" to 1 to change this error to warning.)
+ERROR: [DRC UTLZ-1] Resource utilization: RAMB18 and RAMB36/FIFO over-utilized in Top Level Design (This design requires more RAMB18 and RAMB36/FIFO cells than are available in the target device. This design requires 483 of such cell types but only 432 compatible sites are available in the target device. Please analyze your synthesis results and constraints to ensure the design is mapped to Xilinx primitives as expected. If so, please consider targeting a larger device.)
+ERROR: [DRC UTLZ-1] Resource utilization: Slice LUTs over-utilized in Top Level Design (This design requires more Slice LUTs cells than are available in the target device. This design requires 86864 of such cell types but only 70560 compatible sites are available in the target device. Please analyze your synthesis results and constraints to ensure the design is mapped to Xilinx primitives as expected. If so, please consider targeting a larger device. Please set tcl parameter "drc.disableLUTOverUtilError" to 1 to change this error to warning.)
+INFO: [Vivado_Tcl 4-198] DRC finished with 3 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+ERROR: [Vivado_Tcl 4-23] Error(s) found during DRC. Placer not run.
+INFO: [Common 17-83] Releasing license: Implementation
+63 Infos, 1 Warnings, 0 Critical Warnings and 4 Errors encountered.
+place_design failed
+place_design: Time (s): cpu = 00:00:09 ; elapsed = 00:00:05 . Memory (MB): peak = 6392.363 ; gain = 0.000
+ERROR: [Common 17-39] 'place_design' failed due to earlier errors.
+
+INFO: [Common 17-206] Exiting Vivado at Sat Dec 12 05:54:49 2020...

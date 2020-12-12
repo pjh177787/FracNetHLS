@@ -1,0 +1,4 @@
+ERROR: Exception caught trying to open file C:\Users\Aperture\Git\FracNetVivado\FracNet-ImageNet-32\FracNet-ImageNet-32.runs\design_1_FracNet_0_4_synth_1/runme.log
+	Exception name: Error
+	Exception error code: 70
+	Exception message: Permission denied
