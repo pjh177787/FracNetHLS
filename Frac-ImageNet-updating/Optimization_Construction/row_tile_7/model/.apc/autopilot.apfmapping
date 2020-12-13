@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="bnn.cc" path="C:\Users\Aperture\Git\FracNetHLS-ImageNet-pg-alt-ddr-2\bnn.cc"/>
+    <originFiles name="bnn.h" path="C:\Users\Aperture\Git\FracNetHLS-ImageNet-pg-alt-ddr-2\bnn.h"/>
+    <originFiles name="dimension_def.h" path="C:\Users\Aperture\Git\FracNetHLS-ImageNet-pg-alt-ddr-2\dimension_def.h"/>
+    <originFiles name="layer.h" path="C:\Users\Aperture\Git\FracNetHLS-ImageNet-pg-alt-ddr-2\layer.h"/>
+    <originFiles name="pgconv.h" path="C:\Users\Aperture\Git\FracNetHLS-ImageNet-pg-alt-ddr-2\pgconv.h"/>
+    <originFiles name="typedefs.h" path="C:\Users\Aperture\Git\FracNetHLS-ImageNet-pg-alt-ddr-2\typedefs.h"/>
+  </source>
+  <testbench>
+    <originFiles name="array_def.h" path="C:\Users\Aperture\Git\FracNetHLS-ImageNet-pg-alt-ddr-2\array_def.h"/>
+    <originFiles name="conv1_input.bin" path="C:\Users\Aperture\Git\FracNetHLS-ImageNet-pg-alt-ddr-2\conv1_input.bin"/>
+    <originFiles name="conv1x1_weights.bin" path="C:\Users\Aperture\Git\FracNetHLS-ImageNet-pg-alt-ddr-2\conv1x1_weights.bin"/>
+    <originFiles name="conv3x3_weights.bin" path="C:\Users\Aperture\Git\FracNetHLS-ImageNet-pg-alt-ddr-2\conv3x3_weights.bin"/>
+    <originFiles name="other_weights.bin" path="C:\Users\Aperture\Git\FracNetHLS-ImageNet-pg-alt-ddr-2\other_weights.bin"/>
+    <originFiles name="tb.cc" path="C:\Users\Aperture\Git\FracNetHLS-ImageNet-pg-alt-ddr-2\tb.cc"/>
+    <originFiles name="layer_outputs" path="C:\Users\Aperture\Git\FracNetHLS-ImageNet-pg-alt-ddr-2\layer_outputs"/>
+  </testbench>
+</autopilotfilemapping:AutoPilotFileMapping>
