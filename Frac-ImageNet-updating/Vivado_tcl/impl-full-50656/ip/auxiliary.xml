@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xd:acceleratorMap xmlns:xd="http://www.xilinx.com/xidane" xd:functionName="FracNet" xd:componentRef="FracNet" xd:initiationInterval="30700825" xd:clockPeriod="4.000" xd:sequential="true" xd:hostMachine="64" xd:reset="control">
+  <xd:controlReg xd:name="control" xd:interfaceRef="s_axi_CTRL" xd:busTypeRef="axilite" xd:type="generic_axi_lite" xd:offset="0x0"/>
+  <xd:arg xd:name="image_thermo[]" xd:originalName="image_thermo" xd:direction="inout" xd:interfaceRef="m_axi_BUS32" xd:busTypeRef="aximm" xd:arraySize="150528" xd:dataWidth="32" xd:bufferDirection="in"/>
+  <xd:arg xd:name="conv_weight_3x3_all_new[]" xd:originalName="conv_weight_3x3_all_new" xd:direction="inout" xd:interfaceRef="m_axi_BUS512" xd:busTypeRef="aximm" xd:dataPack="true" xd:bitMapping="511:0" xd:arraySize="49104" xd:dataWidth="512" xd:bufferDirection="in"/>
+  <xd:arg xd:name="conv_weight_1x1_all_new[]" xd:originalName="conv_weight_1x1_all_new" xd:direction="inout" xd:interfaceRef="m_axi_BUS512" xd:busTypeRef="aximm" xd:dataPack="true" xd:bitMapping="511:0" xd:arraySize="6132" xd:dataWidth="512" xd:bufferDirection="in"/>
+  <xd:arg xd:name="weights_all[]" xd:originalName="weights_all" xd:direction="inout" xd:interfaceRef="m_axi_BUS512" xd:busTypeRef="aximm" xd:dataPack="true" xd:bitMapping="511:0" xd:arraySize="2730" xd:dataWidth="512" xd:bufferDirection="in"/>
+  <xd:arg xd:name="DDR_buf_pack[][][]" xd:originalName="DDR_buf_pack" xd:direction="inout" xd:interfaceRef="m_axi_DDR512" xd:busTypeRef="aximm" xd:arraySize="3254400" xd:dataWidth="512" xd:bufferDirection="inout"/>
+  <xd:arg xd:name="image_thermo_V" xd:originalName="image_thermo_V" xd:direction="in" xd:interfaceRef="s_axi_CTRL" xd:busTypeRef="axilite" xd:aximmInterfaceRef="m_axi_BUS32" xd:dataWidth="32" xd:offset="0x10" xd:handshakeRef="ap_none"/>
+  <xd:arg xd:name="conv_weight_3x3_all_new_V" xd:originalName="conv_weight_3x3_all_new_V" xd:direction="in" xd:interfaceRef="s_axi_CTRL" xd:busTypeRef="axilite" xd:aximmInterfaceRef="m_axi_BUS512" xd:dataWidth="32" xd:offset="0x18" xd:handshakeRef="ap_none"/>
+  <xd:arg xd:name="conv_weight_1x1_all_new_V" xd:originalName="conv_weight_1x1_all_new_V" xd:direction="in" xd:interfaceRef="s_axi_CTRL" xd:busTypeRef="axilite" xd:aximmInterfaceRef="m_axi_BUS512" xd:dataWidth="32" xd:offset="0x20" xd:handshakeRef="ap_none"/>
+  <xd:arg xd:name="weights_all_V" xd:originalName="weights_all_V" xd:direction="in" xd:interfaceRef="s_axi_CTRL" xd:busTypeRef="axilite" xd:aximmInterfaceRef="m_axi_BUS512" xd:dataWidth="32" xd:offset="0x28" xd:handshakeRef="ap_none"/>
+  <xd:arg xd:name="DDR_buf_pack_V" xd:originalName="DDR_buf_pack_V" xd:direction="in" xd:interfaceRef="s_axi_CTRL" xd:busTypeRef="axilite" xd:aximmInterfaceRef="m_axi_DDR512" xd:dataWidth="32" xd:offset="0x30" xd:handshakeRef="ap_none"/>
+  <xd:latencyEstimates xd:best-case="2051784" xd:worst-case="30700824" xd:average-case="undef"/>
+  <xd:resourceEstimates xd:LUT="555780" xd:FF="121831" xd:BRAM="288" xd:DSP="216"/>
+</xd:acceleratorMap>

@@ -1,0 +1,692 @@
+
+
+================================================================
+== Vivado HLS Report for 'load_layer_1D_weight'
+================================================================
+* Date:           Sun Dec 13 06:32:06 2020
+
+* Version:        2019.2.1 (Build 2724168 on Thu Dec 05 05:19:09 MST 2019)
+* Project:        model
+* Solution:       solution1
+* Product family: zynquplus
+* Target device:  xczu3eg-sbva484-1-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  | 4.00 ns | 3.500 ns |   0.50 ns  |
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |  Latency (cycles) |   Latency (absolute)  |  Interval | Pipeline|
+    |   min   |   max   |    min    |    max    | min | max |   Type  |
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |       15|       15| 60.000 ns | 60.000 ns |   15|   15|   none  |
+    +---------+---------+-----------+-----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+-------+-----+
+|       Name      | BRAM_18K| DSP48E|   FF   |  LUT  | URAM|
++-----------------+---------+-------+--------+-------+-----+
+|DSP              |        -|      -|       -|      -|    -|
+|Expression       |        -|      -|       0|    511|    -|
+|FIFO             |        -|      -|       -|      -|    -|
+|Instance         |        -|      -|       -|      -|    -|
+|Memory           |        -|      -|       -|      -|    -|
+|Multiplexer      |        -|      -|       -|    147|    -|
+|Register         |        -|      -|    3920|      -|    -|
++-----------------+---------+-------+--------+-------+-----+
+|Total            |        0|      0|    3920|    658|    0|
++-----------------+---------+-------+--------+-------+-----+
+|Available        |      432|    360|  141120|  70560|    0|
++-----------------+---------+-------+--------+-------+-----+
+|Utilization (%)  |        0|      0|       2|   ~0  |    0|
++-----------------+---------+-------+--------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP48E: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +------------------------------+----------+-------+---+----+------------+------------+
+    |         Variable Name        | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +------------------------------+----------+-------+---+----+------------+------------+
+    |add_ln130_1_fu_340_p2         |     +    |      0|  0|  15|           7|           7|
+    |add_ln130_fu_330_p2           |     +    |      0|  0|  19|          12|          12|
+    |add_ln144_2_fu_427_p2         |     +    |      0|  0|  19|          12|          12|
+    |add_ln144_fu_418_p2           |     +    |      0|  0|  15|           7|           7|
+    |add_ln156_fu_523_p2           |     +    |      0|  0|  19|          12|          12|
+    |add_ln30_10_fu_469_p2         |     +    |      0|  0|  34|          27|          27|
+    |add_ln30_11_fu_492_p2         |     +    |      0|  0|  34|          27|          27|
+    |add_ln30_12_fu_518_p2         |     +    |      0|  0|  34|          27|          27|
+    |add_ln30_13_fu_547_p2         |     +    |      0|  0|  34|          27|          27|
+    |add_ln30_14_fu_560_p2         |     +    |      0|  0|  34|          27|          27|
+    |add_ln30_8_fu_407_p2          |     +    |      0|  0|  34|          27|          27|
+    |add_ln30_9_fu_451_p2          |     +    |      0|  0|  34|          27|          27|
+    |add_ln30_fu_364_p2            |     +    |      0|  0|  34|          27|          27|
+    |weights_all_ptr_10_fu_398_p2  |     +    |      0|  0|  19|          12|          12|
+    |weights_all_ptr_11_fu_412_p2  |     +    |      0|  0|  19|          12|          12|
+    |weights_all_ptr_12_fu_432_p2  |     +    |      0|  0|  19|          12|          12|
+    |weights_all_ptr_13_fu_484_p2  |     +    |      0|  0|  19|          12|          12|
+    |weights_all_ptr_14_fu_510_p2  |     +    |      0|  0|  19|          12|          12|
+    |weights_all_ptr_15_fu_528_p2  |     +    |      0|  0|  19|          12|          12|
+    |weights_all_ptr_16_fu_552_p2  |     +    |      0|  0|  19|          12|          12|
+    |weights_all_ptr_fu_350_p2     |     +    |      0|  0|  19|          12|          12|
+    +------------------------------+----------+-------+---+----+------------+------------+
+    |Total                         |          |      0|  0| 511|         362|         362|
+    +------------------------------+----------+-------+---+----+------------+------------+
+
+    * Multiplexer: 
+    +----------------------------+----+-----------+-----+-----------+
+    |            Name            | LUT| Input Size| Bits| Total Bits|
+    +----------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                   |  85|         17|    1|         17|
+    |m_axi_weights_all_V_ARADDR  |  44|          9|   32|        288|
+    |weights_all_V_blk_n_AR      |   9|          2|    1|          2|
+    |weights_all_V_blk_n_R       |   9|          2|    1|          2|
+    +----------------------------+----+-----------+-----+-----------+
+    |Total                       | 147|         30|   35|        309|
+    +----------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +--------------------------------+----+----+-----+-----------+
+    |              Name              | FF | LUT| Bits| Const Bits|
+    +--------------------------------+----+----+-----+-----------+
+    |add_ln30_10_reg_4488            |  27|   0|   27|          0|
+    |add_ln30_11_reg_4504            |  27|   0|   27|          0|
+    |add_ln30_12_reg_4515            |  27|   0|   27|          0|
+    |add_ln30_13_reg_4532            |  27|   0|   27|          0|
+    |add_ln30_14_reg_4537            |  27|   0|   27|          0|
+    |add_ln30_8_reg_4455             |  27|   0|   27|          0|
+    |add_ln30_9_reg_4477             |  27|   0|   27|          0|
+    |add_ln30_reg_4436               |  27|   0|   27|          0|
+    |ap_CS_fsm                       |  16|   0|   16|          0|
+    |factor_reg_4414                 |   6|   0|    7|          1|
+    |trunc_ln647_10_reg_5034         |  16|   0|   16|          0|
+    |trunc_ln647_11_reg_5194         |  16|   0|   16|          0|
+    |trunc_ln647_12_reg_5354         |  16|   0|   16|          0|
+    |trunc_ln647_13_reg_5514         |  16|   0|   16|          0|
+    |trunc_ln647_8_reg_4714          |  16|   0|   16|          0|
+    |trunc_ln647_9_reg_4874          |  16|   0|   16|          0|
+    |trunc_ln647_reg_4548            |  16|   0|   16|          0|
+    |weight_buffer_10_V_1_reg_5244   |  16|   0|   16|          0|
+    |weight_buffer_10_V_2_reg_5404   |  16|   0|   16|          0|
+    |weight_buffer_10_V_3_reg_5564   |  16|   0|   16|          0|
+    |weight_buffer_10_V_5_reg_5084   |  16|   0|   16|          0|
+    |weight_buffer_10_V_8_reg_4764   |  16|   0|   16|          0|
+    |weight_buffer_10_V_9_reg_4924   |  16|   0|   16|          0|
+    |weight_buffer_10_V_s_reg_4598   |  16|   0|   16|          0|
+    |weight_buffer_11_V_1_reg_5249   |  16|   0|   16|          0|
+    |weight_buffer_11_V_2_reg_5409   |  16|   0|   16|          0|
+    |weight_buffer_11_V_3_reg_5569   |  16|   0|   16|          0|
+    |weight_buffer_11_V_5_reg_5089   |  16|   0|   16|          0|
+    |weight_buffer_11_V_8_reg_4769   |  16|   0|   16|          0|
+    |weight_buffer_11_V_9_reg_4929   |  16|   0|   16|          0|
+    |weight_buffer_11_V_s_reg_4603   |  16|   0|   16|          0|
+    |weight_buffer_12_V_1_reg_5254   |  16|   0|   16|          0|
+    |weight_buffer_12_V_2_reg_5414   |  16|   0|   16|          0|
+    |weight_buffer_12_V_3_reg_5574   |  16|   0|   16|          0|
+    |weight_buffer_12_V_5_reg_5094   |  16|   0|   16|          0|
+    |weight_buffer_12_V_8_reg_4774   |  16|   0|   16|          0|
+    |weight_buffer_12_V_9_reg_4934   |  16|   0|   16|          0|
+    |weight_buffer_12_V_s_reg_4608   |  16|   0|   16|          0|
+    |weight_buffer_13_V_1_reg_5259   |  16|   0|   16|          0|
+    |weight_buffer_13_V_2_reg_5419   |  16|   0|   16|          0|
+    |weight_buffer_13_V_3_reg_5579   |  16|   0|   16|          0|
+    |weight_buffer_13_V_5_reg_5099   |  16|   0|   16|          0|
+    |weight_buffer_13_V_8_reg_4779   |  16|   0|   16|          0|
+    |weight_buffer_13_V_9_reg_4939   |  16|   0|   16|          0|
+    |weight_buffer_13_V_s_reg_4613   |  16|   0|   16|          0|
+    |weight_buffer_14_V_1_reg_5264   |  16|   0|   16|          0|
+    |weight_buffer_14_V_2_reg_5424   |  16|   0|   16|          0|
+    |weight_buffer_14_V_3_reg_5584   |  16|   0|   16|          0|
+    |weight_buffer_14_V_5_reg_5104   |  16|   0|   16|          0|
+    |weight_buffer_14_V_8_reg_4784   |  16|   0|   16|          0|
+    |weight_buffer_14_V_9_reg_4944   |  16|   0|   16|          0|
+    |weight_buffer_14_V_s_reg_4618   |  16|   0|   16|          0|
+    |weight_buffer_15_V_1_reg_5269   |  16|   0|   16|          0|
+    |weight_buffer_15_V_2_reg_5429   |  16|   0|   16|          0|
+    |weight_buffer_15_V_3_reg_5589   |  16|   0|   16|          0|
+    |weight_buffer_15_V_5_reg_5109   |  16|   0|   16|          0|
+    |weight_buffer_15_V_8_reg_4789   |  16|   0|   16|          0|
+    |weight_buffer_15_V_9_reg_4949   |  16|   0|   16|          0|
+    |weight_buffer_15_V_s_reg_4623   |  16|   0|   16|          0|
+    |weight_buffer_16_V_1_reg_5274   |  16|   0|   16|          0|
+    |weight_buffer_16_V_2_reg_5434   |  16|   0|   16|          0|
+    |weight_buffer_16_V_3_reg_5594   |  16|   0|   16|          0|
+    |weight_buffer_16_V_5_reg_5114   |  16|   0|   16|          0|
+    |weight_buffer_16_V_8_reg_4794   |  16|   0|   16|          0|
+    |weight_buffer_16_V_9_reg_4954   |  16|   0|   16|          0|
+    |weight_buffer_16_V_s_reg_4628   |  16|   0|   16|          0|
+    |weight_buffer_17_V_1_reg_5279   |  16|   0|   16|          0|
+    |weight_buffer_17_V_2_reg_5439   |  16|   0|   16|          0|
+    |weight_buffer_17_V_3_reg_5599   |  16|   0|   16|          0|
+    |weight_buffer_17_V_5_reg_5119   |  16|   0|   16|          0|
+    |weight_buffer_17_V_8_reg_4799   |  16|   0|   16|          0|
+    |weight_buffer_17_V_9_reg_4959   |  16|   0|   16|          0|
+    |weight_buffer_17_V_s_reg_4633   |  16|   0|   16|          0|
+    |weight_buffer_18_V_1_reg_5284   |  16|   0|   16|          0|
+    |weight_buffer_18_V_2_reg_5444   |  16|   0|   16|          0|
+    |weight_buffer_18_V_3_reg_5604   |  16|   0|   16|          0|
+    |weight_buffer_18_V_5_reg_5124   |  16|   0|   16|          0|
+    |weight_buffer_18_V_8_reg_4804   |  16|   0|   16|          0|
+    |weight_buffer_18_V_9_reg_4964   |  16|   0|   16|          0|
+    |weight_buffer_18_V_s_reg_4638   |  16|   0|   16|          0|
+    |weight_buffer_19_V_1_reg_5289   |  16|   0|   16|          0|
+    |weight_buffer_19_V_2_reg_5449   |  16|   0|   16|          0|
+    |weight_buffer_19_V_3_reg_5609   |  16|   0|   16|          0|
+    |weight_buffer_19_V_5_reg_5129   |  16|   0|   16|          0|
+    |weight_buffer_19_V_8_reg_4809   |  16|   0|   16|          0|
+    |weight_buffer_19_V_9_reg_4969   |  16|   0|   16|          0|
+    |weight_buffer_19_V_s_reg_4643   |  16|   0|   16|          0|
+    |weight_buffer_1_V_w_1_reg_5199  |  16|   0|   16|          0|
+    |weight_buffer_1_V_w_2_reg_5359  |  16|   0|   16|          0|
+    |weight_buffer_1_V_w_3_reg_5519  |  16|   0|   16|          0|
+    |weight_buffer_1_V_w_5_reg_5039  |  16|   0|   16|          0|
+    |weight_buffer_1_V_w_8_reg_4719  |  16|   0|   16|          0|
+    |weight_buffer_1_V_w_9_reg_4879  |  16|   0|   16|          0|
+    |weight_buffer_1_V_w_reg_4553    |  16|   0|   16|          0|
+    |weight_buffer_20_V_1_reg_5294   |  16|   0|   16|          0|
+    |weight_buffer_20_V_2_reg_5454   |  16|   0|   16|          0|
+    |weight_buffer_20_V_3_reg_5614   |  16|   0|   16|          0|
+    |weight_buffer_20_V_5_reg_5134   |  16|   0|   16|          0|
+    |weight_buffer_20_V_8_reg_4814   |  16|   0|   16|          0|
+    |weight_buffer_20_V_9_reg_4974   |  16|   0|   16|          0|
+    |weight_buffer_20_V_s_reg_4648   |  16|   0|   16|          0|
+    |weight_buffer_21_V_1_reg_5299   |  16|   0|   16|          0|
+    |weight_buffer_21_V_2_reg_5459   |  16|   0|   16|          0|
+    |weight_buffer_21_V_3_reg_5619   |  16|   0|   16|          0|
+    |weight_buffer_21_V_5_reg_5139   |  16|   0|   16|          0|
+    |weight_buffer_21_V_8_reg_4819   |  16|   0|   16|          0|
+    |weight_buffer_21_V_9_reg_4979   |  16|   0|   16|          0|
+    |weight_buffer_21_V_s_reg_4653   |  16|   0|   16|          0|
+    |weight_buffer_22_V_1_reg_5304   |  16|   0|   16|          0|
+    |weight_buffer_22_V_2_reg_5464   |  16|   0|   16|          0|
+    |weight_buffer_22_V_3_reg_5624   |  16|   0|   16|          0|
+    |weight_buffer_22_V_5_reg_5144   |  16|   0|   16|          0|
+    |weight_buffer_22_V_8_reg_4824   |  16|   0|   16|          0|
+    |weight_buffer_22_V_9_reg_4984   |  16|   0|   16|          0|
+    |weight_buffer_22_V_s_reg_4658   |  16|   0|   16|          0|
+    |weight_buffer_23_V_1_reg_5309   |  16|   0|   16|          0|
+    |weight_buffer_23_V_2_reg_5469   |  16|   0|   16|          0|
+    |weight_buffer_23_V_3_reg_5629   |  16|   0|   16|          0|
+    |weight_buffer_23_V_5_reg_5149   |  16|   0|   16|          0|
+    |weight_buffer_23_V_8_reg_4829   |  16|   0|   16|          0|
+    |weight_buffer_23_V_9_reg_4989   |  16|   0|   16|          0|
+    |weight_buffer_23_V_s_reg_4663   |  16|   0|   16|          0|
+    |weight_buffer_24_V_1_reg_5314   |  16|   0|   16|          0|
+    |weight_buffer_24_V_2_reg_5474   |  16|   0|   16|          0|
+    |weight_buffer_24_V_3_reg_5634   |  16|   0|   16|          0|
+    |weight_buffer_24_V_5_reg_5154   |  16|   0|   16|          0|
+    |weight_buffer_24_V_8_reg_4834   |  16|   0|   16|          0|
+    |weight_buffer_24_V_9_reg_4994   |  16|   0|   16|          0|
+    |weight_buffer_24_V_s_reg_4668   |  16|   0|   16|          0|
+    |weight_buffer_25_V_1_reg_5319   |  16|   0|   16|          0|
+    |weight_buffer_25_V_2_reg_5479   |  16|   0|   16|          0|
+    |weight_buffer_25_V_3_reg_5639   |  16|   0|   16|          0|
+    |weight_buffer_25_V_5_reg_5159   |  16|   0|   16|          0|
+    |weight_buffer_25_V_8_reg_4839   |  16|   0|   16|          0|
+    |weight_buffer_25_V_9_reg_4999   |  16|   0|   16|          0|
+    |weight_buffer_25_V_s_reg_4673   |  16|   0|   16|          0|
+    |weight_buffer_26_V_1_reg_5324   |  16|   0|   16|          0|
+    |weight_buffer_26_V_2_reg_5484   |  16|   0|   16|          0|
+    |weight_buffer_26_V_3_reg_5644   |  16|   0|   16|          0|
+    |weight_buffer_26_V_5_reg_5164   |  16|   0|   16|          0|
+    |weight_buffer_26_V_8_reg_4844   |  16|   0|   16|          0|
+    |weight_buffer_26_V_9_reg_5004   |  16|   0|   16|          0|
+    |weight_buffer_26_V_s_reg_4678   |  16|   0|   16|          0|
+    |weight_buffer_27_V_1_reg_5329   |  16|   0|   16|          0|
+    |weight_buffer_27_V_2_reg_5489   |  16|   0|   16|          0|
+    |weight_buffer_27_V_3_reg_5649   |  16|   0|   16|          0|
+    |weight_buffer_27_V_5_reg_5169   |  16|   0|   16|          0|
+    |weight_buffer_27_V_8_reg_4849   |  16|   0|   16|          0|
+    |weight_buffer_27_V_9_reg_5009   |  16|   0|   16|          0|
+    |weight_buffer_27_V_s_reg_4683   |  16|   0|   16|          0|
+    |weight_buffer_28_V_1_reg_5334   |  16|   0|   16|          0|
+    |weight_buffer_28_V_2_reg_5494   |  16|   0|   16|          0|
+    |weight_buffer_28_V_3_reg_5654   |  16|   0|   16|          0|
+    |weight_buffer_28_V_5_reg_5174   |  16|   0|   16|          0|
+    |weight_buffer_28_V_8_reg_4854   |  16|   0|   16|          0|
+    |weight_buffer_28_V_9_reg_5014   |  16|   0|   16|          0|
+    |weight_buffer_28_V_s_reg_4688   |  16|   0|   16|          0|
+    |weight_buffer_29_V_1_reg_5339   |  16|   0|   16|          0|
+    |weight_buffer_29_V_2_reg_5499   |  16|   0|   16|          0|
+    |weight_buffer_29_V_3_reg_5659   |  16|   0|   16|          0|
+    |weight_buffer_29_V_5_reg_5179   |  16|   0|   16|          0|
+    |weight_buffer_29_V_8_reg_4859   |  16|   0|   16|          0|
+    |weight_buffer_29_V_9_reg_5019   |  16|   0|   16|          0|
+    |weight_buffer_29_V_s_reg_4693   |  16|   0|   16|          0|
+    |weight_buffer_2_V_w_1_reg_5204  |  16|   0|   16|          0|
+    |weight_buffer_2_V_w_2_reg_5364  |  16|   0|   16|          0|
+    |weight_buffer_2_V_w_3_reg_5524  |  16|   0|   16|          0|
+    |weight_buffer_2_V_w_5_reg_5044  |  16|   0|   16|          0|
+    |weight_buffer_2_V_w_8_reg_4724  |  16|   0|   16|          0|
+    |weight_buffer_2_V_w_9_reg_4884  |  16|   0|   16|          0|
+    |weight_buffer_2_V_w_reg_4558    |  16|   0|   16|          0|
+    |weight_buffer_30_V_1_reg_5344   |  16|   0|   16|          0|
+    |weight_buffer_30_V_2_reg_5504   |  16|   0|   16|          0|
+    |weight_buffer_30_V_3_reg_5664   |  16|   0|   16|          0|
+    |weight_buffer_30_V_5_reg_5184   |  16|   0|   16|          0|
+    |weight_buffer_30_V_8_reg_4864   |  16|   0|   16|          0|
+    |weight_buffer_30_V_9_reg_5024   |  16|   0|   16|          0|
+    |weight_buffer_30_V_s_reg_4698   |  16|   0|   16|          0|
+    |weight_buffer_31_V_1_reg_5349   |  16|   0|   16|          0|
+    |weight_buffer_31_V_2_reg_5509   |  16|   0|   16|          0|
+    |weight_buffer_31_V_3_reg_5669   |  16|   0|   16|          0|
+    |weight_buffer_31_V_5_reg_5189   |  16|   0|   16|          0|
+    |weight_buffer_31_V_8_reg_4869   |  16|   0|   16|          0|
+    |weight_buffer_31_V_9_reg_5029   |  16|   0|   16|          0|
+    |weight_buffer_31_V_s_reg_4703   |  16|   0|   16|          0|
+    |weight_buffer_3_V_w_1_reg_5209  |  16|   0|   16|          0|
+    |weight_buffer_3_V_w_2_reg_5369  |  16|   0|   16|          0|
+    |weight_buffer_3_V_w_3_reg_5529  |  16|   0|   16|          0|
+    |weight_buffer_3_V_w_5_reg_5049  |  16|   0|   16|          0|
+    |weight_buffer_3_V_w_8_reg_4729  |  16|   0|   16|          0|
+    |weight_buffer_3_V_w_9_reg_4889  |  16|   0|   16|          0|
+    |weight_buffer_3_V_w_reg_4563    |  16|   0|   16|          0|
+    |weight_buffer_4_V_w_1_reg_5214  |  16|   0|   16|          0|
+    |weight_buffer_4_V_w_2_reg_5374  |  16|   0|   16|          0|
+    |weight_buffer_4_V_w_3_reg_5534  |  16|   0|   16|          0|
+    |weight_buffer_4_V_w_5_reg_5054  |  16|   0|   16|          0|
+    |weight_buffer_4_V_w_8_reg_4734  |  16|   0|   16|          0|
+    |weight_buffer_4_V_w_9_reg_4894  |  16|   0|   16|          0|
+    |weight_buffer_4_V_w_reg_4568    |  16|   0|   16|          0|
+    |weight_buffer_5_V_w_1_reg_5219  |  16|   0|   16|          0|
+    |weight_buffer_5_V_w_2_reg_5379  |  16|   0|   16|          0|
+    |weight_buffer_5_V_w_3_reg_5539  |  16|   0|   16|          0|
+    |weight_buffer_5_V_w_5_reg_5059  |  16|   0|   16|          0|
+    |weight_buffer_5_V_w_8_reg_4739  |  16|   0|   16|          0|
+    |weight_buffer_5_V_w_9_reg_4899  |  16|   0|   16|          0|
+    |weight_buffer_5_V_w_reg_4573    |  16|   0|   16|          0|
+    |weight_buffer_6_V_w_1_reg_5224  |  16|   0|   16|          0|
+    |weight_buffer_6_V_w_2_reg_5384  |  16|   0|   16|          0|
+    |weight_buffer_6_V_w_3_reg_5544  |  16|   0|   16|          0|
+    |weight_buffer_6_V_w_5_reg_5064  |  16|   0|   16|          0|
+    |weight_buffer_6_V_w_8_reg_4744  |  16|   0|   16|          0|
+    |weight_buffer_6_V_w_9_reg_4904  |  16|   0|   16|          0|
+    |weight_buffer_6_V_w_reg_4578    |  16|   0|   16|          0|
+    |weight_buffer_7_V_w_1_reg_5229  |  16|   0|   16|          0|
+    |weight_buffer_7_V_w_2_reg_5389  |  16|   0|   16|          0|
+    |weight_buffer_7_V_w_3_reg_5549  |  16|   0|   16|          0|
+    |weight_buffer_7_V_w_5_reg_5069  |  16|   0|   16|          0|
+    |weight_buffer_7_V_w_8_reg_4749  |  16|   0|   16|          0|
+    |weight_buffer_7_V_w_9_reg_4909  |  16|   0|   16|          0|
+    |weight_buffer_7_V_w_reg_4583    |  16|   0|   16|          0|
+    |weight_buffer_8_V_w_1_reg_5234  |  16|   0|   16|          0|
+    |weight_buffer_8_V_w_2_reg_5394  |  16|   0|   16|          0|
+    |weight_buffer_8_V_w_3_reg_5554  |  16|   0|   16|          0|
+    |weight_buffer_8_V_w_5_reg_5074  |  16|   0|   16|          0|
+    |weight_buffer_8_V_w_8_reg_4754  |  16|   0|   16|          0|
+    |weight_buffer_8_V_w_9_reg_4914  |  16|   0|   16|          0|
+    |weight_buffer_8_V_w_reg_4588    |  16|   0|   16|          0|
+    |weight_buffer_9_V_w_1_reg_5239  |  16|   0|   16|          0|
+    |weight_buffer_9_V_w_2_reg_5399  |  16|   0|   16|          0|
+    |weight_buffer_9_V_w_3_reg_5559  |  16|   0|   16|          0|
+    |weight_buffer_9_V_w_5_reg_5079  |  16|   0|   16|          0|
+    |weight_buffer_9_V_w_8_reg_4759  |  16|   0|   16|          0|
+    |weight_buffer_9_V_w_9_reg_4919  |  16|   0|   16|          0|
+    |weight_buffer_9_V_w_reg_4593    |  16|   0|   16|          0|
+    |weights_all_ptr_11_reg_4460     |  12|   0|   12|          0|
+    |weights_all_ptr_12_reg_4465     |  12|   0|   12|          0|
+    |weights_all_ptr_13_reg_4499     |  12|   0|   12|          0|
+    |weights_all_ptr_15_reg_4520     |  12|   0|   12|          0|
+    |weights_all_ptr_reg_4420        |  12|   0|   12|          0|
+    |zext_ln120_reg_4409             |   6|   0|   12|          6|
+    |zext_ln121_1_reg_4441           |   6|   0|   12|          6|
+    |zext_ln30_17_reg_4425           |  26|   0|   27|          1|
+    +--------------------------------+----+----+-----+-----------+
+    |Total                           |3920|   0| 3934|         14|
+    +--------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++------------------------------+-----+-----+------------+------------------------------+--------------+
+|           RTL Ports          | Dir | Bits|  Protocol  |         Source Object        |    C Type    |
++------------------------------+-----+-----+------------+------------------------------+--------------+
+|ap_clk                        |  in |    1| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_rst                        |  in |    1| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_start                      |  in |    1| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_done                       | out |    1| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_idle                       | out |    1| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_ready                      | out |    1| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_0                   | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_1                   | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_2                   | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_3                   | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_4                   | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_5                   | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_6                   | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_7                   | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_8                   | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_9                   | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_10                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_11                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_12                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_13                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_14                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_15                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_16                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_17                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_18                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_19                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_20                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_21                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_22                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_23                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_24                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_25                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_26                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_27                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_28                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_29                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_30                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_31                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_32                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_33                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_34                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_35                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_36                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_37                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_38                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_39                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_40                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_41                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_42                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_43                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_44                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_45                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_46                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_47                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_48                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_49                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_50                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_51                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_52                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_53                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_54                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_55                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_56                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_57                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_58                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_59                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_60                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_61                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_62                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_63                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_64                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_65                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_66                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_67                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_68                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_69                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_70                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_71                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_72                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_73                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_74                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_75                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_76                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_77                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_78                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_79                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_80                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_81                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_82                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_83                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_84                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_85                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_86                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_87                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_88                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_89                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_90                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_91                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_92                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_93                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_94                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_95                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_96                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_97                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_98                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_99                  | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_100                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_101                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_102                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_103                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_104                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_105                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_106                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_107                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_108                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_109                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_110                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_111                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_112                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_113                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_114                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_115                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_116                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_117                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_118                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_119                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_120                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_121                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_122                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_123                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_124                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_125                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_126                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_127                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_128                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_129                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_130                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_131                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_132                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_133                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_134                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_135                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_136                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_137                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_138                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_139                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_140                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_141                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_142                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_143                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_144                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_145                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_146                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_147                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_148                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_149                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_150                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_151                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_152                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_153                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_154                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_155                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_156                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_157                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_158                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_159                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_160                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_161                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_162                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_163                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_164                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_165                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_166                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_167                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_168                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_169                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_170                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_171                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_172                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_173                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_174                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_175                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_176                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_177                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_178                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_179                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_180                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_181                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_182                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_183                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_184                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_185                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_186                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_187                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_188                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_189                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_190                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_191                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_192                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_193                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_194                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_195                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_196                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_197                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_198                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_199                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_200                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_201                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_202                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_203                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_204                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_205                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_206                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_207                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_208                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_209                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_210                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_211                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_212                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_213                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_214                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_215                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_216                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_217                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_218                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_219                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_220                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_221                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_222                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_223                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_224                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_225                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_226                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_227                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_228                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_229                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_230                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_231                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_232                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_233                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_234                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_235                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_236                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_237                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_238                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_239                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_240                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_241                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_242                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_243                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_244                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_245                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_246                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_247                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_248                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_249                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_250                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_251                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_252                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_253                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_254                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|ap_return_255                 | out |   16| ap_ctrl_hs |     load_layer_1D_weight     | return value |
+|m_axi_weights_all_V_AWVALID   | out |    1|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_AWREADY   |  in |    1|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_AWADDR    | out |   32|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_AWID      | out |    1|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_AWLEN     | out |   32|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_AWSIZE    | out |    3|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_AWBURST   | out |    2|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_AWLOCK    | out |    2|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_AWCACHE   | out |    4|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_AWPROT    | out |    3|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_AWQOS     | out |    4|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_AWREGION  | out |    4|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_AWUSER    | out |    1|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_WVALID    | out |    1|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_WREADY    |  in |    1|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_WDATA     | out |  512|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_WSTRB     | out |   64|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_WLAST     | out |    1|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_WID       | out |    1|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_WUSER     | out |    1|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_ARVALID   | out |    1|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_ARREADY   |  in |    1|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_ARADDR    | out |   32|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_ARID      | out |    1|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_ARLEN     | out |   32|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_ARSIZE    | out |    3|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_ARBURST   | out |    2|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_ARLOCK    | out |    2|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_ARCACHE   | out |    4|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_ARPROT    | out |    3|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_ARQOS     | out |    4|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_ARREGION  | out |    4|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_ARUSER    | out |    1|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_RVALID    |  in |    1|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_RREADY    | out |    1|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_RDATA     |  in |  512|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_RLAST     |  in |    1|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_RID       |  in |    1|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_RUSER     |  in |    1|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_RRESP     |  in |    2|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_BVALID    |  in |    1|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_BREADY    | out |    1|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_BRESP     |  in |    2|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_BID       |  in |    1|    m_axi   |         weights_all_V        |    pointer   |
+|m_axi_weights_all_V_BUSER     |  in |    1|    m_axi   |         weights_all_V        |    pointer   |
+|weights_all_V_offset          |  in |   26|   ap_none  |     weights_all_V_offset     |    scalar    |
+|weights_all_ptr_start_offset  |  in |   13|   ap_none  | weights_all_ptr_start_offset |    scalar    |
+|c_out                         |  in |    6|   ap_none  |             c_out            |    scalar    |
+|conv_out_channels_offset      |  in |   12|   ap_none  |   conv_out_channels_offset   |    scalar    |
+|pw_out_channels_offset        |  in |   12|   ap_none  |    pw_out_channels_offset    |    scalar    |
++------------------------------+-----+-----+------------+------------------------------+--------------+
+

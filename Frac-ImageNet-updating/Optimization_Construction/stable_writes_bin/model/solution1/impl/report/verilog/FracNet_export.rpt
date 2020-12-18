@@ -1,0 +1,19 @@
+
+
+Implementation tool: Xilinx Vivado v.2019.2.1
+Project:             model
+Solution:            solution1
+Device target:       xczu3eg-sbva484-1-e
+Report date:         Sun Dec 13 07:01:54 -0600 2020
+
+#=== Post-Synthesis Resource usage ===
+SLICE:            0
+LUT:          51224
+FF:           90939
+DSP:            249
+BRAM:           401
+SRL:           1230
+#=== Final timing ===
+CP required:    4.000
+CP achieved post-synthesis:    4.376
+Timing not met

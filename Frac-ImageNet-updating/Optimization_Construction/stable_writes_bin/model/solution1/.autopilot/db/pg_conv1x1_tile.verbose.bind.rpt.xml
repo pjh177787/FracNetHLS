@@ -1,0 +1,78 @@
+<profile>
+
+<section name = "Vivado HLS Report for 'pg_conv1x1_tile'" level="0">
+<item name = "Date">Sun Dec 13 06:17:04 2020
+</item>
+<item name = "Version">2019.2.1 (Build 2724168 on Thu Dec 05 05:19:09 MST 2019)</item>
+<item name = "Project">model</item>
+<item name = "Solution">solution1</item>
+<item name = "Product family">zynquplus</item>
+<item name = "Target device">xczu3eg-sbva484-1-e</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">4.00 ns, 3.266 ns, 0.50 ns</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="8">, min, max, min, max, min, max, Type</keys>
+<column name="">56, 791, 0.224 us, 3.164 us, 56, 791, none</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+<column name="grp_compute_engine_32_1_fu_1008">compute_engine_32_1, 1, 1, 4.000 ns, 4.000 ns, 1, 1, function</column>
+<column name="grp_compute_engine_32_1_fu_1014">compute_engine_32_1, 1, 1, 4.000 ns, 4.000 ns, 1, 1, function</column>
+<column name="grp_compute_engine_32_1_fu_1020">compute_engine_32_1, 1, 1, 4.000 ns, 4.000 ns, 1, 1, function</column>
+<column name="grp_compute_engine_32_1_fu_1026">compute_engine_32_1, 1, 1, 4.000 ns, 4.000 ns, 1, 1, function</column>
+<column name="grp_compute_engine_32_1_fu_1032">compute_engine_32_1, 1, 1, 4.000 ns, 4.000 ns, 1, 1, function</column>
+<column name="grp_compute_engine_32_1_fu_1038">compute_engine_32_1, 1, 1, 4.000 ns, 4.000 ns, 1, 1, function</column>
+<column name="grp_compute_engine_32_1_fu_1044">compute_engine_32_1, 1, 1, 4.000 ns, 4.000 ns, 1, 1, function</column>
+<column name="grp_compute_engine_32_1_fu_1050">compute_engine_32_1, 1, 1, 4.000 ns, 4.000 ns, 1, 1, function</column>
+<column name="grp_compute_engine_32_1_fu_1056">compute_engine_32_1, 1, 1, 4.000 ns, 4.000 ns, 1, 1, function</column>
+<column name="grp_compute_engine_32_1_fu_1062">compute_engine_32_1, 1, 1, 4.000 ns, 4.000 ns, 1, 1, function</column>
+<column name="grp_compute_engine_32_1_fu_1068">compute_engine_32_1, 1, 1, 4.000 ns, 4.000 ns, 1, 1, function</column>
+<column name="grp_compute_engine_32_1_fu_1074">compute_engine_32_1, 1, 1, 4.000 ns, 4.000 ns, 1, 1, function</column>
+<column name="grp_compute_engine_32_1_fu_1080">compute_engine_32_1, 1, 1, 4.000 ns, 4.000 ns, 1, 1, function</column>
+<column name="grp_compute_engine_32_1_fu_1086">compute_engine_32_1, 1, 1, 4.000 ns, 4.000 ns, 1, 1, function</column>
+<column name="grp_compute_engine_32_1_fu_1092">compute_engine_32_1, 1, 1, 4.000 ns, 4.000 ns, 1, 1, function</column>
+<column name="grp_compute_engine_32_1_fu_1098">compute_engine_32_1, 1, 1, 4.000 ns, 4.000 ns, 1, 1, function</column>
+<column name="grp_compute_engine_32_1_fu_1104">compute_engine_32_1, 1, 1, 4.000 ns, 4.000 ns, 1, 1, function</column>
+<column name="grp_compute_engine_32_1_fu_1110">compute_engine_32_1, 1, 1, 4.000 ns, 4.000 ns, 1, 1, function</column>
+<column name="grp_compute_engine_32_1_fu_1116">compute_engine_32_1, 1, 1, 4.000 ns, 4.000 ns, 1, 1, function</column>
+<column name="grp_compute_engine_32_1_fu_1122">compute_engine_32_1, 1, 1, 4.000 ns, 4.000 ns, 1, 1, function</column>
+<column name="grp_compute_engine_32_1_fu_1128">compute_engine_32_1, 1, 1, 4.000 ns, 4.000 ns, 1, 1, function</column>
+<column name="grp_compute_engine_32_1_fu_1134">compute_engine_32_1, 1, 1, 4.000 ns, 4.000 ns, 1, 1, function</column>
+<column name="grp_compute_engine_32_1_fu_1140">compute_engine_32_1, 1, 1, 4.000 ns, 4.000 ns, 1, 1, function</column>
+<column name="grp_compute_engine_32_1_fu_1146">compute_engine_32_1, 1, 1, 4.000 ns, 4.000 ns, 1, 1, function</column>
+<column name="grp_compute_engine_32_1_fu_1152">compute_engine_32_1, 1, 1, 4.000 ns, 4.000 ns, 1, 1, function</column>
+<column name="grp_compute_engine_32_1_fu_1158">compute_engine_32_1, 1, 1, 4.000 ns, 4.000 ns, 1, 1, function</column>
+<column name="grp_compute_engine_32_1_fu_1164">compute_engine_32_1, 1, 1, 4.000 ns, 4.000 ns, 1, 1, function</column>
+<column name="grp_compute_engine_32_1_fu_1170">compute_engine_32_1, 1, 1, 4.000 ns, 4.000 ns, 1, 1, function</column>
+<column name="grp_compute_engine_32_1_fu_1176">compute_engine_32_1, 1, 1, 4.000 ns, 4.000 ns, 1, 1, function</column>
+<column name="grp_compute_engine_32_1_fu_1182">compute_engine_32_1, 1, 1, 4.000 ns, 4.000 ns, 1, 1, function</column>
+<column name="grp_compute_engine_32_1_fu_1188">compute_engine_32_1, 1, 1, 4.000 ns, 4.000 ns, 1, 1, function</column>
+<column name="grp_compute_engine_32_1_fu_1194">compute_engine_32_1, 1, 1, 4.000 ns, 4.000 ns, 1, 1, function</column>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- Loop_Tile_L">54, 789, 7, 1, 1, 49 ~ 784, yes</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+</profile>

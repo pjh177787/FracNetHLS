@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2019.2.1 (64-bit)
+# SW Build 2729669 on Thu Dec  5 04:49:17 MST 2019
+# IP Build 2729494 on Thu Dec  5 07:38:25 MST 2019
+# Start of session at: Sun Dec 13 06:42:16 2020
+# Process ID: 12900
+# Current directory: C:/Users/Aperture/Git/FracNetHLS-ImageNet-pg-alt-ddr-5/model/solution1/impl/verilog
+# Command line: vivado.exe -notrace -mode batch -source run_vivadosyn.tcl
+# Log file: C:/Users/Aperture/Git/FracNetHLS-ImageNet-pg-alt-ddr-5/model/solution1/impl/verilog/vivado.log
+# Journal file: C:/Users/Aperture/Git/FracNetHLS-ImageNet-pg-alt-ddr-5/model/solution1/impl/verilog\vivado.jou
+#-----------------------------------------------------------
+source run_vivadosyn.tcl -notrace

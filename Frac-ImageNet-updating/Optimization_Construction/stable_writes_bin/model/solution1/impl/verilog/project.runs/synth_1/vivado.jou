@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2019.2.1 (64-bit)
+# SW Build 2729669 on Thu Dec  5 04:49:17 MST 2019
+# IP Build 2729494 on Thu Dec  5 07:38:25 MST 2019
+# Start of session at: Sun Dec 13 06:58:08 2020
+# Process ID: 38404
+# Current directory: C:/Users/Aperture/Git/FracNetHLS-ImageNet-pg-alt-ddr-5/model/solution1/impl/verilog/project.runs/synth_1
+# Command line: vivado.exe -log bd_0_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source bd_0_wrapper.tcl
+# Log file: C:/Users/Aperture/Git/FracNetHLS-ImageNet-pg-alt-ddr-5/model/solution1/impl/verilog/project.runs/synth_1/bd_0_wrapper.vds
+# Journal file: C:/Users/Aperture/Git/FracNetHLS-ImageNet-pg-alt-ddr-5/model/solution1/impl/verilog/project.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source bd_0_wrapper.tcl -notrace
