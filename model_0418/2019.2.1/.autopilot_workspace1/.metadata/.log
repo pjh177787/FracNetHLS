@@ -1,0 +1,28 @@
+!SESSION 2020-11-16 02:18:19.664 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=9.0.4
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -showlocation -perspective com.autoesl.autopilot.ui.platform.perspective -application com.autoesl.autopilot.ui.platform.application
+Command-line arguments:  -showlocation -clean -data C:/Users/Aperture/.vivado_hls/2019.2.1/.autopilot_workspace1 -perspective com.autoesl.autopilot.ui.platform.perspective -application com.autoesl.autopilot.ui.platform.application
+
+!ENTRY org.eclipse.emf.ecore 2 0 2020-11-16 02:19:05.068
+!MESSAGE Both 'com.autoesl.autopilot.ui.models' and 'com.autoesl.autopilot.ui.models' register a package for 'com.autoesl.autopilot.solution'
+
+!ENTRY org.eclipse.ui 2 2 2020-11-16 02:19:08.817
+!MESSAGE Invalid preference category path: com.autoesl.autopilot.ui.startup.preferences.AutoPilotRootPreferencePage (bundle: com.autoesl.autopilot.ui.cdfg.diagram, page: com.autoesl.autopilot.ui.cdfg.diagram.general)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-11-16 02:24:17.815
+!MESSAGE Indexed 'model' (6 sources, 248 headers) in 19.7 sec: 69,916 declarations; 124,944 references; 0 unresolved inclusions; 0 syntax errors; 47 unresolved names (0.024%)
+
+!ENTRY org.eclipse.launchbar.core 2 0 2020-11-16 02:24:40.097
+!MESSAGE Enablement expression is missing for descriptor type org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2020-11-16 02:24:40.099
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2020-11-16 02:24:40.099
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-11-16 02:29:14.834
+!MESSAGE Indexed 'model' (6 sources, 248 headers) in 13.9 sec: 69,916 declarations; 124,944 references; 0 unresolved inclusions; 0 syntax errors; 47 unresolved names (0.024%)
