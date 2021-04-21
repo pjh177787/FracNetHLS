@@ -1,0 +1,31 @@
+!SESSION 2020-12-15 01:32:30.400 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=9.0.4
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -showlocation -perspective com.autoesl.autopilot.ui.platform.perspective -application com.autoesl.autopilot.ui.platform.application
+Command-line arguments:  -showlocation -clean -data C:/Users/Aperture/.vivado_hls/2019.2.1/.autopilot_workspace8 -perspective com.autoesl.autopilot.ui.platform.perspective -application com.autoesl.autopilot.ui.platform.application
+
+!ENTRY org.eclipse.emf.ecore 2 0 2020-12-15 01:33:24.522
+!MESSAGE Both 'com.autoesl.autopilot.ui.models' and 'com.autoesl.autopilot.ui.models' register a package for 'com.autoesl.autopilot.solution'
+
+!ENTRY org.eclipse.ui 2 2 2020-12-15 01:33:28.472
+!MESSAGE Invalid preference category path: com.autoesl.autopilot.ui.startup.preferences.AutoPilotRootPreferencePage (bundle: com.autoesl.autopilot.ui.cdfg.diagram, page: com.autoesl.autopilot.ui.cdfg.diagram.general)
+
+!ENTRY org.eclipse.launchbar.core 2 0 2020-12-15 01:33:47.250
+!MESSAGE Enablement expression is missing for descriptor type org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2020-12-15 01:33:47.252
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2020-12-15 01:33:47.253
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-15 01:33:59.559
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 12.7 sec: 61,204 declarations; 104,818 references; 0 unresolved inclusions; 0 syntax errors; 49 unresolved names (0.03%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-15 01:48:18.087
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 11.6 sec: 61,204 declarations; 104,818 references; 0 unresolved inclusions; 0 syntax errors; 49 unresolved names (0.03%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-15 01:51:17.971
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 11.2 sec: 61,204 declarations; 104,696 references; 0 unresolved inclusions; 0 syntax errors; 48 unresolved names (0.029%)
