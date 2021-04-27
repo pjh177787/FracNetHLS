@@ -1,0 +1,202 @@
+!SESSION 2020-12-09 01:45:03.485 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=9.0.4
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -showlocation -perspective com.autoesl.autopilot.ui.platform.perspective -application com.autoesl.autopilot.ui.platform.application
+Command-line arguments:  -showlocation -clean -data C:/Users/Aperture/.vivado_hls/2019.2.1/.autopilot_workspace3 -perspective com.autoesl.autopilot.ui.platform.perspective -application com.autoesl.autopilot.ui.platform.application
+
+!ENTRY org.eclipse.emf.ecore 2 0 2020-12-09 01:45:54.751
+!MESSAGE Both 'com.autoesl.autopilot.ui.models' and 'com.autoesl.autopilot.ui.models' register a package for 'com.autoesl.autopilot.solution'
+
+!ENTRY org.eclipse.ui 2 2 2020-12-09 01:45:58.787
+!MESSAGE Invalid preference category path: com.autoesl.autopilot.ui.startup.preferences.AutoPilotRootPreferencePage (bundle: com.autoesl.autopilot.ui.cdfg.diagram, page: com.autoesl.autopilot.ui.cdfg.diagram.general)
+
+!ENTRY org.eclipse.launchbar.core 2 0 2020-12-09 01:46:14.377
+!MESSAGE Enablement expression is missing for descriptor type org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2020-12-09 01:46:14.379
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2020-12-09 01:46:14.379
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-09 01:46:36.968
+!MESSAGE Indexed 'model' (2 sources, 226 headers) in 23 sec: 61,113 declarations; 105,057 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-09 01:52:45.613
+!MESSAGE Indexed 'model' (3 sources, 226 headers) in 11.7 sec: 61,257 declarations; 107,131 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.05%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-09 02:10:03.962
+!MESSAGE Indexed 'model' (3 sources, 226 headers) in 8.21 sec: 61,353 declarations; 109,558 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.05%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-09 02:28:35.560
+!MESSAGE Indexed 'model' (3 sources, 226 headers) in 7.82 sec: 61,337 declarations; 109,144 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.05%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-09 02:57:49.022
+!MESSAGE Indexed 'model' (3 sources, 226 headers) in 8 sec: 61,236 declarations; 106,424 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-09 03:15:48.717
+!MESSAGE Indexed 'model' (2 sources, 226 headers) in 8.68 sec: 61,140 declarations; 105,523 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-09 03:16:26.355
+!MESSAGE Indexed 'model' (3 sources, 226 headers) in 10.1 sec: 61,278 declarations; 107,398 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.05%)
+
+!ENTRY org.eclipse.cdt.core 2 0 2020-12-09 03:26:02.939
+!MESSAGE Error getting ScannerInfo: Unable to determine language for resource L/model/testbench/conv1_input.bin
+!STACK 0
+java.lang.Exception
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsScannerInfoProvider.getScannerInformation(LanguageSettingsScannerInfoProvider.java:86)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsScannerInfoProvider.getScannerInformation(LanguageSettingsScannerInfoProvider.java:1)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getScannerInfo(TranslationUnit.java:1061)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getAST(TranslationUnit.java:848)
+	at org.eclipse.cdt.internal.core.model.CModelBuilder2.parse(CModelBuilder2.java:147)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.parseUsingCModelBuilder(TranslationUnit.java:678)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.parse(TranslationUnit.java:666)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.buildStructure(TranslationUnit.java:465)
+	at org.eclipse.cdt.internal.core.model.Openable.generateInfos(Openable.java:261)
+	at org.eclipse.cdt.internal.core.model.CElement.openWhenClosed(CElement.java:427)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getElementInfo(TranslationUnit.java:454)
+	at org.eclipse.cdt.internal.core.model.CElement.getElementInfo(CElement.java:295)
+	at org.eclipse.cdt.internal.core.model.Parent.getChildren(Parent.java:55)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getIncludes(TranslationUnit.java:257)
+	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.archiveInclcudeFileRecursively(ArchiveProjectAction.java:323)
+	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.handleHeaderFile(ArchiveProjectAction.java:295)
+	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.archiveDesignFiles(ArchiveProjectAction.java:246)
+	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.run(ArchiveProjectAction.java:88)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+
+!ENTRY org.eclipse.cdt.core 2 0 2020-12-09 03:26:03.500
+!MESSAGE Error getting ScannerInfo: Unable to determine language for resource L/model/testbench/conv1x1_weights.bin
+!STACK 0
+java.lang.Exception
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsScannerInfoProvider.getScannerInformation(LanguageSettingsScannerInfoProvider.java:86)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsScannerInfoProvider.getScannerInformation(LanguageSettingsScannerInfoProvider.java:1)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getScannerInfo(TranslationUnit.java:1061)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getAST(TranslationUnit.java:848)
+	at org.eclipse.cdt.internal.core.model.CModelBuilder2.parse(CModelBuilder2.java:147)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.parseUsingCModelBuilder(TranslationUnit.java:678)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.parse(TranslationUnit.java:666)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.buildStructure(TranslationUnit.java:465)
+	at org.eclipse.cdt.internal.core.model.Openable.generateInfos(Openable.java:261)
+	at org.eclipse.cdt.internal.core.model.CElement.openWhenClosed(CElement.java:427)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getElementInfo(TranslationUnit.java:454)
+	at org.eclipse.cdt.internal.core.model.CElement.getElementInfo(CElement.java:295)
+	at org.eclipse.cdt.internal.core.model.Parent.getChildren(Parent.java:55)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getIncludes(TranslationUnit.java:257)
+	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.archiveInclcudeFileRecursively(ArchiveProjectAction.java:323)
+	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.handleHeaderFile(ArchiveProjectAction.java:295)
+	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.archiveDesignFiles(ArchiveProjectAction.java:246)
+	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.run(ArchiveProjectAction.java:88)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+
+!ENTRY org.eclipse.cdt.core 2 0 2020-12-09 03:26:07.192
+!MESSAGE Error getting ScannerInfo: Unable to determine language for resource L/model/testbench/conv3x3_weights.bin
+!STACK 0
+java.lang.Exception
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsScannerInfoProvider.getScannerInformation(LanguageSettingsScannerInfoProvider.java:86)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsScannerInfoProvider.getScannerInformation(LanguageSettingsScannerInfoProvider.java:1)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getScannerInfo(TranslationUnit.java:1061)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getAST(TranslationUnit.java:848)
+	at org.eclipse.cdt.internal.core.model.CModelBuilder2.parse(CModelBuilder2.java:147)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.parseUsingCModelBuilder(TranslationUnit.java:678)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.parse(TranslationUnit.java:666)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.buildStructure(TranslationUnit.java:465)
+	at org.eclipse.cdt.internal.core.model.Openable.generateInfos(Openable.java:261)
+	at org.eclipse.cdt.internal.core.model.CElement.openWhenClosed(CElement.java:427)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getElementInfo(TranslationUnit.java:454)
+	at org.eclipse.cdt.internal.core.model.CElement.getElementInfo(CElement.java:295)
+	at org.eclipse.cdt.internal.core.model.Parent.getChildren(Parent.java:55)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getIncludes(TranslationUnit.java:257)
+	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.archiveInclcudeFileRecursively(ArchiveProjectAction.java:323)
+	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.handleHeaderFile(ArchiveProjectAction.java:295)
+	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.archiveDesignFiles(ArchiveProjectAction.java:246)
+	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.run(ArchiveProjectAction.java:88)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+
+!ENTRY org.eclipse.cdt.core 2 0 2020-12-09 03:26:07.608
+!MESSAGE Error getting ScannerInfo: Unable to determine language for resource L/model/testbench/other_weights.bin
+!STACK 0
+java.lang.Exception
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsScannerInfoProvider.getScannerInformation(LanguageSettingsScannerInfoProvider.java:86)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsScannerInfoProvider.getScannerInformation(LanguageSettingsScannerInfoProvider.java:1)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getScannerInfo(TranslationUnit.java:1061)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getAST(TranslationUnit.java:848)
+	at org.eclipse.cdt.internal.core.model.CModelBuilder2.parse(CModelBuilder2.java:147)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.parseUsingCModelBuilder(TranslationUnit.java:678)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.parse(TranslationUnit.java:666)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.buildStructure(TranslationUnit.java:465)
+	at org.eclipse.cdt.internal.core.model.Openable.generateInfos(Openable.java:261)
+	at org.eclipse.cdt.internal.core.model.CElement.openWhenClosed(CElement.java:427)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getElementInfo(TranslationUnit.java:454)
+	at org.eclipse.cdt.internal.core.model.CElement.getElementInfo(CElement.java:295)
+	at org.eclipse.cdt.internal.core.model.Parent.getChildren(Parent.java:55)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getIncludes(TranslationUnit.java:257)
+	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.archiveInclcudeFileRecursively(ArchiveProjectAction.java:323)
+	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.handleHeaderFile(ArchiveProjectAction.java:295)
+	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.archiveDesignFiles(ArchiveProjectAction.java:246)
+	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.run(ArchiveProjectAction.java:88)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+
+!ENTRY org.eclipse.cdt.core 2 0 2020-12-09 03:26:29.258
+!MESSAGE Error getting ScannerInfo: Unable to determine language for resource L/model/testbench/layer_outputs
+!STACK 0
+java.lang.Exception
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsScannerInfoProvider.getScannerInformation(LanguageSettingsScannerInfoProvider.java:86)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsScannerInfoProvider.getScannerInformation(LanguageSettingsScannerInfoProvider.java:1)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getScannerInfo(TranslationUnit.java:1061)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getAST(TranslationUnit.java:848)
+	at org.eclipse.cdt.internal.core.model.CModelBuilder2.parse(CModelBuilder2.java:147)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.parseUsingCModelBuilder(TranslationUnit.java:678)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.parse(TranslationUnit.java:666)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.buildStructure(TranslationUnit.java:465)
+	at org.eclipse.cdt.internal.core.model.Openable.generateInfos(Openable.java:261)
+	at org.eclipse.cdt.internal.core.model.CElement.openWhenClosed(CElement.java:427)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getElementInfo(TranslationUnit.java:454)
+	at org.eclipse.cdt.internal.core.model.CElement.getElementInfo(CElement.java:295)
+	at org.eclipse.cdt.internal.core.model.Parent.getChildren(Parent.java:55)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getIncludes(TranslationUnit.java:257)
+	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.archiveInclcudeFileRecursively(ArchiveProjectAction.java:323)
+	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.handleHeaderFile(ArchiveProjectAction.java:295)
+	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.archiveDesignFiles(ArchiveProjectAction.java:246)
+	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.run(ArchiveProjectAction.java:88)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-09 03:33:24.995
+!MESSAGE Indexed 'model' (2 sources, 226 headers) in 8.26 sec: 61,176 declarations; 106,486 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-09 03:48:59.074
+!MESSAGE Indexed 'model' (3 sources, 226 headers) in 8.13 sec: 61,378 declarations; 109,990 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.05%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-09 04:16:46.661
+!MESSAGE Indexed 'model' (2 sources, 226 headers) in 10.5 sec: 61,225 declarations; 107,631 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.05%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-09 04:38:18.784
+!MESSAGE Indexed 'model' (3 sources, 226 headers) in 8.83 sec: 61,403 declarations; 110,529 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.049%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-09 04:57:50.397
+!MESSAGE Indexed 'model' (3 sources, 228 headers) in 8.6 sec: 61,605 declarations; 111,410 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.049%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-09 05:21:00.051
+!MESSAGE Indexed 'model' (3 sources, 226 headers) in 9.21 sec: 61,423 declarations; 110,985 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.049%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-09 06:20:45.510
+!MESSAGE Indexed 'model' (3 sources, 227 headers) in 11.3 sec: 61,462 declarations; 111,114 references; 0 unresolved inclusions; 0 syntax errors; 87 unresolved names (0.05%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-09 06:21:06.328
+!MESSAGE Indexed 'model' (2 sources, 226 headers) in 11.6 sec: 61,269 declarations; 108,199 references; 0 unresolved inclusions; 0 syntax errors; 86 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-09 06:22:58.523
+!MESSAGE Indexed 'model' (3 sources, 226 headers) in 9.69 sec: 61,454 declarations; 111,106 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.049%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-09 06:23:16.168
+!MESSAGE Indexed 'model' (2 sources, 226 headers) in 11.8 sec: 61,269 declarations; 108,198 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.05%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-09 06:28:27.395
+!MESSAGE Indexed 'model' (2 sources, 226 headers) in 11.7 sec: 61,270 declarations; 108,243 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.05%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-09 06:57:20.359
+!MESSAGE Indexed 'model' (3 sources, 226 headers) in 11.6 sec: 61,455 declarations; 111,159 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.049%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-12-09 06:59:22.883
+!MESSAGE Indexed 'model' (2 sources, 226 headers) in 12.8 sec: 61,271 declarations; 108,292 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.05%)
