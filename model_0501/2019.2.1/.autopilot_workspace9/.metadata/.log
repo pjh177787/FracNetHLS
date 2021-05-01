@@ -1,0 +1,792 @@
+!SESSION 2021-01-27 13:24:36.876 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=9.0.4
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -showlocation -perspective com.autoesl.autopilot.ui.platform.perspective -application com.autoesl.autopilot.ui.platform.application
+Command-line arguments:  -showlocation -clean -data C:/Users/Aperture/.vivado_hls/2019.2.1/.autopilot_workspace9 -perspective com.autoesl.autopilot.ui.platform.perspective -application com.autoesl.autopilot.ui.platform.application
+
+!ENTRY org.eclipse.emf.ecore 2 0 2021-01-27 13:25:20.808
+!MESSAGE Both 'com.autoesl.autopilot.ui.models' and 'com.autoesl.autopilot.ui.models' register a package for 'com.autoesl.autopilot.solution'
+
+!ENTRY org.eclipse.ui 2 2 2021-01-27 13:25:23.417
+!MESSAGE Invalid preference category path: com.autoesl.autopilot.ui.startup.preferences.AutoPilotRootPreferencePage (bundle: com.autoesl.autopilot.ui.cdfg.diagram, page: com.autoesl.autopilot.ui.cdfg.diagram.general)
+
+!ENTRY org.eclipse.launchbar.core 2 0 2021-01-27 13:26:55.659
+!MESSAGE Enablement expression is missing for descriptor type org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2021-01-27 13:26:55.660
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2021-01-27 13:26:55.661
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-01-27 13:27:03.126
+!MESSAGE Indexed 'model' (2 sources, 183 headers) in 9.75 sec: 52,907 declarations; 90,972 references; 45 unresolved inclusions; 6 syntax errors; 2,438 unresolved names (1.7%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-01-27 13:27:55.293
+!MESSAGE Indexed 'model' (3 sources, 226 headers) in 7.64 sec: 61,558 declarations; 108,985 references; 0 unresolved inclusions; 6 syntax errors; 121 unresolved names (0.071%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-01-27 13:45:58.735
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.27 sec: 61,269 declarations; 105,060 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-01-27 13:46:30.899
+!MESSAGE Indexed 'model' (3 sources, 225 headers) in 6.32 sec: 61,393 declarations; 105,422 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-01-27 13:52:20.649
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.26 sec: 61,269 declarations; 105,060 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-01-27 14:08:24.949
+!MESSAGE Indexed 'model' (2 sources, 228 headers) in 7.13 sec: 61,512 declarations; 108,013 references; 0 unresolved inclusions; 6 syntax errors; 121 unresolved names (0.071%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-01-27 14:42:34.267
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.25 sec: 61,333 declarations; 106,944 references; 0 unresolved inclusions; 0 syntax errors; 86 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-01-27 14:45:52.814
+!MESSAGE Indexed 'model' (3 sources, 227 headers) in 6.7 sec: 61,489 declarations; 108,329 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.05%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-01-27 14:48:05.603
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.1 sec: 61,333 declarations; 106,945 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.05%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-01-27 14:49:39.183
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.12 sec: 61,309 declarations; 106,814 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-01-27 14:50:16.641
+!MESSAGE Indexed 'model' (2 sources, 228 headers) in 6.57 sec: 61,610 declarations; 107,963 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.05%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-01-27 14:50:32.926
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.09 sec: 61,304 declarations; 106,728 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-01-27 14:53:28.944
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.17 sec: 61,304 declarations; 106,728 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-01-27 14:55:32.270
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.32 sec: 61,304 declarations; 106,728 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-01-27 15:00:27.861
+!MESSAGE Indexed 'model' (3 sources, 227 headers) in 6.37 sec: 61,660 declarations; 108,978 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.05%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-01-27 15:01:00.721
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.09 sec: 61,307 declarations; 106,783 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-01-27 15:17:13.028
+!MESSAGE Indexed 'model' (3 sources, 225 headers) in 6.4 sec: 61,405 declarations; 105,565 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.e4.ui.workbench 4 0 2021-01-27 15:31:12.281
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.eclipse.e4.core.di.InjectionException: org.eclipse.swt.SWTException: Invalid thread access
+	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(MethodRequestor.java:65)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.processAnnotated(InjectorImpl.java:990)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.disposed(InjectorImpl.java:450)
+	at org.eclipse.e4.core.internal.di.Requestor.disposed(Requestor.java:156)
+	at org.eclipse.e4.core.internal.contexts.ContextObjectSupplier$ContextInjectionListener.update(ContextObjectSupplier.java:78)
+	at org.eclipse.e4.core.internal.contexts.TrackableComputationExt.update(TrackableComputationExt.java:111)
+	at org.eclipse.e4.core.internal.contexts.TrackableComputationExt.handleInvalid(TrackableComputationExt.java:74)
+	at org.eclipse.e4.core.internal.contexts.EclipseContext.dispose(EclipseContext.java:178)
+	at org.eclipse.e4.core.internal.contexts.EclipseContext.dispose(EclipseContext.java:163)
+	at org.eclipse.e4.core.internal.contexts.osgi.EclipseContextOSGi.dispose(EclipseContextOSGi.java:99)
+	at org.eclipse.e4.core.internal.contexts.osgi.EclipseContextOSGi.bundleChanged(EclipseContextOSGi.java:141)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.dispatchEvent(BundleContextImpl.java:908)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.ListenerQueue.dispatchEventSynchronous(ListenerQueue.java:148)
+	at org.eclipse.osgi.internal.framework.EquinoxEventPublisher.publishBundleEventPrivileged(EquinoxEventPublisher.java:213)
+	at org.eclipse.osgi.internal.framework.EquinoxEventPublisher.publishBundleEvent(EquinoxEventPublisher.java:120)
+	at org.eclipse.osgi.internal.framework.EquinoxEventPublisher.publishBundleEvent(EquinoxEventPublisher.java:112)
+	at org.eclipse.osgi.internal.framework.EquinoxContainerAdaptor.publishModuleEvent(EquinoxContainerAdaptor.java:168)
+	at org.eclipse.osgi.container.Module.publishEvent(Module.java:476)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:634)
+	at org.eclipse.osgi.container.Module.stop(Module.java:498)
+	at org.eclipse.osgi.container.SystemModule.stop(SystemModule.java:202)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule$1.run(EquinoxBundle.java:165)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Caused by: org.eclipse.swt.SWTException: Invalid thread access
+	at org.eclipse.swt.SWT.error(SWT.java:4533)
+	at org.eclipse.swt.SWT.error(SWT.java:4448)
+	at org.eclipse.swt.SWT.error(SWT.java:4419)
+	at org.eclipse.swt.widgets.Display.error(Display.java:1263)
+	at org.eclipse.swt.widgets.Display.checkDevice(Display.java:767)
+	at org.eclipse.swt.widgets.Display.removeFilter(Display.java:4131)
+	at org.eclipse.e4.ui.workbench.renderers.swt.MenuManagerRenderer.contextDisposed(MenuManagerRenderer.java:340)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(MethodRequestor.java:55)
+	... 23 more
+
+!ENTRY org.eclipse.core.resources 2 10035 2021-01-27 15:31:12.837
+!MESSAGE The workspace will exit with unsaved changes in this session.
+
+!ENTRY org.eclipse.core.jobs 2 2 2021-01-27 15:31:13.270
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: org.eclipse.ui.internal.console.IOConsolePartitioner$TrimJob
+
+!ENTRY org.eclipse.core.jobs 2 2 2021-01-27 15:31:13.271
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: org.eclipse.ui.internal.progress.TaskBarProgressManager$1
+!SESSION 2021-01-29 13:40:40.784 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=9.0.4
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -showlocation -perspective com.autoesl.autopilot.ui.platform.perspective -application com.autoesl.autopilot.ui.platform.application
+Command-line arguments:  -showlocation -clean -data C:/Users/Aperture/.vivado_hls/2019.2.1/.autopilot_workspace9 -perspective com.autoesl.autopilot.ui.platform.perspective -application com.autoesl.autopilot.ui.platform.application
+
+!ENTRY org.eclipse.core.resources 2 10035 2021-01-29 13:41:25.937
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.emf.ecore 2 0 2021-01-29 13:41:26.113
+!MESSAGE Both 'com.autoesl.autopilot.ui.models' and 'com.autoesl.autopilot.ui.models' register a package for 'com.autoesl.autopilot.solution'
+
+!ENTRY org.eclipse.ui 2 2 2021-01-29 13:41:27.928
+!MESSAGE Invalid preference category path: com.autoesl.autopilot.ui.startup.preferences.AutoPilotRootPreferencePage (bundle: com.autoesl.autopilot.ui.cdfg.diagram, page: com.autoesl.autopilot.ui.cdfg.diagram.general)
+
+!ENTRY org.eclipse.launchbar.core 2 0 2021-01-29 13:41:36.879
+!MESSAGE Enablement expression is missing for descriptor type org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2021-01-29 13:41:36.883
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2021-01-29 13:41:36.884
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-01-29 13:41:47.172
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 11.9 sec: 61,261 declarations; 105,304 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-01-29 13:41:56.923
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 7.66 sec: 61,261 declarations; 105,304 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-01-29 14:18:13.737
+!MESSAGE Indexed 'model' (3 sources, 226 headers) in 6.79 sec: 61,561 declarations; 106,395 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-01-29 14:21:57.725
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.58 sec: 61,257 declarations; 105,159 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-01-29 14:33:14.332
+!MESSAGE Indexed 'model' (3 sources, 228 headers) in 6.89 sec: 61,500 declarations; 106,101 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-01-29 14:49:04.400
+!MESSAGE Indexed 'model' (3 sources, 225 headers) in 6.46 sec: 61,266 declarations; 105,121 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-01-29 14:49:31.898
+!MESSAGE Indexed 'model' (3 sources, 225 headers) in 6.18 sec: 61,262 declarations; 105,121 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-01-29 14:54:51.900
+!MESSAGE Indexed 'model' (2 sources, 226 headers) in 6.46 sec: 61,382 declarations; 105,713 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-01-29 14:57:21.689
+!MESSAGE Indexed 'model' (2 sources, 226 headers) in 6.78 sec: 61,383 declarations; 105,727 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-01-29 15:00:37.666
+!MESSAGE Indexed 'model' (2 sources, 226 headers) in 6.97 sec: 61,383 declarations; 105,723 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-01-29 15:03:05.307
+!MESSAGE Indexed 'model' (2 sources, 226 headers) in 6.62 sec: 61,383 declarations; 105,717 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-01-29 15:06:01.554
+!MESSAGE Indexed 'model' (2 sources, 226 headers) in 6.16 sec: 61,383 declarations; 105,721 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 2 0 2021-01-29 15:37:18.121
+!MESSAGE Error getting ScannerInfo: Unable to determine language for resource L/model/testbench/layer_outputs
+!STACK 0
+java.lang.Exception
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsScannerInfoProvider.getScannerInformation(LanguageSettingsScannerInfoProvider.java:86)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsScannerInfoProvider.getScannerInformation(LanguageSettingsScannerInfoProvider.java:1)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getScannerInfo(TranslationUnit.java:1061)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getAST(TranslationUnit.java:848)
+	at org.eclipse.cdt.internal.core.model.CModelBuilder2.parse(CModelBuilder2.java:147)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.parseUsingCModelBuilder(TranslationUnit.java:678)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.parse(TranslationUnit.java:666)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.buildStructure(TranslationUnit.java:465)
+	at org.eclipse.cdt.internal.core.model.Openable.generateInfos(Openable.java:261)
+	at org.eclipse.cdt.internal.core.model.CElement.openWhenClosed(CElement.java:427)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getElementInfo(TranslationUnit.java:454)
+	at org.eclipse.cdt.internal.core.model.CElement.getElementInfo(CElement.java:295)
+	at org.eclipse.cdt.internal.core.model.Parent.getChildren(Parent.java:55)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getIncludes(TranslationUnit.java:257)
+	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.archiveInclcudeFileRecursively(ArchiveProjectAction.java:323)
+	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.handleHeaderFile(ArchiveProjectAction.java:295)
+	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.archiveDesignFiles(ArchiveProjectAction.java:246)
+	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.run(ArchiveProjectAction.java:88)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+
+!ENTRY org.eclipse.cdt.core 2 0 2021-01-29 15:37:20.274
+!MESSAGE Error getting ScannerInfo: Unable to determine language for resource L/model/testbench/other_weights.bin
+!STACK 0
+java.lang.Exception
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsScannerInfoProvider.getScannerInformation(LanguageSettingsScannerInfoProvider.java:86)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsScannerInfoProvider.getScannerInformation(LanguageSettingsScannerInfoProvider.java:1)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getScannerInfo(TranslationUnit.java:1061)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getAST(TranslationUnit.java:848)
+	at org.eclipse.cdt.internal.core.model.CModelBuilder2.parse(CModelBuilder2.java:147)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.parseUsingCModelBuilder(TranslationUnit.java:678)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.parse(TranslationUnit.java:666)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.buildStructure(TranslationUnit.java:465)
+	at org.eclipse.cdt.internal.core.model.Openable.generateInfos(Openable.java:261)
+	at org.eclipse.cdt.internal.core.model.CElement.openWhenClosed(CElement.java:427)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getElementInfo(TranslationUnit.java:454)
+	at org.eclipse.cdt.internal.core.model.CElement.getElementInfo(CElement.java:295)
+	at org.eclipse.cdt.internal.core.model.Parent.getChildren(Parent.java:55)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getIncludes(TranslationUnit.java:257)
+	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.archiveInclcudeFileRecursively(ArchiveProjectAction.java:323)
+	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.handleHeaderFile(ArchiveProjectAction.java:295)
+	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.archiveDesignFiles(ArchiveProjectAction.java:246)
+	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.run(ArchiveProjectAction.java:88)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+
+!ENTRY org.eclipse.cdt.core 2 0 2021-01-29 15:37:25.080
+!MESSAGE Error getting ScannerInfo: Unable to determine language for resource L/model/testbench/conv3x3_weights.bin
+!STACK 0
+java.lang.Exception
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsScannerInfoProvider.getScannerInformation(LanguageSettingsScannerInfoProvider.java:86)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsScannerInfoProvider.getScannerInformation(LanguageSettingsScannerInfoProvider.java:1)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getScannerInfo(TranslationUnit.java:1061)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getAST(TranslationUnit.java:848)
+	at org.eclipse.cdt.internal.core.model.CModelBuilder2.parse(CModelBuilder2.java:147)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.parseUsingCModelBuilder(TranslationUnit.java:678)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.parse(TranslationUnit.java:666)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.buildStructure(TranslationUnit.java:465)
+	at org.eclipse.cdt.internal.core.model.Openable.generateInfos(Openable.java:261)
+	at org.eclipse.cdt.internal.core.model.CElement.openWhenClosed(CElement.java:427)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getElementInfo(TranslationUnit.java:454)
+	at org.eclipse.cdt.internal.core.model.CElement.getElementInfo(CElement.java:295)
+	at org.eclipse.cdt.internal.core.model.Parent.getChildren(Parent.java:55)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getIncludes(TranslationUnit.java:257)
+	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.archiveInclcudeFileRecursively(ArchiveProjectAction.java:323)
+	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.handleHeaderFile(ArchiveProjectAction.java:295)
+	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.archiveDesignFiles(ArchiveProjectAction.java:246)
+	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.run(ArchiveProjectAction.java:88)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+
+!ENTRY org.eclipse.cdt.core 2 0 2021-01-29 15:37:26.013
+!MESSAGE Error getting ScannerInfo: Unable to determine language for resource L/model/testbench/conv1x1_weights.bin
+!STACK 0
+java.lang.Exception
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsScannerInfoProvider.getScannerInformation(LanguageSettingsScannerInfoProvider.java:86)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsScannerInfoProvider.getScannerInformation(LanguageSettingsScannerInfoProvider.java:1)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getScannerInfo(TranslationUnit.java:1061)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getAST(TranslationUnit.java:848)
+	at org.eclipse.cdt.internal.core.model.CModelBuilder2.parse(CModelBuilder2.java:147)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.parseUsingCModelBuilder(TranslationUnit.java:678)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.parse(TranslationUnit.java:666)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.buildStructure(TranslationUnit.java:465)
+	at org.eclipse.cdt.internal.core.model.Openable.generateInfos(Openable.java:261)
+	at org.eclipse.cdt.internal.core.model.CElement.openWhenClosed(CElement.java:427)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getElementInfo(TranslationUnit.java:454)
+	at org.eclipse.cdt.internal.core.model.CElement.getElementInfo(CElement.java:295)
+	at org.eclipse.cdt.internal.core.model.Parent.getChildren(Parent.java:55)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getIncludes(TranslationUnit.java:257)
+	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.archiveInclcudeFileRecursively(ArchiveProjectAction.java:323)
+	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.handleHeaderFile(ArchiveProjectAction.java:295)
+	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.archiveDesignFiles(ArchiveProjectAction.java:246)
+	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.run(ArchiveProjectAction.java:88)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+
+!ENTRY org.eclipse.cdt.core 2 0 2021-01-29 15:37:26.717
+!MESSAGE Error getting ScannerInfo: Unable to determine language for resource L/model/testbench/conv1_input.bin
+!STACK 0
+java.lang.Exception
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsScannerInfoProvider.getScannerInformation(LanguageSettingsScannerInfoProvider.java:86)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsScannerInfoProvider.getScannerInformation(LanguageSettingsScannerInfoProvider.java:1)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getScannerInfo(TranslationUnit.java:1061)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getAST(TranslationUnit.java:848)
+	at org.eclipse.cdt.internal.core.model.CModelBuilder2.parse(CModelBuilder2.java:147)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.parseUsingCModelBuilder(TranslationUnit.java:678)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.parse(TranslationUnit.java:666)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.buildStructure(TranslationUnit.java:465)
+	at org.eclipse.cdt.internal.core.model.Openable.generateInfos(Openable.java:261)
+	at org.eclipse.cdt.internal.core.model.CElement.openWhenClosed(CElement.java:427)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getElementInfo(TranslationUnit.java:454)
+	at org.eclipse.cdt.internal.core.model.CElement.getElementInfo(CElement.java:295)
+	at org.eclipse.cdt.internal.core.model.Parent.getChildren(Parent.java:55)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getIncludes(TranslationUnit.java:257)
+	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.archiveInclcudeFileRecursively(ArchiveProjectAction.java:323)
+	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.handleHeaderFile(ArchiveProjectAction.java:295)
+	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.archiveDesignFiles(ArchiveProjectAction.java:246)
+	at com.autoesl.autopilot.ui.platform.actions.ArchiveProjectAction$1.run(ArchiveProjectAction.java:88)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-01-29 16:00:31.837
+!MESSAGE Indexed 'model' (3 sources, 225 headers) in 6.92 sec: 61,258 declarations; 105,066 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-01-29 16:10:49.967
+!MESSAGE Indexed 'model' (3 sources, 225 headers) in 6.48 sec: 61,258 declarations; 105,066 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-01-29 16:14:02.143
+!MESSAGE Indexed 'model' (3 sources, 225 headers) in 6.23 sec: 61,282 declarations; 105,184 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-01-29 16:16:58.648
+!MESSAGE Indexed 'model' (3 sources, 225 headers) in 6.25 sec: 61,274 declarations; 105,146 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-01-29 16:21:32.196
+!MESSAGE Indexed 'model' (3 sources, 225 headers) in 6.6 sec: 61,260 declarations; 105,072 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-01-29 16:24:30.129
+!MESSAGE Indexed 'model' (3 sources, 225 headers) in 6.34 sec: 61,260 declarations; 105,072 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.e4.ui.workbench 4 0 2021-01-30 01:11:59.463
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.eclipse.e4.core.di.InjectionException: org.eclipse.swt.SWTException: Invalid thread access
+	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(MethodRequestor.java:65)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.processAnnotated(InjectorImpl.java:990)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.disposed(InjectorImpl.java:450)
+	at org.eclipse.e4.core.internal.di.Requestor.disposed(Requestor.java:156)
+	at org.eclipse.e4.core.internal.contexts.ContextObjectSupplier$ContextInjectionListener.update(ContextObjectSupplier.java:78)
+	at org.eclipse.e4.core.internal.contexts.TrackableComputationExt.update(TrackableComputationExt.java:111)
+	at org.eclipse.e4.core.internal.contexts.TrackableComputationExt.handleInvalid(TrackableComputationExt.java:74)
+	at org.eclipse.e4.core.internal.contexts.EclipseContext.dispose(EclipseContext.java:178)
+	at org.eclipse.e4.core.internal.contexts.EclipseContext.dispose(EclipseContext.java:163)
+	at org.eclipse.e4.core.internal.contexts.osgi.EclipseContextOSGi.dispose(EclipseContextOSGi.java:99)
+	at org.eclipse.e4.core.internal.contexts.osgi.EclipseContextOSGi.bundleChanged(EclipseContextOSGi.java:141)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.dispatchEvent(BundleContextImpl.java:908)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.ListenerQueue.dispatchEventSynchronous(ListenerQueue.java:148)
+	at org.eclipse.osgi.internal.framework.EquinoxEventPublisher.publishBundleEventPrivileged(EquinoxEventPublisher.java:213)
+	at org.eclipse.osgi.internal.framework.EquinoxEventPublisher.publishBundleEvent(EquinoxEventPublisher.java:120)
+	at org.eclipse.osgi.internal.framework.EquinoxEventPublisher.publishBundleEvent(EquinoxEventPublisher.java:112)
+	at org.eclipse.osgi.internal.framework.EquinoxContainerAdaptor.publishModuleEvent(EquinoxContainerAdaptor.java:168)
+	at org.eclipse.osgi.container.Module.publishEvent(Module.java:476)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:634)
+	at org.eclipse.osgi.container.Module.stop(Module.java:498)
+	at org.eclipse.osgi.container.SystemModule.stop(SystemModule.java:202)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule$1.run(EquinoxBundle.java:165)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Caused by: org.eclipse.swt.SWTException: Invalid thread access
+	at org.eclipse.swt.SWT.error(SWT.java:4533)
+	at org.eclipse.swt.SWT.error(SWT.java:4448)
+	at org.eclipse.swt.SWT.error(SWT.java:4419)
+	at org.eclipse.swt.widgets.Display.error(Display.java:1263)
+	at org.eclipse.swt.widgets.Display.checkDevice(Display.java:767)
+	at org.eclipse.swt.widgets.Display.removeFilter(Display.java:4131)
+	at org.eclipse.e4.ui.workbench.renderers.swt.MenuManagerRenderer.contextDisposed(MenuManagerRenderer.java:340)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(MethodRequestor.java:55)
+	... 23 more
+
+!ENTRY org.eclipse.core.resources 2 10035 2021-01-30 01:12:00.035
+!MESSAGE The workspace will exit with unsaved changes in this session.
+
+!ENTRY org.eclipse.core.jobs 2 2 2021-01-30 01:12:00.454
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: org.eclipse.ui.internal.progress.TaskBarProgressManager$1
+!SESSION 2021-02-10 14:15:15.401 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=9.0.4
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -showlocation -perspective com.autoesl.autopilot.ui.platform.perspective -application com.autoesl.autopilot.ui.platform.application
+Command-line arguments:  -showlocation -clean -data C:/Users/Aperture/.vivado_hls/2019.2.1/.autopilot_workspace9 -perspective com.autoesl.autopilot.ui.platform.perspective -application com.autoesl.autopilot.ui.platform.application
+
+!ENTRY org.eclipse.core.resources 2 10035 2021-02-10 14:15:59.779
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.emf.ecore 2 0 2021-02-10 14:16:00.146
+!MESSAGE Both 'com.autoesl.autopilot.ui.models' and 'com.autoesl.autopilot.ui.models' register a package for 'com.autoesl.autopilot.solution'
+
+!ENTRY org.eclipse.ui 2 2 2021-02-10 14:16:02.392
+!MESSAGE Invalid preference category path: com.autoesl.autopilot.ui.startup.preferences.AutoPilotRootPreferencePage (bundle: com.autoesl.autopilot.ui.cdfg.diagram, page: com.autoesl.autopilot.ui.cdfg.diagram.general)
+
+!ENTRY org.eclipse.launchbar.core 2 0 2021-02-10 14:16:49.011
+!MESSAGE Enablement expression is missing for descriptor type org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2021-02-10 14:16:49.015
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2021-02-10 14:16:49.016
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-10 14:16:58.722
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 10.3 sec: 61,198 declarations; 104,894 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-10 14:17:15.013
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 7.12 sec: 61,261 declarations; 105,168 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-10 14:22:16.978
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.43 sec: 61,243 declarations; 105,670 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-10 14:59:57.644
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.39 sec: 61,241 declarations; 105,650 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-10 15:10:58.813
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.24 sec: 61,241 declarations; 105,659 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.e4.ui.workbench 4 0 2021-02-11 00:06:01.711
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.eclipse.e4.core.di.InjectionException: org.eclipse.swt.SWTException: Invalid thread access
+	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(MethodRequestor.java:65)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.processAnnotated(InjectorImpl.java:990)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.disposed(InjectorImpl.java:450)
+	at org.eclipse.e4.core.internal.di.Requestor.disposed(Requestor.java:156)
+	at org.eclipse.e4.core.internal.contexts.ContextObjectSupplier$ContextInjectionListener.update(ContextObjectSupplier.java:78)
+	at org.eclipse.e4.core.internal.contexts.TrackableComputationExt.update(TrackableComputationExt.java:111)
+	at org.eclipse.e4.core.internal.contexts.TrackableComputationExt.handleInvalid(TrackableComputationExt.java:74)
+	at org.eclipse.e4.core.internal.contexts.EclipseContext.dispose(EclipseContext.java:178)
+	at org.eclipse.e4.core.internal.contexts.EclipseContext.dispose(EclipseContext.java:163)
+	at org.eclipse.e4.core.internal.contexts.osgi.EclipseContextOSGi.dispose(EclipseContextOSGi.java:99)
+	at org.eclipse.e4.core.internal.contexts.osgi.EclipseContextOSGi.bundleChanged(EclipseContextOSGi.java:141)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.dispatchEvent(BundleContextImpl.java:908)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.ListenerQueue.dispatchEventSynchronous(ListenerQueue.java:148)
+	at org.eclipse.osgi.internal.framework.EquinoxEventPublisher.publishBundleEventPrivileged(EquinoxEventPublisher.java:213)
+	at org.eclipse.osgi.internal.framework.EquinoxEventPublisher.publishBundleEvent(EquinoxEventPublisher.java:120)
+	at org.eclipse.osgi.internal.framework.EquinoxEventPublisher.publishBundleEvent(EquinoxEventPublisher.java:112)
+	at org.eclipse.osgi.internal.framework.EquinoxContainerAdaptor.publishModuleEvent(EquinoxContainerAdaptor.java:168)
+	at org.eclipse.osgi.container.Module.publishEvent(Module.java:476)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:634)
+	at org.eclipse.osgi.container.Module.stop(Module.java:498)
+	at org.eclipse.osgi.container.SystemModule.stop(SystemModule.java:202)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule$1.run(EquinoxBundle.java:165)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Caused by: org.eclipse.swt.SWTException: Invalid thread access
+	at org.eclipse.swt.SWT.error(SWT.java:4533)
+	at org.eclipse.swt.SWT.error(SWT.java:4448)
+	at org.eclipse.swt.SWT.error(SWT.java:4419)
+	at org.eclipse.swt.widgets.Display.error(Display.java:1263)
+	at org.eclipse.swt.widgets.Display.checkDevice(Display.java:767)
+	at org.eclipse.swt.widgets.Display.removeFilter(Display.java:4131)
+	at org.eclipse.e4.ui.workbench.renderers.swt.MenuManagerRenderer.contextDisposed(MenuManagerRenderer.java:340)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(MethodRequestor.java:55)
+	... 23 more
+
+!ENTRY org.eclipse.core.resources 2 10035 2021-02-11 00:06:02.275
+!MESSAGE The workspace will exit with unsaved changes in this session.
+
+!ENTRY org.eclipse.core.jobs 2 2 2021-02-11 00:06:02.715
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: org.eclipse.ui.internal.progress.TaskBarProgressManager$1
+
+!ENTRY org.eclipse.core.jobs 2 2 2021-02-11 00:06:02.716
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: org.eclipse.ui.internal.console.IOConsolePartitioner$TrimJob
+!SESSION 2021-02-13 12:28:00.242 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=9.0.4
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -showlocation -perspective com.autoesl.autopilot.ui.platform.perspective -application com.autoesl.autopilot.ui.platform.application
+Command-line arguments:  -showlocation -clean -data C:/Users/Aperture/.vivado_hls/2019.2.1/.autopilot_workspace9 -perspective com.autoesl.autopilot.ui.platform.perspective -application com.autoesl.autopilot.ui.platform.application
+
+!ENTRY org.eclipse.core.resources 2 10035 2021-02-13 12:28:54.517
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.emf.ecore 2 0 2021-02-13 12:28:54.991
+!MESSAGE Both 'com.autoesl.autopilot.ui.models' and 'com.autoesl.autopilot.ui.models' register a package for 'com.autoesl.autopilot.solution'
+
+!ENTRY org.eclipse.ui 2 2 2021-02-13 12:28:57.598
+!MESSAGE Invalid preference category path: com.autoesl.autopilot.ui.startup.preferences.AutoPilotRootPreferencePage (bundle: com.autoesl.autopilot.ui.cdfg.diagram, page: com.autoesl.autopilot.ui.cdfg.diagram.general)
+
+!ENTRY org.eclipse.launchbar.core 2 0 2021-02-13 13:02:30.407
+!MESSAGE Enablement expression is missing for descriptor type org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2021-02-13 13:02:30.411
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2021-02-13 13:02:30.412
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-13 13:02:39.653
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 10.1 sec: 61,241 declarations; 105,659 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-13 13:03:56.475
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.91 sec: 61,241 declarations; 105,659 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-13 13:38:41.548
+!MESSAGE Indexed 'ap_fixed_test' (0 sources, 0 headers) in 0 sec: 0 declarations; 0 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-13 13:42:59.247
+!MESSAGE Indexed 'ap_fixed_test' (1 sources, 205 headers) in 5.51 sec: 57,496 declarations; 95,865 references; 0 unresolved inclusions; 0 syntax errors; 47 unresolved names (0.031%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-13 13:49:15.326
+!MESSAGE Indexed 'ap_fixed_test' (1 sources, 205 headers) in 5.93 sec: 57,500 declarations; 95,875 references; 0 unresolved inclusions; 0 syntax errors; 47 unresolved names (0.031%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-13 13:49:35.983
+!MESSAGE Indexed 'ap_fixed_test' (1 sources, 205 headers) in 5.8 sec: 57,500 declarations; 95,875 references; 0 unresolved inclusions; 0 syntax errors; 47 unresolved names (0.031%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-13 13:51:52.383
+!MESSAGE Indexed 'ap_fixed_test' (1 sources, 205 headers) in 5.9 sec: 57,502 declarations; 95,883 references; 0 unresolved inclusions; 0 syntax errors; 47 unresolved names (0.031%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-13 13:52:13.690
+!MESSAGE Indexed 'ap_fixed_test' (1 sources, 205 headers) in 5.55 sec: 57,502 declarations; 95,883 references; 0 unresolved inclusions; 0 syntax errors; 47 unresolved names (0.031%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-13 13:53:08.308
+!MESSAGE Indexed 'ap_fixed_test' (1 sources, 205 headers) in 5.73 sec: 57,502 declarations; 95,882 references; 0 unresolved inclusions; 0 syntax errors; 47 unresolved names (0.031%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-13 13:53:31.735
+!MESSAGE Indexed 'ap_fixed_test' (1 sources, 205 headers) in 5.68 sec: 57,502 declarations; 95,882 references; 0 unresolved inclusions; 0 syntax errors; 47 unresolved names (0.031%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-13 13:53:54.304
+!MESSAGE Indexed 'ap_fixed_test' (1 sources, 205 headers) in 5.5 sec: 57,502 declarations; 95,882 references; 0 unresolved inclusions; 0 syntax errors; 47 unresolved names (0.031%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-13 13:55:06.541
+!MESSAGE Indexed 'ap_fixed_test' (1 sources, 205 headers) in 5.65 sec: 57,502 declarations; 95,882 references; 0 unresolved inclusions; 0 syntax errors; 47 unresolved names (0.031%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-13 13:56:37.110
+!MESSAGE Indexed 'ap_fixed_test' (1 sources, 205 headers) in 5.68 sec: 57,502 declarations; 95,882 references; 0 unresolved inclusions; 0 syntax errors; 47 unresolved names (0.031%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-13 13:57:18.292
+!MESSAGE Indexed 'ap_fixed_test' (1 sources, 205 headers) in 5.42 sec: 57,502 declarations; 95,882 references; 0 unresolved inclusions; 0 syntax errors; 47 unresolved names (0.031%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-13 13:57:45.079
+!MESSAGE Indexed 'ap_fixed_test' (1 sources, 205 headers) in 5.4 sec: 57,502 declarations; 95,882 references; 0 unresolved inclusions; 0 syntax errors; 47 unresolved names (0.031%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-13 13:58:05.228
+!MESSAGE Indexed 'ap_fixed_test' (1 sources, 205 headers) in 5.45 sec: 57,502 declarations; 95,882 references; 0 unresolved inclusions; 0 syntax errors; 47 unresolved names (0.031%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-13 13:58:38.146
+!MESSAGE Indexed 'ap_fixed_test' (1 sources, 205 headers) in 5.67 sec: 57,502 declarations; 95,882 references; 0 unresolved inclusions; 0 syntax errors; 47 unresolved names (0.031%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-13 13:59:01.835
+!MESSAGE Indexed 'ap_fixed_test' (1 sources, 205 headers) in 5.6 sec: 57,502 declarations; 95,882 references; 0 unresolved inclusions; 0 syntax errors; 47 unresolved names (0.031%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-13 14:03:33.978
+!MESSAGE Indexed 'ap_fixed_test' (1 sources, 205 headers) in 5.47 sec: 57,509 declarations; 95,908 references; 0 unresolved inclusions; 0 syntax errors; 47 unresolved names (0.031%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-13 14:04:10.987
+!MESSAGE Indexed 'ap_fixed_test' (1 sources, 205 headers) in 5.48 sec: 57,509 declarations; 95,908 references; 0 unresolved inclusions; 0 syntax errors; 47 unresolved names (0.031%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-13 14:05:25.344
+!MESSAGE Indexed 'ap_fixed_test' (1 sources, 205 headers) in 5.5 sec: 57,508 declarations; 95,903 references; 0 unresolved inclusions; 0 syntax errors; 47 unresolved names (0.031%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-13 14:06:50.016
+!MESSAGE Indexed 'ap_fixed_test' (1 sources, 205 headers) in 5.51 sec: 57,508 declarations; 95,903 references; 0 unresolved inclusions; 0 syntax errors; 47 unresolved names (0.031%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-13 14:07:44.715
+!MESSAGE Indexed 'ap_fixed_test' (1 sources, 205 headers) in 5.52 sec: 57,509 declarations; 95,907 references; 0 unresolved inclusions; 0 syntax errors; 47 unresolved names (0.031%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-13 14:08:55.338
+!MESSAGE Indexed 'ap_fixed_test' (1 sources, 205 headers) in 5.56 sec: 57,509 declarations; 95,908 references; 0 unresolved inclusions; 0 syntax errors; 47 unresolved names (0.031%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-13 14:09:11.586
+!MESSAGE Indexed 'ap_fixed_test' (1 sources, 205 headers) in 5.42 sec: 57,509 declarations; 95,908 references; 0 unresolved inclusions; 0 syntax errors; 47 unresolved names (0.031%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-13 14:12:21.762
+!MESSAGE Indexed 'ap_fixed_test' (1 sources, 205 headers) in 5.64 sec: 57,509 declarations; 95,909 references; 0 unresolved inclusions; 0 syntax errors; 47 unresolved names (0.031%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-13 14:13:22.189
+!MESSAGE Indexed 'ap_fixed_test' (1 sources, 205 headers) in 5.6 sec: 57,509 declarations; 95,909 references; 0 unresolved inclusions; 0 syntax errors; 47 unresolved names (0.031%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-13 14:13:53.902
+!MESSAGE Indexed 'ap_fixed_test' (1 sources, 205 headers) in 5.55 sec: 57,509 declarations; 95,909 references; 0 unresolved inclusions; 0 syntax errors; 47 unresolved names (0.031%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-13 14:15:27.020
+!MESSAGE Indexed 'ap_fixed_test' (1 sources, 205 headers) in 5.39 sec: 57,509 declarations; 95,904 references; 0 unresolved inclusions; 0 syntax errors; 47 unresolved names (0.031%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-13 14:16:18.875
+!MESSAGE Indexed 'ap_fixed_test' (1 sources, 205 headers) in 5.66 sec: 57,509 declarations; 95,904 references; 0 unresolved inclusions; 0 syntax errors; 47 unresolved names (0.031%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-13 14:16:54.012
+!MESSAGE Indexed 'ap_fixed_test' (1 sources, 205 headers) in 5.45 sec: 57,509 declarations; 95,904 references; 0 unresolved inclusions; 0 syntax errors; 47 unresolved names (0.031%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-13 14:20:39.406
+!MESSAGE Indexed 'ap_fixed_test' (1 sources, 205 headers) in 5.69 sec: 57,509 declarations; 95,904 references; 0 unresolved inclusions; 0 syntax errors; 47 unresolved names (0.031%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-13 14:25:21.631
+!MESSAGE Indexed 'ap_fixed_test' (1 sources, 205 headers) in 5.52 sec: 57,509 declarations; 95,904 references; 0 unresolved inclusions; 0 syntax errors; 47 unresolved names (0.031%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-13 14:28:41.624
+!MESSAGE Indexed 'ap_fixed_test' (1 sources, 205 headers) in 5.51 sec: 57,509 declarations; 95,906 references; 0 unresolved inclusions; 0 syntax errors; 47 unresolved names (0.031%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-13 14:29:46.894
+!MESSAGE Indexed 'ap_fixed_test' (1 sources, 205 headers) in 5.77 sec: 57,509 declarations; 95,904 references; 0 unresolved inclusions; 0 syntax errors; 47 unresolved names (0.031%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-13 14:30:41.770
+!MESSAGE Indexed 'ap_fixed_test' (1 sources, 205 headers) in 5.55 sec: 57,509 declarations; 95,904 references; 0 unresolved inclusions; 0 syntax errors; 47 unresolved names (0.031%)
+
+!ENTRY org.eclipse.e4.ui.workbench 4 0 2021-02-15 00:10:13.869
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.eclipse.e4.core.di.InjectionException: org.eclipse.swt.SWTException: Invalid thread access
+	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(MethodRequestor.java:65)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.processAnnotated(InjectorImpl.java:990)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.disposed(InjectorImpl.java:450)
+	at org.eclipse.e4.core.internal.di.Requestor.disposed(Requestor.java:156)
+	at org.eclipse.e4.core.internal.contexts.ContextObjectSupplier$ContextInjectionListener.update(ContextObjectSupplier.java:78)
+	at org.eclipse.e4.core.internal.contexts.TrackableComputationExt.update(TrackableComputationExt.java:111)
+	at org.eclipse.e4.core.internal.contexts.TrackableComputationExt.handleInvalid(TrackableComputationExt.java:74)
+	at org.eclipse.e4.core.internal.contexts.EclipseContext.dispose(EclipseContext.java:178)
+	at org.eclipse.e4.core.internal.contexts.EclipseContext.dispose(EclipseContext.java:163)
+	at org.eclipse.e4.core.internal.contexts.osgi.EclipseContextOSGi.dispose(EclipseContextOSGi.java:99)
+	at org.eclipse.e4.core.internal.contexts.osgi.EclipseContextOSGi.bundleChanged(EclipseContextOSGi.java:141)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.dispatchEvent(BundleContextImpl.java:908)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.ListenerQueue.dispatchEventSynchronous(ListenerQueue.java:148)
+	at org.eclipse.osgi.internal.framework.EquinoxEventPublisher.publishBundleEventPrivileged(EquinoxEventPublisher.java:213)
+	at org.eclipse.osgi.internal.framework.EquinoxEventPublisher.publishBundleEvent(EquinoxEventPublisher.java:120)
+	at org.eclipse.osgi.internal.framework.EquinoxEventPublisher.publishBundleEvent(EquinoxEventPublisher.java:112)
+	at org.eclipse.osgi.internal.framework.EquinoxContainerAdaptor.publishModuleEvent(EquinoxContainerAdaptor.java:168)
+	at org.eclipse.osgi.container.Module.publishEvent(Module.java:476)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:634)
+	at org.eclipse.osgi.container.Module.stop(Module.java:498)
+	at org.eclipse.osgi.container.SystemModule.stop(SystemModule.java:202)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule$1.run(EquinoxBundle.java:165)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Caused by: org.eclipse.swt.SWTException: Invalid thread access
+	at org.eclipse.swt.SWT.error(SWT.java:4533)
+	at org.eclipse.swt.SWT.error(SWT.java:4448)
+	at org.eclipse.swt.SWT.error(SWT.java:4419)
+	at org.eclipse.swt.widgets.Display.error(Display.java:1263)
+	at org.eclipse.swt.widgets.Display.checkDevice(Display.java:767)
+	at org.eclipse.swt.widgets.Display.removeFilter(Display.java:4131)
+	at org.eclipse.e4.ui.workbench.renderers.swt.MenuManagerRenderer.contextDisposed(MenuManagerRenderer.java:340)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(MethodRequestor.java:55)
+	... 23 more
+
+!ENTRY org.eclipse.core.resources 2 10035 2021-02-15 00:10:14.428
+!MESSAGE The workspace will exit with unsaved changes in this session.
+
+!ENTRY org.eclipse.core.jobs 2 2 2021-02-15 00:10:14.839
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: org.eclipse.ui.internal.progress.TaskBarProgressManager$1
+
+!ENTRY org.eclipse.core.jobs 2 2 2021-02-15 00:10:14.840
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: org.eclipse.ui.internal.console.IOConsolePartitioner$TrimJob
+!SESSION 2021-02-18 17:53:43.070 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=9.0.4
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -showlocation -perspective com.autoesl.autopilot.ui.platform.perspective -application com.autoesl.autopilot.ui.platform.application
+Command-line arguments:  -showlocation -clean -data C:/Users/Aperture/.vivado_hls/2019.2.1/.autopilot_workspace9 -perspective com.autoesl.autopilot.ui.platform.perspective -application com.autoesl.autopilot.ui.platform.application
+
+!ENTRY org.eclipse.core.resources 2 10035 2021-02-18 17:54:25.832
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.emf.ecore 2 0 2021-02-18 17:54:26.130
+!MESSAGE Both 'com.autoesl.autopilot.ui.models' and 'com.autoesl.autopilot.ui.models' register a package for 'com.autoesl.autopilot.solution'
+
+!ENTRY org.eclipse.ui 2 2 2021-02-18 17:54:27.889
+!MESSAGE Invalid preference category path: com.autoesl.autopilot.ui.startup.preferences.AutoPilotRootPreferencePage (bundle: com.autoesl.autopilot.ui.cdfg.diagram, page: com.autoesl.autopilot.ui.cdfg.diagram.general)
+
+!ENTRY org.eclipse.launchbar.core 2 0 2021-02-18 17:55:49.914
+!MESSAGE Enablement expression is missing for descriptor type org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2021-02-18 17:55:49.918
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2021-02-18 17:55:49.918
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-18 17:55:59.120
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 10.1 sec: 61,245 declarations; 104,986 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-18 18:01:46.921
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.75 sec: 61,245 declarations; 104,986 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-18 18:07:46.159
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.18 sec: 61,245 declarations; 104,986 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-18 18:36:56.754
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.19 sec: 61,245 declarations; 104,986 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-18 19:03:31.551
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.16 sec: 61,245 declarations; 104,986 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-18 19:05:00.784
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.21 sec: 61,245 declarations; 104,986 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-19 00:05:15.248
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.26 sec: 61,245 declarations; 104,986 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-19 00:06:41.873
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.23 sec: 61,245 declarations; 104,986 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-19 00:08:51.404
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.26 sec: 61,245 declarations; 105,004 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-19 00:10:04.657
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.16 sec: 61,245 declarations; 105,036 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-19 00:12:36.007
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.09 sec: 61,245 declarations; 105,102 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-19 00:16:46.438
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.27 sec: 61,245 declarations; 105,067 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-19 00:20:00.090
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.43 sec: 61,245 declarations; 105,067 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-19 00:20:43.998
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.41 sec: 61,245 declarations; 105,102 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-19 00:23:19.924
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.19 sec: 61,252 declarations; 105,815 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-19 00:34:51.722
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.19 sec: 61,252 declarations; 105,815 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-19 00:44:35.725
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.26 sec: 61,252 declarations; 105,815 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-19 01:13:47.449
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.16 sec: 61,273 declarations; 105,328 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-19 01:32:49.890
+!MESSAGE Indexed 'model' (2 sources, 228 headers) in 6.4 sec: 61,497 declarations; 106,253 references; 0 unresolved inclusions; 0 syntax errors; 92 unresolved names (0.055%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-19 01:33:37.126
+!MESSAGE Indexed 'model' (3 sources, 225 headers) in 6.15 sec: 61,408 declarations; 105,920 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-19 01:37:55.822
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.44 sec: 61,280 declarations; 105,353 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-19 01:38:18.444
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.21 sec: 61,280 declarations; 105,351 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-19 01:39:01.011
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.17 sec: 61,280 declarations; 105,351 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-19 01:42:18.321
+!MESSAGE Indexed 'model' (3 sources, 225 headers) in 6.11 sec: 61,400 declarations; 105,629 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-19 01:45:33.694
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.1 sec: 61,276 declarations; 105,206 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-19 01:51:18.625
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.44 sec: 61,281 declarations; 105,216 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-19 01:55:09.609
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.32 sec: 61,281 declarations; 105,218 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-19 01:58:32.269
+!MESSAGE Indexed 'model' (3 sources, 225 headers) in 6.32 sec: 61,409 declarations; 105,783 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-19 02:02:36.632
+!MESSAGE Indexed 'model' (3 sources, 225 headers) in 6.1 sec: 61,413 declarations; 105,931 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-19 02:07:16.999
+!MESSAGE Indexed 'model' (2 sources, 226 headers) in 6.24 sec: 61,308 declarations; 105,413 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-19 02:10:56.234
+!MESSAGE Indexed 'model' (2 sources, 227 headers) in 6.21 sec: 61,308 declarations; 105,413 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-19 02:14:52.714
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.13 sec: 61,283 declarations; 105,355 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-19 02:24:14.093
+!MESSAGE Indexed 'model' (3 sources, 225 headers) in 6.56 sec: 61,461 declarations; 108,266 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.05%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-19 02:43:37.128
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.27 sec: 61,331 declarations; 106,981 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.05%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-19 03:01:02.996
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.27 sec: 61,331 declarations; 106,982 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.05%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-19 03:39:26.414
+!MESSAGE Indexed 'model' (2 sources, 226 headers) in 6.34 sec: 61,356 declarations; 107,040 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.05%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-19 03:55:47.185
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.59 sec: 61,282 declarations; 106,651 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.051%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-19 03:58:37.734
+!MESSAGE Indexed 'model' (2 sources, 226 headers) in 6.34 sec: 61,332 declarations; 106,989 references; 0 unresolved inclusions; 0 syntax errors; 88 unresolved names (0.052%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-02-19 09:35:59.399
+!MESSAGE Indexed 'model' (2 sources, 225 headers) in 6.53 sec: 61,333 declarations; 106,992 references; 0 unresolved inclusions; 0 syntax errors; 85 unresolved names (0.05%)
