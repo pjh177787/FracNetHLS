@@ -48,8 +48,8 @@ typedef ap_fixed<14, 6, AP_RND, AP_SAT> FIX_WT; //fix point for weights (14, 6)
 //  typedef ap_fixed<32, 8, AP_RND, AP_SAT> FIX_32_8;
 //  typedef ap_fixed<32,25, AP_RND, AP_SAT> FIX_32_25;
 
-typedef ap_fixed<12, 2, AP_RND, AP_SAT> CONST_2;
-typedef ap_fixed<8, 4, AP_RND, AP_SAT> CONST_4;
+typedef ap_fixed<10, 2, AP_RND, AP_SAT> CONST_2;
+typedef ap_fixed<6, 4, AP_RND, AP_SAT> CONST_4;
 #endif
 
 //typedef ap_fixed<14, 2, AP_RND, AP_SAT> FIX_14_2;

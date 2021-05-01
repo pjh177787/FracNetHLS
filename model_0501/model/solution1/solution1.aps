@@ -5,8 +5,11 @@
     <downStreamTool>
         <DownStreamTool name=""/>
     </downStreamTool>
+    <clockList>
+        <clock default="false" name="default" period="4" uncertainty="12.5%"/>
+    </clockList>
     <config>
-        <schedule model="pg_conv3x3_tile"/>
+        <schedule model="FracNet"/>
         <config_export format="ip_catalog" rtl="verilog" use_netlist="" vivado_optimization_level="2" vivado_phys_opt="place" vivado_report_level="0"/>
     </config>
     <UIConfigurations>
@@ -68,8 +71,5 @@
         <library name="DefaultPlatform" value="xilinx/zynquplus/zynquplus"/>
         <library name="DefaultPlatform" value="xilinx/zynquplus/zynquplus_fpv7"/>
     </libraryList>
-    <clockList>
-        <clock default="false" name="default" uncertainty="12.5%" period="4"/>
-    </clockList>
 </solution>
 
